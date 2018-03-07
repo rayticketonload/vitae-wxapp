@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/info/info",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "transparent",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "vitae-example",
+    "navigationStyle": "default",
+    "backgroundColor": "#FFF",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50
+  }
+}
