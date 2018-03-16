@@ -1,20 +1,37 @@
 /**index.wxss**/
 
+.userInfoWrap {
+  background-color: #e4e4e4;
+  height: 150rpx;
+  line-height: 150rpx;
+  padding: 0 30rpx;
+}
+
+.userInfoAvatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 0;
+  margin: 0 20rpx 0 0;
+}
+
+.userInfoNickname {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 34rpx;
+  line-height: 1.4;
+}
+
 .container {
-  background-color: #aaa;
+  background-color: #fff;
 }
 
 .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
 }
 
 .userinfo-nickname {
