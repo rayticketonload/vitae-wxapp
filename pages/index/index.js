@@ -8,15 +8,13 @@ Page({
 
   data: {
     userInfo: {},
-    hasUserInfo: false,
+    hasUserInfo: false
   },
 
-  // 事件处理函数
-  // bindViewTap: function() {
-  //   wx.navigateTo({
-  //     url: '../logs/logs'
-  //   })
-  // },
+  onReady: function () {
+    // 获得 standardLayout 组件
+    this.standardLayout = this.selectComponent("#standardLayout");
+  },
 
   onLoad: function () {
     // 使用 wx.getSetting 访问微信服务器确认小程序之前是否已经申请过获取用户公开信息的授权

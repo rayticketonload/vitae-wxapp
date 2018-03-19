@@ -1,4 +1,7 @@
 /**index.wxss**/
+page {
+  min-height: 100%;
+}
 
 .userInfoWrap {
   background-color: #e4e4e4;
@@ -25,24 +28,6 @@
 }
 
 .container {
-  background-color: #fff;
+  background-color: transparent;
 }
 
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
-}
-
-.get-userifo-btn {
-  color: #fff;
-  background-color: #ff4200;
-}

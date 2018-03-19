@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "standardLayout": "/components/standardLayout/standardLayout"
+  }
+}

@@ -1,0 +1,57 @@
+.bottomNavWrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 150rpx;
+  background-color: #e4e4e4;
+}
+
+.addItemSwitch {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  position: absolute;
+  top: -75rpx;
+  left: 50%;
+  margin-left: -75rpx;
+  background-color: #a7a7a7;
+  z-index: 2;
+}
+
+.addItemSwitch:after,
+.addItemSwitch:before {
+  content: '';
+  border-radius: 10rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+}
+
+.addItemSwitch:before {
+  width: 60rpx;
+  height: 10rpx;
+  margin-top: -5rpx;
+  margin-left: -30rpx;
+}
+
+.addItemSwitch:after {
+  width: 10rpx;
+  height: 60rpx;
+  margin-top: -30rpx;
+  margin-left: -5rpx;
+}
+
+.addItemMask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  min-height: 100%;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 1;
+  padding: 20rpx;
+}

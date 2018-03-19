@@ -1,0 +1,6 @@
+.container {
+  position: relative;
+  height: 100%;
+  background-color: black;
+  padding-bottom: 150rpx;
+}
