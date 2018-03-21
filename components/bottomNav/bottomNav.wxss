@@ -1,11 +1,12 @@
 .bottomNavWrap {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
+  bottom: 15rpx;
+  left: 15rpx;
+  right: 15rpx;
   height: 150rpx;
-  background-color: #e4e4e4;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 1px rgb(219, 219, 219) inset;
+  border-radius: 15rpx;
 }
 
 .addItemSwitch {
@@ -16,8 +17,9 @@
   top: -75rpx;
   left: 50%;
   margin-left: -75rpx;
-  background-color: #a7a7a7;
   z-index: 2;
+  background-color: rgba(93, 211, 150, 1);
+  /* box-shadow: 0 0 30rpx 0 rgba(61, 150, 104, 1); */
 }
 
 .addItemSwitch:after,
@@ -44,14 +46,132 @@
   margin-left: -5rpx;
 }
 
+.addItemSwitch.cancel {
+  animation-name: addItemSwitch;
+  animation-duration: .3s;
+  animation-timing-function: linear;
+  animation-delay: 0;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-play-state: running;
+  animation-fill-mode: both;
+}
+
+@keyframes addItemSwitch {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(135deg);
+    background-color: rgba(241, 124, 107, 1);
+    box-shadow: 0 0 30rpx 0 rgba(241, 124, 107, 1);
+  }
+}
+
+.addItemSwitch.cancel:before {
+  width: 80rpx;
+  height: 16rpx;
+  margin-top: -8rpx;
+  margin-left: -40rpx;
+}
+
+.addItemSwitch.cancel:after {
+  width: 16rpx;
+  height: 80rpx;
+  margin-top: -40rpx;
+  margin-left: -8rpx;
+}
+
 .addItemMask {
   position: fixed;
   top: 0;
   left: 0;
-  bottom: 0;
   right: 0;
-  min-height: 100%;
-  background-color: rgba(0,0,0,0.3);
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
   z-index: 1;
   padding: 20rpx;
+  animation-name: addItemMask;
+  animation-duration: .3s;
+  animation-timing-function: ease;
+  animation-delay: 0;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-play-state: running;
+  animation-fill-mode: both;
+}
+
+@keyframes addItemMask {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.addItemButton,
+.addBoxButton {
+  width: 300rpx;
+  height: 300rpx;
+  line-height: 300rpx;
+  border-radius: 50%;
+  box-shadow: 0 0 30rpx 0 rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  font-size: 46rpx;
+  color: #666;
+  animation-duration: .3s;
+  animation-timing-function: ease;
+  animation-delay: 0;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-play-state: running;
+  animation-fill-mode: both;
+}
+
+.addItemButton {
+  animation-name: addItemButton;
+}
+
+.addItemButton {
+  animation-name: addItemButton;
+}
+
+@keyframes addItemButton {
+  0% {
+    transform: translate(0,150vh);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0,10vh);
+    opacity: 1;
+  }
+}
+
+.addBoxButton {
+  animation-name: addBoxButton;
+  animation-duration: .3s;
+  animation-timing-function: ease;
+  animation-delay: .15s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-play-state: running;
+  animation-fill-mode: both;
+}
+
+@keyframes addBoxButton {
+  0% {
+    transform: translate(0,170vh);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0,15vh);
+    opacity: 1;
+  }
 }

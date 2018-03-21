@@ -1,7 +1,9 @@
 Component({
 
+  // 允许组件使用多 slot 模式
+  // slot 是一个承载组件使用者提供的 wxml 标签的组件标签
   options: {
-    multipleSlots: true // 在组件定义时的选项中启用多slot支持
+    multipleSlots: true
   },
 
   /**
@@ -37,7 +39,11 @@ Component({
    */
   data: {
     // 添加物品的弹层显示控制
-    addItemMask: false
+    addItemMask: false,
+    addItemSwitchBoolen: false,
+    addItemSwitchClass: [
+      `addItemSwitch`
+    ]
   },
 
   /**
@@ -48,9 +54,25 @@ Component({
 
     // 打开添加 item 弹层的事件
     _addItemSwitch(e){
+      const { addItemSwitchBoolen } = this.data;
       this.setData({
-        addItemMask: !this.data.addItemMask
-      })
+        addItemMask: !this.data.addItemMask,
+        addItemSwitchBoolen: !this.data.addItemMask
+      });
+      if ( !addItemSwitchBoolen ) {
+        this.setData({
+          addItemSwitchClass: [
+            `addItemSwitch`,
+            `cancel`
+          ]
+        })
+      } else {
+        this.setData({
+          addItemSwitchClass: [
+            `addItemSwitch`
+          ]
+        })
+      }
     },
 
     // 隐藏弹框

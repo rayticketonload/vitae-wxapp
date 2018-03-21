@@ -21,10 +21,10 @@ App({
     // 进入首页就让用户登录
     // ------------------
     // 开始执行登录的时候出现菊花转,直到登陆成功后关闭菊花转
-    wx.showLoading({
-      title: `登录中...`,
-      mask: true,
-    });
+    // wx.showLoading({
+    //   title: `登录中...`,
+    //   mask: true,
+    // });
 
     // 访问微信的 login 接口
     wx.login({

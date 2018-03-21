@@ -1,11 +1,11 @@
 <view class="bottomNavWrap">
-  <span class="addItemSwitch" bindtap="_addItemSwitch"></span>
+  <span class="{{ addItemSwitchClass }}" bindtap="_addItemSwitch"></span>
   <view class="addItemMask" hidden="{{ !addItemMask }}">
-    <button type="primary">
-      添加物品
+    <button class="addItemButton">
+      物品
     </button>
-    <button type="default">
-      添加收纳点
+    <button class="addBoxButton">
+      收纳点
     </button>
   </view>
 </view>
