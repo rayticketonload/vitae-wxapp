@@ -1,0 +1,157 @@
+// out: ./bottomNav.wxss, compress: true, sourceMap: false
+// vscode 插件 easy wxless 将单个 less 文件编译成wxss文件的设置语句（设置语句一定放在文件最开头一行）
+
+// 引入样式变量
+@import '../../style/theme.less';
+// 引入minxin
+@import '../../style/mixins.less';
+
+.bottomNavWrap {
+  position: fixed;
+  bottom: @gapSize-public;
+  left: @gapSize-public;
+  right: @gapSize-public;
+  height: @height-bottomNav;
+  background-color: @bgColor-bottomNav;
+  .inner-shadow-custom(0, 0, 0, 1px, @borderColor-base);
+  border-radius: @borderRadius-public;
+  box-sizing: border-box;
+}
+
+.addItemSwitch {
+  .square(@size-addItemSwitch);
+  border-radius: 50%;
+  position: absolute;
+  top: -@size-addItemSwitch/2;
+  left: 50%;
+  margin-left: -@size-addItemSwitch/2;
+  z-index: @zIndex-addItemSwitch;
+  background-color: @bgColor-addItemSwitch;
+  box-sizing: border-box;
+
+  // 开关中间的加号
+  &:after,
+  &:before {
+    content: '';
+    border-radius: 10rpx;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: lighten(@bgColor-addItemSwitch,100);
+    box-sizing: border-box;
+  }
+
+  &:before {
+    width: floor(@size-addItemSwitch*0.46);
+    height: 10rpx;
+    margin-top: -5rpx;
+    margin-left: -(floor(@size-addItemSwitch*0.46)/2);
+  }
+
+  &:after {
+    width: 10rpx;
+    height: floor(@size-addItemSwitch*0.46);
+    margin-top: -(floor(@size-addItemSwitch*0.46)/2);
+    margin-left: -5rpx;
+  }
+
+  // 触发开关的动画
+  &.cancel {
+    .animation-s(addItemSwitch,.3s,linear,0);
+    @keyframes addItemSwitch {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(135deg);
+        background-color: rgba(241, 124, 107, 1);
+        box-shadow: 0 0 30rpx 0 rgba(241, 124, 107, 1);
+      }
+    }
+
+    &:before {
+      width: floor(@size-addItemSwitch*0.55);
+      height: 16rpx;
+      margin-top: -8rpx;
+      margin-left: -(floor(@size-addItemSwitch*0.55)/2);
+    }
+
+    &:after {
+      width: 16rpx;
+      height: floor(@size-addItemSwitch*0.55);
+      margin-top: -(floor(@size-addItemSwitch*0.55)/2);
+      margin-left: -8rpx;
+    }
+  }
+}
+
+.addItemMask {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: @zIndex-addItemMask;
+  .animation-s(addItemMask,.3s,ease,0);
+  @keyframes addItemMask {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+.addItemButton,
+.addBoxButton {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  .square(@size-addItemAndBoxButton);
+  line-height: @size-addItemAndBoxButton;
+  .inner-shadow-custom(0, 0, 0, 1px, @borderColor-base);
+  border-radius: 50%;
+  background-color: #fff;
+  font-size: @fontSize-base;
+  color: @fontColor-base;
+}
+
+.addItemButton {
+  .animation-s(addItemButton,.3s,ease,0);
+  @keyframes addItemButton {
+    0% {
+      transform: translate(0,150vh);
+      opacity: 0;
+    }
+    40% {
+      opacity: 0;
+    }
+    100% {
+      transform: translate(0,10vh);
+      opacity: 1;
+    }
+  }
+}
+
+.addBoxButton {
+  .animation-s(addBoxButton,.3s,ease,.15s);
+  @keyframes addBoxButton {
+    0% {
+      transform: translate(0,170vh);
+      opacity: 0;
+    }
+    40% {
+      opacity: 0;
+    }
+    100% {
+      transform: translate(0,15vh);
+      opacity: 1;
+    }
+  }
+}
+
+
+

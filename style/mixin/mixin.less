@@ -1,0 +1,569 @@
+@charset 'UTF-8';
+
+// transition
+.transition ( @property, @duration, @timing-function, @delay ) {
+  transition-property: @property;
+  transition-duration: @duration;
+  transition-timing-function: @timing-function;
+  transition-delay: @delay;
+}
+
+// Rounded
+.rounded ( @radius ) {
+  border-radius: @radius;
+}
+
+// Borner radius
+.border-radius ( @topLeft, @topRight, @bottomRight, @bottomLeft ) {
+  // Top Left
+  border-top-left-radius: @topLeft;
+  // Top Right
+  border-top-right-radius: @topRight;
+  // Bottom Right
+  border-bottom-right-radius: @bottomRight;
+  // Bottom Left
+  border-bottom-left-radius: @bottomLeft;
+}
+
+// Basic box shadow
+.box-shadow( @shadow ) {
+  box-shadow: @shadow;
+}
+
+// Outer shadow
+.outer-shadow( @x: 0, @y: 1px, @blur: 2rpx, @alpha: 0.1 ) {
+  box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+}
+.outer-shadow-custom( @x: 0, @y: 1px, @blur: 2rpx, @spread: 0, @rgba:rgba(0,0,0,0.1) ) {
+  box-shadow: @x @y @blur @spread @rgba;
+}
+
+// Inner shadow
+.inner-shadow( @x: 0, @y: 1px, @blur: 2rpx, @alpha: 0.4 ) {
+  box-shadow: inset @x @y @blur rgba(0, 0, 0, @alpha);
+}
+.inner-shadow-custom( @x: 0, @y: 1px, @blur: 2rpx, @spread: 0, @rgba:rgba(0,0,0,0.4) ) {
+  box-shadow: inset @x @y @blur @spread @rgba;
+}
+
+// Basic transform
+.transform( @transform ) {
+  transform: @transform;
+}
+
+// Rotate
+.rotate( @deg ) {
+  .transform( rotate(@deg) );
+}
+
+// Scale
+.scale( @ratio ) {
+  .transform( scale(@ratio) );
+}
+
+// Translate
+.translate( @x, @y ) {
+  .transform( translate(@x, @y) );
+}
+
+// Background clip
+.background-clip( @argument: padding-box ) {
+  background-clip: @argument;
+}
+
+// Box sizing
+.border-box( @sizing: border-box ) {
+  box-sizing: @sizing;
+}
+
+// User select
+.user-select( @select: none ) {
+  user-select: @select;
+}
+
+// Opacity
+.opacity( @opacity: 0.5 ) {
+  opacity: @opacity;
+  @opperc: @opacity * 100;
+  filter: ~'alpha(opacity=@{opperc})';
+}
+.opacity-custom( @opacity-c ) {
+  opacity: @opacity-c;
+  @opperc: @opacity-c * 100;
+  filter: ~'alpha(opacity=@{opperc})';
+}
+
+// Display: inline-block
+.inline-block() {
+  display: inline-block;
+  *zoom: 1; /* Fix for IE7 */
+  *display: inline; /* Fix for IE7 */
+}
+
+// 块化水平居中
+.center-block() {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Develop and Testing Tools
+// ---------------------------------
+
+// Hide block
+.hide() {
+  display: none;
+}
+
+// Hide conntent
+.hide-text() {
+  font: 0/0 a;
+  border: 0;
+  color: transparent;
+  background-color: transparent;
+  text-shadow: none;
+  .box-shadow( none );
+}
+
+// 清除浮动
+.clearfix() {
+  *zoom: 1;
+
+  &:before,
+  &:after {
+    display: table;
+    line-height: 0;
+    content: '';
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+// 占位符
+.input-placeholder( @color: #999 ){
+  input::-webkit-input-placeholder { /* WebKit browsers */
+    color: @color;
+  }
+  input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: @color;
+    opacity: 1;
+  }
+  input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: @color;
+    opacity: 1;
+  }
+  input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: @color !important;
+  }
+}
+
+// 截断文本
+.text-overflow ( @display: block ) {
+  display: @display;
+  word-wrap: normal; /* for IE */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// Line clamp 多行文本溢出显示省略号(webkit)
+// http://dropshado.ws/post/1015351370/webkit-line-clamp
+// -----------------------------------------------------------------------------
+.am-line-clamp ( @lines, @line-height: 1.3em ) {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: @lines; // number of lines to show
+  overflow: hidden;
+  line-height: @line-height;
+  max-height: @line-height * @lines;
+}
+
+// =============================================================================
+// Visual 视觉
+// =============================================================================
+// WebKit-style focus
+.tab-focus() {
+  // Default
+  outline: thin dotted;
+  // WebKit
+  outline: 1px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+// 文本隐藏
+.text-hide() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 强制换行
+.word-wrap() {
+  word-break: break-all;
+  white-space: normal;
+}
+
+// 标准超链接
+.link-standard ( @color) {
+  text-decoration: none;
+  list-style: none;
+  cursor: pointer;
+  color: @color;
+
+  &:hover,
+  &:active {
+    color: darken( @color,15% );
+    text-decoration: none;
+  }
+
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+// 定制超链接
+.link-custom ( @color,@colorHover,@text-decoration ) {
+  text-decoration: @text-decoration;
+  list-style: none;
+  // outline: none;
+  cursor: pointer;
+  color: @color;
+
+  &:hover,
+  &:active {
+    color: @colorHover;
+    text-decoration: @text-decoration;
+  }
+
+  &:focus {
+    text-decoration: @text-decoration;
+  }
+}
+
+// 超链接-移动端
+.link-mobile ( @color ) {
+  text-decoration: none;
+  outline: none;
+  color: @color;
+
+  &:active {
+    text-decoration: none;
+  }
+
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+// 字体发光
+.text-get-light ( @blur,@opacity ) {
+  text-shadow: 0 0 @blur rgba( 255,255,255,@opacity );
+}
+
+// 字体白阴影
+.text-white-shadow ( @blur,@opacity ) {
+  text-shadow: 1px 1px @blur rgba( 255,255,255,@opacity );
+}
+
+// 高亮字体
+.highlight-text ( @color ) {
+  color: @color;
+
+  &:hover {
+    color: lighten( @color,20% );
+  }
+}
+
+//样式上下箭头
+.arrow-up-or-down ( @border-top-or-bottom,@ysize,@xsize,@color:inherit ) {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  @{border-top-or-bottom}: @ysize dashed;
+  @{border-top-or-bottom}: @ysize solid ~'\9'; // IE8
+  @{border-top-or-bottom}-color: @color;
+  border-right: @xsize solid transparent;
+  border-left: @xsize solid transparent;
+}
+
+// 样式左右箭头
+.arrow-left-or-right ( @border-left-or-right,@xsize,@ysize,@color:inherit ) {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  @{border-left-or-right}: @xsize dashed;
+  @{border-left-or-right}: @xsize solid ~'\9'; // IE8
+  @{border-left-or-right}-color: @color;
+  border-top: @ysize solid transparent;
+  border-bottom: @ysize solid transparent;
+}
+
+// 尺寸
+.size ( @width,@height ) {
+  width: @width;
+  height: @height;
+}
+.square ( @size ) {
+  .size( @size,@size );
+}
+
+// 可调整大小的文本域
+.resizable ( @direction: both ) {
+  // 可选: horizontal, vertical, both
+  resize: @direction;
+  // Safari 适配
+  overflow: auto;
+}
+
+// Reset filters for IE
+// When you need to remove a gradient background, do not forget to use this to
+// reset the IE filter for IE9 and below.
+// -----------------------------------------------------------------------------
+.reset-filter() {
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
+}
+
+// Retina images
+// Short retina mixin for setting background-image and -size
+// -----------------------------------------------------------------------------
+.retina-bg-img(@file-1x; @file-2x; @width-1x; @height-1x) {
+  background-image: url("@{file-1x}");
+  @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    background-image: url("@{file-2x}");
+    background-size: @width-1x @height-1x;
+  }
+}
+
+// Responsive image
+// Keep images from scaling beyond the width of their parents.
+// -----------------------------------------------------------------------------
+.img-responsive(@display: block) {
+  display: @display;
+  max-width: 100%; // Part 1: Set a maximum relative to the parent
+  height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
+}
+
+// =============================================================================
+// Flexbox
+// =============================================================================
+
+// The spec: http://www.w3.org/TR/css3-flexbox
+// via: https://gist.github.com/jayj/4012969
+//      https://github.com/mastastealth/sass-flex-mixin/blob/master/flex.scss
+//      http://codepen.io/adamjohnson/pen/savzI
+//      http://css-tricks.com/old-flexbox-and-new-flexbox/
+//      http://html5please.com/#flexbox
+//
+// NOTE: NEED CODE REVIEW
+// -----------------------------------------------------------------------------
+
+// Flexbox display
+// flex | inline-flex
+.flexbox(@display: flex) {
+  display: -webkit-box; // Old syntax
+  display: ~"-webkit-@{display}";
+  display: ~"-moz-@{display}";
+  display: ~"-ms-@{display}box"; // IE10 uses -ms-flexbox
+  display: ~"-ms-@{display}"; // IE11
+  display: @display;
+}
+
+// The 'flex' shorthand
+// This shorthand for `flex-grow`, `flex-shrink` and `flex-basic` combined.
+// The second and third parameters (flex-shrink and flex-basic) are optional.
+// Default is 0 1 auto.
+// - applies to: flex items
+// <positive-number>, initial, auto, or none
+.flex(@columns: 1) {
+  -webkit-box-flex: @columns; // Old syntax
+  -webkit-flex: @columns;
+  -moz-flex: @columns;
+  -ms-flex: @columns;
+  flex: @columns;
+}
+
+// Flex Flow Direction
+// - applies to: flex containers
+// row | row-reverse | column | column-reverse
+.flex-direction(@direction: row) {
+  -webkit-flex-direction: @direction;
+  -moz-flex-direction: @direction;
+  -ms-flex-direction: @direction;
+  flex-direction: @direction;
+}
+
+// Flex Line Wrapping
+// - applies to: flex containers
+// nowrap | wrap | wrap-reverse
+.flex-wrap(@wrap: nowrap) {
+  -webkit-flex-wrap: @wrap;
+  -moz-flex-wrap: @wrap;
+  -ms-flex-wrap: @wrap;
+  flex-wrap: @wrap;
+}
+
+// Flex Direction and Wrap
+// The shorthand for `flex-direction` and `flex-wrap`
+// - applies to: flex containers
+// <flex-direction> || <flex-wrap>
+.flex-flow(@flow: ~"row nowrap") {
+  -webkit-flex-flow: @flow;
+  -moz-flex-flow: @flow;
+  -ms-flex-flow: @flow;
+  flex-flow: @flow;
+}
+
+// Axis Alignment
+// - applies to: flex containers
+// flex-start | flex-end | center | space-between | space-around
+.justify-content(@justify: flex-start) {
+  -webkit-justify-content: @justify;
+  -moz-justify-content: @justify;
+  -ms-justify-content: @justify;
+  justify-content: @justify;
+}
+
+// Packing Flex Lines
+// - applies to: multi-line flex containers
+// flex-start | flex-end | center | space-between | space-around | stretch
+.align-content(@align: stretch) {
+  // http://www.w3.org/TR/2012/WD-css3-flexbox-20120322/#flex-pack
+  -webkit-box-pack: @align; // Old syntax: start | end | center | justify | distribute
+  -webkit-align-content: @align;
+  -moz-align-content: @align;
+  -ms-align-content: @align;
+  align-content: @align;
+}
+
+// Cross-axis Alignment
+// - applies to: flex containers
+// flex-start | flex-end | center | baseline | stretch
+.align-items(@align: stretch) {
+  // start | center | end | baseline | stretch
+  -webkit-box-align: @align;  // Old syntax
+  -webkit-align-items: @align;
+  -moz-align-items: @align;
+  -ms-align-items: @align;
+  align-items: @align;
+}
+
+// Display Order
+// - applies to: flex items
+// <integer>
+.flex-order(@order: 0) {
+  -webkit-flex-order: @order; // Old syntax
+  -webkit-order: @order;
+  -moz-order: @order;
+  -ms-order: @order;
+  order: @order;
+}
+
+// Flex grow factor
+// - applies to: flex items
+// <number>
+.flex-grow(@grow: 0) {
+  -webkit-flex-grow: @grow;
+  -moz-flex-grow: @grow;
+  -ms-flex-grow: @grow;
+  flex-grow: @grow;
+}
+
+// Flex shr
+// - applies to: flex itemsink factor
+// <number>
+.flex-shrink(@shrink: 1) {
+  -webkit-flex-shrink: @shrink;
+  -moz-flex-shrink: @shrink;
+  -ms-flex-shrink: @shrink;
+  flex-shrink: @shrink;
+}
+
+// Flex basic
+// - the initial main size of the flex item
+// - applies to: flex itemsnitial main size of the flex item
+// <width>
+.flex-basic(@width: auto) {
+  -webkit-flex-basic: @width;
+  -moz-flex-basic: @width;
+  -ms-flex-basic: @width;
+  flex-basic: @width;
+}
+
+// Cross-axis Alignment
+// - applies to: flex items
+// auto | flex-start | flex-end | center | baseline | stretch
+.align-self(@align: auto) {
+  -webkit-align-self: @align;
+  -moz-align-self: @align;
+  -ms-align-self: @align;
+  align-self: @align;
+}
+
+// 简化动画
+.animation-s( @name,@duration,@timing-function,@delay,@iteration-count:1,@direction:normal,@play-state:running,@fill-mode:both ) {
+  animation-name: @name;
+  animation-duration: @duration;
+  animation-timing-function: @timing-function;
+  animation-delay: @delay;
+  animation-iteration-count: @iteration-count;
+  animation-direction: @direction;
+  animation-play-state: @play-state;
+  animation-fill-mode: @fill-mode;
+}
+
+// 动画定义简化
+.keyframes ( @name ) {
+  @keyframes @name {
+    .-frames();
+  }
+}
+
+// 单独属性定义
+.animation-delay ( @delay ) {
+  animation-delay: @delay;
+}
+
+.animation-duration ( @duration ) {
+  animation-duration: @duration;
+}
+
+// & {
+//     .keyframes( effectOne );
+
+//     .-frames(@-...) {
+//         0% {
+//             @{-}opacity: 0.3;
+//             @{-}transform: scale(0.5);
+//             background-color: rgba( 240,96,96,0.1 );
+//         }
+//         40% {
+//             @{-}opacity: 0.5;
+//             @{-}box-shadow: 0 0 0 2px rgba(255,255,255,0.1), 0 0 10px 10px #f06060, 0 0 0 10px rgba(255,255,255,0.5);
+//         }
+//         100% {
+//             @{-}box-shadow: 0 0 0 2px rgba(255,255,255,0.1), 0 0 10px 10px #f06060, 0 0 0 10px rgba(255,255,255,0.5);
+// 		    @{-}transform: scale(1.5);
+//             @{-}opacity: 0;
+//         }
+//     }
+// }
+
+// & {
+//     .keyframes( close-btn );
+
+//     .-frames(@-...) {
+//         0% {
+//             @{-}transform: rotate( 0 );
+//         }
+
+//         100% {
+//             @{-}transform: rotate( 90deg );
+//         }
+//     }
+// }
+
