@@ -75,6 +75,34 @@ Component({
       }
     },
 
+    // 跳转到添加物品表单页面
+    _navToAddItem(e) {
+      wx.navigateTo({
+        url: `../addItem/addItem`
+      });
+      this.setData({
+        addItemMask: false,
+        addItemSwitchBoolen: false,
+        addItemSwitchClass: [
+          `addItemSwitch`
+        ]
+      })
+    },
+
+    // 跳转到添加收纳盒表单页面
+    _navToAddBox(e) {
+      wx.navigateTo({
+        url: `../addBox/addBox`
+      });
+      this.setData({
+        addItemMask: false,
+        addItemSwitchBoolen: false,
+        addItemSwitchClass: [
+          `addItemSwitch`
+        ]
+      })
+    }
+
     // 隐藏弹框
     // hideDialog(){
     //   this.setData({

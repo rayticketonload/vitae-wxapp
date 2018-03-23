@@ -1,4 +1,4 @@
-<view class="bottomNavWrap">
+<!-- <view class="bottomNavWrap">
   <span class="{{ addItemSwitchClass }}" bindtap="_addItemSwitch"></span>
   <view class="addItemMask" hidden="{{ !addItemMask }}">
     <span class="addItemButton" bindtap="_navToAddItem">
@@ -8,4 +8,4 @@
       收纳点
     </span>
   </view>
-</view>
+</view> -->
