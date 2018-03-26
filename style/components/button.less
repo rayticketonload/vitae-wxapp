@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+.button {
+  box-sizing: border-box;
+  display: block;
+  .rounded(@borderRadius-button);
+  padding: 0 @height-button/4;
+  margin: 0;
+  outline: none;
+  text-align: center;
+  font-size: @fontSize-default;
+  line-height: @height-button;
+  height: @height-button;
+  white-space: nowrap;
+  overflow: visible;
+  .transition(all, 0.3s, ease, 0);
+  .link-mobile(transparent);
+
+  // 按钮样式工具
+  .buttonStyle(@color, @fontColor) {
+    background-color: @color;
+    color: @fontColor;
+
+    &:active,
+    &.current {
+      background-color: darken(@color, 12%);
+    }
+  }
+
+  &.default {
+    .buttonStyle(@color-default-button, @fontColor-default-button);
+  }
+
+  &.primary {
+    .buttonStyle(@color-primary-button, @fontColor-primary-button);
+  }
+
+  &.secondary {
+    .buttonStyle(@color-secondary-button, @fontColor-secondary-button);
+  }
+
+  &.thirdly {
+    .buttonStyle(@color-thirdly-button, @fontColor-thirdly-button);
+  }
+}
+
+a.button.disabled,
+fieldset[disabled] a.button {
+  pointer-events: none;
+}

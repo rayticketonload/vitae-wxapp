@@ -1,7 +1,7 @@
 // ------------------
 // app.js
 // ------------------
-// 引入
+// 引入常量
 const constants = require('./constants/constants');
 
 App({
@@ -48,6 +48,9 @@ App({
             success: res => {
               console.log(`第三方返回重组完成的 session_key: %c${res.data.session_key}`, `color: #ffb119; background-color: transparent;`);
               if (res.data.session_key) {
+                // 将拿回来的 session_key 放入 globalData
+                const app = getApp();
+                app.globalData.session_key = res.data.session_key;
                 // 同步存储拿到的第三方 session_key 到 localStorage，命名为 local_session_key
                 try {
                   wx.setStorageSync(
@@ -94,5 +97,6 @@ App({
 
   globalData: {
     userInfo: null,
+    session_key: null
   },
 })

@@ -13,32 +13,47 @@
 @domColor6: rgba(38, 47, 59, 1);
 @domColor7: rgba(255, 255, 255, 1);
 
+
 // 基础字体尺寸
 @fontSize-base: 36rpx;
+  // 正文
+  @fontSize-default: @fontSize-base;
+
 
 // 公共圆角尺寸
 @borderRadius-public: 15rpx;
 
+
 // 公共间隔尺寸
-@gapSize-public: 15rpx;
+@gapSize-public: 20rpx;
+
 
 // 基础字符行高
 @lineHeight-base: 1.6;
 
+
 // 基础文本色调
 @fontColor-base: rgba(102, 102, 102, 1);
+  // 提示
+  @fontColor-tips: rgba(153, 153, 153, 1);
+  // 正文
+  @fontColor-default: rgba(51, 51, 51, 1);
+
 
 // 基础背景色
 @bgColor-base: rgba(255, 255, 255, 1);
 
+
 // 基础边框色
 @borderColor-base: rgba(221, 221, 221, 1);
+
 
 //
 // -------- 各组件Z轴层级 --------
 //
 @zIndex-addItemSwitch: 2;
 @zIndex-addItemMask: 1;
+
 
 //
 // -------- 底部导航 --------
@@ -51,6 +66,7 @@
 @size-addItemSwitch: @height-bottomNav;
 @size-addItemAndBoxButton: @height-bottomNav*2;
 
+
 //
 // -------- wx用户公开信息窗口 --------
 //
@@ -58,3 +74,30 @@
 @bgColor-userInfoWrap: rgba(255, 255, 255, 1);
 // size
 @height-userInfoWrap: 150rpx;
+
+
+//
+// -------- 通用表单样式 --------
+//
+// color
+@borderColor-formControl: @borderColor-base;
+@fontColor-formControl: @fontColor-default;
+// size
+@height-formControl: 110rpx;
+
+
+//
+// -------- 通用按钮样式 --------
+//
+// color
+@color-default-button: @domColor7;
+@fontColor-default-button: @fontColor-default;
+@color-primary-button: @domColor1;
+@fontColor-primary-button: rgba(255, 255, 255, 1);
+@color-secondary-button: @domColor2;
+@fontColor-secondary-button: rgba(255, 255, 255, 1);
+@color-thirdly-button: @domColor3;
+@fontColor-thirdly-button: rgba(255, 255, 255, 1);
+// size
+@borderRadius-button: @borderRadius-public;
+@height-button: @height-formControl;

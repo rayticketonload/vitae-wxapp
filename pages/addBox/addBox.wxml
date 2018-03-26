@@ -1,11 +1,13 @@
-<!-- <view class="bottomNavWrap">
-  <span class="{{ addItemSwitchClass }}" bindtap="_addItemSwitch"></span>
-  <view class="addItemMask" hidden="{{ !addItemMask }}">
-    <span class="addItemButton" bindtap="_navToAddItem">
-      物品
-    </span>
-    <span class="addBoxButton" bindtap="_navToAddBox">
-      收纳点
-    </span>
-  </view>
-</view> -->
+<view class="defaultFormWrap">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="formControlWrap fn-mb-20">
+      <input name="boxName" placeholder="收纳点名称是？" value="" class="formControl" />
+    </view>
+    <view class="formControlWrap options fn-mb-60">
+      <input name="boxLocation" placeholder="收纳点放置在？" value="" class="formControl" disabled/>
+    </view>
+    <view>
+      <button formType="submit" class="button secondary">保存</button>
+    </view>
+  </form>
+</view>

@@ -3,7 +3,7 @@
 //
 // 递归生成 margin 族类
 //
-.init-margin(@min: 0, @max: 50, @space: 5, @pre: fn) {
+.init-margin(@min: 0, @max: 100, @space: 5, @pre: fn) {
   .build-margin(@count) when (@count >= @min) {
     .build-margin((@count - @space));
 
@@ -41,7 +41,7 @@
 //
 // 递归生成 padding 族类
 //
-.init-padding(@min: 0, @max: 50, @space: 5, @pre: fn) {
+.init-padding(@min: 0, @max: 100, @space: 5, @pre: fn) {
   .build-padding(@count) when (@count >= @min) {
     .build-padding((@count - @space));
 
@@ -79,7 +79,7 @@
 //
 // 递归生成 fontsize 和 lineheight 族类
 //
-.init-fontSize(@min: 12, @max: 36, @space: 2, @pre: fs) {
+.init-fontSize(@min: 12, @max: 56, @space: 2, @pre: fs) {
   .build-fontSize(@count) when (@count >= @min) {
     .build-fontSize((@count - @space));
 

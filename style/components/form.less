@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+.defaultFormWrap {
+  padding: @gapSize-public;
+}
+
+.formControlWrap {
+  position: relative;
+
+  // > label {
+  //   box-sizing: border-box;
+  //   position: absolute;
+  //   top: 50%;
+  //   transform: translate(0, -50%);
+  //   left: @height-formControl/4;
+  //   font-size: @fontSize-default;
+  //   line-height: @lineHeight-base;
+  //   color: @fontColor-tips;
+  // }
+
+  &.options {
+
+    > .formControl {
+      padding-right: 200rpx;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &:after {
+      content: '选择';
+      font-size: @fontSize-base;
+      position: absolute;
+      top: 50%;
+      right: 50rpx;
+      transform: translate(0,-50%);
+    }
+  }
+}
+
+.formControl {
+  display: block;
+  .rounded(@borderRadius-public);
+  box-sizing: border-box;
+  .inner-shadow-custom(0, 0, 0, 1px, @borderColor-formControl);
+  font-size: @fontSize-base;
+  color: @fontColor-formControl;
+  height: @height-formControl;
+  padding: 0 @height-formControl/4;
+  line-height: @lineHeight-base;
+}

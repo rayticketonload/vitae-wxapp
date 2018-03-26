@@ -32,6 +32,7 @@ Page({
               // 将全局的 userInfo 赋值为刚拿回来的 userInfo
               app.globalData.userInfo = res.userInfo;
               console.log('app.globalData.userInfo', app.globalData.userInfo);
+              console.log('app.globalData.session_key', app.globalData.session_key);
               // 获取授权成功后再打印一下授权列表确认
               wx.getSetting({
                 success: res => {

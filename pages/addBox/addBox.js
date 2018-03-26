@@ -1,9 +1,31 @@
+// 引入常量
+const constants = require('../../constants/constants');
+// 引入封装好的请求方法
+const request = require('../../utils/request');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+  },
+
+  formSubmit: function(e) {
+    console.log('e.detail', e.detail)
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    const param = {
+      "url": `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}addPack`,
+      "data": `${e.detail.value}`,
+      "success": ``,
+      "fail": ``,
+      "complete": ``
+    }
+    request.post(param);
+  },
+
+  formReset: function() {
+    console.log('form发生了reset事件')
   },
 
   /**
