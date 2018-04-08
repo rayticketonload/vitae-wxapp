@@ -4,7 +4,7 @@
 // -------- 全局样式参数 --------
 // -------- 全局参数命名规范：“属性名称 - 作用域”，如：@fontColor-default 尽量吧！！！语死早
 
-// 色调
+// 通用色调
 @domColor1: rgba(68, 146, 212, 1);
 @domColor2: rgba(93, 211, 150, 1);
 @domColor3: rgba(241, 124, 107, 1);
@@ -12,12 +12,21 @@
 @domColor5: rgba(251, 106, 1, 1);
 @domColor6: rgba(38, 47, 59, 1);
 @domColor7: rgba(255, 255, 255, 1);
+// app 主色调
+@color-primary: rgb(245, 142, 120);
+@color-secondary: rgb(128, 128, 128);
+@color-thirdly: rgb(253, 234, 191);
+@color-fourth: rgb(255, 209, 120);
+@color-fifth: rgb(193, 99, 78);
 
 
 // 基础字体尺寸
 @fontSize-base: 36rpx;
   // 正文
   @fontSize-default: @fontSize-base;
+  @fontSize-sub: ceil(@fontSize-base*0.8);
+  // 标题
+  @fontSize-header: floor(@fontSize-base*1.4);
 
 
 // 公共圆角尺寸
@@ -51,39 +60,44 @@
 //
 // -------- 各组件Z轴层级 --------
 //
-@zIndex-addItemSwitch: 2;
-@zIndex-addItemMask: 1;
+@zIndex-menuSwitch: 2;
+@zIndex-menuMask: 1;
 
 
 //
 // -------- 底部导航 --------
 //
 // color
-@bgColor-bottomNav: rgba(255, 255, 255, 1);
-@bgColor-addItemSwitch: @domColor2;
+@bgColor-bottomNav: @bgColor-userInfoWrap;
+@bgColor-menuSwitch: @color-secondary;
 // size
-@height-bottomNav: 150rpx;
-@size-addItemSwitch: @height-bottomNav;
-@size-addItemAndBoxButton: @height-bottomNav*2;
+@height-menuMask: 400rpx;
+@height-bottomNav: @height-defaultFormControl;
+@size-menuSwitch: @height-bottomNav;
+@size-menuFunIcon: 140rpx;
 
 
 //
-// -------- wx用户公开信息窗口 --------
+// -------- 首页 --------
 //
 // color
-@bgColor-userInfoWrap: rgba(255, 255, 255, 1);
+@bgColor-userInfoWrap: @color-primary;
+@fontColor-userInfoWrap: rgba(255, 255, 255, 1);
+@bgColor-indexSearcher: @color-thirdly;
 // size
-@height-userInfoWrap: 150rpx;
+@size-userInfoAvatar: 120rpx;
+@height-input-indexSearcher: 80rpx;
 
 
 //
 // -------- 通用表单样式 --------
 //
 // color
-@borderColor-formControl: @borderColor-base;
-@fontColor-formControl: @fontColor-default;
+@bgColor-defaultFormWrap: @color-secondary;
+@bgColor-defaultFormControl: darken(@bgColor-defaultFormWrap, 10);
+@fontColor-defaultFormControl: rgba(255,255,255,1);
 // size
-@height-formControl: 110rpx;
+@height-defaultFormControl: 110rpx;
 
 
 //
@@ -96,8 +110,9 @@
 @fontColor-primary-button: rgba(255, 255, 255, 1);
 @color-secondary-button: @domColor2;
 @fontColor-secondary-button: rgba(255, 255, 255, 1);
-@color-thirdly-button: @domColor3;
+@color-thirdly-button: @color-primary;
 @fontColor-thirdly-button: rgba(255, 255, 255, 1);
+@fontColor-defaultPlaceHolder: rgba(255, 255, 255, .7);
 // size
 @borderRadius-button: @borderRadius-public;
-@height-button: @height-formControl;
+@height-button: @height-defaultFormControl;

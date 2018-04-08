@@ -8,30 +8,143 @@
 
 // 微信用户公开信息展示窗
 .userInfoWrap {
-  background-color: @bgColor-userInfoWrap;
-  height: @height-userInfoWrap;
-  line-height: @height-userInfoWrap;
-  padding: 0 30rpx;
-  margin: @gapSize-public;
-  border-radius: @borderRadius-public;
   box-sizing: border-box;
-  .inner-shadow-custom(0, 0, 0, 1px, @borderColor-base);
+  background-color: @bgColor-userInfoWrap;
+  padding: @gapSize-public * 2;
+  .border-radius(0,0,@borderRadius-public * 3,@borderRadius-public * 3);
 }
 
-.userInfoAvatar {
-  .square(floor(@height-userInfoWrap*0.7));
-  border-radius: 50%;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 0;
-  margin: 0 20rpx 0 0;
-  box-sizing: border-box;
+.userInfo {
+  position: relative;
+  .rounded(@borderRadius-public);
+  font-size: @fontSize-default;
+  color: @fontColor-userInfoWrap;
+  padding-left: (@size-userInfoAvatar + @gapSize-public*2);
+  padding-right: (@size-userInfoAvatar + @gapSize-public*2);
+}
+
+.currentPackName {
+  display: block;
+  font-size: @fontSize-header;
+  line-height: @lineHeight-base;
+  color: @fontColor-userInfoWrap;
+}
+
+.changeLocation {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  .square(@size-userInfoAvatar/1.6);
+}
+
+.avatarBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  .square(@size-userInfoAvatar);
+  .rounded(50%);
+  display: none;
+
+  &.avatarBoxAnim {
+    display: block;
+    .animation-s(avatarBox,.4s,ease,.8s);
+    @keyframes avatarBox {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, .8);
+      }
+      100% {
+        box-shadow: 0 0 0 60rpx rgba(255, 255, 255, 0);
+      }
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      .square(100%);
+      .rounded(50%);
+      top: 0;
+      left: 0;
+      .animation-s(avatarBoxBefore,.4s,ease,.8s);
+      @keyframes avatarBoxBefore {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
+        50% {
+          box-shadow: 0 0 0 @size-userInfoAvatar/4 rgba(255, 255, 255, .6);
+        }
+        100% {
+          box-shadow: 0 0 0 @size-userInfoAvatar/10 rgba(255, 255, 255, .4);
+        }
+      }
+    }
+
+    .avatar {
+      .animation-s(avatar,.3s,ease,.5s);
+      @keyframes avatar {
+        0% {
+          opacity: 0;
+          transform: scale(1.5) rotateY(365deg);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) rotateY(0);
+        }
+      }
+    }
+  }
+}
+
+.avatar {
+  .square(100%);
+  .rounded(50%);
 }
 
 .userInfoNickname {
-  display: inline-block;
-  vertical-align: middle;
-  font-size: @fontSize-base;
-  line-height: @lineHeight-base;
   box-sizing: border-box;
+  display: block;
+  font-size: @fontSize-sub;
+  line-height: 1.2;
+  color: @fontColor-userInfoWrap;
+  .opacity-custom(.8);
+  .text-hide();
+}
+
+// 首页搜索部件
+.indexSearcher {
+  display: block;
+  box-sizing: border-box;
+  padding: @gapSize-public * 2;
+  position: relative;
+
+  .indexSearcherInput {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    font-size: @fontSize-default;
+    color: darken(@bgColor-indexSearcher,50);
+    .size(auto,@height-input-indexSearcher);
+    line-height: @height-input-indexSearcher;
+    .rounded(@height-input-indexSearcher);
+    padding: 0 90rpx;
+    background-color: @bgColor-indexSearcher;
+
+    > image {
+      position: absolute;
+      top: 50%;
+      left: 20rpx;
+      margin-top: -(@height-input-indexSearcher * 0.7)/2;
+      .square(@height-input-indexSearcher * 0.7);
+    }
+  }
+}
+
+.sliderWrap {
+  padding: 0 @gapSize-public * 2;
+
+  .sliderBox {
+    .inner-shadow-custom(0, 0, 0, 1px, @borderColor-base);
+    .rounded(@borderRadius-public);
+    height: 260rpx;
+    background-color: @borderColor-base;
+  }
 }

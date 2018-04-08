@@ -1,3 +1,6 @@
+// 引入 base64 资源
+const base64 = require('../../base64/base64');
+
 Component({
 
   // 允许组件使用多 slot 模式
@@ -38,12 +41,20 @@ Component({
    * 可用于模版渲染
    */
   data: {
-    // 添加物品的弹层显示控制
-    addItemMask: false,
-    addItemSwitchBoolen: false,
-    addItemSwitchClass: [
-      `addItemSwitch`
-    ]
+    // 菜单开关
+    menuSwitchBoolen: false,
+    menuSwitchClass: [
+      `menuSwitch`
+    ],
+    bottomNavWrapClass: [
+      `bottomNavWrap`
+    ],
+    addItemIcon: base64.addItemIcon,
+    addBoxIcon: base64.addBoxIcon,
+    homeIcon: base64.homeIcon,
+    userInfoIcon: base64.userInfoIcon,
+    searchIcon: base64.searchIcon,
+    shareIcon: base64.shareIcon,
   },
 
   /**
@@ -52,27 +63,40 @@ Component({
    */
   methods: {
 
-    // 打开添加 item 弹层的事件
-    _addItemSwitch(e){
-      const { addItemSwitchBoolen } = this.data;
+    // 打开菜单
+    _menuSwitch(e){
+      const { menuSwitchBoolen } = this.data;
       this.setData({
-        addItemMask: !this.data.addItemMask,
-        addItemSwitchBoolen: !this.data.addItemMask
+        menuSwitchBoolen: !this.data.menuSwitchBoolen
       });
-      if ( !addItemSwitchBoolen ) {
+      if ( !menuSwitchBoolen ) {
         this.setData({
-          addItemSwitchClass: [
-            `addItemSwitch`,
+          menuSwitchClass: [
+            `menuSwitch`,
             `cancel`
-          ]
+          ],
+          bottomNavWrapClass: [
+            `bottomNavWrap`,
+            `menuShow`
+          ],
         })
       } else {
         this.setData({
-          addItemSwitchClass: [
-            `addItemSwitch`
-          ]
+          menuSwitchClass: [
+            `menuSwitch`
+          ],
+          bottomNavWrapClass: [
+            `bottomNavWrap`
+          ],
         })
       }
+    },
+
+    // 回到首页
+    _openIndex(e) {
+      wx.redirectTo({
+        url: `../index/index`
+      });
     },
 
     // 跳转到添加物品表单页面
@@ -81,11 +105,13 @@ Component({
         url: `../addItem/addItem`
       });
       this.setData({
-        addItemMask: false,
-        addItemSwitchBoolen: false,
-        addItemSwitchClass: [
-          `addItemSwitch`
-        ]
+        menuSwitchBoolen: false,
+        menuSwitchClass: [
+          `menuSwitch`
+        ],
+        bottomNavWrapClass: [
+          `bottomNavWrap`
+        ],
       })
     },
 
@@ -95,11 +121,13 @@ Component({
         url: `../addBox/addBox`
       });
       this.setData({
-        addItemMask: false,
-        addItemSwitchBoolen: false,
-        addItemSwitchClass: [
-          `addItemSwitch`
-        ]
+        menuSwitchBoolen: false,
+        menuSwitchClass: [
+          `menuSwitch`
+        ],
+        bottomNavWrapClass: [
+          `bottomNavWrap`
+        ],
       })
     }
 

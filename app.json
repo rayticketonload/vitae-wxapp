@@ -4,14 +4,15 @@
     "pages/addBox/addBox",
     "pages/addItem/addItem",
     "pages/info/info",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/changeLocation/changeLocation"
   ],
   "window": {
-    "navigationBarBackgroundColor": "transparent",
-    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#f58e78",
+    "navigationBarTextStyle": "#fff",
     "navigationBarTitleText": "井井",
     "navigationStyle": "default",
-    "backgroundColor": "#FFF",
+    "backgroundColor": "#f58e78",
     "backgroundTextStyle": "light",
     "enablePullDownRefresh": true,
     "onReachBottomDistance": 50

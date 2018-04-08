@@ -1,7 +1,24 @@
 <!--index.wxml-->
 <standardLayout id="standardLayout">
   <view class="userInfoWrap">
-    <image bindtap="bindViewTap" class="userInfoAvatar" src="{{ userInfo.avatarUrl }}" background-size="cover"></image>
-    <text class="userInfoNickname">{{ userInfo.nickName }}</text>
+    <view class="userInfo">
+      <view class="{{ avatarBoxClass }}">
+        <image class="avatar" src="{{ avatarUrl }}"></image>
+      </view>
+      <image class="changeLocation" src="{{ changeLocation }}" bindtap="toChangeLocation"></image>
+      <text class="currentPackName">Dream House</text>
+      <text class="userInfoNickname">{{ nickName }}</text>
+    </view>
+  </view>
+  <div class="indexSearcher">
+    <div class="indexSearcherInput" bindtap="toSearchPage">
+      <image src="{{ indexSearchIcon }}"></image>
+      搜索你的物品，收纳点...
+    </div>
+  </div>
+  <view class="sliderWrap">
+    <view class="sliderBox">
+
+    </view>
   </view>
 </standardLayout>
