@@ -13,8 +13,8 @@
 @domColor6: rgba(38, 47, 59, 1);
 @domColor7: rgba(255, 255, 255, 1);
 // app 主色调
-@color-primary: rgb(245, 142, 120);
-@color-secondary: rgb(128, 128, 128);
+@color-primary: @domColor6;
+@color-secondary: @domColor3;
 @color-thirdly: rgb(253, 234, 191);
 @color-fourth: rgb(255, 209, 120);
 @color-fifth: rgb(193, 99, 78);
@@ -60,6 +60,9 @@
 //
 // -------- 各组件Z轴层级 --------
 //
+@zIndex-userInfo: 2;
+@zIndex-indexSearcherWrap: @zIndex-userInfo;
+@zIndex-userInfoWrapBefore: 1;
 @zIndex-menuSwitch: 2;
 @zIndex-menuMask: 1;
 
@@ -68,7 +71,7 @@
 // -------- 底部导航 --------
 //
 // color
-@bgColor-bottomNav: @bgColor-userInfoWrap;
+@bgColor-bottomNav: @color-primary;
 @bgColor-menuSwitch: @color-secondary;
 // size
 @height-menuMask: 400rpx;
@@ -81,9 +84,10 @@
 // -------- 首页 --------
 //
 // color
-@bgColor-userInfoWrap: @color-primary;
 @fontColor-userInfoWrap: rgba(255, 255, 255, 1);
 @bgColor-indexSearcher: @color-thirdly;
+@bgColor-indexSearcherWrap: @bgColor-base;
+@bgColor-indexPanel: @bgColor-indexSearcherWrap;
 // size
 @size-userInfoAvatar: 120rpx;
 @height-input-indexSearcher: 80rpx;

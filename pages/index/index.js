@@ -14,10 +14,11 @@ Page({
       `avatarBox`,
       `avatarBoxAnim`
     ],
-    avatarUrl: base64.defaultAvatar,
+    avatarUrl: app.globalData.userInfo.avatarUrl,
     changeLocation: base64.changeLocation,
     indexSearchIcon: base64.searcherIcon,
-    nickName: '用户未授权获取昵称',
+    currentPackName: app.globalData.currentPackName,
+    nickName: app.globalData.userInfo.nickName,
     hasUserInfo: false
   },
 
@@ -27,14 +28,25 @@ Page({
   },
 
   getIndexInfo: function(e) {
+    let me = this;
+    // let app = me.app;
     const param = {
       "url": `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getUserInfo`,
       "data": ``,
-      "success": ``,
+      "success": function(data) {
+        // 将全局的 currentPackName 赋值为刚拿回来的 default_pack_name
+        app.globalData.currentPackName = data.data.default_pack_name;
+        // 将全局的 currentPackID 赋值为刚拿回来的 default_pack
+        app.globalData.currentPackID = data.data.default_pack;
+        me.setData({
+          currentPackName: data.data.default_pack_name,
+        })
+        console.log(`globalData`, app.globalData);
+      },
       "fail": ``,
       "complete": ``
     }
-    request.get(param);
+    request.get(param)
   },
 
   onLoad: function () {

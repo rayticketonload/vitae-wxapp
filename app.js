@@ -3,6 +3,8 @@
 // ------------------
 // 引入常量
 const constants = require('./constants/constants');
+// base64资源
+const base64 = require('./base64/base64');
 
 App({
 
@@ -96,7 +98,21 @@ App({
   },
 
   globalData: {
-    userInfo: null,
-    session_key: null
+    // 从微信拿来的用户公开信息
+    userInfo: {
+      avatarUrl: base64.defaultAvatar,
+      city: `用户未授权获取其公开信息`,
+      country: `用户未授权获取其公开信息`,
+      gender: `用户未授权获取其公开信息`,
+      language: `用户未授权获取其公开信息`,
+      nickName: `用户未授权获取其公开信息`,
+      province: `用户未授权获取其公开信息`
+    },
+    // 最终合成的 session_key
+    session_key: null,
+    // 用户当前的房屋地点名称
+    currentPackName: `默认房屋地点名称`,
+    // 用户当前的房屋地点ID
+    currentPackID: ``,
   },
 })

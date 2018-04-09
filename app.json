@@ -8,11 +8,11 @@
     "pages/changeLocation/changeLocation"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#f58e78",
-    "navigationBarTextStyle": "#fff",
+    "navigationBarBackgroundColor": "#262f3b",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "井井",
     "navigationStyle": "default",
-    "backgroundColor": "#f58e78",
+    "backgroundColor": "#262f3b",
     "backgroundTextStyle": "light",
     "enablePullDownRefresh": true,
     "onReachBottomDistance": 50
