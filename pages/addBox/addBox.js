@@ -14,12 +14,19 @@ Page({
   formSubmit: function(e) {
     console.log('e.detail', e.detail)
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    
     const param = {
       "url": `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}addPack`,
       "data": `${e.detail.value}`,
-      "success": ``,
-      "fail": ``,
-      "complete": ``
+      "success": function(data){
+        console.log("data",data);
+      },
+      "fail": function (data) {
+        console.log("fail", data);
+      },
+      "complete": function (data) {
+        console.log("complete", data);
+      }
     }
     request.post(param);
   },
