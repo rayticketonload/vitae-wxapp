@@ -17,11 +17,11 @@
     </div>
   </view>
   <view class="indexPanel">
-    <div class="itemTotal">
-      <span class="total">99</span>
+    <div class="itemTotal" bindtap="toItemTotal">
+      <span class="total">54</span>
     </div>
-    <div class="packTotal">
-      <span class="total">99</span>
+    <div class="packTotal" bindtap="toPackTotal">
+      <span class="total">7</span>
     </div>
   </view>
   <view class="sliderWrap">
@@ -29,4 +29,12 @@
 
     </view>
   </view>
+  <swiper indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" width="355" height="150"/>
+      </swiper-item>
+    </block>
+  </swiper>
 </standardLayout>

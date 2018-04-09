@@ -158,15 +158,16 @@
 }
 
 .indexPanel {
+  position: relative;
   box-sizing: border-box;
   background-color: @bgColor-indexPanel;
   margin: @gapSize-public * 2;
   margin-top: 0;
+  padding: @gapSize-public * 2 0;
   box-shadow: 0 0 20rpx 0 rgba(0,0,0,.15);
   .border-radius(0,0,@borderRadius-public,@borderRadius-public);
   display: flex;
   justify-content: space-between;
-  justify-items: center;
 
   > div {
     width: 50%;
@@ -174,9 +175,12 @@
 
     .total {
       display: block;
+      margin: 0 auto;
+      width: 50%;
       .text-hide();
-      font-size: @fontSize-default * 2;
-      color: @domColor3;
+      font-size: @fontSize-default * 1.8;
+      color: @domColor2;
+      font-weight: 900;
     }
 
     &:after {
@@ -184,6 +188,16 @@
     }
 
     &.itemTotal {
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        .size(1px, 40%);
+        background-color: @borderColor-base;
+      }
 
       &:after {
         content: '物品';
@@ -206,6 +220,5 @@
     .inner-shadow-custom(0, 0, 0, 1px, @borderColor-base);
     .rounded(@borderRadius-public);
     height: 260rpx;
-    background-color: @borderColor-base;
   }
 }
