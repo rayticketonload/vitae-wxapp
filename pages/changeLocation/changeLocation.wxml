@@ -1,13 +1,11 @@
 <view class="defaultFormWrap">
-  <form bindsubmit="formSubmit" bindreset="formReset">
-    <view class="formControlWrap fn-mb-20">
-      <input name="boxName" placeholder="收纳点名称是？" placeholder-class="defaultPlaceHolderColor" value="" class="formControl" />
+  <view class="listWrap fn-mb-20" wx:for="{{list}}" wx:for-item="itemObj">
+    <view class="itemWrap fn-pa-20">
+      <text class="name">名称：{{itemObj.name}}
+        <text class="date">创建时间:{{itemObj.date}}</text>
+      </text>
+      <switch class="switch" color='#f58e78' data-id='{{itemObj.id}}' data-name='{{itemObj.type}}' checked="{{itemObj.checked}}"
+        bindchange="switchChange" />
     </view>
-    <view class="formControlWrap options fn-mb-60">
-      <input name="boxLocation" placeholder="收纳点放置在？" placeholder-class="defaultPlaceHolderColor" value="" class="formControl" disabled/>
-    </view>
-    <view>
-      <button formType="submit" class="button thirdly">保存</button>
-    </view>
-  </form>
+  </view>
 </view>
