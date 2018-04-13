@@ -1,11 +1,30 @@
-<view class="defaultFormWrap">
-  <view class="listWrap fn-mb-20" wx:for="{{list}}" wx:for-item="itemObj">
-    <view class="itemWrap fn-pa-20">
-      <text class="name">名称：{{itemObj.name}}
-        <text class="date">创建时间:{{itemObj.date}}</text>
-      </text>
-      <switch class="switch" color='#f58e78' data-id='{{itemObj.id}}' data-name='{{itemObj.type}}' checked="{{itemObj.checked}}"
-        bindchange="switchChange" />
+<view class="locationWrap">
+  <view class="location" wx:for="{{ list }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj">
+    <view class="locationBox1">
+      <p class="locationName">
+        {{ itemObj.name }}
+      </p>
+      <view class="locationCtrl">
+        <span class="locationEdit"></span>
+        <span class="locationDel"></span>
+        <span class="locationSelect" data-id='{{ itemObj.id }}' bindtap="locationSelect"></span>
+      </view>
     </view>
+    <view class="locationBox2">
+      <view class="locationItemTotal">
+        <image src="{{ locationItemTotal }}"></image>
+        0
+      </view>
+      <view class="locationPackTotal">
+        <image src="{{ locationPackTotal }}"></image>
+        0
+      </view>
+    </view>
+    <!-- <switch class="switch" color='#f58e78' data-id='{{itemObj.id}}' data-name='{{itemObj.type}}' checked="{{itemObj.checked}}" bindchange="switchChange"></switch> -->
   </view>
+</view>
+<view class="locationAdd">
+  <button class="button primary" bindtap="toLocationAdd">
+    添加房屋地点
+  </button>
 </view>

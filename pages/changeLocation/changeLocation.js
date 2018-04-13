@@ -2,8 +2,11 @@
 const app = getApp();
 // 引入常量
 const constants = require("../../constants/constants");
+// 引入 base64 资源
+const base64 = require('../../base64/base64');
 // 引入封装好的请求方法
 const request = require("../../utils/request");
+// 引入 moment 时间戳编译
 const moment = require("../../utils/moment");
 
 Page({
@@ -11,7 +14,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: []
+    list: [],
+    locationItemTotal: base64.locationItemTotal,
+    locationPackTotal: base64.locationPackTotal,
   },
   /**
    * 获取用户可选默认盒子列表成功
@@ -26,6 +31,7 @@ Page({
       list: list
     });
   },
+
   /**
    * 获取用户可选默认盒子列表失败
    */
@@ -33,27 +39,32 @@ Page({
   /**
    * 修改默认的盒子点击事件
    */
-  switchChange: function(e) {
-    let data = { id: e.currentTarget.dataset.id };
-    const url = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}modifyDefaultPack`;
-    request.post(url, data, this.modifySuccess, this.modifyFail);
+  // switchChange: function(e) {
+  //   let data = { id: e.currentTarget.dataset.id };
+  //   const url = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}modifyDefaultPack`;
+  //   request.post(url, data, this.modifySuccess, this.modifyFail);
 
-    this.backupList = this.data.list.concat(); //备份
-    let list = this.data.list.map(function(item, idx) {
-      item.checked = false;
-      if (item.id === e.currentTarget.dataset.id) item.checked = true;
-      return item;
-    });
-    //app.globalData
-    this.setData({
-      list: list
-    });
-  },
+  //   this.backupList = this.data.list.concat(); //备份
+  //   let list = this.data.list.map(function(item, idx) {
+  //     item.checked = false;
+  //     if (item.id === e.currentTarget.dataset.id) item.checked = true;
+  //     return item;
+  //   });
+  //   //app.globalData
+  //   this.setData({
+  //     list: list
+  //   });
+  // },
 
   /**
    * 修改默认的盒子成功
    */
-  modifySuccess: function(res) {},
+  modifySuccess: function(res) {
+    // 提交成功放回上一层路由（首页）
+    wx.navigateBack({
+      delta: 1
+    })
+  },
 
   /**
    * 修改默认的盒子失败
@@ -67,6 +78,32 @@ Page({
   },
 
   /**
+   * 改变当前房屋地点
+   */
+  locationSelect: function(e) {
+    let data = { id: e.currentTarget.dataset.id };
+    const url = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}modifyDefaultPack`;
+    request.post(url, data, this.modifySuccess, this.modifyFail);
+    this.backupList = this.data.list.concat(); //备份
+    let list = this.data.list.map(function(item, idx) {
+      item.checked = false;
+      if (item.id === e.currentTarget.dataset.id) item.checked = true;
+      return item;
+    });
+    //app.globalData
+    this.setData({
+      list: list
+    });
+  },
+
+  /**
+   * 跳转创建房屋地点
+   */
+  toLocationAdd: function() {
+    console.log(`跳转创建房屋地点`);
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {},
@@ -75,7 +112,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    //获取用户可选默认盒子列表
+    // 获取用户可选默认盒子列表
     const url = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getDefaultPackList`;
     request.get(url, this.getListSuccess, this.getListFail);
   },
