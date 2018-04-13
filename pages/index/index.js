@@ -54,9 +54,8 @@ Page({
     request.get(param)
   },
 
-  onLoad: function () {
-    console.log('index onload', app.globalData.userInfo);
-    if (app.globalData.hasUserInfo == 0) {
+  onShow: function () {
+    if (app.globalData.hasUserInfo === 0) {
       // 获取用户授权拿 TA 的公开信息
       wx.getSetting({
         // 访问 wx.getSetting 会返回的数据里有一个用户公开信息授权属性 authSetting[`scope.userInfo`]
@@ -86,42 +85,12 @@ Page({
           })
         }
       })
+    } else if (app.globalData.hasUserInfo === 1) {
+      this.setData({
+        avatarUrl: app.globalData.userInfo.avatarUrl,
+        nickName: app.globalData.userInfo.nickName
+      });
     }
-  },
-
-  onShow: function () {
-    console.log('index onShow', app.globalData.userInfo);
-    // if (app.globalData.hasUserInfo == 0) {
-    //   // 获取用户授权拿 TA 的公开信息
-    //   wx.getSetting({
-    //     // 访问 wx.getSetting 会返回的数据里有一个用户公开信息授权属性 authSetting[`scope.userInfo`]
-    //     // authSetting[`scope.userInfo`] 为 undefined 的时候，调用 wx.getUserInfo 则会弹窗请求用户确认授权获取公开信息
-    //     // authSetting[`scope.userInfo`] 为 true 的时候，调用 wx.getUserInfo 则会直接绕过弹窗交互，直接获取用户公开信息
-    //     success: res => {
-    //       console.log(`用户公开信息授权属性 scope.userInfo 为 %c${res.authSetting[`scope.userInfo`]}`, `color: #ffb119;`);
-    //       // 获取用户授权拿TA的公开信息
-    //       wx.getUserInfo({
-    //         success: res => {
-    //           // 将拿回来的 userInfo 赋值到全局的 userInfo
-    //           app.globalData.userInfo = res.userInfo;
-    //           // 将全局授权变量为已授权
-    //           app.globalData.hasUserInfo = 1;
-    //           this.setData({
-    //             avatarUrl: app.globalData.userInfo.avatarUrl,
-    //             nickName: app.globalData.userInfo.nickName
-    //           });
-    //           console.log(`用户授权获取 TA 的公开信息`);
-    //         },
-    //         fail: res => {
-    //           console.log('用户拒绝授权获取 TA 的公开信息');
-    //           wx.navigateBack({
-    //             delta: 0
-    //           });
-    //         }
-    //       })
-    //     }
-    //   })
-    // }
 
     // 展示这个页面的时候，加载用户头像的动画 class
     this.setData({
@@ -130,6 +99,7 @@ Page({
         `avatarBoxAnim`
       ]
     });
+
     // 拿首页要显示的用户当前房屋的信息
     this.getIndexInfo();
   },
