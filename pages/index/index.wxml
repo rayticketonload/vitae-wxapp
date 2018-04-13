@@ -18,10 +18,14 @@
   </view>
   <view class="indexPanel">
     <div class="itemTotal" bindtap="toItemTotal">
-      <span class="total">54</span>
+      <span class="total">
+        {{ currentItemTotal }}
+      </span>
     </div>
     <div class="packTotal" bindtap="toPackTotal">
-      <span class="total">7</span>
+      <span class="total">
+        {{ currentPackTotal }}
+      </span>
     </div>
   </view>
   <view class="sliderWrap">
@@ -29,12 +33,12 @@
 
     </view>
   </view>
-  <swiper indicator-dots="{{indicatorDots}}"
+  <!-- <swiper indicator-dots="{{indicatorDots}}"
     autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{imgUrls}}">
       <swiper-item>
         <image src="{{item}}" class="slide-image" width="355" height="150"/>
       </swiper-item>
     </block>
-  </swiper>
+  </swiper> -->
 </standardLayout>
