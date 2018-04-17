@@ -101,7 +101,10 @@ Page({
     });
 
     // 拿首页要显示的用户当前房屋的信息
-    this.getIndexInfo();
+    app.sessionkeyReadyCallback = res => {
+      this.getIndexInfo();
+    }
+    
   },
 
   onHide: function () {
