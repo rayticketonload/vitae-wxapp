@@ -26,19 +26,6 @@ function post(url, data, successCallback, failCallback, completeCallback) {
     fail: err => {
       //console.log("fail");
       failCallback && failCallback.call(err);
-      wx.showModal({
-        title: '网络连接失败',
-        content: '爸爸，不如检查下你的网络？',
-        showCancel: false,
-        confirmText: '好的',
-        success: function(res) {
-          if (res.confirm) {
-            // wx.navigateBack({
-            //   delta: 0
-            // })
-          }
-        }
-      });
     },
     complete: data => {
       //console.log("complete", data);
@@ -71,19 +58,6 @@ function get(url, successCallback, failCallback, completeCallback) {
     fail: err => {
       // console.log("get fail");
       failCallback && failCallback.call(err);
-      wx.showModal({
-        title: '网络连接失败',
-        content: '爸爸，不如检查下你的网络？',
-        showCancel: false,
-        confirmText: '好的',
-        success: function(res) {
-          if (res.confirm) {
-            // wx.navigateBack({
-            //   delta: 0
-            // })
-          }
-        }
-      });
     },
     complete: data => {
       // console.log("get complete", data);

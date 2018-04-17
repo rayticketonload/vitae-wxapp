@@ -2,12 +2,13 @@
   <form bindsubmit="formSubmit" bindreset="formReset">
     <view class="formControlWrap fn-mb-40">
       <input
-        name="locationName"
-        placeholder="房屋名称是？"
-        placeholder-class="defaultPlaceHolderColor"
-        class="formControl"
-        maxlength="-1"
-        auto-focus=true
+        name = "{{ form.locationName.name }}"
+        placeholder = "{{ form.locationName.placeholder }}"
+        value = "{{ form.locationName.value }}"
+        placeholder-class = "defaultPlaceHolderColor"
+        class = "formControl"
+        maxlength = "-1"
+        auto-focus = true
       />
     </view>
     <view>

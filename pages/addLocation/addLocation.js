@@ -7,11 +7,20 @@ const request = require('../../utils/request');
 
 Page({
 
-  // 页面的初始数据
-  data: {},
+  data: {
+    // 表单组件初始数据
+    form: {
+      locationName: {
+        name: `locationName`,
+        placeholder: `房屋地点名称是？`,
+        value: ``
+      }
+    }
+  },
 
   // 生命周期函数--监听页面加载
   onLoad: function (options) {
+    // 初始化表单验证
     this.validator = app.validator (
       {
         locationName: {
@@ -56,13 +65,12 @@ Page({
   formSubmitSuccess: function(data) {
     console.log("success data",data);
     wx.showToast({
-      title: `添加房屋地点成功`,
-      icon: `none`,
-      duration: 3000
+      title: `添加成功`,
+      duration: 2000
     });
     setTimeout(
       this.formSubmitSuccessToast,
-      3000
+      2000
     );
   },
 

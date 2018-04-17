@@ -112,7 +112,7 @@ Page({
     if (me.data.packTotal > 1) {
       wx.showModal({
         title: '确认删除?',
-        content: '下属物品和收纳点将一并删除',
+        content: '属下物品和收纳点将一并删除',
         confirmText: '确认删除',
         confirmColor: '#f17c6b',
         success: function (res) {

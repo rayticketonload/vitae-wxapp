@@ -14,6 +14,10 @@ App({
   validator: (rules, messages) => new validator(rules, messages),
 
   onLaunch: function() {
+    // toDo
+    console.log(`toDoList: %c表单初始值都要从 data 渲染`,`color: #4492d4;`);
+    console.log(`toDoList: %c删除地点，如果删除的是默认地点，就帮用户重新选一个默认地点（数组第一个）`,`color: #4492d4;`);
+    console.log(`toDoList: %c所有 request 都要有 loading, 和独立提示成功时候的 we.showToast 反馈，失败时候的 wx.showModal 反馈`,`color: #4492d4;`);
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || [];
     logs.unshift(Date.now());
