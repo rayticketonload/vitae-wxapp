@@ -56,10 +56,18 @@ Page({
   formSubmitSuccess: function(data) {
     console.log("success data",data);
     wx.showToast({
-      title: `添加成功`,
+      title: `添加房屋地点成功`,
       icon: `none`,
       duration: 3000
     });
+    setTimeout(
+      this.formSubmitSuccessToast,
+      3000
+    );
+  },
+
+  // 表单提交成功后弹层
+  formSubmitSuccessToast: function() {
     wx.navigateBack({
       delta: 2
     });
