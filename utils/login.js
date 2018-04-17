@@ -33,6 +33,12 @@ function login() {
           // 将 globalData 的用户登录状态改变为 1 （已登录）
           app.globalData.isLogin = 1;
           wx.hideLoading();
+          // 由于网络请求，可能会在 Page.onLoad 之后才返回
+          // 所以此处加入 callback 以防止这种情况
+          if (app.sessionkeyReadyCallback) {
+            app.sessionkeyReadyCallback(res);
+          }
+
         },
         // 访问第三方登录接口不成功
         fail: res => {
