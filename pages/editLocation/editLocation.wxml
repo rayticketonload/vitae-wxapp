@@ -1,0 +1,18 @@
+<view class="defaultFormWrap">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="formControlWrap fn-mb-40">
+      <input
+        name="locationName"
+        placeholder="房屋名称是？"
+        placeholder-class="defaultPlaceHolderColor"
+        value="{{ form.locationName }}"
+        class="formControl"
+        maxlength="-1"
+        auto-focus=true
+      />
+    </view>
+    <view>
+      <button formType="submit" class="button primary">保存</button>
+    </view>
+  </form>
+</view>

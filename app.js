@@ -5,8 +5,13 @@
 const base64 = require('./base64/base64');
 // 引入工具
 const login = require('./utils/login');
+// 引入表单验证
+import validator from './utils/validators'
 
 App({
+
+  // 实例化表单验证插件
+  validator: (rules, messages) => new validator(rules, messages),
 
   onLaunch: function() {
     // 展示本地存储能力

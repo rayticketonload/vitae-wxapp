@@ -84,9 +84,10 @@
 // -------- 通用表单样式 --------
 //
 // color
-@bgColor-defaultFormWrap: @color-secondary;
+@bgColor-defaultFormWrap: transparent;
 @bgColor-defaultFormControl: darken(@bgColor-defaultFormWrap, 10);
-@fontColor-defaultFormControl: rgba(255,255,255,1);
+@fontColor-defaultFormControl: @fontColor-default;
+@fontColor-defaultPlaceHolder: @fontColor-tips;
 // size
 @height-defaultFormControl: 110rpx;
 
@@ -103,7 +104,6 @@
 @fontColor-secondary-button: rgba(255, 255, 255, 1);
 @color-thirdly-button: @color-primary;
 @fontColor-thirdly-button: rgba(255, 255, 255, 1);
-@fontColor-defaultPlaceHolder: rgba(255, 255, 255, .7);
 // size
 @borderRadius-button: @borderRadius-public;
 @height-button: @height-defaultFormControl;

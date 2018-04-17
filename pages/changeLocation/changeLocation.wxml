@@ -5,26 +5,25 @@
         {{ itemObj.name }}
       </p>
       <view class="locationCtrl">
-        <span class="locationEdit"></span>
-        <span class="locationDel"></span>
+        <span class="locationEdit" data-id='{{ itemObj.id }}' bindtap="locationEdit"></span>
+        <span class="locationDel" data-id='{{ itemObj.id }}' bindtap="locationDel"></span>
         <span class="locationSelect" data-id='{{ itemObj.id }}' bindtap="locationSelect"></span>
       </view>
     </view>
     <view class="locationBox2">
       <view class="locationItemTotal">
-        <image src="{{ locationItemTotal }}"></image>
-        0
+        <image src="{{ locationItemTotalIcon }}"></image>
+        {{ itemObj.goodTotal }}
       </view>
       <view class="locationPackTotal">
-        <image src="{{ locationPackTotal }}"></image>
-        0
+        <image src="{{ locationPackTotalIcon }}"></image>
+        {{ itemObj.packTotal }}
       </view>
     </view>
-    <!-- <switch class="switch" color='#f58e78' data-id='{{itemObj.id}}' data-name='{{itemObj.type}}' checked="{{itemObj.checked}}" bindchange="switchChange"></switch> -->
   </view>
 </view>
 <view class="locationAdd">
-  <button class="button primary" bindtap="toLocationAdd">
+  <button class="button primary" bindtap="locationAdd">
     添加房屋地点
   </button>
 </view>

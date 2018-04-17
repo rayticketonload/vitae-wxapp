@@ -1,11 +1,16 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/addBox/addBox",
-    "pages/addItem/addItem",
     "pages/info/info",
     "pages/logs/logs",
-    "pages/changeLocation/changeLocation"
+
+    "pages/addBox/addBox",
+
+    "pages/addItem/addItem",
+
+    "pages/changeLocation/changeLocation",
+    "pages/addLocation/addLocation",
+    "pages/editLocation/editLocation"
   ],
   "window": {
     "navigationBarBackgroundColor": "#262f3b",
