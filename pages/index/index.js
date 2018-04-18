@@ -130,6 +130,9 @@ Page({
   // 跳转到搜索页面
   toSearchPage: function() {
     console.log('跳转到搜索页面');
+    wx.navigateTo({
+      url: `../search/search`
+    });
   },
 
   // 跳转到物品总数页面
