@@ -17,7 +17,7 @@
     "navigationStyle": "default",
     "backgroundColor": "#262f3b",
     "backgroundTextStyle": "light",
-    "enablePullDownRefresh": true,
+    "enablePullDownRefresh": false,
     "onReachBottomDistance": 50
   }
 }

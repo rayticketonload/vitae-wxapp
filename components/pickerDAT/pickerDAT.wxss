@@ -1,0 +1,12 @@
+.picker {
+    line-height: 3;
+    box-sizing: border-box;
+    display: block;
+    border-radius: 15rpx;
+    font-size: 36rpx;
+    color: #333;
+    border: 1px solid #ddd;
+    background-color: rgba(0, 0, 0, 0);
+    height: 110rpx;
+    padding: 0 27.5rpx;
+}

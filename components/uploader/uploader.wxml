@@ -1,0 +1,18 @@
+<view class="uploader">
+  <view class="uploader_hd">
+    <view class="uploader_title">图片上传</view>
+    <view class="uploader_info">{{files.length}}/2</view>
+  </view>
+  <view class="uploader_bd">
+    <view class="uploader_files" id="uploaderFiles">
+      <block wx:for="{{files}}" wx:key="*this">
+        <view class="uploader_file" bindtap="previewImage" id="{{item}}">
+          <image class="uploader_img" src="{{item}}" mode="aspectFill" />
+        </view>
+      </block>
+      <view class="uploader_input-box">
+        <view class="uploader_input" bindtap="chooseImage"></view>
+      </view>
+    </view>
+  </view>
+</view>

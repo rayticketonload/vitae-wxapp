@@ -1,0 +1,7 @@
+<view class="wrapper">
+  <picker mode="multiSelector" value="{{dateTime}}" bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+         <slot />
+    
+  </picker>
+ 
+</view>
