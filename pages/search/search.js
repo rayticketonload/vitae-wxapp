@@ -11,11 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    items: [
-      { name: "全部", value: "all", checked: "true" },
-      { name: "收纳盒", value: "package" },
-      { name: "物品", value: "good" }
-    ],
+    items: [{ name: "全部", value: "all" }, { name: "收纳盒", value: "package" }, { name: "物品", value: "good" }],
     checked: "all",
     inputVal: "",
     list: [], //要显示的list
@@ -30,10 +26,12 @@ Page({
     this.showList();
   },
   // 获取用户房屋地点列表
-  search: function(form) {
+  search: function(form = { key: "" }) {
     const url = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}search`;
     request.post(url, form, this.searchSuccess, this.searchFail);
   },
+
+  //搜索返回成功
   searchSuccess: function(res) {
     this.setData({
       packList: res.data.packList,
@@ -41,6 +39,10 @@ Page({
     });
     this.showList();
   },
+
+  //搜索返回失败
+  searchFail: function(res) {},
+  //显示列表
   showList: function() {
     var list = [];
     switch (this.data.checked) {
@@ -60,18 +62,18 @@ Page({
       list: list
     });
   },
-  searchFail: function(res) {},
-
+  //提交
   formSubmit: function(e) {
     this.search(e.detail.value);
   },
+  //清除
   clearInput: function() {
     this.setData({
       inputVal: ""
     });
   },
+  //输入事件
   inputTyping: function(e) {
-    console.log(e);
     this.setData({
       inputVal: e.detail.value
     });
@@ -79,7 +81,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {},
+  onLoad: function(options) {
+    console.log(options.type);
+    this.setData({
+      checked: options.type || "all"
+    });
+    this.search();
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

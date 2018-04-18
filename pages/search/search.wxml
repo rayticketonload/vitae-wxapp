@@ -12,7 +12,7 @@
 <view>
   <radio-group class="radio-group " bindchange="radioChange">
     <label class="radio fn-pa-20" wx:for="{{items}}">
-      <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+      <radio value="{{item.value}}" checked="{{checked==item.value}}" />{{item.name}}
     </label>
   </radio-group>
 </view>
