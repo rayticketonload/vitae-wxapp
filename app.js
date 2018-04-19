@@ -16,8 +16,12 @@ App({
   onLaunch: function() {
     // toDo
     console.log(`toDoList: %c表单初始值都要从 data 渲染`,`color: #4492d4;`);
-    console.log(`toDoList: %c删除地点，如果删除的是默认地点，就帮用户重新选一个默认地点（数组第一个）`,`color: #4492d4;`);
+    console.log(`toDoList: %c用户不授权会进入死循环`,`color: #4492d4;`);
+    //console.log(`toDoList: %c删除地点，如果删除的是默认地点，就帮用户重新选一个默认地点（数组第一个）`,`color: #4492d4;`);
     console.log(`toDoList: %c所有 request 都要有 loading, 和独立提示成功时候的 we.showToast 反馈，失败时候的 wx.showModal 反馈`,`color: #4492d4;`);
+    console.log(`toDoList: %c底部导航打开状态下跳转房屋地点列表，再返回来，导航还是打开状态`,`color: #4492d4;`);
+    console.log(`toDoList: %c房屋地点列表 title 要改`,`color: #4492d4;`);
+    console.log(`toDoList: %c添加地点成功之后要跳转到地点里面`,`color: #4492d4;`);
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || [];
     logs.unshift(Date.now());

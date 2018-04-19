@@ -112,7 +112,7 @@ Page({
 
   // 跳转到更改默认房屋地点
   toChangeLocation: function() {
-    console.log("跳转到更改默认房屋地点");
+    console.log("跳转到房屋地点列表");
     wx.navigateTo({
       url: `../changeLocation/changeLocation`
     });
