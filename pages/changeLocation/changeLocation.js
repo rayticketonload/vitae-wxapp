@@ -145,6 +145,7 @@ Page({
       duration: 2000
     });
     this.getLocationList();
+    console.log('删除完成后的list',this.data.list);
   },
 
   // 删除房屋失败
