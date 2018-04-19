@@ -3,14 +3,12 @@
     "pages/index/index",
     "pages/info/info",
     "pages/logs/logs",
-
     "pages/addBox/addBox",
-
     "pages/addItem/addItem",
-
     "pages/changeLocation/changeLocation",
     "pages/addLocation/addLocation",
-    "pages/editLocation/editLocation"
+    "pages/editLocation/editLocation",
+    "pages/search/search"
   ],
   "window": {
     "navigationBarBackgroundColor": "#262f3b",
@@ -19,7 +17,7 @@
     "navigationStyle": "default",
     "backgroundColor": "#262f3b",
     "backgroundTextStyle": "light",
-    "enablePullDownRefresh": true,
+    "enablePullDownRefresh": false,
     "onReachBottomDistance": 50
   }
 }
