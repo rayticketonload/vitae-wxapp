@@ -37,6 +37,7 @@ Component({
   methods: {
     changeDateTime(e) {
       this.setData({ dateTime: e.detail.value });
+      this.callback();
     },
     changeDateTimeColumn(e) {
       var arr = this.data.dateTime,
@@ -47,6 +48,15 @@ Component({
         dateTimeArray: dateArr,
         dateTime: arr
       });
+     this.callback();
+    },
+
+    callback(){
+
+      var dateTime = this.data.dateTime,
+      dateTimeArray = this.data.dateTimeArray;
+      var date = `${dateTimeArray[0][dateTime[0]]}-${dateTimeArray[1][dateTime[1]]}-${dateTimeArray[2][dateTime[2]]} ${dateTimeArray[3][dateTime[3]]}:${dateTimeArray[4][dateTime[4]]}:${dateTimeArray[5][dateTime[5]]}`;
+      this.triggerEvent('callback', {date:date});
     }
   }
 });

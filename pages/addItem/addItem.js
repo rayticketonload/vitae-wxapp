@@ -4,15 +4,11 @@ Page({
    */
   data: {
     date: "",
-    bindDateChange: function(e) {
-      console.log(e);
-    }
   },
 
   bindDateChange: function(e) {
-    console.log(e.detail.value);
     this.setData({
-      date: e.detail.value
+      date: e.detail.date
     });
   },
 
