@@ -2,6 +2,10 @@ var app = getApp();
 
 // post
 function post(url, data, successCallback, failCallback, completeCallback) {
+  wx.showLoading({
+    title: `网络通讯中...`,
+    mask: true,
+  });
   if (typeof url === "object") {
     // 兼容 json 格式的参数
     // console.log(url);
@@ -28,6 +32,7 @@ function post(url, data, successCallback, failCallback, completeCallback) {
       failCallback && failCallback.call(err);
     },
     complete: data => {
+      wx.hideLoading();
       //console.log("complete", data);
       completeCallback && completeCallback.call(data);
     }
