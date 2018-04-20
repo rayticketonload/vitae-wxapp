@@ -24,16 +24,13 @@ function post(url, data, successCallback, failCallback, completeCallback) {
       Authorization: `Bearer ${app.globalData.session_key}`
     },
     success: res => {
-      //console.log("success", res.data);
       successCallback && successCallback.call(null, res.data);
     },
     fail: err => {
-      //console.log("fail");
       failCallback && failCallback.call(err);
     },
     complete: data => {
       wx.hideLoading();
-      //console.log("complete", data);
       completeCallback && completeCallback.call(data);
     }
   });
@@ -65,6 +62,7 @@ function get(url, successCallback, failCallback, completeCallback) {
       failCallback && failCallback.call(err);
     },
     complete: data => {
+      wx.hideLoading();
       // console.log("get complete", data);
       completeCallback && completeCallback.call(data);
     }
@@ -86,19 +84,20 @@ function uploadFile(url, filePath, successCallback, failCallback, completeCallba
     completeCallback = opt.complete;
   }
   wx.uploadFile({
-    url: url, 
+    url: url,
     filePath: filePath,
     name: "photo",
     header: {
       Authorization: `Bearer ${app.globalData.session_key}`
     },
     success: res => {
-      successCallback && successCallback.call(null, res.data);
+      successCallback && successCallback.call(null, JSON.parse(res.data));
     },
     fail: err => {
       failCallback && failCallback.call(err);
     },
     complete: data => {
+      wx.hideLoading();
       completeCallback && completeCallback.call(data);
     }
   });

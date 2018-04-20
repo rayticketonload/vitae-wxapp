@@ -7,13 +7,19 @@ Component({
   /**
    * 组件的属性列表
    */
-  properties: {},
+  properties: {
+    limit: {
+      type: Number,
+      value: 8
+    }
+  },
 
   /**
    * 组件的初始数据
    */
   data: {
-    files: []
+    files: [],
+    path: []
   },
 
   /**
@@ -21,14 +27,16 @@ Component({
    */
   methods: {
     uploadSuccess: function(res) {
-      console.log("success", res.path);
+      console.log(this.data.path);
+      var path = this.data.path;
+      path.push(res.path);
+      this.triggerEvent("callback", { date: path });
     },
     uploadFail: function(err) {
       console.log("err");
     },
     //增加图片
     chooseImage: function(e) {
-
       var that = this;
       wx.chooseImage({
         sizeType: ["compressed"], // 可以指定是原图还是压缩图，默认二者都有
@@ -36,7 +44,7 @@ Component({
         success: function(res) {
           var path = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}upload/photo`;
           //上传去服务器
-          request.uploadFile(path, res.tempFilePaths[0], that.uploadSuccess, that.uploadFail);
+          request.uploadFile(path, res.tempFilePaths[0], that.uploadSuccess.bind(that), that.uploadFail.bind(that));
           that.setData({
             files: that.data.files.concat(res.tempFilePaths)
           });
