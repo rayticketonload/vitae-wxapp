@@ -40,7 +40,7 @@ App({
 
   onHide: function() {
     // 小程序转入后台运行的同时将用户登录状态改变为未登录，当小程序再次转向前台的时候将会再次执行登录逻辑
-    this.globalData.isLogin = 0;
+    //this.globalData.isLogin = 0;
   },
 
   globalData: {
