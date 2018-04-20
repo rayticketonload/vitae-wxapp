@@ -1,4 +1,7 @@
-// components/uploader/uploader.js
+// 引入常量
+const constants = require("../../constants/constants");
+// 引入封装好的请求方法
+const request = require("../../utils/request");
 Component({
   /**
    * 组件的属性列表
@@ -17,29 +20,41 @@ Component({
    */
   methods: {
     //增加图片
+
     chooseImage: function(e) {
       var that = this;
+      var uploadTask;
       wx.chooseImage({
         sizeType: ["original", "compressed"], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ["album", "camera"], // 可以指定来源是相册还是相机，默认二者都有
         success: function(res) {
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           console.log(res);
-         
+
           //上传去服务器
-          wx.uploadFile({
-            url: "https://example.weixin.qq.com/upload", //仅为示例，非真实的接口地址
+          uploadTask = wx.uploadFile({
+            url: `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}upload`, //仅为示例，非真实的接口地址
             filePath: res.tempFilePaths[0],
-            name: "file",
+            name: "photo",
             formData: {
               user: "test"
             },
             success: function(res) {
-            //  var data = res.data;
-              that.setData({
-                files: that.data.files.concat(res.tempFilePaths)
-              });
+              var data = res.data;
+              console.log(data);
+            },
+            fail: function(err) {
+              //  var data = res.data;
+              console.log(err);
             }
+          });
+          that.setData({
+            files: that.data.files.concat(res.tempFilePaths)
+          });
+          uploadTask.onProgressUpdate(res => {
+            console.log("上传进度", res.progress);
+            console.log("已经上传的数据长度", res.totalBytesSent);
+            console.log("预期需要上传的数据总长度", res.totalBytesExpectedToSend);
           });
         }
       });
