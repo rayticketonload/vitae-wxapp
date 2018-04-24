@@ -3,19 +3,19 @@
     <view class="formControlWrap fn-mb-20">
       <input name="boxName" placeholder="收纳点名称是？" placeholder-class="defaultPlaceHolderColor" value="" class="formControl" />
     </view>
-    <view class="formControlWrap fn-mb-20">
-      <pickerDAT bindcallback="bindDateChange">
-        <view class="picker formControl">
-          过期时间:  {{date}}
-        </view>
-      </pickerDAT>
-    </view>
-    <view class="formControlWrap options fn-mb-60">
+    <view class="formControlWrap options fn-mb-20">
       <input name="boxLocation" placeholder="收纳点放置在？" placeholder-class="defaultPlaceHolderColor" value="" class="formControl"
         disabled/>
     </view>
+    <view class="formControlWrap fn-mb-60">
+      <pickerDAT bindcallback="dateChange">
+        <view class="picker formControl">
+          保质期: {{date}}
+        </view>
+      </pickerDAT>
+    </view>
     <view>
-      <uploader user-infoa="{{userInfo}}"></uploader>
+      <uploader limit="{{4}}" bindcallback="uploaderChange"></uploader>
     </view>
     <view class="fn-mt-40">
       <button formType="submit" class="button thirdly">保存</button>

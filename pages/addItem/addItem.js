@@ -4,11 +4,18 @@ Page({
    */
   data: {
     date: "",
+    path:[],
   },
 
-  bindDateChange: function(e) {
+  dateChange: function(e) {
     this.setData({
       date: e.detail.date
+    });
+  },
+
+  uploaderChange: function(e) {
+    this.setData({
+      path: e.detail.date
     });
   },
 
