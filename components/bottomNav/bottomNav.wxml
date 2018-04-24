@@ -1,29 +1,13 @@
-<view class="{{ bottomNavWrapClass }}">
-  <span class="{{ menuSwitchClass }}" bindtap="_menuSwitch">
-    <span class="menuIcon"></span>
+<view class="bottomNavWrap">
+  <span class="navBtn toIndex" bindtap="_toIndex">
+    <image src="{{ toIndex }}"></image>
   </span>
-  <view class="bottomNav">
-    <span class="add" bindtap="_navToAddItem">
-      <image src="{{ addItemIcon }}"></image>
-      <span>添加物品</span>
-    </span>
-    <span class="add" bindtap="_navToAddBox">
-      <image src="{{ addBoxIcon }}"></image>
-      <span>添加收纳点</span>
-    </span>
-  </view>
-  <view class="bottomNavMenu">
-    <span class="menuFunIcon" bindtap="_openIndex">
-      <image src="{{ homeIcon }}" class="iconImage"></image>
-    </span>
-    <span class="menuFunIcon">
-      <image src="{{ userInfoIcon }}" class="iconImage"></image>
-    </span>
-    <span class="menuFunIcon">
-      <image src="{{ searchIcon }}" class="iconImage"></image>
-    </span>
-    <span class="menuFunIcon">
-      <image src="{{ shareIcon }}" class="iconImage"></image>
-    </span>
-  </view>
+  <span class="navBtn addItem" bindtap="_navToAddItem">
+    <image src="{{ addItemIcon }}"></image>
+    <span>添加物品</span>
+  </span>
+  <span class="navBtn addBox" bindtap="_navToAddBox">
+    <image src="{{ addBoxIcon }}"></image>
+    <span>添加收纳点</span>
+  </span>
 </view>

@@ -1,5 +1,15 @@
 @charset 'UTF-8';
 
+// 字符暗色调 + 自定义透明度
+.fontColorDark (@opacity) {
+  color: rgba(51, 51, 51, @opacity);
+}
+
+// 字符明色调 + 自定义透明度
+.fontColorLight (@opacity) {
+  color: rgba(255, 255, 255, @opacity);
+}
+
 // transition
 .transition ( @property, @duration, @timing-function, @delay ) {
   transition-property: @property;

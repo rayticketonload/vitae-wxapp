@@ -41,20 +41,10 @@ Component({
    * 可用于模版渲染
    */
   data: {
-    // 菜单开关
-    menuSwitchBoolen: false,
-    menuSwitchClass: [
-      `menuSwitch`
-    ],
-    bottomNavWrapClass: [
-      `bottomNavWrap`
-    ],
-    addItemIcon: base64.addItemIcon,
-    addBoxIcon: base64.addBoxIcon,
-    homeIcon: base64.homeIcon,
-    userInfoIcon: base64.userInfoIcon,
-    searchIcon: base64.searchIcon,
-    shareIcon: base64.shareIcon,
+    // 导航图标
+    addItemIcon: base64.heartIconColorfff,
+    addBoxIcon: base64.boxIconColorfff,
+    toIndex: base64.homeIconColorfff,
   },
 
   /**
@@ -63,37 +53,8 @@ Component({
    */
   methods: {
 
-    // 打开菜单
-    _menuSwitch(e){
-      const { menuSwitchBoolen } = this.data;
-      this.setData({
-        menuSwitchBoolen: !this.data.menuSwitchBoolen
-      });
-      if ( !menuSwitchBoolen ) {
-        this.setData({
-          menuSwitchClass: [
-            `menuSwitch`,
-            `cancel`
-          ],
-          bottomNavWrapClass: [
-            `bottomNavWrap`,
-            `menuShow`
-          ],
-        })
-      } else {
-        this.setData({
-          menuSwitchClass: [
-            `menuSwitch`
-          ],
-          bottomNavWrapClass: [
-            `bottomNavWrap`
-          ],
-        })
-      }
-    },
-
     // 回到首页
-    _openIndex(e) {
+    _toIndex(e) {
       wx.redirectTo({
         url: `../index/index`
       });
@@ -130,32 +91,5 @@ Component({
         ],
       })
     }
-
-    // 隐藏弹框
-    // hideDialog(){
-    //   this.setData({
-    //     isShow: !this.data.isShow
-    //   })
-    // },
-
-    // 展示弹框
-    // showDialog(){
-    //   this.setData({
-    //     isShow: !this.data.isShow
-    //   })
-    // },
-
-    /**
-     * 内部私有方法建议以下划线开头
-     * triggerEvent 用于触发事件
-     */
-    // _cancelEvent(){
-    //   //触发取消回调
-    //   this.triggerEvent("cancelEvent")
-    // },
-    // _confirmEvent(){
-    //   //触发成功回调
-    //   this.triggerEvent("confirmEvent");
-    // }
   }
 })

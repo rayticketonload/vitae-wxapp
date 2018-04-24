@@ -4,6 +4,8 @@ const app = getApp();
 const constants = require('../../constants/constants');
 // 引入封装好的请求方法
 const request = require('../../utils/request');
+// 引入表单验证规则
+import customValidatorRule from '../../utils/validatorsRules';
 
 Page({
 
@@ -12,7 +14,7 @@ Page({
     form: {
       locationName: {
         name: `locationName`,
-        placeholder: `房屋地点名称是？`,
+        placeholder: `地点名称是？例如：家，公司，仓库...`,
         value: ``
       }
     }
@@ -21,18 +23,27 @@ Page({
   // 生命周期函数--监听页面加载
   onLoad: function (options) {
     // 初始化表单验证
-    this.validator = app.validator (
-      {
-        locationName: {
-          required: true,
-        }
-      },
-      {
-        locationName: {
-          required: '请填写房屋名称'
-        }
+    // 验证规则
+    const vr = {
+      locationName: {
+        required: true,
+        //locationNameNoBlank: true
       }
-    )
+    };
+    // 验证返回信息
+    const vm = {
+      locationName: {
+        required: `爸爸，要填名称的`
+      }
+    };
+    this.validator = app.validator (vr, vm);
+
+    // 自定义表单校验规则
+    // 地点名称不能有空格
+    this.validator.addMethod('locationNameNoBlank', (value, param) => {
+      console.log(`value`, value);
+      return this.validator.optional(value) || customValidatorRule.noBlank.test(value);
+    }, '地点名称不能有空格');
   },
 
   // 表单提交
@@ -55,40 +66,59 @@ Page({
       request.post(
         url,
         data,
-        this.formSubmitSuccess,
-        this.formSubmitFail
+        // 添加地点成功
+        function (res) {
+          console.log("添加房屋地点成功", res);
+          // 然后将新地点改为当前使用地点
+          const modifyDefaultPackAPI = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}modifyDefaultPack`;
+          const newLocationId = res.data.id;
+          // 同时改变 globalData 里面 currentPackID
+          app.globalData.currentPackID = newLocationId;
+          // 请求改变当前使用地点
+          request.post(
+            modifyDefaultPackAPI,
+            { id: newLocationId },
+            // 改变当前使用地点成功
+            function (success) {
+              wx.showToast({
+                title: `添加成功`,
+                duration: 1000
+              });
+              console.log('成功改变当前使用地点');
+              const setTimeoutFun = () => {
+                wx.navigateBack({
+                  delta: 2
+                });
+              }
+              setTimeout(
+                setTimeoutFun,
+                1000
+              )
+            },
+            // 改变当前使用地点失败
+            function (err) {
+              console.log('改变当前使用地点失败', err);
+              wx.showModal({
+                title: `改变当前使用地点失败`,
+                content: `爸爸快检查网络是否正常`,
+                confirmText: `好的`,
+                showCancel: false
+              });
+            }
+          );
+        },
+        // 添加地点失败
+        function (err) {
+          console.log("添加地点失败", err);
+          wx.showModal({
+            title: `添加地点失败`,
+            content: `爸爸快检查网络是否正常`,
+            confirmText: `好的`,
+            showCancel: false
+          });
+        }
       );
     }
-  },
-
-  // 表单提交成功
-  formSubmitSuccess: function(data) {
-    console.log("success data",data);
-    wx.showToast({
-      title: `添加成功`,
-      duration: 2000
-    });
-    setTimeout(
-      this.formSubmitSuccessToast,
-      2000
-    );
-  },
-
-  // 表单提交成功后弹层
-  formSubmitSuccessToast: function() {
-    wx.navigateBack({
-      delta: 2
-    });
-  },
-
-  // 表单提交失败
-  formSubmitFail: function(data) {
-    console.log("fail data",data);
-    wx.showToast({
-      title: `提交失败，请检查网络`,
-      icon: `none`,
-      duration: 3000
-    });
   },
 
   // 表单重置

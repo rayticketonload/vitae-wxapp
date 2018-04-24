@@ -2,24 +2,15 @@
 
 .defaultFormWrap {
   box-sizing: border-box;
-  height: 100vh;
+}
+
+.formButtonWrap {
   padding: @gapSize-public * 2;
-  background-color: @bgColor-defaultFormWrap;
 }
 
 .formControlWrap {
   position: relative;
-
-  // > label {
-  //   box-sizing: border-box;
-  //   position: absolute;
-  //   top: 50%;
-  //   transform: translate(0, -50%);
-  //   left: @height-defaultFormControl/4;
-  //   font-size: @fontSize-default;
-  //   line-height: @lineHeight-base;
-  //   color: @fontColor-tips;
-  // }
+  border-bottom: 1px solid @borderColor-base;
 
   &.options {
 
@@ -50,11 +41,8 @@
 .formControl {
   box-sizing: border-box;
   display: block;
-  .rounded(@borderRadius-public);
-  //.inner-shadow-custom(0, 0, 0, 1px, @borderColor-formControl);
   font-size: @fontSize-base;
   color: @fontColor-defaultFormControl;
-  border: 1px solid @borderColor-base;
   background-color: @bgColor-defaultFormControl;
   height: @height-defaultFormControl;
   padding: 0 @height-defaultFormControl / 4;

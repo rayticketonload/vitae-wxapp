@@ -1,20 +1,31 @@
 <!--index.wxml-->
 <standardLayout id="standardLayout">
+  <div class="indexSearcherWrap">
+    <div class="indexSearcherInput" bindtap="toSearchPage">
+      <image src="{{ indexSearchIcon }}"></image>
+      搜索你{{ currentPackName }}里的物品，收纳点...
+    </div>
+  </div>
+  <div class="indexSearcherWrapBrick"></div>
   <view class="userInfoWrap">
     <view class="userInfo">
       <view class="{{ avatarBoxClass }}">
         <image class="avatar" src="{{ avatarUrl }}"></image>
       </view>
-      <image class="changeLocation" src="{{ changeLocation }}" bindtap="toChangeLocation"></image>
       <text class="currentPackName">{{ currentPackName }}</text>
       <text class="userInfoNickname">{{ nickName }}</text>
     </view>
-    <div class="indexSearcherWrap">
-      <div class="indexSearcherInput" bindtap="toSearchPage">
-        <image src="{{ indexSearchIcon }}"></image>
-        搜索你的物品，收纳点...
-      </div>
-    </div>
+    <view class="currentPackCtrl">
+      <span class="currentPackCtrlBtn">
+        <image src="{{ locationEdit }}" bindtap="toLocationEdit"></image>
+      </span>
+      <span class="currentPackCtrlBtn" bindtap="toMsgBox">
+        <image class="msg" src="{{ msg }}"></image>
+      </span>
+      <span class="currentPackCtrlBtn" bindtap="toLocationList">
+        <image class="locationList" src="{{ locationList }}"></image>
+      </span>
+    </view>
   </view>
   <view class="indexPanel">
     <div class="itemTotal" bindtap="toItemTotal">
@@ -28,11 +39,11 @@
       </span>
     </div>
   </view>
-  <view class="sliderWrap">
+  <!-- <view class="sliderWrap">
     <view class="sliderBox">
 
     </view>
-  </view>
+  </view> -->
   <!-- <swiper indicator-dots="{{indicatorDots}}"
     autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{imgUrls}}">

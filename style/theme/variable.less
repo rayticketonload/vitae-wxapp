@@ -7,17 +7,16 @@
 // 通用色调
 @domColor1: rgba(68, 146, 212, 1);
 @domColor2: rgba(93, 211, 150, 1);
-@domColor3: rgba(241, 124, 107, 1);
+@domColor3: rgba(241, 141, 120, 1);
 @domColor4: rgba(224, 145, 237, 1);
 @domColor5: rgba(251, 106, 1, 1);
 @domColor6: rgba(38, 47, 59, 1);
 @domColor7: rgba(255, 255, 255, 1);
+
 // app 主色调
-@color-primary: @domColor6;
-@color-secondary: @domColor3;
-@color-thirdly: rgb(253, 234, 191);
-@color-fourth: rgb(255, 209, 120);
-@color-fifth: rgb(193, 99, 78);
+@color-primary: rgba(255, 100, 1, 1);
+@color-secondary: rgba(180, 22, 22, 1);
+@color-thirdly: rgba(38, 47, 59, 1);
 
 
 // 基础字体尺寸
@@ -30,7 +29,7 @@
 
 
 // 公共圆角尺寸
-@borderRadius-public: 15rpx;
+@borderRadius-public: 10rpx;
 
 
 // 公共间隔尺寸
@@ -47,6 +46,10 @@
   @fontColor-tips: rgba(153, 153, 153, 1);
   // 正文
   @fontColor-default: rgba(51, 51, 51, 1);
+  // 明色调
+  @fontColor-light: rgba(255, 255, 255, 1);
+  // 暗色调
+  @fontColor-dark: @fontColor-default;
 
 
 // 基础背景色
@@ -60,32 +63,25 @@
 //
 // -------- 各组件Z轴层级 --------
 //
+@zIndex-userInfoWrap: 1;
 @zIndex-userInfo: 2;
 @zIndex-indexSearcherWrap: @zIndex-userInfo;
-@zIndex-userInfoWrapBefore: 1;
-@zIndex-menuSwitch: 2;
-@zIndex-menuMask: 1;
 
 
 //
 // -------- 底部导航 --------
 //
 // color
-@bgColor-bottomNav: @color-primary;
-@bgColor-menuSwitch: @color-secondary;
+@bgColor-bottomNavBtn: @color-thirdly;
 // size
-@height-menuMask: 400rpx;
-@height-bottomNav: @height-defaultFormControl;
-@size-menuSwitch: @height-bottomNav;
-@size-menuFunIcon: 140rpx;
+@height-bottomNav: 80rpx;
 
 
 //
 // -------- 通用表单样式 --------
 //
 // color
-@bgColor-defaultFormWrap: transparent;
-@bgColor-defaultFormControl: darken(@bgColor-defaultFormWrap, 10);
+@bgColor-defaultFormControl: rgba(255, 255, 255, 1);
 @fontColor-defaultFormControl: @fontColor-default;
 @fontColor-defaultPlaceHolder: @fontColor-tips;
 // size
@@ -96,13 +92,11 @@
 // -------- 通用按钮样式 --------
 //
 // color
-@color-default-button: @domColor7;
-@fontColor-default-button: @fontColor-default;
-@color-primary-button: @domColor1;
+@color-primary-button: @color-primary;
 @fontColor-primary-button: rgba(255, 255, 255, 1);
-@color-secondary-button: @domColor2;
+@color-secondary-button: @color-secondary;
 @fontColor-secondary-button: rgba(255, 255, 255, 1);
-@color-thirdly-button: @color-primary;
+@color-thirdly-button: @color-thirdly;
 @fontColor-thirdly-button: rgba(255, 255, 255, 1);
 // size
 @borderRadius-button: @borderRadius-public;
@@ -113,19 +107,20 @@
 // -------- 首页 --------
 //
 // color
-@fontColor-userInfoWrap: rgba(255, 255, 255, 1);
-@bgColor-indexSearcher: @color-thirdly;
-@bgColor-indexSearcherWrap: @bgColor-base;
-@bgColor-indexPanel: @bgColor-indexSearcherWrap;
+@bgColor1-userInfoWrap: @color-primary;
+@bgColor2-userInfoWrap: @color-secondary;
+@fontColor-userInfoWrap: @fontColor-light;
+@bgColor-indexSearcher: darken(@bgColor-indexSearcherWrap,15);
+@bgColor-indexSearcherWrap: @bgColor1-userInfoWrap;
+@bgColor-indexPanel: @bgColor-base;
 // size
 @size-userInfoAvatar: 120rpx;
-@height-input-indexSearcher: 80rpx;
+@height-input-indexSearcher: 70rpx;
 
 
 //
 // -------- 改变地址页面 --------
 //
 // color
-@bgColor-locationBox2-location: darken(@bgColor-base,5);
 // size
 @size-button-location: 80rpx;

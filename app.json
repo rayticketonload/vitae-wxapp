@@ -11,13 +11,15 @@
     "pages/search/search"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#262f3b",
+    "navigationBarBackgroundColor": "#ff6401",
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "井井",
     "navigationStyle": "default",
-    "backgroundColor": "#262f3b",
+    "backgroundColor": "#ff6401",
     "backgroundTextStyle": "light",
-    "enablePullDownRefresh": false,
+    "backgroundColorTop": "#ff6401",
+    "backgroundColorBottom": "#ff6401",
+    "enablePullDownRefresh": true,
     "onReachBottomDistance": 50
   }
 }

@@ -9,14 +9,19 @@ const request = require("../../utils/request");
 
 Page({
   data: {
+    // 用户头像，用户昵称和头像 class
     avatarBoxClass: [`avatarBox`, `avatarBoxAnim`],
     avatarUrl: app.globalData.userInfo.avatarUrl,
-    changeLocation: base64.changeLocation,
+    nickName: app.globalData.userInfo.nickName,
+    // 图标
+    locationList: base64.exitIconColorfff,
+    msg: base64.bellIconColorfff,
+    locationEdit: base64.editIconColorfff,
     indexSearchIcon: base64.searcherIcon,
+    // 首页数据变量
     currentPackName: app.globalData.currentPackName,
     currentItemTotal: app.globalData.currentItemTotal,
     currentPackTotal: app.globalData.currentPackTotal,
-    nickName: app.globalData.userInfo.nickName
   },
 
   onReady: function() {
@@ -111,7 +116,7 @@ Page({
   },
 
   // 跳转到更改默认房屋地点
-  toChangeLocation: function() {
+  toLocationList: function() {
     console.log("跳转到房屋地点列表");
     wx.navigateTo({
       url: `../changeLocation/changeLocation`

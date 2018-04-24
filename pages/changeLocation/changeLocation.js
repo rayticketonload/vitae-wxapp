@@ -16,9 +16,12 @@ Page({
     list: [],
     packTotal: 0,
     thePack: 0, // 删除地点情景的开关
-    locationItemTotalIcon: base64.locationItemTotal,
-    locationPackTotalIcon: base64.locationPackTotal,
-    urlQuery: `locationId`,
+    locationItemTotalIcon: base64.heartIconColor666,
+    locationPackTotalIcon: base64.boxIconColor666,
+    urlQuery: {
+      locationId: `locationId`,
+      locationIdName: `locationName`,
+    },
   },
 
   // 获取用户房屋地点列表
@@ -97,7 +100,7 @@ Page({
   // 跳转修改房屋地点
   locationEdit: function (e) {
     wx.navigateTo({
-      url: `../editLocation/editLocation?${this.data.urlQuery}=${e.currentTarget.dataset.id}`
+      url: `../editLocation/editLocation?${this.data.urlQuery.locationId}=${e.currentTarget.dataset.id}&&${this.data.urlQuery.locationIdName}=${e.currentTarget.dataset.name}`
     });
   },
 

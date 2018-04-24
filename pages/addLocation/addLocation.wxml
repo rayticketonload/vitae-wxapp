@@ -1,6 +1,6 @@
 <view class="defaultFormWrap">
   <form bindsubmit="formSubmit" bindreset="formReset">
-    <view class="formControlWrap fn-mb-40">
+    <view class="formControlWrap">
       <input
         name = "{{ form.locationName.name }}"
         placeholder = "{{ form.locationName.placeholder }}"
@@ -11,8 +11,8 @@
         auto-focus = true
       />
     </view>
-    <view>
-      <button formType="submit" class="button primary">确认添加</button>
+    <view class="formButtonWrap">
+      <button formType="submit" class="button thirdly">确认添加</button>
     </view>
   </form>
 </view>

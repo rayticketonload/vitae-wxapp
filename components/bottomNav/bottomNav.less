@@ -9,170 +9,62 @@
 .bottomNavWrap {
   box-sizing: border-box;
   position: fixed;
-  bottom: -(@gapSize-public * 4 + @size-menuFunIcon);
-  left: 0;
-  right: 0;
-  background-color: @bgColor-bottomNav;
-  .transition(all,.3s,ease,0);
-  // .border-radius(@borderRadius-public*3,@borderRadius-public*3,0,0);
+  bottom: @gapSize-public;
+  left: @gapSize-public;
 
-  &.menuShow {
-    bottom: 0;
-  }
-
-  .bottomNav {
+  .navBtn {
+    box-sizing: border-box;
+    display: inline-block;
     height: @height-bottomNav;
-    display: flex;
-    justify-content: space-between;
+    line-height: @height-bottomNav;
+    text-align: center;
+    padding: 0 @gapSize-public * 2;
+    background-color: @bgColor-bottomNavBtn;
+    opacity: 0.9;
+    .transition(all,.3s,ease,0);
 
-    .add {
-      box-sizing: border-box;
-      display: block;
-      line-height: @height-bottomNav;
-      text-align: center;
-      width: 40%;
+    &:active {
+      opacity: 1;
+    }
+
+    > image {
+      .square(@height-bottomNav * 0.5);
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: @gapSize-public;
+    }
+
+    > span {
+      color: @fontColor-light;
+      vertical-align: middle;
+      font-size: @fontSize-default * 0.8;
+    }
+
+    &.addItem {
+      .border-radius(@borderRadius-public,0,0,@borderRadius-public);
+      border-right: 1px solid darken(@borderColor-base, 40);
+    }
+
+    &.addBox {
+      .border-radius(0,@borderRadius-public,@borderRadius-public,0);
 
       > image {
-        .square(@height-bottomNav/2);
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: @gapSize-public;
-      }
-
-      > span {
-        color: rgba(255, 255, 255, 1);
-        vertical-align: middle;
+        .square(@height-bottomNav * 0.75);
+        margin-top: -7rpx;
       }
     }
-  }
 
-  .bottomNavMenu {
-    padding: @gapSize-public * 2;
-    display: flex;
-    justify-content: space-between;
-
-    .menuFunIcon {
-      box-sizing: border-box;
-      text-align: center;
-      .square(@size-menuFunIcon);
-      line-height: @size-menuFunIcon;
+    &.toIndex {
       .rounded(@borderRadius-public);
-      background-color: rgba(255,255,255,0.2);
-      .transition(all,.3s,ease,0);
+      .square(@height-bottomNav);
+      text-align: center;
+      margin-right: @gapSize-public / 2;
+      padding: 0;
 
-      .iconImage {
-        .square(60%);
-        vertical-align: middle;
-        .transition(all,.1s,ease,0);
-      }
-
-      &:active {
-        background-color: rgba(255,255,255,0.5);
-
-        .iconImage {
-          .square(70%);
-        }
+      > image {
+        .square(@height-bottomNav * 0.6);
+        margin: -8rpx 0 0 0;
       }
     }
   }
 }
-
-.menuIcon {
-  box-sizing: border-box;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  .rounded(50%);
-  .square(80%);
-  background-color: @bgColor-menuSwitch;
-  border: 8rpx solid lighten(@color-secondary,100);
-
-  // 开关中间的加号
-  &:after,
-  &:before {
-    content: '';
-    box-sizing: border-box;
-    width: 70%;
-    height: 10rpx;
-    border-radius: 10rpx;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background-color: lighten(@color-secondary,100);
-  }
-
-  &:before {
-    transform: translate(-50%,-50%) rotate(45deg);
-    opacity: 0;
-  }
-
-  &:after {
-    transform: translate(-50%,-50%) rotate(-45deg);
-    opacity: 0;
-  }
-}
-
-.menuSwitch {
-  position: absolute;
-  top: -@size-menuSwitch/2;
-  left: 50%;
-  margin-left: -@size-menuSwitch/2;
-  z-index: @zIndex-menuSwitch;
-  .square(@size-menuSwitch);
-  .rounded(50%);
-  background-color: lighten(@bgColor-menuSwitch,20);
-  box-shadow: 0 0 0 14rpx lighten(@color-secondary,100);
-
-  // 触发开关的动画
-  &.cancel {
-    .animation-s(menuSwitch,.3s,ease,0);
-    @keyframes menuSwitch {
-      0% {
-        transform: rotate(0deg);
-        box-shadow: 0 0 0 0 rgba(245, 142, 120, 1);
-      }
-      100% {
-        transform: rotate(180deg);
-        background-color: rgba(241, 124, 107, 1);
-        box-shadow: 0 0 0 70rpx rgba(245, 142, 120, 0);
-      }
-    }
-
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      .square(100%);
-      .rounded(50%);
-      box-shadow: 0 0 0 14rpx rgba(255, 255, 255, 1);
-    }
-
-    .menuIcon {
-      .animation-s(menuIcon,.3s,ease,0);
-      @keyframes menuIcon {
-        100% {
-          border-color: transparent;
-          background-color: @domColor3;
-        }
-      }
-    }
-
-    .menuIcon:after,
-    .menuIcon:before {
-      .animation-s(menuIconOpac,.3s,ease,0);
-      @keyframes menuIconOpac {
-        0% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-    }
-  }
-}
-
-
-
