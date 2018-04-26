@@ -19,7 +19,7 @@ App({
     console.log(`toDoList: %c用户不授权会进入死循环`,`color: #4492d4;`);
     console.log(`toDoList: %c把过期提醒模块做到首页`,`color: #4492d4;`);
     console.log(`toDoList: %c表单校验要做`,`color: #4492d4;`);
-    console.log(`toDoList: %清一下没用的图标`,`color: #4492d4;`);
+    // console.log(`toDoList: %c清一下没用的图标`,`color: #4492d4;`);
     // console.log(`toDoList: %c删除地点，如果删除的是默认地点，就帮用户重新选一个默认地点（数组第一个）`,`color: #4492d4;`);
     console.log(`toDoList: %c所有 request 都要有 loading, 和独立提示成功时候的 we.showToast 反馈，失败时候的 wx.showModal 反馈`,`color: #4492d4;`);
     console.log(`toDoList: %c底部导航打开状态下跳转房屋地点列表，再返回来，导航还是打开状态`,`color: #4492d4;`);

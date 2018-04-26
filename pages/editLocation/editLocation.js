@@ -25,15 +25,21 @@ Page({
 
   // 生命周期函数--监听页面加载
   onLoad: function (options) {
+    console.log(`options.locationId`,options.locationId);
+    console.log(`options.locationName`,options.locationName);
     // 从 URL 拿传过来的房屋地点ID和名称
     this.setData({
       locationId: options.locationId,
+      parentId: null,
       form: {
         locationName: {
+          name: `locationName`,
+          placeholder: `地点名称是？例如：家，公司，仓库...`,
           value: options.locationName,
         }
       }
     });
+    console.log(`onload`,this.data.form.locationName.name);
     // 初始化表单验证
     // 验证规则
     const vr = {
@@ -71,9 +77,8 @@ Page({
       });
       return false;
     } else {
-      const url = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}updatePackInfoById`;
+      const url = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}updataPackInfoById`;
       let data = {
-        parentId: null,
         id: me.data.locationId,
         name: e.detail.value.locationName
       };

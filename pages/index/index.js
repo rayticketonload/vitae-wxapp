@@ -14,10 +14,17 @@ Page({
     avatarUrl: app.globalData.userInfo.avatarUrl,
     nickName: app.globalData.userInfo.nickName,
     // 图标
-    locationList: base64.exitIconColorfff,
-    msg: base64.bellIconColorfff,
+    help: base64.helpIconColorfff,
+    // locationList: base64.exitIconColorfff,
+    setting: base64.settingIconColorfff,
     locationEdit: base64.editIconColorfff,
     indexSearchIcon: base64.searcherIcon,
+    whatsIn: base64.homeIconColorb41616,
+    beChef: base64.chefIconColorb41616,
+    mission: base64.missionIconColorb41616,
+    msg: base64.bellIconColorfff,
+    finger: base64.fingerIconColor666,
+    msgDel: base64.del2IconColor666,
     // 首页数据变量
     currentPackName: app.globalData.currentPackName,
     currentItemTotal: app.globalData.currentItemTotal,
@@ -121,6 +128,11 @@ Page({
     wx.navigateTo({
       url: `../changeLocation/changeLocation`
     });
+  },
+
+  // 打开帮助
+  openHelp: function() {
+    console.log("打开帮助");
   },
 
   // 跳转到搜索页面

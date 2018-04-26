@@ -32,13 +32,13 @@
       .locationName {
         display: block;
         .text-hide();
-        font-size: @fontSize-default * 1.2;
-        padding-bottom: @gapSize-public;
+        font-size: @fontSize-header;
+        padding-bottom: @gapSize-public / 2;
       }
 
       .locationTotal {
         box-sizing: border-box;
-        line-height: 0;
+        line-height: 50rpx;
 
         .locationPackTotal,
         .locationItemTotal {
@@ -51,6 +51,7 @@
 
           > span {
             vertical-align: middle;
+            display: inline-block;
           }
 
           > image {
@@ -62,10 +63,10 @@
         }
 
         .locationItemTotal {
-          margin-right: @gapSize-public * 3;
+          margin-right: @gapSize-public * 2;
 
           > image {
-            .square(38rpx);
+            .square(34rpx);
           }
         }
       }

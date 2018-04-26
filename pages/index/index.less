@@ -12,7 +12,7 @@
   z-index: @zIndex-userInfoWrap;
   box-sizing: border-box;
   padding: @gapSize-public * 2;
-  padding-bottom: @gapSize-public * 4;
+  padding-bottom: @gapSize-public * 6;
   overflow: hidden;
   background: linear-gradient(@bgColor1-userInfoWrap,@bgColor2-userInfoWrap);
 
@@ -55,60 +55,59 @@
   font-size: @fontSize-default;
   color: @fontColor-userInfoWrap;
   padding-left: (@size-userInfoAvatar + @gapSize-public * 2 + @gapSize-public/2);
-  padding-right: (@size-userInfoAvatar + @gapSize-public * 2  + @gapSize-public/2);
+  padding-right: (@size-userInfoAvatar + @gapSize-public * 4  + @gapSize-public/2);
 }
 
 .currentPackName {
   display: block;
   font-size: @fontSize-header;
-  line-height: @lineHeight-base;
+  line-height: 1;
   color: @fontColor-userInfoWrap;
   .text-hide();
 }
 
 // 按钮面板
 .currentPackCtrl {
-  text-align: right;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(0,-50%);
   line-height: 0;
-  padding-top: @gapSize-public;
+  background-color: rgba(255, 255, 255, .25);
+  box-shadow: 0 0 0 10rpx rgba(255, 255, 255, .075);
+  .rounded(@size-userInfoAvatar * 0.7);
 }
 
 .currentPackCtrlBtn {
   display: inline-block;
   box-sizing: border-box;
-  margin-left: 25rpx;
+  padding: 0 @gapSize-public * 2.6;
   position: relative;
   overflow: hidden;
   .square(@size-userInfoAvatar * 0.7);
-  .rounded(50%);
-  background-color: rgba(255, 255, 255, .25);
-  box-shadow: 0 0 0 10rpx rgba(255, 255, 255, .075);
-  .transition(all,.3s,ease,0);
-
-  &:active {
-    background-color: rgba(255, 255, 255, .4);
-  }
 
   > image {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    .square(50%);
+    .square(80%);
     opacity: 0.85;
+    .transition(all,.3s,ease,0);
+  }
 
-    &.msg {
-      .square(70%);
-    }
+  &.setting {
+    border-left: 1px solid rgba(255, 255, 255, .25);
+  }
 
-    &.locationList {
-      transform: translate(-40%,-45%);
-      .square(60%);
-    }
+  &.msg {
+    // transform: translate(-40%,-45%);
+  }
+
+  &:active > image {
+    opacity: 1;
   }
 }
-
-
 
 .avatarBox {
   position: absolute;
@@ -180,6 +179,7 @@
   line-height: 1.2;
   .fontColorLight(.7);
   .text-hide();
+  padding-top: @gapSize-public / 2;
 }
 
 // 首页搜索部件
@@ -193,14 +193,15 @@
   box-sizing: border-box;
   padding: @gapSize-public @gapSize-public * 2;
   background-color: @bgColor-indexSearcherWrap;
+  .clearfix();
 
   .indexSearcherInput {
+    float: left;
     position: relative;
-    display: block;
     box-sizing: border-box;
-    font-size: floor(@fontSize-default * 0.9);
+    font-size: @fontSize-sub;
     color: lighten(@bgColor-indexSearcher,50);
-    .size(auto,@height-input-indexSearcher);
+    .size(84%,@height-input-indexSearcher);
     line-height: @height-input-indexSearcher;
     .rounded(@height-input-indexSearcher);
     padding: 0 90rpx;
@@ -215,12 +216,205 @@
       .square(@height-input-indexSearcher * 0.7);
     }
   }
+
+  .subBtnWrap {
+    float: right;
+    width: 14%;
+    text-align: right;
+    line-height: 0;
+  }
+
+  .subBtn {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    .square(@height-input-indexSearcher);
+    .rounded(50%);
+    background-color: @bgColor-indexSearcher;
+
+    > image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      .square(60%);
+      opacity: 0.85;
+      transform: translate(-50%,-50%);
+    }
+
+    &.locationList {
+      margin-left: 10rpx;
+
+      > image {
+        transform: translate(-40%,-45%);
+      }
+    }
+  }
 }
 
 .indexSearcherWrapBrick {
   display: block;
   height: @gapSize-public * 2 + @height-input-indexSearcher;
   background-color: @bgColor1-userInfoWrap;
+}
+
+.funsPanel {
+  display: flex;
+  justify-content: center;
+  padding-top: @gapSize-public * 2;
+
+  .funs {
+    width: 33%;
+
+    .funIcon {
+      position: relative;
+      display: block;
+      margin: 0 auto;
+      .rounded(50%);
+      .square(@size-funIcon);
+      background-color: @bgColor-funIcon;
+
+      > image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 50%;
+      }
+    }
+
+    .funTitle {
+      display: block;
+      text-align: center;
+      color: @fontColor-tips;
+      font-size: @fontSize-sub;
+      padding-top: @gapSize-public;
+    }
+  }
+}
+
+.sectionName {
+  display: block;
+  border: 1px solid @borderColor-base;
+  border-left: none;
+  border-top: none;
+  .size(auto,80rpx);
+  .rounded(50%);
+  margin: @gapSize-public * 2 @gapSize-public * 4 0 @gapSize-public * 4;
+  position: relative;
+
+  > image {
+    position: absolute;
+    bottom: -40rpx;
+    left: 50%;
+    .square(80rpx);
+    .rounded(50%);
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 0 20rpx rgba(255,255,255,1);
+    transform: translate(-50%,0) rotate(180deg);
+  }
+}
+
+.msgInIndex {
+  display: block;
+  padding: @gapSize-public 0 0 0;
+  margin: 0 @gapSize-public * 4;
+  list-style: none;
+
+  > li {
+    position: relative;
+    display: block;
+    border: 1px solid @borderColor-base;
+    .rounded(@borderRadius-public);
+    padding: @gapSize-public * 2 @gapSize-public * 4 @gapSize-public * 2 @gapSize-public * 4;
+    margin-top: @gapSize-public * 2;
+    background-color: @bgColor-msgInIndex;
+
+    .msgIcon {
+      position: absolute;
+      left: -30rpx;
+      top: 50%;
+      margin-top: -30rpx;
+      .square(60rpx);
+      .rounded(50%);
+      border: 1px solid @borderColor-base;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      background-color: @bgColor-msgInIndex;
+      background-size: 60%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      transform: rotate(-45deg);
+    }
+
+    .msgDel {
+      position: absolute;
+      right: -30rpx;
+      top: 50%;
+      margin-top: -30rpx;
+      .square(60rpx);
+      .rounded(50%);
+      border: 1px solid @borderColor-base;
+      border-left-color: transparent;
+      border-top-color: transparent;
+      background-color: @bgColor-msgInIndex;
+      background-size: 60%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      transform: rotate(-45deg);
+
+      > image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%) rotate(-45deg);
+        .square(40%);
+        opacity: .5;
+      }
+    }
+
+    .msgTitle {
+      display: block;
+      font-size: @fontSize-default;
+      margin-bottom: @gapSize-public / 2;
+    }
+
+    .msgContent {
+      display: block;
+      text-align: justify;
+      font-size: @fontSize-default;
+      color: @fontColor-tips;
+      word-break: break-all;
+      line-height: @lineHeight-base;
+    }
+
+    &.alert  {
+
+      .msgTitle > b {
+        color: @color-secondary;
+      }
+
+      .msgIcon {
+        background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTI0NzE0MjU5NjE5IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjQyODUiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNjQwIDk2MCAzODQgOTYwbDAtMTkyIDI1NiAwTDY0MCA5NjB6TTYwOCA2NDBsLTE5MiAwTDM4NCA2NGwyNTYgMEw2MDggNjQweiIgcC1pZD0iNDI4NiIgZmlsbD0iI2I0MTYxNiI+PC9wYXRoPjwvc3ZnPg==');
+      }
+    }
+
+    &.info {
+
+      .msgTitle > b {
+        color: @domColor1;
+      }
+
+      .msgContent > b {
+        color: @fontColor-default;
+      }
+
+      .msgIcon {
+        background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTI0NzE0NjQ4NDI0IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjczMDgiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNDEzLjQ0NTQwNiA5ODkuNTM0NDFjNTUuOTY2NTU4IDQ0LjA2MjU5MiAxMjcuOTMzMDY4IDQ1LjkwNTc4NiAxODYuNzgyMTc4IDUuMzQ1MjY0IDM1Ljk1MjUzNi0yNC43ODA3MjggMS44OTk1MTQtODMuOTE2NTU2LTM0LjQwNjMtNTguODkwMDctMTYuNDYwNzUyIDExLjM0NTg4OC0zNS4zNDgzNzggMjAuMzM2NTgyLTU1LjUyMTExOCAyMS40ODg1NzgtMTIuODQ2MDQyIDAuNzM3Mjc4LTI2LjAzNTEyNC00LjI5NTY2OC0zNy4zMjQ2OTItOS45Mjc2NTItMy4xODk3NS0xLjU3Njk1Ni0yMi45MjcyOTQtMTUuMzkwNjc2LTExLjMwNDkyOC02LjIzMTAyMkM0MjcuNTM1NjA0IDkxNC40MzQ0NjggMzc4LjkxNjIyNiA5NjIuMzUyNDEgNDEzLjQ0NTQwNiA5ODkuNTM0NDFMNDEzLjQ0NTQwNiA5ODkuNTM0NDEgNDEzLjQ0NTQwNiA5ODkuNTM0NDF6TTQxMy40NDU0MDYgOTg5LjUzNDQxTTM4Ny41MTc4IDkyMS4wMzkyNDhjODkuNzc4OTQtMjMuMTE2NzMyIDE3OS41NzMyNC00Ni4yMjgzNDYgMjY5LjM0NzA1OC02OS4zMzQ4MzggNDIuNTYyNDM2LTEwLjk2NzAwOCAyNC40OTQwMDgtNzYuNzI4MDk4LTE4LjEyNDc0OC02NS43NjEwOS04OS43Nzg5NCAyMy4xMTY3MzItMTc5LjU2ODEyIDQ2LjIzMzQ2Ni0yNjkuMzQ3MDU4IDY5LjMzNDgzOEMzMjYuODMwNjE2IDg2Ni4yMzQ5MjggMzQ0Ljg5OTA0NCA5MzEuOTk2MDE4IDM4Ny41MTc4IDkyMS4wMzkyNDhMMzg3LjUxNzggOTIxLjAzOTI0OCAzODcuNTE3OCA5MjEuMDM5MjQ4ek0zODcuNTE3OCA5MjEuMDM5MjQ4TTM4Ny41MTc4IDgxNy42MTU1NDhjNjMuODkyMjk0LTE2Ljk5MzIzIDEyNy43ODk3MS0zMy45NzYyMjIgMTkxLjY4MjAwNC01MC45NDg5NzIgNjQuMTEyNDU0LTE3LjA0OTU1IDEwNy45MjkyODgtMTguMDY4NDI4IDExMi45MzE1MTItOTYuMTMyODQyIDIuMzc1Njc0LTM3LjA1MzMzMiAzOS4wMzQ3NjYtNjguNTk3NTYyIDYxLjU2MjcwMi05NS4wODMyNDQgMjguNjY2Nzk2LTMzLjY2OTAyMiA1NS4yMTkwNC02OS41OTA4MzggNzIuNDMyNDMtMTEwLjU3MTIgNDEuMzU5MjQtOTguNTA4NTE0IDMwLjAyODcxMi0yMDMuOTg1MzI4LTE5LjY5MTQ2Mi0yOTYuOTg0NzM4LTExMi4xNDMwMzQtMjA5LjczNTA3Mi00MTEuODkyNTY2LTIyMC44MjQ5Ni01NTguNDcyNjItNDUuMjYwNjY4LTEyNS44MjM2MzYgMTUwLjY5NjUyMi05MS4zNDU2NTYgNDE3LjcyNDIyOCA4Mi42MDU4NCA1MjAuNTAyODEgMzcuOTM5MDkgMjIuNDIwNDE0IDcyLjIyMjUxLTM2LjUzNjIxNCAzNC40MDYzLTU4Ljg3NDcxQzI1NC4yMzQzNDggNTE4LjgwODA5NiAyMTguNzExODkgMzYyLjAyOTAzIDI1NC45NzE2MjYgMjQ3LjM0NjQ4MiAzMDcuNzYzNzkyIDgwLjQxOTYwNiA1MTIuMDMwNzIgMjEuODE2MjU2IDY1Ni4yODExODIgMTA1LjY3NjQ5NGMxMjkuMjY0MjY2IDc1LjE1NjI2MiAxNjAuMjg2MjU2IDI1MC4zNDE2NzQgODUuODM2NTUyIDM3Mi42ODM3Mi0yNC43MTQxNjggNDAuNjE2ODQyLTU5Ljk2NTI2NiA3NC4xNjI5ODQtODguNDgzNTg0IDExMi4wMzU1MTYtMjYuNTM2ODg0IDM1LjI0MDg1OC0yNS43NTg2NDYgNzMuNTA3NjI2LTM4LjcwMTk2OCAxMTMuNjU4NTVsMjMuODEzMDUtMjMuODEzMDVjLTg5Ljc3ODk0IDIzLjg2NDI1LTE3OS41NjgxMiA0Ny43Mjg1MDItMjY5LjM0NzA1OCA3MS41OTc4NzJDMzI2Ljk0MzI1NiA3NjMuMTI4NjY2IDM0NC45NzA3MjQgODI4LjkxNTM1NiAzODcuNTE3OCA4MTcuNjE1NTQ4TDM4Ny41MTc4IDgxNy42MTU1NDggMzg3LjUxNzggODE3LjYxNTU0OHpNMzg3LjUxNzggODE3LjYxNTU0OCIgcC1pZD0iNzMwOSIgZmlsbD0iIzQ0OTJkNCI+PC9wYXRoPjwvc3ZnPg==');
+      }
+    }
+  }
 }
 
 .indexPanel {

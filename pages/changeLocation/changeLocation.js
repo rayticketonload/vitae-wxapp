@@ -50,9 +50,11 @@ Page({
   // 获取用户房屋地点列表失败
   getListFail: function (err) {
     console.log(`获取房屋地点列表失败`, err);
-    wx.showToast({
-      title: `获取房屋地点列表失败，请检查网络`,
-      duration: 3000
+    wx.showModal({
+      title: `获取地点列表失败`,
+      content: `爸爸快检查网络是否正常`,
+      confirmText: `好的`,
+      showCancel: false
     });
   },
 

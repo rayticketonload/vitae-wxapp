@@ -18,7 +18,7 @@
     height: @height-bottomNav;
     line-height: @height-bottomNav;
     text-align: center;
-    padding: 0 @gapSize-public * 2;
+    padding: 0 @gapSize-public;
     background-color: @bgColor-bottomNavBtn;
     opacity: 0.9;
     .transition(all,.3s,ease,0);
@@ -31,13 +31,13 @@
       .square(@height-bottomNav * 0.5);
       display: inline-block;
       vertical-align: middle;
-      margin-right: @gapSize-public;
+      margin-right: @gapSize-public / 2;
     }
 
     > span {
       color: @fontColor-light;
       vertical-align: middle;
-      font-size: @fontSize-default * 0.8;
+      font-size: @fontSize-sub;
     }
 
     &.addItem {

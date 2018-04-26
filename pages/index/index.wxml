@@ -1,11 +1,16 @@
 <!--index.wxml-->
 <standardLayout id="standardLayout">
-  <div class="indexSearcherWrap">
-    <div class="indexSearcherInput" bindtap="toSearchPage">
+  <view class="indexSearcherWrap">
+    <view class="indexSearcherInput" bindtap="toSearchPage">
       <image src="{{ indexSearchIcon }}"></image>
-      搜索你{{ currentPackName }}里的物品，收纳点...
-    </div>
-  </div>
+      在{{ currentPackName }}里翻箱倒柜...
+    </view>
+    <view class="subBtnWrap">
+      <span class="subBtn help" bindtap="openHelp">
+        <image src="{{ help }}"></image>
+      </span>
+    </view>
+  </view>
   <div class="indexSearcherWrapBrick"></div>
   <view class="userInfoWrap">
     <view class="userInfo">
@@ -14,20 +19,90 @@
       </view>
       <text class="currentPackName">{{ currentPackName }}</text>
       <text class="userInfoNickname">{{ nickName }}</text>
-    </view>
-    <view class="currentPackCtrl">
-      <span class="currentPackCtrlBtn">
-        <image src="{{ locationEdit }}" bindtap="toLocationEdit"></image>
-      </span>
-      <span class="currentPackCtrlBtn" bindtap="toMsgBox">
-        <image class="msg" src="{{ msg }}"></image>
-      </span>
-      <span class="currentPackCtrlBtn" bindtap="toLocationList">
-        <image class="locationList" src="{{ locationList }}"></image>
-      </span>
+      <view class="currentPackCtrl">
+        <span class="currentPackCtrlBtn msg" bindtap="toMsgBox">
+          <image src="{{ msg }}"></image>
+        </span>
+        <span class="currentPackCtrlBtn setting" bindtap="toLocationList">
+          <image src="{{ setting }}"></image>
+        </span>
+      </view>
     </view>
   </view>
-  <view class="indexPanel">
+  <view class="funsPanel">
+    <view class="funs" bindtap="toPackTotal">
+      <span class="funIcon">
+        <image src="{{ whatsIn }}"></image>
+      </span>
+      <text class="funTitle">房里有什么呢</text>
+    </view>
+    <view class="funs">
+      <span class="funIcon">
+        <image src="{{ beChef }}"></image>
+      </span>
+      <text class="funTitle">咱能吃什么呢</text>
+    </view>
+    <view class="funs">
+      <span class="funIcon">
+        <image src="{{ mission }}"></image>
+      </span>
+      <text class="funTitle">定个目标如何</text>
+    </view>
+  </view>
+  <view class="sectionName">
+    <image src="{{ finger }}"></image>
+  </view>
+  <ul class="msgInIndex">
+    <li class="alert">
+      <span class="msgTitle">
+        <b>雪花霜降肥牛肉</b> 即将过保质期
+      </span>
+      <span class="msgContent">
+        保质期限到 2018/07/12
+      </span>
+      <span class="msgIcon"></span>
+      <span class="msgDel">
+        <image src="{{ msgDel }}" bindtap="msgDel"></image>
+      </span>
+    </li>
+    <li class="alert">
+      <span class="msgTitle">
+        <b>花生油</b> 即将过保质期
+      </span>
+      <span class="msgContent">
+        保质期限到 2018/07/12
+      </span>
+      <span class="msgIcon"></span>
+      <span class="msgDel">
+        <image src="{{ msgDel }}" bindtap="msgDel"></image>
+      </span>
+    </li>
+    <li class="info">
+      <span class="msgTitle">
+        推荐快手菜 <b>油炸豆腐</b>
+      </span>
+      <span class="msgContent">
+        根据你的 <b>花生油</b>，帮你找个快手菜谱
+      </span>
+      <span class="msgIcon"></span>
+      <span class="msgDel">
+        <image src="{{ msgDel }}" bindtap="msgDel"></image>
+      </span>
+    </li>
+    <li class="info">
+      <span class="msgTitle">
+        推荐快手菜 <b>金针菇肥牛火锅</b>
+      </span>
+      <span class="msgContent">
+        根据你的 <b>雪花霜降肥牛肉</b>，帮你找个快手菜谱
+      </span>
+      <span class="msgIcon"></span>
+      <span class="msgDel">
+        <image src="{{ msgDel }}" bindtap="msgDel"></image>
+      </span>
+    </li>
+  </ul>
+  <!-- <view class="indexPanel">
     <div class="itemTotal" bindtap="toItemTotal">
       <span class="total">
         {{ currentItemTotal }}
@@ -38,7 +113,7 @@
         {{ currentPackTotal }}
       </span>
     </div>
-  </view>
+  </view> -->
   <!-- <view class="sliderWrap">
     <view class="sliderBox">
 
