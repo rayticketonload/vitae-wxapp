@@ -142,21 +142,21 @@ Page({
   },
 
   // 跳转到物品总数页面跳转到物品总数页面
-  toItemTotal: function() {
-    console.log("跳转到物品总数页面");
-    this.gotoSearchPage("good");
-  },
+  // toItemTotal: function() {
+  //   console.log("跳转到物品总数页面");
+  //   this.gotoSearchPage("good");
+  // },
 
   // 跳转到收纳点总数页面
-  toPackTotal: function() {
-    console.log("跳转到收纳点总数页面");
+  intoThePack: function() {
+    console.log("查看地点收纳情况");
     this.gotoSearchPage("package");
   },
 
   //跳转去搜索页
-  gotoSearchPage: function(param = all) {
+  gotoSearchPage: function(searchType = all, pack = this.data.currentPackName) {
     wx.navigateTo({
-      url: `../search/search?type=${param}`
+      url: `../search/search?type=${searchType}&pack=${pack}`
     });
   }
 });

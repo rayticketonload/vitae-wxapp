@@ -6,17 +6,39 @@ const constants = require("../../constants/constants");
 const request = require("../../utils/request");
 // 引入 moment 时间戳编译
 const moment = require("../../utils/moment");
+// 引入 base64 资源
+const base64 = require('../../base64/base64');
+
+
 Page({
-  /**
-   * 页面的初始数据
-   */
+
   data: {
-    items: [{ name: "全部", value: "all" }, { name: "收纳盒", value: "package" }, { name: "物品", value: "good" }],
-    checked: "all",
+    resultUnit: { // 内容列表的数据集
+      pack: { // 盒子列表的数据集
+        ruPackImage: base64.boxIconColor666,
+      }
+    },
+    currentLocation: ``, // 当前所在的盒子
+    items: [
+      {
+        name: "收纳点",
+        value: "package"
+      },
+      {
+        name: "物品",
+        value: "good"
+      }
+    ],
+    checked: "package",
     inputVal: "",
     list: [], //要显示的list
     packList: [],
     goodList: []
+  },
+
+  onReady: function() {
+    // 获得 standardLayout 组件
+    this.standardLayout = this.selectComponent("#standardLayout");
   },
 
   radioChange: function(e) {
@@ -25,6 +47,7 @@ Page({
     });
     this.showList();
   },
+
   // 获取用户房屋地点列表
   search: function(form = { key: "" }) {
     const url = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}search`;
@@ -84,15 +107,11 @@ Page({
   onLoad: function(options) {
     console.log(options.type);
     this.setData({
-      checked: options.type || "all"
+      checked: options.type || "all",
+      currentLocation: options.pack
     });
     this.search();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {},
 
   /**
    * 生命周期函数--监听页面显示

@@ -30,7 +30,7 @@
     </view>
   </view>
   <view class="funsPanel">
-    <view class="funs" bindtap="toPackTotal">
+    <view class="funs" bindtap="intoThePack">
       <span class="funIcon">
         <image src="{{ whatsIn }}"></image>
       </span>
@@ -82,7 +82,7 @@
         推荐快手菜 <b>油炸豆腐</b>
       </span>
       <span class="msgContent">
-        根据你的 <b>花生油</b>，帮你找个快手菜谱
+        根据你的 <b>花生油</b>，帮你找个菜谱
       </span>
       <span class="msgIcon"></span>
       <span class="msgDel">
@@ -94,7 +94,7 @@
         推荐快手菜 <b>金针菇肥牛火锅</b>
       </span>
       <span class="msgContent">
-        根据你的 <b>雪花霜降肥牛肉</b>，帮你找个快手菜谱
+        根据你的 <b>雪花霜降肥牛肉</b>，帮你找个菜谱
       </span>
       <span class="msgIcon"></span>
       <span class="msgDel">

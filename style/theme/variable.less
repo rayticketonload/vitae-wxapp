@@ -25,8 +25,10 @@
   @fontSize-default: @fontSize-base;
   @fontSize-sub: 28rpx;
   // 标题
-  @fontSize-header: floor(@fontSize-base*1.6);
-
+  @fontSize-header: floor(@fontSize-base * 1.6);
+  // 标准字号
+  @fontSize-largest: @fontSize-header;
+  @fontSize-large: floor(@fontSize-base * 1.2);
 
 // 公共圆角尺寸
 @borderRadius-public: 10rpx;
@@ -128,3 +130,20 @@
 // color
 // size
 @size-button-location: 80rpx;
+
+
+//
+// -------- 进入地点看收纳情况的搜索页 --------
+//
+// color
+@bgColor-resultType: @bgColor-base;
+@fontColor-typeBox: @fontColor-default;
+@bgColor-currentLocation: @color-secondary;
+@bgColor-resultUnit: @bgColor-base;
+@bgColor-ruPackImg: @bgColor-resultUnit;
+// size
+@height-typeBox: 100rpx;
+@fontSize-typeBox: @fontSize-large;
+@fontSize-ruPackName: @fontSize-large;
+@fontSize-currentLocation: @fontSize-default;
+@size-ruPackImg: 150rpx;

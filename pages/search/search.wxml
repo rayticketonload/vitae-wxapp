@@ -1,26 +1,35 @@
-<view class="defaultFormWrap">
-  <form bindsubmit="formSubmit" bindreset="formReset">
-    <view class="formControlWrap">
-      <input value="{{inputVal}}" name="key" placeholder="输入关键字" class="formControl" bindinput="inputTyping" />
-      <view class="clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-        <icon type="clear" size="14"></icon>
+<standardLayout id="standardLayout">
+  <view class="currentLocation">
+    当前位置：{{ currentLocation }}
+  </view>
+  <!-- <view class="defaultFormWrap">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="formControlWrap">
+        <input value="{{inputVal}}" name="key" placeholder="输入关键字" class="formControl" bindinput="inputTyping" />
+        <view class="clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+          <icon type="clear" size="14"></icon>
+        </view>
+        <button formType="submit" class="button thirdly">搜索</button>
       </view>
-      <button formType="submit" class="button thirdly">搜索</button>
+    </form>
+  </view> -->
+  <radio-group class="radio-group resultType" bindchange="radioChange">
+    <view class="typeBox {{ checked == item.value ? 'current' : '' }}" wx:for="{{ items }}">
+      <label class="radio">
+        <radio value="{{ item.value }}" checked="{{ checked == item.value }}" class="displayNone"/>
+        {{ item.name }}
+      </label>
     </view>
-  </form>
-</view>
-<view>
-  <radio-group class="radio-group " bindchange="radioChange">
-    <label class="radio fn-pa-20" wx:for="{{items}}">
-      <radio value="{{item.value}}" checked="{{checked==item.value}}" />{{item.name}}
-    </label>
   </radio-group>
-</view>
-<view class="fn-pa-20">
-  <block wx:for="{{ list }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj">
-    <view class="item-wrap">
-      <text>{{ itemObj.name }}</text>
-      <p class="create-time">{{ itemObj.date }}</p>
+  <view class="result">
+    <view wx:for="{{ list }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
+      <image src="" class="ruPackImg"></image>
+      <p class="ruPackName">{{ itemObj.name }}</p>
+      <view class="ruPackDetail">
+        <p class="ruCreateTime">收纳点: 5 个</p>
+        <p class="ruCreateTime">物品:  14 个</p>
+      </view>
     </view>
-  </block>
-</view>
+  </view>
+</standardLayout>
+

@@ -5,7 +5,7 @@ const constants = require('../../constants/constants');
 // 引入封装好的请求方法
 const request = require('../../utils/request');
 // 引入表单验证规则
-import customValidatorRule from '../../utils/validatorsRules';
+// import customValidatorRule from '../../utils/validatorsRules';
 
 Page({
 
@@ -44,7 +44,7 @@ Page({
     // 验证规则
     const vr = {
       locationName: {
-        //required: true,
+        required: true,
         //locationNameNoBlank: true
       }
     };
@@ -58,10 +58,10 @@ Page({
 
     // 自定义表单校验规则
     // 地点名称不能有空格
-    this.validator.addMethod('locationNameNoBlank', (value, param) => {
-      console.log(`value`, value);
-      return this.validator.optional(value) || customValidatorRule.noBlank.test(value);
-    }, '地点名称不能有空格');
+    // this.validator.addMethod('locationNameNoBlank', (value, param) => {
+    //   console.log(`value`, value);
+    //   return this.validator.optional(value) || customValidatorRule.noBlank.test(value);
+    // }, '地点名称不能有空格');
   },
 
   // 表单提交
