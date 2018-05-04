@@ -3,7 +3,7 @@
   <view class="indexSearcherWrap">
     <view class="indexSearcherInput" bindtap="toSearchPage">
       <image src="{{ indexSearchIcon }}"></image>
-      在{{ currentPackName }}里翻箱倒柜...
+      在{{ currentLocationName }}里翻箱倒柜...
     </view>
     <view class="subBtnWrap">
       <span class="subBtn help" bindtap="openHelp">
@@ -17,7 +17,7 @@
       <view class="{{ avatarBoxClass }}">
         <image class="avatar" src="{{ avatarUrl }}"></image>
       </view>
-      <text class="currentPackName">{{ currentPackName }}</text>
+      <text class="currentLocationName">{{ currentLocationName }}</text>
       <text class="userInfoNickname">{{ nickName }}</text>
       <view class="currentPackCtrl">
         <span class="currentPackCtrlBtn msg" bindtap="toMsgBox">
@@ -30,7 +30,7 @@
     </view>
   </view>
   <view class="funsPanel">
-    <view class="funs" bindtap="intoThePack">
+    <view class="funs" bindtap="intoThisLocation">
       <span class="funIcon">
         <image src="{{ whatsIn }}"></image>
       </span>
@@ -102,29 +102,4 @@
       </span>
     </li>
   </ul>
-  <!-- <view class="indexPanel">
-    <div class="itemTotal" bindtap="toItemTotal">
-      <span class="total">
-        {{ currentItemTotal }}
-      </span>
-    </div>
-    <div class="packTotal" bindtap="toPackTotal">
-      <span class="total">
-        {{ currentPackTotal }}
-      </span>
-    </div>
-  </view> -->
-  <!-- <view class="sliderWrap">
-    <view class="sliderBox">
-
-    </view>
-  </view> -->
-  <!-- <swiper indicator-dots="{{indicatorDots}}"
-    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-    <block wx:for="{{imgUrls}}">
-      <swiper-item>
-        <image src="{{item}}" class="slide-image" width="355" height="150"/>
-      </swiper-item>
-    </block>
-  </swiper> -->
 </standardLayout>

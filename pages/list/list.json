@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "房里有什么呢",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "standardLayout": "/components/standardLayout/standardLayout"
+  }
+}

@@ -92,8 +92,9 @@ Page({
           // 然后将新地点改为当前使用地点
           const modifyDefaultPackAPI = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}modifyDefaultPack`;
           const newLocationId = me.data.locationId;
-          // 同时改变 globalData 里面 currentPackID
-          app.globalData.currentPackID = newLocationId;
+          // 同时改变 globalData 里面 currentLocationID
+          app.globalData.currentLocationID = newLocationId;
+          app.globalData.parentPackID = newLocationId;
           // 请求改变当前使用地点
           request.post(
             modifyDefaultPackAPI,

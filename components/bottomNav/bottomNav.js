@@ -1,3 +1,5 @@
+// 获取应用实例
+const app = getApp();
 // 引入 base64 资源
 const base64 = require('../../base64/base64');
 
@@ -55,7 +57,7 @@ Component({
 
     // 回到首页
     _toIndex(e) {
-      wx.redirectTo({
+      wx.reLaunch({
         url: `../index/index`
       });
     },
@@ -65,31 +67,13 @@ Component({
       wx.navigateTo({
         url: `../addItem/addItem`
       });
-      this.setData({
-        menuSwitchBoolen: false,
-        menuSwitchClass: [
-          `menuSwitch`
-        ],
-        bottomNavWrapClass: [
-          `bottomNavWrap`
-        ],
-      })
     },
 
     // 跳转到添加收纳盒表单页面
     _navToAddBox(e) {
       wx.navigateTo({
-        url: `../addBox/addBox`
+        url: `../addBox/addBox?parentPackID=${app.globalData.parentPackID}&parentPackName=${app.globalData.parentPackName}`
       });
-      this.setData({
-        menuSwitchBoolen: false,
-        menuSwitchClass: [
-          `menuSwitch`
-        ],
-        bottomNavWrapClass: [
-          `bottomNavWrap`
-        ],
-      })
     }
   }
 })

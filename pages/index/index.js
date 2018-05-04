@@ -15,7 +15,6 @@ Page({
     nickName: app.globalData.userInfo.nickName,
     // 图标
     help: base64.helpIconColorfff,
-    // locationList: base64.exitIconColorfff,
     setting: base64.settingIconColorfff,
     locationEdit: base64.editIconColorfff,
     indexSearchIcon: base64.searcherIcon,
@@ -26,9 +25,10 @@ Page({
     finger: base64.fingerIconColor666,
     msgDel: base64.del2IconColor666,
     // 首页数据变量
-    currentPackName: app.globalData.currentPackName,
-    currentItemTotal: app.globalData.currentItemTotal,
-    currentPackTotal: app.globalData.currentPackTotal,
+    currentLocationName: app.globalData.currentLocationName,
+    currentLocationID: app.globalData.currentLocationID,
+    parentPackName: app.globalData.parentPackName,
+    parentPackID: app.globalData.parentPackID,
   },
 
   onReady: function() {
@@ -42,18 +42,17 @@ Page({
     const param = {
       url: `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getUserInfo`,
       success: function(data) {
-        // 将拿回来的 default_pack_name 赋值为全局的 currentPackName
-        app.globalData.currentPackName = data.data.default_pack_name;
-        // 将拿回来的 default_pack 赋值为全局的 currentPackID
-        app.globalData.currentPackID = data.data.default_pack;
-        // 将拿回来的 goodTotal 赋值为全局的 currentItemTotal
-        app.globalData.currentItemTotal = data.data.goodTotal;
-        // 将拿回来的 packTotal 赋值为全局的 currentPackTotal
-        app.globalData.currentPackTotal = data.data.packTotal;
+        // 将拿回来的 default_pack_name 赋值为全局的 currentLocationName
+        app.globalData.currentLocationName = data.data.default_pack_name;
+        app.globalData.parentPackName = data.data.default_pack_name;
+        // 将拿回来的 default_pack 赋值为全局的 currentLocationID
+        app.globalData.currentLocationID = data.data.default_pack;
+        app.globalData.parentPackID = data.data.default_pack;
         me.setData({
-          currentPackName: data.data.default_pack_name,
-          currentItemTotal: app.globalData.currentItemTotal,
-          currentPackTotal: app.globalData.currentPackTotal
+          currentLocationName: data.data.default_pack_name,
+          currentLocationID: data.data.default_pack,
+          parentPackName: data.data.default_pack_name,
+          parentPackID: data.data.default_pack,
         });
       },
       fail: ``,
@@ -136,27 +135,21 @@ Page({
   },
 
   // 跳转到搜索页面
+  gotoSearchPage: function(searchType = all, pack = this.data.currentLocationName) {
+    wx.navigateTo({
+      url: `../search/search?type=${searchType}&pack=${pack}`
+    });
+  },
   toSearchPage: function() {
     console.log("跳转到搜索页面");
     this.gotoSearchPage("all");
   },
 
-  // 跳转到物品总数页面跳转到物品总数页面
-  // toItemTotal: function() {
-  //   console.log("跳转到物品总数页面");
-  //   this.gotoSearchPage("good");
-  // },
-
-  // 跳转到收纳点总数页面
-  intoThePack: function() {
-    console.log("查看地点收纳情况");
-    this.gotoSearchPage("package");
-  },
-
-  //跳转去搜索页
-  gotoSearchPage: function(searchType = all, pack = this.data.currentPackName) {
+  // 跳转到收纳点内容列表
+  intoThisLocation: function() {
+    console.log("跳转到地点内容列表");
     wx.navigateTo({
-      url: `../search/search?type=${searchType}&pack=${pack}`
+      url: `../list/list?packName=${this.data.currentLocationName}&packId=${this.data.currentLocationID}`
     });
-  }
+  },
 });

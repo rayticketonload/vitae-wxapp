@@ -1,0 +1,45 @@
+<standardLayout id="standardLayout">
+  <view class="currentLocation">
+    {{ currentLocationName }}
+  </view>
+  <radio-group class="radio-group resultType" bindchange="radioChange">
+    <view class="typeBox {{ checked == item.value ? 'current' : '' }}" wx:for="{{ tab }}" wx:key="{{ item.value }}" >
+      <label class="radio">
+        <radio value="{{ item.value }}" checked="{{ checked == item.value }}" class="displayNone"/>
+        {{ item.name }}
+      </label>
+    </view>
+  </radio-group>
+  <view class="result {{ checked == packListChecked ? 'current' : '' }}">
+    <view class="resultlist {{ packListHaveData ? '' : 'block' }}">
+        <view wx:for="{{ list }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
+          <image src="" class="ruPackImg"></image>
+          <p class="ruPackName">
+            <image src="{{ ruPackNameGoInIcon }}" class="ruPackNameIcon"></image>
+            {{ itemObj.name }}
+          </p>
+          <view class="ruPackDetail">
+            <p class="ruPackInfo">创建日期: {{ itemObj.date }}</p>
+            <p class="ruPackInfo">收纳点: 5 个</p>
+            <p class="ruPackInfo">物品:  14 个</p>
+            <view class="ruPackDetailIcon">
+              <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon"></image>
+              <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon"></image>
+            </view>
+          </view>
+        </view>
+    </view>
+    <div class="noData {{ packListHaveData ? 'block' : '' }}">
+      <image src="{{ noDataIcon }}"></image>
+    </div>
+  </view>
+  <view class="resultå {{ checked == goodListChecked ? 'current' : '' }}">
+    <view class="resultList {{ packListHaveData ? '' : 'block' }}">
+
+    </view>
+    <div class="noData {{ goodListHaveData ? 'block' : '' }}">
+      <image src="{{ noDataIcon }}"></image>
+    </div>
+  </view>
+</standardLayout>
+

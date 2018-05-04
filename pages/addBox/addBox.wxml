@@ -1,12 +1,35 @@
 <view class="defaultFormWrap">
   <form bindsubmit="formSubmit" bindreset="formReset">
-    <view class="formControlWrap fn-mb-20">
-      <input name="boxName" placeholder="收纳点名称是？" placeholder-class="defaultPlaceHolderColor" value="" class="formControl" />
+    <view class="formControlWrap">
+      <label class="formControlLabel">
+        {{ packLabel }}
+      </label>
+      <input
+        name = "{{ packName }}"
+        placeholder = "{{ packPlaceholder }}"
+        placeholder-class = "defaultPlaceHolderColor"
+        value = "{{ packValue }}"
+        class = "formControl"
+        maxlength = "-1"
+        auto-focus = true
+      />
     </view>
-    <view class="formControlWrap options fn-mb-60">
-      <input name="boxLocation" placeholder="收纳点放置在？" placeholder-class="defaultPlaceHolderColor" value="" class="formControl" disabled/>
+    <view class="formControlWrap options">
+      <label class="formControlLabel">
+        {{ parentPackLabel }}
+      </label>
+      <input
+        name = "{{ parentPackName }}"
+        placeholder = "{{ parentPackPlaceholder }}"
+        placeholder-class = "defaultPlaceHolderColor"
+        value = "{{ parentPackValue }}"
+        class = "formControl"
+        maxlength = "-1"
+        auto-focus = true
+        disabled
+      />
     </view>
-    <view>
+    <view class="formButtonWrap">
       <button formType="submit" class="button thirdly">保存</button>
     </view>
   </form>

@@ -121,13 +121,13 @@ Page({
 
     // 设定一个删除地点情景的开关，需求说明:
     // 1，确认现有的房屋地点是否只有1个，最后1个不能删
-    // 2,触发删除事件的房屋 ID 如果和 currentPackID 相同则需要帮用户在删除成功后将默认房屋换成列表顺序第一位的房屋
+    // 2,触发删除事件的房屋 ID 如果和 currentLocationID 相同则需要帮用户在删除成功后将默认房屋换成列表顺序第一位的房屋
     const thePackFun = function() {
       // 房屋数量不止一个，且删除的地点ID和当前使用中的地点ID一样，删除之后还要帮用户设定新的默认地点
-      if (me.data.packTotal > 1 && packId == app.globalData.currentPackID) {
+      if (me.data.packTotal > 1 && packId == app.globalData.currentLocationID) {
         return 1;
       // 房屋数量不止一个, 且删除的地点ID不是当前使用中的地点ID，那就执行正常删除
-      } else if (me.data.packTotal > 1 && packId != app.globalData.currentPackID) {
+      } else if (me.data.packTotal > 1 && packId != app.globalData.currentLocationID) {
         return 2;
       // 否则就不能删除
       } else {
@@ -183,13 +183,14 @@ Page({
                     // 假如删除的是正在使用的地点
                     if (thePack == 1) {
                       // 将新列表的第一个地点的ID改为当前正在使用的地点ID并提交去服务器，达到用户删除当前地点之后有一个新的当前地点能用，用户删除成功后回退到首页，不会拿到错误数据
-                      // 同时改变 globalData 里面 currentPackID
-                      let newCurrentPackID = res.data[0].id;
-                      app.globalData.currentPackID = newCurrentPackID;
+                      // 同时改变 globalData 里面 currentLocationID
+                      let newCurrentLocationID = res.data[0].id;
+                      app.globalData.currentLocationID = newCurrentLocationID;
+                      app.globalData.parentPackID = newCurrentLocationID;
                       // 请求改变当前使用地点
                       request.post(
                         modifyDefaultPackAPI,
-                        { id: newCurrentPackID },
+                        { id: newCurrentLocationID },
                         // 改变当前使用地点成功
                         function (success) {
                           console.log('成功改变当前使用地点');

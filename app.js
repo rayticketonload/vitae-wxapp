@@ -19,6 +19,8 @@ App({
     console.log(`toDoList: %c用户不授权会进入死循环`,`color: #4492d4;`);
     console.log(`toDoList: %c把过期提醒模块做到首页`,`color: #4492d4;`);
     console.log(`toDoList: %c表单校验要做`,`color: #4492d4;`);
+    console.log(`toDoList: %c统一管理所有跳转url`,`color: #4492d4;`);
+    console.log(`toDoList: %c添加地点名称重名的用户提示`,`color: #4492d4;`);
     // console.log(`toDoList: %c清一下没用的图标`,`color: #4492d4;`);
     // console.log(`toDoList: %c删除地点，如果删除的是默认地点，就帮用户重新选一个默认地点（数组第一个）`,`color: #4492d4;`);
     console.log(`toDoList: %c所有 request 都要有 loading, 和独立提示成功时候的 we.showToast 反馈，失败时候的 wx.showModal 反馈`,`color: #4492d4;`);
@@ -66,12 +68,12 @@ App({
     // 最终合成的 session_key
     session_key: null,
     // 用户当前的房屋地点名称
-    currentPackName: `默认房屋地点名称`,
+    currentLocationName: `默认房屋地点名称`,
     // 用户当前的房屋地点ID
-    currentPackID: ``,
-    // 用户当前的房屋地点的物品总数
-    currentItemTotal: 0,
-    // 用户当前的房屋地点的收纳点总数
-    currentPackTotal: 0,
+    currentLocationID: ``,
+    // 父级收纳点ID
+    parentPackID: ``,
+    // 父级收纳点名称
+    parentPackName: ``,
   },
 })

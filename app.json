@@ -8,7 +8,8 @@
     "pages/changeLocation/changeLocation",
     "pages/addLocation/addLocation",
     "pages/editLocation/editLocation",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/list/list"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ff6401",
