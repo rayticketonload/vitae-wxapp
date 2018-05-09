@@ -26,13 +26,24 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": 0,
+					"name": "1111",
+					"pathName": "pages/addBox/addBox",
+					"query": "packName=水星&packId=28"
+				}
+			]
 		}
 	}
 }

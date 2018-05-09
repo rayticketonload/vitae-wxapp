@@ -4,6 +4,7 @@
     "pages/info/info",
     "pages/logs/logs",
     "pages/addBox/addBox",
+    "pages/editBox/editBox",
     "pages/addItem/addItem",
     "pages/changeLocation/changeLocation",
     "pages/addLocation/addLocation",
@@ -12,14 +13,14 @@
     "pages/list/list"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#ff6401",
+    "navigationBarBackgroundColor": "#b41616",
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "井井",
     "navigationStyle": "default",
-    "backgroundColor": "#ff6401",
+    "backgroundColor": "#b41616",
     "backgroundTextStyle": "light",
-    "backgroundColorTop": "#ff6401",
-    "backgroundColorBottom": "#ff6401",
+    "backgroundColorTop": "#b41616",
+    "backgroundColorBottom": "#b41616",
     "enablePullDownRefresh": true,
     "onReachBottomDistance": 50
   }

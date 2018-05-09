@@ -36,17 +36,45 @@
     text-align: center;
 }
 
-.currentLocation {
-  font-size: @fontSize-currentLocation;
-  color: @fontColor-light;
-  padding: @gapSize-public @gapSize-public @gapSize-public 150rpx;
+.currentLocationBrick {
+  height: @height-currentLocation;
   background-color: @bgColor-currentLocation;
-  position: relative;
+}
 
-  &:before {
-    content: '当前位置: ';
+.currentLocation {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: @zIndex-currentLocation-list;
+  width: 100%;
+  padding: 0 @gapSize-public * 2 + 190rpx;
+  background-color: @bgColor-currentLocation;
+  color: @fontColor-currentLocation;
+  text-align: center;
+
+  .currentLocationName {
+    height: @height-currentLocation;
+    line-height: @height-currentLocation;
+    font-size: @fontSize-currentLocation;
+    display: block;
+    .text-hide();
+  }
+
+  .prevPackBtn {
     position: absolute;
+    top: @gapSize-public;
     left: @gapSize-public;
+    font-size: @fontSize-sub;
+    color: @fontColor-currentLocation;
+    line-height: @height-currentLocation / 2;
+    .size(190rpx,@height-currentLocation / 2);
+    .rounded(@height-currentLocation / 2);
+    border: 1px solid @fontColor-currentLocation;
+
+    &:before {
+      content: '上一层收纳点';
+    }
   }
 }
 
@@ -59,6 +87,7 @@
   .typeBox {
     width: 50%;
     position: relative;
+    z-index: @zIndex-typeBox-list;
     border-bottom: 1px solid @borderColor-base;
 
     > label {
@@ -78,7 +107,7 @@
       bottom: -1px;
       left: 0;
       .size(100%,6rpx);
-      background-color: @color-secondary;
+      background-color: @color-primary;
     }
 
     &.current {

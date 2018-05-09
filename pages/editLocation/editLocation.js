@@ -13,14 +13,11 @@ Page({
   data: {
     locationId: null,
     parentId: null,
-    // 表单组件初始数据
-    form: {
-      locationName: {
-        name: `locationName`,
-        placeholder: `地点名称是？例如：家，公司，仓库...`,
-        value: ``
-      }
-    }
+    // 地点名称输入框初始数据
+    locationName: `locationName`,
+    locationLabel: `地点名称`,
+    locationPlaceholder: `例如：家，公司，仓库...`,
+    locationValue: ``,
   },
 
   // 生命周期函数--监听页面加载
@@ -30,16 +27,8 @@ Page({
     // 从 URL 拿传过来的房屋地点ID和名称
     this.setData({
       locationId: options.locationId,
-      parentId: null,
-      form: {
-        locationName: {
-          name: `locationName`,
-          placeholder: `地点名称是？例如：家，公司，仓库...`,
-          value: options.locationName,
-        }
-      }
+      locationValue: options.locationName,
     });
-    console.log(`onload`,this.data.form.locationName.name);
     // 初始化表单验证
     // 验证规则
     const vr = {
@@ -62,6 +51,20 @@ Page({
     //   console.log(`value`, value);
     //   return this.validator.optional(value) || customValidatorRule.noBlank.test(value);
     // }, '地点名称不能有空格');
+  },
+
+  // 地点名称正在输入
+  locationValueKeyIn: function(e) {
+    this.setData({
+      locationValue: e.detail.value
+    });
+  },
+
+  // 地点名称重置
+  locationValueReset: function() {
+    this.setData({
+      locationValue: ``
+    });
   },
 
   // 表单提交

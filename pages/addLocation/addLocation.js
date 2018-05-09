@@ -10,14 +10,11 @@ const request = require('../../utils/request');
 Page({
 
   data: {
-    // 表单组件初始数据
-    form: {
-      locationName: {
-        name: `locationName`,
-        placeholder: `地点名称是？例如：家，公司，仓库...`,
-        value: ``
-      }
-    }
+    // 地点名称输入框初始数据
+    locationName: `locationName`,
+    locationLabel: `地点名称`,
+    locationPlaceholder: `例如：家，公司，仓库...`,
+    locationValue: ``,
   },
 
   // 生命周期函数--监听页面加载
@@ -44,6 +41,20 @@ Page({
     //   console.log(`value`, value);
     //   return this.validator.optional(value) || customValidatorRule.noBlank.test(value);
     // }, '名称前后不能有空格');
+  },
+
+  // 地点名称正在输入
+  locationValueKeyIn: function(e) {
+    this.setData({
+      locationValue: e.detail.value
+    });
+  },
+
+  // 地点名称重置
+  locationValueReset: function() {
+    this.setData({
+      locationValue: ``
+    });
   },
 
   // 表单提交
@@ -122,8 +133,4 @@ Page({
     }
   },
 
-  // 表单重置
-  formReset: function() {
-    console.log('form发生了reset事件')
-  },
 })

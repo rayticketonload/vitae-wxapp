@@ -45,9 +45,11 @@ Page({
         // 将拿回来的 default_pack_name 赋值为全局的 currentLocationName
         app.globalData.currentLocationName = data.data.default_pack_name;
         app.globalData.parentPackName = data.data.default_pack_name;
+        app.globalData.exParentPackName = data.data.default_pack_name;
         // 将拿回来的 default_pack 赋值为全局的 currentLocationID
         app.globalData.currentLocationID = data.data.default_pack;
         app.globalData.parentPackID = data.data.default_pack;
+        app.globalData.exParentPackID = data.data.default_pack;
         me.setData({
           currentLocationName: data.data.default_pack_name,
           currentLocationID: data.data.default_pack,
@@ -84,7 +86,7 @@ Page({
               console.log(`用户授权获取 TA 的公开信息`);
             },
             fail: res => {
-              console.log("用户拒绝授权获取 TA 的公开信息");
+              console.log(`用户拒绝授权获取 TA 的公开信息`);
               wx.navigateBack({
                 delta: 0
               });
@@ -123,7 +125,7 @@ Page({
 
   // 跳转到更改默认房屋地点
   toLocationList: function() {
-    console.log("跳转到房屋地点列表");
+    console.log(`跳转到房屋地点列表`);
     wx.navigateTo({
       url: `../changeLocation/changeLocation`
     });
@@ -141,13 +143,13 @@ Page({
     });
   },
   toSearchPage: function() {
-    console.log("跳转到搜索页面");
+    console.log(`跳转到搜索页面`);
     this.gotoSearchPage("all");
   },
 
   // 跳转到收纳点内容列表
   intoThisLocation: function() {
-    console.log("跳转到地点内容列表");
+    console.log(`跳转到 ${this.data.currentLocationName} 的内容列表`);
     wx.navigateTo({
       url: `../list/list?packName=${this.data.currentLocationName}&packId=${this.data.currentLocationID}`
     });

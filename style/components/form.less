@@ -49,6 +49,21 @@
   color: @fontColor-defaultPlaceHolder;
 }
 
+.formValueClear {
+  position: absolute;
+  top: 50%;
+  right: @gapSize-public;
+  margin-top: -@size-defaultFormValueClearIcon/2;
+  .square(@size-defaultFormValueClearIcon);
+  .rounded(50%);
+  overflow: hidden;
+  background-color: @bgColor-defaultFormValueClearIcon;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTI0NzEyMjY4NjgyIiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjEzMTA2IiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTU5MC41MTQzODMgNDg4LjA0MDk0OSA5NTIuODg4MDU0IDg1MS4xMjUyNjNDOTgxLjI1MzM3MSA4NzkuNTQ2MTY4IDk4MS4xMTAxNiA5MjUuODA0MTc2IDk1Mi41NDY2MjkgOTU0LjQyMzczNCA5MjMuNzgzOTM0IDk4My4yNDI4OTUgODc3LjgyNTI5NCA5ODMuMTk2NTIzIDg0OS40NTAzMjIgOTU0Ljc2NTg5TDQ4Ny4wNzY2NTEgNTkxLjY4MTU3NiAxMjQuNzAyOTggOTU0Ljc2NTg5Qzk2LjMzNzY2MyA5ODMuMTg2Nzk1IDUwLjE3MDIwNCA5ODMuMDQzMzY1IDIxLjYwNjY3MiA5NTQuNDIzNzM0LTcuMTU2MDIzIDkyNS42MDQ2NDYtNy4xMDk3OTggODc5LjU1NTg5NiAyMS4yNjUxNzUgODUxLjEyNTI2M0wzODMuNjM4ODQ1IDQ4OC4wNDA5NDkgMjEuMjY1MTc1IDEyNC45NTY2MzVDLTcuMTAwMTQzIDk2LjUzNTczLTYuOTU2OTMyIDUwLjI3NzcyMiAyMS42MDY2NzIgMjEuNjU4MTY0IDUwLjM2OTM2OC03LjE2MDk5NyA5Ni4zMjgwMDgtNy4xMTQ2MjUgMTI0LjcwMjk4IDIxLjMxNjAwOEw0ODcuMDc2NjUxIDM4NC40MDAzMjIgODQ5LjQ1MDMyMiAyMS4zMTYwMDhDODc3LjgxNTU2Ni03LjEwNDg5NyA5MjMuOTgzMDI1LTYuOTYxNDY3IDk1Mi41NDY2MjkgMjEuNjU4MTY0IDk4MS4zMDkzMjUgNTAuNDc3MjUyIDk4MS4yNjMwMjYgOTYuNTI2MDAyIDk1Mi44ODgwNTQgMTI0Ljk1NjYzNUw1OTAuNTE0MzgzIDQ4OC4wNDA5NDkgNTkwLjUxNDM4MyA0ODguMDQwOTQ5WiIgcC1pZD0iMTMxMDciIGZpbGw9IiNmZmZmZmYiPjwvcGF0aD48L3N2Zz4=');
+}
+
 .formControl {
   box-sizing: border-box;
   display: block;
@@ -56,5 +71,5 @@
   color: @fontColor-defaultFormControl;
   background-color: @bgColor-defaultFormControl;
   height: @height-defaultFormControl;
-  padding: 0 @height-defaultFormControl / 4;
+  padding: 0 @gapSize-public * 4 0 @height-defaultFormControl / 4;
 }

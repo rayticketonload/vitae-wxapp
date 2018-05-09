@@ -1,15 +1,20 @@
 <view class="defaultFormWrap">
-  <form bindsubmit="formSubmit" bindreset="formReset">
+  <form bindsubmit="formSubmit">
     <view class="formControlWrap">
+      <label class="formControlLabel">
+        {{ locationLabel }}
+      </label>
       <input
-        name = "{{ form.locationName.name }}"
-        placeholder = "{{ form.locationName.placeholder }}"
-        value = "{{ form.locationName.value }}"
+        name = "{{ locationName }}"
+        placeholder = "{{ locationPlaceholder }}"
+        value = "{{ locationValue }}"
         placeholder-class = "defaultPlaceHolderColor"
         class = "formControl"
         maxlength = "-1"
         auto-focus = true
+        bindinput = "locationValueKeyIn"
       />
+      <span class="formValueClear" wx:if="{{ locationValue.length > 0 }}" bindtap="locationValueReset"></span>
     </view>
     <view class="formButtonWrap">
       <button formType="submit" class="button thirdly">确认添加</button>

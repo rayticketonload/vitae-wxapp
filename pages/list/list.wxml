@@ -1,6 +1,8 @@
 <standardLayout id="standardLayout">
+  <view class="currentLocationBrick"></view>
   <view class="currentLocation">
-    {{ currentLocationName }}
+    <view class="prevPackBtn" bindtap="prev" wx:if="{{ exPackId != null }}"></view>
+    <span class="currentLocationName">{{ currentPackName }}</span>
   </view>
   <radio-group class="radio-group resultType" bindchange="radioChange">
     <view class="typeBox {{ checked == item.value ? 'current' : '' }}" wx:for="{{ tab }}" wx:key="{{ item.value }}" >
@@ -12,19 +14,19 @@
   </radio-group>
   <view class="result {{ checked == packListChecked ? 'current' : '' }}">
     <view class="resultlist {{ packListHaveData ? '' : 'block' }}">
-        <view wx:for="{{ list }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
-          <image src="" class="ruPackImg"></image>
-          <p class="ruPackName">
+        <view wx:for="{{ packList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
+          <image src="" class="ruPackImg" bindtap="next" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'></image>
+          <p class="ruPackName" bindtap="next" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'>
             <image src="{{ ruPackNameGoInIcon }}" class="ruPackNameIcon"></image>
             {{ itemObj.name }}
           </p>
           <view class="ruPackDetail">
             <p class="ruPackInfo">创建日期: {{ itemObj.date }}</p>
-            <p class="ruPackInfo">收纳点: 5 个</p>
-            <p class="ruPackInfo">物品:  14 个</p>
+            <p class="ruPackInfo">收纳点: {{ itemObj.packTotal }} 个</p>
+            <p class="ruPackInfo">物品:  {{ itemObj.goodTotal }} 个</p>
             <view class="ruPackDetailIcon">
-              <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon"></image>
-              <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon"></image>
+              <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-name='{{ itemObj.name }}' data-id='{{ itemObj.id }}' bindtap="packEdit"></image>
+              <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon" data-id='{{ itemObj.id }}' bindtap="packDel"></image>
             </view>
           </view>
         </view>
@@ -33,7 +35,7 @@
       <image src="{{ noDataIcon }}"></image>
     </div>
   </view>
-  <view class="resultå {{ checked == goodListChecked ? 'current' : '' }}">
+  <view class="result {{ checked == goodListChecked ? 'current' : '' }}">
     <view class="resultList {{ packListHaveData ? '' : 'block' }}">
 
     </view>

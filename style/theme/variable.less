@@ -14,8 +14,9 @@
 @domColor7: rgba(255, 255, 255, 1);
 
 // app 主色调
-@color-primary: rgba(255, 100, 1, 1);
-@color-secondary: rgba(180, 22, 22, 1);
+// @color-primary: rgba(255, 100, 1, 1);
+@color-primary: rgba(180, 22, 22, 1);
+@color-secondary: rgba(255, 100, 1, 1);
 @color-thirdly: rgba(38, 47, 59, 1);
 
 
@@ -59,7 +60,9 @@
   // 主要背景色
   @bgColor-primary: @bgColor-base;
   // 次要背景色
-  @bgColor-secondary: rgba(232, 232, 232, 1);
+  @bgColor-secondary: rgba(245, 245, 245, 1);
+  // 再次要一点的样色
+  @bgColor-thirdly: lighten(@color-primary,58);
 
 
 // 基础边框色
@@ -72,6 +75,12 @@
 @zIndex-userInfoWrap: 1;
 @zIndex-userInfo: 2;
 @zIndex-indexSearcherWrap: @zIndex-userInfo;
+@zIndex-currentLocation-list: 2;
+@zIndex-typeBox-list: 1;
+@zIndex-selectMenuMask-addPack: 1;
+@zIndex-selectMenu-addPack: 2;
+@zIndex-selectMenuTitle-addPack: 2;
+@zIndex-selectMenuContent-addPack: 1;
 
 
 //
@@ -90,9 +99,11 @@
 @bgColor-defaultFormControl: rgba(255, 255, 255, 1);
 @fontColor-defaultFormControl: @fontColor-default;
 @fontColor-defaultPlaceHolder: @fontColor-tips;
+@bgColor-defaultFormValueClearIcon: rgb(153, 153, 153);
 // size
 @height-defaultFormControl: 110rpx;
 @fontSize-defaultFormControl: @fontSize-large;
+@size-defaultFormValueClearIcon: 46rpx;
 
 
 //
@@ -101,7 +112,7 @@
 // color
 @color-primary-button: @color-primary;
 @fontColor-primary-button: rgba(255, 255, 255, 1);
-@color-secondary-button: @color-secondary;
+@color-primary-button: @color-primary;
 @fontColor-secondary-button: rgba(255, 255, 255, 1);
 @color-thirdly-button: @color-thirdly;
 @fontColor-thirdly-button: rgba(255, 255, 255, 1);
@@ -116,12 +127,12 @@
 //
 // color
 @bgColor1-userInfoWrap: @color-primary;
-@bgColor2-userInfoWrap: @color-secondary;
+@bgColor2-userInfoWrap: @color-primary;
 @fontColor-userInfoWrap: @fontColor-light;
-@bgColor-indexSearcher: darken(@bgColor-indexSearcherWrap,15);
+@bgColor-indexSearcher: darken(@bgColor-indexSearcherWrap,10);
 @bgColor-indexSearcherWrap: @bgColor1-userInfoWrap;
 @bgColor-indexPanel: @bgColor-base;
-@bgColor-funIcon: lighten(@color-secondary,57);
+@bgColor-funIcon:  @bgColor-thirdly;
 @bgColor-msgInIndex: @bgColor-base;
 // size
 @size-userInfoAvatar: 120rpx;
@@ -141,16 +152,28 @@
 // -------- 进入地点看收纳情况的搜索页 --------
 //
 // color
-@bgColor-resultType: @bgColor-base;
+@bgColor-resultType: @bgColor-secondary;
 @fontColor-typeBox: @fontColor-default;
-@bgColor-currentLocation: @color-secondary;
+@bgColor-currentLocation: @color-primary;
+@fontColor-currentLocation: lighten(@color-primary,50);
 @bgColor-resultUnit: @bgColor-base;
 @bgColor-ruPackImg: @bgColor-resultUnit;
 // size
 @height-typeBox: 100rpx;
 @fontSize-typeBox: @fontSize-large;
 @fontSize-ruPackName: @fontSize-large;
-@fontSize-currentLocation: @fontSize-default;
+@fontSize-currentLocation: @fontSize-large;
 @size-ruPackImg: 150rpx;
 @size-ruPackNameIcon: 50rpx;
 @size-ruPackDetailIcon: @size-ruPackNameIcon;
+@height-currentLocation: @height-bottomNav;
+
+
+//
+// -------- 添加收纳点页面 --------
+//
+// color
+@bgColor-selectMenuMask-addPack: rgba(0, 0, 0, 0.4);
+@bgColor-selectMenu-addPack: @bgColor-primary;
+// size
+@height-selectMenuTitle-addPack: 80rpx;
