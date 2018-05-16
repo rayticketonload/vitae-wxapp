@@ -5,10 +5,16 @@
     <span class="currentLocationName">{{ currentPackName }}</span>
   </view>
   <radio-group class="radio-group resultType" bindchange="radioChange">
-    <view class="typeBox {{ checked == item.value ? 'current' : '' }}" wx:for="{{ tab }}" wx:key="{{ item.value }}" >
+    <view class="typeBox {{ checked == 'package' ? 'current' : '' }}">
       <label class="radio">
-        <radio value="{{ item.value }}" checked="{{ checked == item.value }}" class="displayNone"/>
-        {{ item.name }}
+        <radio value="package" checked="{{ checked == 'package' }}" class="displayNone"/>
+        收纳点 (<span class="count">{{ packListTotal }}</span>)
+      </label>
+    </view>
+    <view class="typeBox {{ checked == 'good' ? 'current' : '' }}">
+      <label class="radio">
+        <radio value="good" checked="{{ checked == 'good' }}" class="displayNone"/>
+        物品 (<span class="count">{{ goodListTotal }}</span>)
       </label>
     </view>
   </radio-group>

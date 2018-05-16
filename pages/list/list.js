@@ -18,18 +18,7 @@ Page({
     ruPackDetailEditIcon: base64.editIconColor666,
     ruPackDetailDelIcon: base64.delIconColorful,
     noDataIcon: base64.searchIconColor666,
-    // tab 按钮数据
-    tab: [
-      {
-        name: `收纳点`,
-        value: "package"
-      },
-      {
-        name: `物品`,
-        value: "good"
-      }
-    ],
-    // 当前 tab 状态
+    // 当前 tab 选中哪个
     checked: "package",
     // tab content 的标签
     packListChecked: "package",
@@ -42,8 +31,10 @@ Page({
     exPackId: null,
     // 要显示的list
     packList: [],
+    packListTotal: 0,
     packListHaveData: true,
     goodList: [],
+    goodListTotal: 0,
     goodListHaveData: true,
   },
 
@@ -89,7 +80,9 @@ Page({
           currentPackName: res.data.currentPack.name,
           exPackId: res.data.currentPack.parent_id,
           packList: res.data.packList,
-          goodList: res.data.goodList
+          goodList: res.data.goodList,
+          packListTotal: res.data.packList.length,
+          goodListTotal: res.data.goodList.length,
         });
         me.setData({
           packListHaveData: me.data.packList.length != 0 ? false : true ,
