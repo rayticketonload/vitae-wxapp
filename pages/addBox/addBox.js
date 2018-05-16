@@ -30,28 +30,7 @@ Page({
   },
 
   formSubmit: function(e) {
-
-    const formData = {
-      "name": e.detail.value.packName,
-      "parentId": this.data.parentPackID
-    };
-
-    console.log('form发生了submit事件，携带数据为：', formData);
-
-    const param = {
-      "url": `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}addPack`,
-      "data": formData,
-      "success": function(data){
-        console.log("data",data);
-      },
-      "fail": function (data) {
-        console.log("fail", data);
-      },
-      "complete": function (data) {
-        console.log("complete", data);
-      }
-    }
-
+    // 提交错误描述
     if (!this.validator.checkForm(e)) {
       const error = this.validator.errorList[0];
       wx.showToast({
@@ -61,7 +40,42 @@ Page({
       });
       return false;
     } else {
-      request.post(param);
+      // request.post(param);
+      const thisPackName = e.detail.value.packName;
+      request.post(
+        `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}addPack`,
+        {
+          name: thisPackName,
+          parentId: this.data.parentPackID
+        },
+        // 添加收纳点成功
+        function (res) {
+          wx.showToast({
+            title: `添加成功`,
+            duration: 1000
+          });
+          const setTimeoutFun = () => {
+            console.log(`跳转到 ${thisPackName} 的内容列表`);
+            wx.redirectTo({
+              url: `../list/list?packName=${thisPackName}&packId=${res.data.id}`
+            });
+          }
+          setTimeout(
+            setTimeoutFun,
+            1000
+          )
+        },
+        // 添加收纳点失败
+        function (err) {
+          console.log('添加收纳点失败', err);
+          wx.showModal({
+            title: `添加收纳点失败`,
+            content: `爸爸快检查网络是否正常`,
+            confirmText: `好的`,
+            showCancel: false
+          });
+        }
+      )
     }
   },
 
@@ -106,19 +120,19 @@ Page({
       parentPackID: options.parentPackID,
       parentPackValue: options.parentPackName
     });
-    // 获取当前地点下的所有收纳点信息
+    // 获取当前位置下的所有收纳点信息，赋值到存放位置选择的菜单
     request.get(
       `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPackListByDefaultPack`,
-      // 当前地点下的所有收纳点信息成功
+      // 获取当前位置下的所有收纳点信息成功
       function(res) {
-        console.log(`当前地点下的所有收纳点信息成功`, res);
+        console.log(`获取当前位置下的所有收纳点信息成功`, res);
         me.setData({
           selectMenuList: res.data
         })
       },
-      // 当前地点下的所有收纳点信息失败
+      // 获取当前位置下的所有收纳点信息失败
       function(err) {
-        console.log(`当前地点下的所有收纳点信息失败`, err);
+        console.log(`获取当前位置下的所有收纳点信息失败`, err);
         wx.showModal({
           title: `获取收纳点列表失败`,
           content: `爸爸快检查网络是否正常`,
