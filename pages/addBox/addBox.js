@@ -56,7 +56,7 @@ Page({
           });
           const setTimeoutFun = () => {
             console.log(`跳转到 ${thisPackName} 的内容列表`);
-            wx.redirectTo({
+            wx.reLaunch({
               url: `../list/list?packName=${thisPackName}&packId=${res.data.id}`
             });
           }
