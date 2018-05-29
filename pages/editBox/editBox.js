@@ -49,27 +49,35 @@ Page({
         name: thisPackName,
         parentId: this.data.parentPackID
       };
-      console.log('updatePack data', data);
       request.post(
         `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}updataPackInfoById`,
         data,
         // 访问修改收纳点成功
         function (res) {
-          console.log('updatePack data', data);
-          wx.showToast({
-            title: `修改成功`,
-            duration: 1000
-          });
-          // const setTimeoutFun = () => {
-          //   console.log(`跳转到 ${thisPackName} 的内容列表`);
-          //   wx.reLaunch({
-          //     url: `../list/list?packName=${thisPackName}&packId=${data.packId}`
-          //   });
-          // }
-          // setTimeout(
-          //   setTimeoutFun,
-          //   1000
-          // )
+          switch (res.code) {
+            case 100:
+              wx.showToast({
+                title: `${res.msg}`,
+                icon: 'none',
+                duration: 2000
+              });
+              break;
+            case 200:
+              wx.showToast({
+                title: `修改成功`,
+                duration: 1000
+              });
+              // const setTimeoutFun = () => {
+              //   console.log(`跳转到 ${thisPackName} 的内容列表`);
+              //   wx.reLaunch({
+              //     url: `../list/list?packName=${thisPackName}&packId=${data.packId}`
+              //   });
+              // }
+              // setTimeout(
+              //   setTimeoutFun,
+              //   1000
+              // )
+          };
         },
         // 访问修改收纳点失败
         function (err) {
