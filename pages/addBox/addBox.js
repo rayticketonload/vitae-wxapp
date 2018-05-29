@@ -40,7 +40,6 @@ Page({
       });
       return false;
     } else {
-      // request.post(param);
       const thisPackName = e.detail.value.packName;
       request.post(
         `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}addPack`,
@@ -50,20 +49,31 @@ Page({
         },
         // 添加收纳点成功
         function (res) {
-          wx.showToast({
-            title: `添加成功`,
-            duration: 1000
-          });
-          const setTimeoutFun = () => {
-            console.log(`跳转到 ${thisPackName} 的内容列表`);
-            wx.reLaunch({
-              url: `../list/list?packName=${thisPackName}&packId=${res.data.id}`
-            });
+          switch (res.code) {
+            case 100:
+              wx.showToast({
+                title: `${res.msg}`,
+                icon: 'none',
+                duration: 2000
+              });
+              break;
+            case 200:
+              wx.showToast({
+                title: `添加成功`,
+                duration: 1000
+              });
+              const setTimeoutFun = () => {
+                console.log(`跳转到 ${thisPackName} 的内容列表`);
+                wx.reLaunch({
+                  url: `../list/list?packName=${thisPackName}&packId=${res.data.id}`
+                });
+              };
+              setTimeout(
+                setTimeoutFun,
+                1000
+              );
+              break;
           }
-          setTimeout(
-            setTimeoutFun,
-            1000
-          )
         },
         // 添加收纳点失败
         function (err) {

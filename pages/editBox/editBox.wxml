@@ -47,7 +47,7 @@
       bindtap = "selectOption"
       data-id = "{{ item.id }}"
       data-name = "{{ item.name }}"
-      class = "selectMenuOption {{ item.id == parentPackID ? 'current' : '' }} {{ item.id == packId ? 'displayNone' : '' }}"
+      class = "selectMenuOption {{ item.id == parentPackID ? 'current' : '' }} {{ item.id == packId || item.parent_id == packId ? 'displayNone' : '' }}"
     >
       <p class="optionName">{{ item.name }}</p>
       <p class="optionParent" wx:if="{{ item.parent_name == null }}">这是个地点</p>
