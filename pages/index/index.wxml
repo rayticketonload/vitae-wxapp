@@ -18,7 +18,8 @@
         <image class="avatar" src="{{ avatarUrl }}"></image>
       </view>
       <text class="currentLocationName">{{ currentLocationName }}</text>
-      <text class="userInfoNickname">{{ nickName }}</text>
+      <button open-type="getUserInfo" wx:if="{{ hasUserInfo == 0 }}"  bindgetuserinfo="getUserAuth" class="getUserInfoBtn">点击使用微信头像</button>
+      <text class="userInfoNickname" wx:else>{{ nickName }}</text>
       <view class="currentPackCtrl">
         <span class="currentPackCtrlBtn msg" bindtap="toMsgBox">
           <image src="{{ msg }}"></image>

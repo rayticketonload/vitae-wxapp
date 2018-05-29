@@ -61,7 +61,7 @@ App({
       country: `用户未授权获取其公开信息`,
       gender: `用户未授权获取其公开信息`,
       language: `用户未授权获取其公开信息`,
-      nickName: `点击使用微信头像`,
+      nickName: `用户未授权获取其公开信息`,
       province: `用户未授权获取其公开信息`
     },
     // 最终合成的 session_key

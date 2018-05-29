@@ -26,26 +26,13 @@ Page({
     parentPackLabel: `存放位置`,
     parentPackPlaceholder: `你想把 TA 放在？`,
     parentPackValue: ``,
+    // selectMenu 开关
+    selectMenu: false,
+    selectMenuList: []
   },
 
   formSubmit: function(e) {
-    let me = this;
-
-    const param = {
-      "url": `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}updataPackInfoById`,
-      "data": {
-        "id": me.data.packId,
-        "name": e.detail.value.packName,
-        "parentId": me.data.parentPackID
-      },
-      "success": function(data){
-        console.log("data",data);
-      },
-      "fail": function (data) {
-        console.log("fail", data);
-      }
-    }
-
+    // 提交错误描述
     if (!this.validator.checkForm(e)) {
       const error = this.validator.errorList[0];
       wx.showToast({
@@ -55,16 +42,52 @@ Page({
       });
       return false;
     } else {
-      request.post(param);
+      // request.post(param);
+      const thisPackName = e.detail.value.packName;
+      const data = {
+        id: this.data.packId,
+        name: thisPackName,
+        parentId: this.data.parentPackID
+      };
+      console.log('updatePack data', data);
+      request.post(
+        `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}updataPackInfoById`,
+        data,
+        // 访问修改收纳点成功
+        function (res) {
+          console.log('updatePack data', data);
+          wx.showToast({
+            title: `修改成功`,
+            duration: 1000
+          });
+          // const setTimeoutFun = () => {
+          //   console.log(`跳转到 ${thisPackName} 的内容列表`);
+          //   wx.reLaunch({
+          //     url: `../list/list?packName=${thisPackName}&packId=${data.packId}`
+          //   });
+          // }
+          // setTimeout(
+          //   setTimeoutFun,
+          //   1000
+          // )
+        },
+        // 访问修改收纳点失败
+        function (err) {
+          console.log('修改收纳点失败', err);
+          wx.showModal({
+            title: `修改收纳点失败`,
+            content: `爸爸快检查网络是否正常`,
+            confirmText: `好的`,
+            showCancel: false
+          });
+        }
+      )
     }
-  },
-
-  formReset: function() {
-    console.log('form发生了reset事件')
   },
 
   // 生命周期函数--监听页面加载
   onLoad: function (options) {
+    let me = this;
     // 初始化表单验证
     // 验证规则
     const vr = {
@@ -78,13 +101,50 @@ Page({
         required: `爸爸，要填名称的`
       }
     };
-    this.validator = app.validator (vr, vm);
-    this.setData({
+    me.validator = app.validator (vr, vm);
+    me.setData({
       packId: options.packId,
       packValue: options.packName,
       parentPackID: options.parentPackId,
       parentPackValue: options.parentPackName
     });
+    // 获取当前位置下的所有收纳点信息，赋值到存放位置选择的菜单
+    request.get(
+      `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPackListByDefaultPack`,
+      // 获取当前位置下的所有收纳点信息成功
+      function(res) {
+        console.log(`获取当前位置下的所有收纳点信息成功`, res);
+        me.setData({
+          selectMenuList: res.data
+        })
+      },
+      // 获取当前位置下的所有收纳点信息失败
+      function(err) {
+        console.log(`获取当前位置下的所有收纳点信息失败`, err);
+        wx.showModal({
+          title: `获取收纳点列表失败`,
+          content: `爸爸快检查网络是否正常`,
+          confirmText: `好的`,
+          showCancel: false
+        });
+      }
+    );
+  },
+
+  // 打开选择菜单
+  selectMenuSwitch: function() {
+    this.setData({
+      selectMenu: !this.data.selectMenu
+    })
+  },
+
+  // 菜单选择事件
+  selectOption: function(e) {
+    this.setData({
+      selectMenu: false,
+      parentPackID: e.currentTarget.dataset.id,
+      parentPackValue: e.currentTarget.dataset.name,
+    })
   },
 
   // 生命周期函数--监听页面初次渲染完成

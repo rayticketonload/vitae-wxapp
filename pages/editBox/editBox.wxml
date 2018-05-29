@@ -14,7 +14,7 @@
         auto-focus = true
       />
     </view>
-    <view class="formControlWrap options">
+    <view class="formControlWrap options" bindtap="selectMenuSwitch">
       <label class="formControlLabel">
         {{ parentPackLabel }}
       </label>
@@ -33,4 +33,25 @@
       <button formType="submit" class="button thirdly">保存</button>
     </view>
   </form>
+</view>
+<view class="selectMenuMask {{ selectMenu ? 'block' : '' }}"></view>
+<view class="selectMenu {{ selectMenu ? 'block' : '' }}">
+  <span class="selectMenuTitle">
+    选择存放的位置
+    <span class="closeSelectMenu" bindtap="selectMenuSwitch"></span>
+  </span>
+  <view class="selectMenuContent">
+    <view
+      wx:for = "{{ selectMenuList }}"
+      wx:key = "{{ item.id }}"
+      bindtap = "selectOption"
+      data-id = "{{ item.id }}"
+      data-name = "{{ item.name }}"
+      class = "selectMenuOption {{ item.id == parentPackID ? 'current' : '' }}"
+    >
+      <p class="optionName">{{ item.name }}</p>
+      <p class="optionParent" wx:if="{{ item.parent_name == null }}">这是个地点</p>
+      <p class="optionParent" wx:else>它位于 <span>{{ item.parent_name }}</span> 中</p>
+    </view>
+  </view>
 </view>
