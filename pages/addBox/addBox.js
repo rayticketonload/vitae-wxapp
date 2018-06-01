@@ -14,6 +14,8 @@ Page({
   data: {
     // 父级收纳盒ID
     parentPackID: null,
+    // 收纳点图片值
+    packImages: base64.boxIconColor666,
     // 收纳点名称输入框初始数据
     packName: `packName`,
     packLabel: `收纳点名称`,
@@ -27,6 +29,20 @@ Page({
     // selectMenu 开关
     selectMenu: false,
     selectMenuList: []
+  },
+
+  // 收纳点名称正在输入
+  packValueKeyIn: function(e) {
+    this.setData({
+      packValue: e.detail.value
+    });
+  },
+
+  // 收纳点名称重置
+  packValueReset: function() {
+    this.setData({
+      packValue: ``
+    });
   },
 
   formSubmit: function(e) {
@@ -154,8 +170,9 @@ Page({
   },
 
   // 生命周期函数--监听页面初次渲染完成
-  onReady: function () {
-
+  onReady: function() {
+    // 获得 uploader 组件
+    this.uploader = this.selectComponent("#uploader");
   },
 
   // 生命周期函数--监听页面显示

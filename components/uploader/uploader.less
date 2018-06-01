@@ -4,64 +4,79 @@
 @import "../../style/theme.less";
 // 引入minxin
 @import "../../style/mixins.less";
+
+.uploaderWrap {
+  padding: @gapSize-public * 2 @gapSize-public * 2 0 @gapSize-public * 2;
+}
+
 .uploader {
-    display: block;
-    .uploader_hd {
-        //头部
-        padding-bottom: 20rpx;
-        .uploader_title {
-            display: inline;
-        }
-        .uploader_info {
-            color: #b2b2b2;
-            float: right;
-        }
+  position: relative;
+  padding-top: 50%;
+  background-color: @bgColor-uploader;
+  overflow: hidden;
+  .rounded(@borderRadius-public * 2);
+
+  // .uploader_hd {
+  //   //头部
+  //   padding-bottom: 20rpx;
+  //   .uploader_title {
+  //     display: inline;
+  //   }
+  //   .uploader_info {
+  //     color: #b2b2b2;
+  //     float: right;
+  //   }
+  // }
+
+  .uploader_files {
+    position: absolute;
+    top: 0;
+    left: 0;
+    .square(100%);
+
+    > image {
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
     }
-    .uploader_bd {
-        //内容
-        display: block;
-        height: 360rpx;
-        .uploader_files {
-            //列表项
-            .uploader_file {
-                .uploader_img {
-                    width: 155rpx;
-                    height: 155rpx;
-                }
-                width: 155rpx;
-                height: 155rpx;
-                float: left;
-                margin-right: 9rpx;
-                margin-bottom: 9rpx;
-                border-radius: 4rpx;
-                overflow: hidden;
-                border: 1px solid #d9d9d9;
-            }
-        }
-        .uploader_input-box {
-            //增加
-            float: left;
-            border-radius: 4rpx;
-            background-color: #f5f5f5;
-            position: relative;
-            margin-right: 9rpx;
-            margin-bottom: 9rpx;
-            width: 155rpx;
-            height: 155rpx;
-            border: 1px dashed #d9d9d9;
-            overflow: hidden;
-            .uploader_input {
-                z-index: 1;
-                width: 100%;
-                height: 100%;
-                text-align: center;
-                vertical-align: middle;
-                &:after {
-                    color: #dadada;
-                    font-size: 100rpx;
-                    content: '+';
-                }
-            }
-        }
+  }
+
+  .uploader_input-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: @fontSize-large;
+    color: @fontColor-light;
+    height: 100rpx;
+    line-height: 100rpx;
+    background-color: rgba(0, 0, 0, .5);
+
+    > image {
+      vertical-align: middle;
+      margin-top: -5rpx;
+      margin-right: @gapSize-public;
+      .square(50rpx);
     }
+  }
+
+  .reUpload {
+    position: absolute;
+    bottom: @gapSize-public;
+    right: @gapSize-public;
+    .square(100rpx);
+    background-color: @color-primary;
+    .rounded(@borderRadius-public);
+
+    > image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      .square(60%);
+    }
+  }
 }

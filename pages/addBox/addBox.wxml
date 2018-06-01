@@ -1,33 +1,40 @@
 <view class="defaultFormWrap">
   <form bindsubmit="formSubmit" bindreset="formReset">
+    <uploader limit="{{ 1 }}" bindcallback="uploaderChange" id="uploader" />
     <view class="formControlWrap">
       <label class="formControlLabel">
         {{ packLabel }}
       </label>
-      <input
-        name = "{{ packName }}"
-        placeholder = "{{ packPlaceholder }}"
-        placeholder-class = "defaultPlaceHolderColor"
-        value = "{{ packValue }}"
-        class = "formControl"
-        maxlength = "-1"
-        auto-focus = true
-      />
+      <view class="formControlBox">
+        <input
+          name = "{{ packName }}"
+          placeholder = "{{ packPlaceholder }}"
+          placeholder-class = "defaultPlaceHolderColor"
+          value = "{{ packValue }}"
+          class = "formControl"
+          maxlength = "-1"
+          auto-focus = true
+          bindinput = "packValueKeyIn"
+        />
+        <span class="formValueClear" wx:if="{{ packValue.length > 0 }}" bindtap="packValueReset"></span>
+      </view>
     </view>
     <view class="formControlWrap options" bindtap="selectMenuSwitch">
       <label class="formControlLabel">
         {{ parentPackLabel }}
       </label>
-      <input
-        name = "{{ parentPackName }}"
-        placeholder = "{{ parentPackPlaceholder }}"
-        placeholder-class = "defaultPlaceHolderColor"
-        value = "{{ parentPackValue }}"
-        class = "formControl"
-        maxlength = "-1"
-        auto-focus = true
-        disabled
-      />
+      <view class="formControlBox">
+        <input
+          name = "{{ parentPackName }}"
+          placeholder = "{{ parentPackPlaceholder }}"
+          placeholder-class = "defaultPlaceHolderColor"
+          value = "{{ parentPackValue }}"
+          class = "formControl"
+          maxlength = "-1"
+          auto-focus = true
+          disabled
+        />
+      </view>
     </view>
     <view class="formButtonWrap">
       <button formType="submit" class="button thirdly">保存</button>

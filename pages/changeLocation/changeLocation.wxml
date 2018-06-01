@@ -25,7 +25,7 @@
   </view>
 </view>
 <view class="locationAdd">
-  <button class="button thirdly" bindtap="locationAdd">
+  <button bindtap="locationAdd" class="button thirdly">
     添加房屋地点
   </button>
 </view>

@@ -3,6 +3,9 @@
 const constants = require("../../constants/constants");
 // 引入封装好的请求方法
 const request = require("../../utils/request");
+// 引入 base64 资源
+const base64 = require('../../base64/base64');
+
 Component({
   /**
    * 组件的属性列表
@@ -19,7 +22,9 @@ Component({
    */
   data: {
     files: [],
-    path: []
+    path: [],
+    // 图标
+    camIcon: base64.camIconColorfff
   },
 
   /**

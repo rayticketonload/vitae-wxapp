@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "修改收纳点"
+  "navigationBarTitleText": "修改收纳点",
+  "usingComponents": {
+    "uploader": "/components/uploader/uploader"
+  }
 }

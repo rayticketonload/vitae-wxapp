@@ -31,6 +31,20 @@ Page({
     selectMenuList: []
   },
 
+  // 收纳点名称正在输入
+  packValueKeyIn: function(e) {
+    this.setData({
+      packValue: e.detail.value
+    });
+  },
+
+  // 收纳点名称重置
+  packValueReset: function() {
+    this.setData({
+      packValue: ``
+    });
+  },
+
   formSubmit: function(e) {
     // 提交错误描述
     if (!this.validator.checkForm(e)) {

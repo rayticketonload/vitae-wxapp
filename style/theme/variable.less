@@ -98,11 +98,12 @@
 // color
 @bgColor-defaultFormControl: rgba(255, 255, 255, 1);
 @fontColor-defaultFormControl: @fontColor-default;
-@fontColor-defaultPlaceHolder: @fontColor-tips;
+@fontColor-defaultPlaceHolder: lighten(@fontColor-tips,15);
 @bgColor-defaultFormValueClearIcon: rgb(153, 153, 153);
 // size
 @height-defaultFormControl: 110rpx;
 @fontSize-defaultFormControl: @fontSize-large;
+@fontSize-defaultFormControlLabel: @fontSize-large;
 @size-defaultFormValueClearIcon: 46rpx;
 
 
@@ -177,3 +178,11 @@
 @bgColor-selectMenu-addPack: @bgColor-primary;
 // size
 @height-selectMenuTitle-addPack: 80rpx;
+
+
+//
+// -------- 上传图片组件 --------
+//
+// color
+@bgColor-uploader: rgba(238, 238, 238, 1);
+// size
