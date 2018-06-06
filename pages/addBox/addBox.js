@@ -15,7 +15,7 @@ Page({
     // 父级收纳盒ID
     parentPackID: null,
     // 收纳点图片值
-    packImages: base64.boxIconColor666,
+    packImage: '',
     // 收纳点名称输入框初始数据
     packName: `packName`,
     packLabel: `收纳点名称`,

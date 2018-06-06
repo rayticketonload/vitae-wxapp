@@ -65,7 +65,7 @@ Component({
     // 跳转到添加物品表单页面
     _navToAddItem(e) {
       wx.navigateTo({
-        url: `../addItem/addItem`
+        url: `../addItem/addItem?parentPackID=${app.globalData.parentPackID}&parentPackName=${app.globalData.parentPackName}`
       });
     },
 

@@ -32,10 +32,10 @@ Component({
    */
   methods: {
     uploadSuccess: function(res) {
-      console.log(this.data.path);
       var path = this.data.path;
       path.push(res.path);
       this.triggerEvent("callback", { date: path });
+      console.log(this.data.path);
     },
     uploadFail: function(err) {
       console.log("err");
@@ -53,6 +53,7 @@ Component({
           that.setData({
             files: that.data.files.concat(res.tempFilePaths)
           });
+          console.log("res.tempFilePaths", res.tempFilePaths);
         }
       });
     },
