@@ -30,7 +30,9 @@ Page({
     parentPackValue: ``,
     // selectMenu 开关
     selectMenu: false,
-    selectMenuList: []
+    selectMenuList: [],
+    // fileServer（serverName的值在 onload 的时候再附上去，不然在图片路径 load 出来之前，会报 404）
+    serverName: ``
   },
 
   // 通过上传组件回调拿到上传的那张照片，确认保存的时候提交给服务器
@@ -137,8 +139,10 @@ Page({
     me.setData({
       packId: options.packId,
       packValue: options.packName,
+      packImage: options.packImg,
       parentPackID: options.parentPackId,
-      parentPackValue: options.parentPackName
+      parentPackValue: options.parentPackName,
+      serverName: `${constants.NP}${constants.APIDOMAIN}`
     });
     // 获取当前位置下的所有收纳点信息，赋值到存放位置选择的菜单
     request.get(

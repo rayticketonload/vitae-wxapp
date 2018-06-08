@@ -123,7 +123,7 @@ Page({
   // 修改收纳点
   packEdit: function(e) {
     wx.navigateTo({
-      url: `../editBox/editBox?packId=${e.currentTarget.dataset.id}&packName=${e.currentTarget.dataset.name}&parentPackId=${this.data.currentPackId}&parentPackName=${this.data.currentPackName}`
+      url: `../editBox/editBox?packId=${e.currentTarget.dataset.id}&packName=${e.currentTarget.dataset.name}&parentPackId=${this.data.currentPackId}&parentPackName=${this.data.currentPackName}&packImg=${e.currentTarget.dataset.img}`
     });
   },
 
