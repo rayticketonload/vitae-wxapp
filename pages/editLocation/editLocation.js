@@ -83,7 +83,8 @@ Page({
       const url = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}updataPackInfoById`;
       let data = {
         id: me.data.locationId,
-        name: e.detail.value.locationName
+        name: e.detail.value.locationName,
+        parentId: me.data.parentId
       };
       console.log(`data`,data);
       request.post(
@@ -91,45 +92,56 @@ Page({
         data,
         // 修改地点名称成功
         function (res) {
-          console.log("修改地点名称成功", res);
-          // 然后将新地点改为当前使用地点
-          const modifyDefaultPackAPI = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}modifyDefaultPack`;
-          const newLocationId = me.data.locationId;
-          // 同时改变 globalData 里面 currentLocationID
-          app.globalData.currentLocationID = newLocationId;
-          app.globalData.parentPackID = newLocationId;
-          // 请求改变当前使用地点
-          request.post(
-            modifyDefaultPackAPI,
-            { id: newLocationId },
-            // 改变当前使用地点成功
-            function (success) {
+          switch (res.code) {
+            case 100:
               wx.showToast({
-                title: `修改成功`,
-                duration: 1000
+                title: `${res.msg}`,
+                icon: 'none',
+                duration: 2000
               });
-              console.log('成功改变当前使用地点');
-              const setTimeoutFun = () => {
-                wx.navigateBack({
-                  delta: 2
-                });
-              }
-              setTimeout(
-                setTimeoutFun,
-                1000
-              )
-            },
-            // 改变当前使用地点失败
-            function (err) {
-              console.log('改变当前使用地点失败', err);
-              wx.showModal({
-                title: `改变当前使用地点失败`,
-                content: `爸爸快检查网络是否正常`,
-                confirmText: `好的`,
-                showCancel: false
-              });
-            }
-          );
+              break;
+            case 200:
+              console.log("修改地点名称成功", res);
+              // 然后将新地点改为当前使用地点
+              const modifyDefaultPackAPI = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}modifyDefaultPack`;
+              const newLocationId = me.data.locationId;
+              // 同时改变 globalData 里面 currentLocationID
+              app.globalData.currentLocationID = newLocationId;
+              app.globalData.parentPackID = newLocationId;
+              // 请求改变当前使用地点
+              request.post(
+                modifyDefaultPackAPI,
+                { id: newLocationId },
+                // 改变当前使用地点成功
+                function (success) {
+                  wx.showToast({
+                    title: `修改成功`,
+                    duration: 1000
+                  });
+                  console.log('成功改变当前使用地点');
+                  const setTimeoutFun = () => {
+                    wx.navigateBack({
+                      delta: 2
+                    });
+                  }
+                  setTimeout(
+                    setTimeoutFun,
+                    1000
+                  )
+                },
+                // 改变当前使用地点失败
+                function (err) {
+                  console.log('改变当前使用地点失败', err);
+                  wx.showModal({
+                    title: `改变当前使用地点失败`,
+                    content: `爸爸快检查网络是否正常`,
+                    confirmText: `好的`,
+                    showCancel: false
+                  });
+                }
+              );
+              break;
+          };
         },
         // 修改地点名称失败
         function (err) {
