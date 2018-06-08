@@ -4,16 +4,21 @@ const constants = require("../../constants/constants");
 // 引入封装好的请求方法
 const request = require("../../utils/request");
 // 引入 base64 资源
-const base64 = require('../../base64/base64');
+const base64 = require("../../base64/base64");
 
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
+    initialPath: {
+      type: String,
+      value: "",
+      observer: "_propertyPathChange"
+    },
     limit: {
       type: Number,
-      value: 8
+      value: 0,
     }
   },
 
@@ -31,6 +36,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    //initialPath 改变时
+    _propertyPathChange: function(value, oValue) {
+      this.setData({
+        files: [value]
+      });
+    },
+
     uploadSuccess: function(res) {
       var path = this.data.path;
       path.push(res.path);
@@ -48,10 +60,11 @@ Component({
         sourceType: ["album", "camera"], // 可以指定来源是相册还是相机，默认二者都有
         success: function(res) {
           var path = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}upload/photo`;
+          console.log(res.tempFilePaths);
           //上传去服务器
           request.uploadFile(path, res.tempFilePaths[0], that.uploadSuccess.bind(that), that.uploadFail.bind(that));
           that.setData({
-            files: that.data.files.concat(res.tempFilePaths)
+            files: res.tempFilePaths
           });
           console.log("选择的文件放到临时空间", res.tempFilePaths);
         }

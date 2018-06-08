@@ -1,6 +1,6 @@
 <view class="defaultFormWrap">
   <form bindsubmit="formSubmit" bindreset="formReset">
-    <uploader bindcallback="uploaderChange" id="uploader" />
+    <uploader limit="1" initial-path="https://www.wellwell.wang//user/photo/BLkOyWuaVT5aJVUcFKe22xTZ47tlr5iE.png"  bindcallback="uploaderChange" id="uploader" />
     <view class="formControlWrap">
       <label class="formControlLabel">
         {{ packLabel }}

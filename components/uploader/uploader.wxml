@@ -6,7 +6,7 @@
     </view> -->
     <view class="uploader_files" id="uploaderFiles">
       <block wx:for="{{ files }}" wx:key="*this">
-        <image class="uploader_img" src="{{ item }}" mode="widthFix" bindtap="previewImage" id="{{ item }}"/>
+        <image class="uploader_img" src="{{ item }}" mode="widthFix" bindtap="previewImage" id="{{ item }}" />
       </block>
       <!-- <block wx:if="{{files.length >= limit}}">
         <span class="reUpload">
@@ -14,9 +14,10 @@
         </span>
       </block> -->
       <view class="uploader_input-box" bindtap="chooseImage">
-        <image src="{{ camIcon }}"></image>
+        <image src="{{ camIcon }} "></image>
         上传图像
       </view>
+
       <!-- <block wx:if="{{files.length < limit}}">
         <view class="uploader_input-box" bindtap="chooseImage">
           <image src="{{ camIcon }}"></image>
