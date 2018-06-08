@@ -36,6 +36,8 @@ Page({
     goodList: [],
     goodListTotal: 0,
     goodListHaveData: true,
+    // fileServer
+    serverName: `${constants.NP}${constants.APIDOMAIN}`
   },
 
   // tab 改变

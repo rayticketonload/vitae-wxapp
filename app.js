@@ -73,6 +73,6 @@ App({
     // 为添加物品或者收纳点的时候设定的父级收纳点ID
     parentPackID: ``,
     // 为添加物品或者收纳点的时候设定的父级收纳点名称
-    parentPackName: ``
+    parentPackName: ``,
   },
 })

@@ -34,8 +34,8 @@ Component({
     uploadSuccess: function(res) {
       var path = this.data.path;
       path.push(res.path);
-      this.triggerEvent("callback", { date: path });
-      console.log(this.data.path);
+      this.triggerEvent("callback", { data: path });
+      // console.log(this.data.path);
     },
     uploadFail: function(err) {
       console.log("err");
@@ -53,7 +53,7 @@ Component({
           that.setData({
             files: that.data.files.concat(res.tempFilePaths)
           });
-          console.log("res.tempFilePaths", res.tempFilePaths);
+          console.log("选择的文件放到临时空间", res.tempFilePaths);
         }
       });
     },

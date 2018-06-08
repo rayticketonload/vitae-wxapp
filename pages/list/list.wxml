@@ -21,7 +21,10 @@
   <view class="result {{ checked == packListChecked ? 'current' : '' }}">
     <view class="resultlist {{ packListHaveData ? '' : 'block' }}">
         <view wx:for="{{ packList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
-          <image src="" class="ruPackImg" bindtap="next" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'></image>
+          <view class="ruPackImgBox" bindtap="next" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'>
+            <image wx:if="{{ itemObj.image_path == null || itemObj.image_path == '' }}" src="" class="displayNone"  mode="center"></image>
+            <image wx:else src="{{ serverName }}{{ itemObj.image_path }}" class="ruPackImg" mode="aspectFill"></image>
+          </view>
           <p class="ruPackName" bindtap="next" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'>
             <image src="{{ ruPackNameGoInIcon }}" class="ruPackNameIcon"></image>
             {{ itemObj.name }}

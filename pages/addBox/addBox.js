@@ -31,6 +31,13 @@ Page({
     selectMenuList: []
   },
 
+  // 通过上传组件回调拿到上传的那张照片，确认保存的时候提交给服务器
+  uploaderChange: function (e) {
+    this.setData({
+      packImage: e.detail.data[0],
+    })
+  },
+
   // 收纳点名称正在输入
   packValueKeyIn: function(e) {
     this.setData({
@@ -61,7 +68,8 @@ Page({
         `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}addPack`,
         {
           name: thisPackName,
-          parentId: this.data.parentPackID
+          parentId: this.data.parentPackID,
+          imagePath: this.data.packImage,
         },
         // 添加收纳点成功
         function (res) {

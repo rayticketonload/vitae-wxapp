@@ -12,10 +12,12 @@ Page({
 
   // 页面的初始数据
   data: {
-    // 要修改的收纳盒ID
-    packId: null,
     // 要修改的收纳盒的父级收纳盒ID
     parentPackID: null,
+    // 要修改的收纳盒ID
+    packId: null,
+    // 收纳点图片值
+    packImage: '',
     // 收纳点名称输入框初始数据
     packName: `packName`,
     packLabel: `收纳点名称`,
@@ -29,6 +31,14 @@ Page({
     // selectMenu 开关
     selectMenu: false,
     selectMenuList: []
+  },
+
+  // 通过上传组件回调拿到上传的那张照片，确认保存的时候提交给服务器
+  uploaderChange: function (e) {
+    this.setData({
+      packImage: e.detail.data[0],
+    })
+    console.log(this.data.packImage);
   },
 
   // 收纳点名称正在输入
@@ -62,6 +72,7 @@ Page({
         {
           id: this.data.packId,
           name: thisPackName,
+          imagePath: this.data.packImage,
           parentId: this.data.parentPackID
         },
         // 访问修改收纳点成功
