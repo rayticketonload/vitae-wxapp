@@ -3,7 +3,7 @@
 const NP = `https://`;
 const APIDOMAIN = `www.wellwell.wang/`;
 // const NP = `http://`;
-// const APIDOMAIN = `192.168.7.110:8000/`;
+// const APIDOMAIN = `192.168.55.138:8000/`;
 const APIPATH = `api/`
 
 module.exports = {

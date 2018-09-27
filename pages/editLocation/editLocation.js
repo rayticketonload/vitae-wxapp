@@ -5,7 +5,7 @@ const constants = require('../../constants/constants');
 // 引入封装好的请求方法
 const request = require('../../utils/request');
 // 引入表单验证规则
-// import customValidatorRule from '../../utils/validatorsRules';
+import customValidatorRule from '../../utils/validatorsRules';
 
 Page({
 
