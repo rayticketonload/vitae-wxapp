@@ -9,6 +9,10 @@
 @import '../../style/components/form.less';
 @import '../../style/components/button.less';
 
+page {
+  background-color: @bgColor-secondary;
+}
+
 .defaultFormWrap {
     height: 200rpx;
 }
@@ -136,6 +140,7 @@
 
   .resultlist {
     display: none;
+    padding-top: @gapSize-public;
     background-color: @bgColor-secondary;
 
     &.block {
@@ -147,10 +152,12 @@
 .resultUnit {
   box-sizing: border-box;
   position: relative;
-  border-bottom: 1px solid @borderColor-base;
-  border-top: 1px solid @borderColor-base;
+  // border-bottom: 1px solid @borderColor-base;
+  // border-top: 1px solid @borderColor-base;
+  .rounded(@borderRadius-public);
+  border: 1px solid transparent;
   padding: @gapSize-public * 2;
-  margin-bottom: @gapSize-public;
+  margin: 0 @gapSize-public @gapSize-public;
   background-color: @bgColor-resultUnit;
 
   &.forPack {
@@ -158,9 +165,9 @@
     padding-left: @size-ruPackImg + @gapSize-public * 4;
   }
 
-  &:first-child {
-    border-top: none;
-  }
+  // &:first-child {
+  //   border-top: none;
+  // }
 
   .ruPackImgBox {
     box-sizing: border-box;
