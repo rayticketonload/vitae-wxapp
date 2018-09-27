@@ -36,7 +36,14 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "调试changeLoaction",
+					"pathName": "pages/changeLocation/changeLocation",
+					"query": ""
+				}
+			]
 		}
 	}
 }

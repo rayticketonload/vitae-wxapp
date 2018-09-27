@@ -16,8 +16,10 @@
 
 .location {
   box-sizing: border-box;
-  border-bottom: 1px solid @borderColor-base;
+  border: 1px solid @borderColor-base;
   overflow: hidden;
+  .rounded(@borderRadius-public);
+  margin: @gapSize-public * 2 @gapSize-public * 2 0;
 
   .locationBox1 {
     box-sizing: border-box;
