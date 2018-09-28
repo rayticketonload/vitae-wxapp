@@ -13,14 +13,14 @@
     "pages/list/list"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#b41616",
+    "navigationBarBackgroundColor": "#262f3b",
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "井井",
     "navigationStyle": "default",
-    "backgroundColor": "#b41616",
+    "backgroundColor": "#262f3b",
     "backgroundTextStyle": "light",
-    "backgroundColorTop": "#b41616",
-    "backgroundColorBottom": "#b41616",
+    "backgroundColorTop": "#262f3b",
+    "backgroundColorBottom": "#262f3b",
     "enablePullDownRefresh": true,
     "onReachBottomDistance": 50
   }
