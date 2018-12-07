@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "修改物品",
+  "usingComponents": {
+    "uploader": "/components/uploader/uploader",
+    "pickerDAT": "/components/pickerDAT/pickerDAT"
+  }
+}

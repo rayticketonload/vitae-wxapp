@@ -154,9 +154,59 @@ Page({
                 me.data.currentPackId
               );
             },
-            // 删除房屋失败
+            // 删除收纳点失败
             function(err) {
               console.log(`删除收纳点失败`, err);
+              wx.showModal({
+                title: `删除失败`,
+                content: `爸爸快检查网络是否正常`,
+                confirmText: `好的`,
+                showCancel: false
+              });
+            }
+          );
+        }
+      }
+    });
+  },
+
+  // 修改物品
+  itemEdit: function(e) {
+    wx.navigateTo({
+      url: `../editItem/editItem?itemId=${e.currentTarget.dataset.id}&itemName=${e.currentTarget.dataset.name}&parentPackId=${this.data.currentPackId}&parentPackName=${this.data.currentPackName}&itemImg=${e.currentTarget.dataset.img}`
+    });
+  },
+
+  // 删除物品
+  itemDel: function(e) {
+    let me = this;
+    // 弹窗确认删除
+    wx.showModal({
+      title: `删除此物品`,
+      content: '物品删除后将不可恢复',
+      confirmText: '确认删除',
+      confirmColor: '#f17c6b',
+      success: function (res) {
+        if (res.confirm) {
+          // 请求删除
+          request.post(
+            `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}deleteItemById`,
+            { "id": e.currentTarget.dataset.id },
+            // 请求删除收纳点成功
+            function(res) {
+              console.log(`删除物品成功`, res);
+              wx.showToast({
+                title: `删除成功`,
+                duration: 2000
+              });
+              // 重新获取一次收纳点内容列表
+              me.getList(
+                me.data.currentPackId
+              );
+            },
+            // 删除收纳点失败
+            function(err) {
+              console.log(`删除物品失败`, err);
               wx.showModal({
                 title: `删除失败`,
                 content: `爸爸快检查网络是否正常`,

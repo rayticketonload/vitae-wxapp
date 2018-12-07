@@ -36,13 +36,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "调试changeLoaction",
 					"pathName": "pages/changeLocation/changeLocation",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "1",
+					"pathName": "pages/list/list",
+					"query": "packName=屋企屋企屋企屋企屋企&packId=10"
 				}
 			]
 		}

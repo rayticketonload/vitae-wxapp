@@ -6,6 +6,7 @@
     "pages/addBox/addBox",
     "pages/editBox/editBox",
     "pages/addItem/addItem",
+    "pages/editItem/editItem",
     "pages/changeLocation/changeLocation",
     "pages/addLocation/addLocation",
     "pages/editLocation/editLocation",
@@ -21,7 +22,7 @@
     "backgroundTextStyle": "light",
     "backgroundColorTop": "#262f3b",
     "backgroundColorBottom": "#262f3b",
-    "enablePullDownRefresh": true,
+    "enablePullDownRefresh": false,
     "onReachBottomDistance": 50
   }
 }

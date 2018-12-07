@@ -6,21 +6,20 @@ const constants = require('../../constants/constants');
 const request = require('../../utils/request');
 
 Page({
-
-  // 页面的初始数据
+  /**
+   * 页面的初始数据
+   */
   data: {
-    // 要修改的收纳盒的父级收纳盒ID
+    // 父级收纳盒ID
     parentPackID: null,
-    // 要修改的收纳盒ID
-    packId: null,
-    // 收纳点图片值
-    packImage: '',
-    // 收纳点名称输入框初始数据
-    packName: `packName`,
-    packLabel: `收纳点名称`,
-    packPlaceholder: `例如冰箱，衣柜，阁楼...`,
-    packValue: ``,
-    // 收纳点存放位置输入框初始数据
+    // 要修改的物品ID
+    itemId: null,
+    // 物品名称输入框初始数据
+    itemName: `itemName`,
+    itemNameLabel: `物品名称`,
+    itemNamePlaceholder: `例如鸡蛋，唇膏，变形记刚...`,
+    itemNameValue: ``,
+    // 物品存放位置输入框初始数据
     parentPackName: `parentPackName`,
     parentPackLabel: `存放位置`,
     parentPackPlaceholder: `你想把 TA 放在？`,
@@ -28,30 +27,10 @@ Page({
     // selectMenu 开关
     selectMenu: false,
     selectMenuList: [],
+    date: "",
+    path:[],
     // fileServer（serverName的值在 onload 的时候再附上去，不然在图片路径 load 出来之前，会报 404）
     serverName: ``
-  },
-
-  // 通过上传组件回调拿到上传的那张照片，确认保存的时候提交给服务器
-  uploaderChange: function (e) {
-    this.setData({
-      packImage: e.detail.data[0],
-    })
-    console.log(this.data.packImage);
-  },
-
-  // 收纳点名称正在输入
-  packValueKeyIn: function(e) {
-    this.setData({
-      packValue: e.detail.value
-    });
-  },
-
-  // 收纳点名称重置
-  packValueReset: function() {
-    this.setData({
-      packValue: ``
-    });
   },
 
   formSubmit: function(e) {
@@ -65,16 +44,16 @@ Page({
       });
       return false;
     } else {
-      const thisPackName = e.detail.value.packName;
+      const thisItemName = e.detail.value.itemName;
       request.post(
-        `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}updataPackInfoById`,
+        `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}addGood`,
         {
-          id: this.data.packId,
-          name: thisPackName,
-          imagePath: this.data.packImage,
-          parentId: this.data.parentPackID
+          name: thisItemName,
+          parentId: this.data.parentPackID,
+          expireDate: this.data.date,
+          pic: this.data.path,
         },
-        // 访问修改收纳点成功
+        // 添加收纳点成功
         function (res) {
           switch (res.code) {
             case 100:
@@ -86,27 +65,27 @@ Page({
               break;
             case 200:
               wx.showToast({
-                title: `修改成功`,
+                title: `添加成功`,
                 duration: 1000
               });
               const setTimeoutFun = () => {
-                console.log(`跳转到 ${thisPackName} 的内容列表`);
+                console.log(`跳转到 ${thisItemName} 的内容列表`);
                 wx.reLaunch({
-                  url: `../list/list?packName=${thisPackName}&packId=${res.data.id}`
+                  url: `../list/list?packName=${thisItemName}&packId=${res.data.id}`
                 });
-              }
+              };
               setTimeout(
                 setTimeoutFun,
                 1000
               );
               break;
-          };
+          }
         },
-        // 访问修改收纳点失败
+        // 添加收纳点失败
         function (err) {
-          console.log('修改收纳点失败', err);
+          console.log('添加收纳点失败', err);
           wx.showModal({
-            title: `修改收纳点失败`,
+            title: `添加收纳点失败`,
             content: `爸爸快检查网络是否正常`,
             confirmText: `好的`,
             showCancel: false
@@ -116,27 +95,69 @@ Page({
     }
   },
 
+  // 物品名称正在输入
+  itemNameValueKeyIn: function(e) {
+    this.setData({
+      itemNameValue: e.detail.value,
+    });
+  },
+
+  // 物品名称重置
+  itemNameValueReset: function() {
+    this.setData({
+      itemNameValue: ``
+    });
+  },
+
+  // 打开选择菜单
+  selectMenuSwitch: function() {
+    this.setData({
+      selectMenu: !this.data.selectMenu
+    })
+  },
+
+  // 菜单选择事件
+  selectOption: function(e) {
+    this.setData({
+      selectMenu: false,
+      parentPackID: e.currentTarget.dataset.id,
+      parentPackValue: e.currentTarget.dataset.name,
+    })
+  },
+
+  dateChange: function(e) {
+    this.setData({
+      date: e.detail.date
+    });
+  },
+
+  uploaderChange: function(e) {
+    this.setData({
+      path: e.detail.data[0],
+    });
+  },
+
   // 生命周期函数--监听页面加载
   onLoad: function (options) {
     let me = this;
     // 初始化表单验证
     // 验证规则
     const vr = {
-      packName: {
+      itemName: {
         required: true,
       }
     };
     // 验证返回信息
     const vm = {
-      packName: {
+      itemName: {
         required: `爸爸，要填名称的`
       }
     };
     me.validator = app.validator (vr, vm);
     me.setData({
-      packId: options.packId,
-      packValue: options.packName,
-      packImage: options.packImg,
+      itemId: options.itemId,
+      itemNameValue: options.itemName,
+      path: options.itemImg,
       parentPackID: options.parentPackId,
       parentPackValue: options.parentPackName,
       serverName: `${constants.NP}${constants.APIDOMAIN}`
@@ -164,54 +185,39 @@ Page({
     );
   },
 
-  // 打开选择菜单
-  selectMenuSwitch: function() {
-    this.setData({
-      selectMenu: !this.data.selectMenu
-    })
-  },
-
-  // 菜单选择事件
-  selectOption: function(e) {
-    this.setData({
-      selectMenu: false,
-      parentPackID: e.currentTarget.dataset.id,
-      parentPackValue: e.currentTarget.dataset.name,
-    })
-  },
-
   // 生命周期函数--监听页面初次渲染完成
-  onReady: function () {
-
+  onReady: function() {
+    // 获得 uploader 组件
+    this.uploader = this.selectComponent("#uploader");
   },
 
-  // 生命周期函数--监听页面显示
-  onShow: function () {
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {},
 
-  },
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function() {},
 
-  // 生命周期函数--监听页面隐藏
-  onHide: function () {
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function() {},
 
-  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {},
 
-  // 生命周期函数--监听页面卸载
-  onUnload: function () {
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {},
 
-  },
-
-  // 页面相关事件处理函数--监听用户下拉动作
-  onPullDownRefresh: function () {
-
-  },
-
-  // 页面上拉触底事件的处理函数
-  onReachBottom: function () {
-
-  },
-
-  // 用户点击右上角分享
-  onShareAppMessage: function () {
-
-  }
-})
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {}
+});

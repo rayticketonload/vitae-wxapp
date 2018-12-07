@@ -1,6 +1,6 @@
 <view class="defaultFormWrap">
   <form bindsubmit="formSubmit" bindreset="formReset">
-    <uploader limit="{{ 1 }}" bindcallback="uploaderChange" id="uploader" />
+    <uploader initial-path="{{ serverName }}{{ path }}" bindcallback="uploaderChange" id="uploader" />
     <view class="formControlWrap">
       <label class="formControlLabel">
         {{ itemNameLabel }}

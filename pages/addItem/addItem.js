@@ -27,15 +27,76 @@ Page({
     // selectMenu 开关
     selectMenu: false,
     selectMenuList: [],
-
     date: "",
     path:[],
+  },
+
+  formSubmit: function(e) {
+    // 提交错误描述
+    if (!this.validator.checkForm(e)) {
+      const error = this.validator.errorList[0];
+      wx.showToast({
+        title: `${error.msg}`,
+        icon: `none`,
+        duration: 3000
+      });
+      return false;
+    } else {
+      const thisItemName = e.detail.value.itemName;
+      request.post(
+        `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}addGood`,
+        {
+          name: thisItemName,
+          parentId: this.data.parentPackID,
+          expireDate: this.data.date,
+          pic: this.data.path,
+        },
+        // 添加收纳点成功
+        function (res) {
+          switch (res.code) {
+            case 100:
+              wx.showToast({
+                title: `${res.msg}`,
+                icon: 'none',
+                duration: 2000
+              });
+              break;
+            case 200:
+              wx.showToast({
+                title: `添加成功`,
+                duration: 1000
+              });
+              const setTimeoutFun = () => {
+                console.log(`跳转到 ${thisItemName} 的内容列表`);
+                wx.reLaunch({
+                  url: `../list/list?packName=${thisItemName}&packId=${res.data.id}`
+                });
+              };
+              setTimeout(
+                setTimeoutFun,
+                1000
+              );
+              break;
+          }
+        },
+        // 添加收纳点失败
+        function (err) {
+          console.log('添加收纳点失败', err);
+          wx.showModal({
+            title: `添加收纳点失败`,
+            content: `爸爸快检查网络是否正常`,
+            confirmText: `好的`,
+            showCancel: false
+          });
+        }
+      )
+    }
   },
 
   // 物品名称正在输入
   itemNameValueKeyIn: function(e) {
     this.setData({
-      itemNameValue: e.detail.value
+      itemNameValue: e.detail.value,
     });
   },
 
@@ -70,7 +131,7 @@ Page({
 
   uploaderChange: function(e) {
     this.setData({
-      path: e.detail.date
+      path: e.detail.data[0],
     });
   },
 
@@ -80,13 +141,13 @@ Page({
     // 初始化表单验证
     // 验证规则
     const vr = {
-      packName: {
+      itemName: {
         required: true,
       }
     };
     // 验证返回信息
     const vm = {
-      packName: {
+      itemName: {
         required: `爸爸，要填名称的`
       }
     };

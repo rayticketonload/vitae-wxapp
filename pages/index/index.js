@@ -15,18 +15,23 @@ Page({
     nickName: app.globalData.userInfo.nickName,
     // 图标
     help: base64.helpIconColorfff,
+    addLocation: base64.addLocationIconColorfff,
     setting: base64.settingIconColorfff,
     locationEdit: base64.editIconColorfff,
-    indexSearchIcon: base64.searcherIcon,
-    whatsIn: base64.homeIconColorb41616,
+    indexSearchIcon: base64.searchIconColorfff,
+    whatsIn: base64.homeIconColorful,
     beChef: base64.chefIconColorb41616,
+    meat: base64.meatIconColorful,
     mission: base64.missionIconColorb41616,
-    msg: base64.bellIconColorfff,
+    msg: base64.msgIconColorful,
     finger: base64.fingerIconColor666,
     msgDel: base64.del2IconColor666,
+    toCurrentLocation: base64.angleRight,
     // 首页数据变量
     currentLocationName: app.globalData.currentLocationName,
     currentLocationID: app.globalData.currentLocationID,
+    goodTotal: 0,
+    packTotal: 0,
     parentPackName: app.globalData.parentPackName,
     parentPackID: app.globalData.parentPackID,
     // 用户是否授权公开信息
@@ -55,6 +60,8 @@ Page({
         me.setData({
           currentLocationName: data.data.default_pack_name,
           currentLocationID: data.data.default_pack,
+          goodTotal: data.data.goodTotal,
+          packTotal: data.data.packTotal,
           parentPackName: data.data.default_pack_name,
           parentPackID: data.data.default_pack,
         });
