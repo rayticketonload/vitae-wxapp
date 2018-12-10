@@ -14,8 +14,8 @@
     "pages/list/list"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#262f3b",
-    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#BFE1EF",
+    "navigationBarTextStyle": "black",
     "navigationBarTitleText": "井井",
     "navigationStyle": "default",
     "backgroundColor": "#262f3b",

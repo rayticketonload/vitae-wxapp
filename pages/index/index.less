@@ -160,8 +160,8 @@
     position: relative;
     box-sizing: border-box;
     font-size: @fontSize-sub;
-    color: lighten(@bgColor-indexSearcher,70);
-    .size(84%,@height-input-indexSearcher);
+    color: @fontColor-tips;
+    .size(86%, @height-input-indexSearcher);
     line-height: @height-input-indexSearcher;
     .rounded(@height-input-indexSearcher);
     padding: 0 90rpx;
@@ -174,7 +174,6 @@
       left: 15rpx;
       margin-top: -(@height-input-indexSearcher * 0.7)/2;
       .square(@height-input-indexSearcher * 0.7);
-      opacity: .6;
     }
 
     .textFix {
@@ -219,24 +218,22 @@
         .square(70%);
       }
 
-      &:before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        .size(1px, 14rpx);
-        transform: translate(-50%,-50%);
-        background-color: rgba(255,255,255,1);
-      }
-
+      &:before,
       &:after {
         content: '';
         position: absolute;
         top: 50%;
         left: 50%;
-        .size(14rpx, 1px);
         transform: translate(-50%,-50%);
-        background-color: rgba(255,255,255,1);
+        background-color: #ffaa7a;
+      }
+
+      &:before {
+        .size(1px, 14rpx);
+      }
+
+      &:after {
+        .size(14rpx, 1px);
       }
     }
 

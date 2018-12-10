@@ -15,10 +15,10 @@ Page({
     nickName: app.globalData.userInfo.nickName,
     // 图标
     help: base64.helpIconColorfff,
-    addLocation: base64.addLocationIconColorfff,
+    addLocation: base64.addLocationIconColorffaa7a,
     setting: base64.settingIconColorfff,
     locationEdit: base64.editIconColorfff,
-    indexSearchIcon: base64.searchIconColorfff,
+    indexSearchIcon: base64.searchIconColorffaa7a,
     whatsIn: base64.homeIconColorful,
     beChef: base64.chefIconColorb41616,
     meat: base64.meatIconColorful,
