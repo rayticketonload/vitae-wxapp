@@ -614,7 +614,35 @@
     margin-top: @gapSize-public;
     margin-right: @gapSize-public;
     .rounded(68rpx);
-    border: 1px solid @borderColor-base;
+
+    .liStyleMix(@color) {
+      background-color: @color;
+      color: darken(@color, 40);
+    }
+
+    &.one {
+      .liStyleMix(#f1f1f1);
+    }
+
+    &.two {
+      .liStyleMix(#fff2ea);
+    }
+
+    &.three {
+      .liStyleMix(#ecf4f8);
+    }
+
+    &.four {
+      .liStyleMix(#e5f3ef);
+    }
+
+    &.five {
+      .liStyleMix(#f3e5ea);
+    }
+
+    &.six {
+      .liStyleMix(#f9f2fa);
+    }
   }
 }
 

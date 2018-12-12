@@ -35,12 +35,86 @@ Page({
     parentPackName: app.globalData.parentPackName,
     parentPackID: app.globalData.parentPackID,
     // 用户是否授权公开信息
-    hasUserInfo: app.globalData.hasUserInfo
+    hasUserInfo: app.globalData.hasUserInfo,
+    // 最近编辑
+    nearestModify: [
+      {
+        name: '主卧室',
+        type: 'pack',
+        id: '12',
+        img: '/user/photo/g3LL4nBS9Yu5X3IyNqiKTtXOXGOy0uzw.jpeg',
+        ppid: '10',
+        ppname: '屋企屋企屋企屋企屋企',
+      },
+      {
+        name: '厨房',
+        type: 'pack',
+        id: '11',
+        img: '/user/photo/ZKN2zjA5yxXznC3qwO0OJkcHOvBDyv3q.jpeg',
+        ppid: '10',
+        ppname: '屋企屋企屋企屋企屋企',
+      },
+      {
+        name: '小猪佩奇玩具',
+        type: 'good',
+        id: '4',
+        img: [],
+        ppid: '12',
+        ppname: '主卧室',
+      },
+      {
+        name: '打蛋器',
+        type: 'good',
+        id: '5',
+        img: '/user/photo/kTarQMuPZDl0VkEXKAY8gAfRIXU24Dia.jpeg',
+        ppid: '11',
+        ppname: '厨房',
+      },
+      {
+        name: '橱柜上层第一格',
+        type: 'pack',
+        id: '15',
+        img: '/user/photo/TDPY9Vc5iRejEBed1BdYMylAQ9dtEdnA.jpeg',
+        ppid: '11',
+        ppname: '厨房',
+      },
+      {
+        name: 'xBox',
+        type: 'good',
+        id: '6',
+        img: '/user/photo/pJAtSPPmZuF9oXvI6x2sT6dPaYuJ6ecC.jpeg',
+        ppid: '10',
+        ppname: '屋企屋企屋企屋企屋企',
+      }
+    ],
   },
 
   onReady: function() {
     // 获得 standardLayout 组件
     this.standardLayout = this.selectComponent("#standardLayout");
+  },
+
+  // 进入最近编辑
+  entryNearestModify: function(e) {
+    const name = e.currentTarget.dataset.name;
+    const type = e.currentTarget.dataset.type;
+    const id = e.currentTarget.dataset.id;
+    const img = e.currentTarget.dataset.img;
+    const ppid = e.currentTarget.dataset.ppid;
+    const ppname = e.currentTarget.dataset.ppname;
+    switch (type) {
+      case 'pack':
+        wx.navigateTo({
+          url: `../editBox/editBox?packId=${id}&packName=${name}&parentPackId=${ppid}&parentPackName=${ppname}&packImg=${img}`
+        });
+        break;
+      case 'good':
+        wx.navigateTo({
+          url: `../editItem/editItem?itemId=${id}&itemName=${name}&parentPackId=${ppid}&parentPackName=${ppname}&itemImg=${img}`
+        });
+        break;
+      default:;
+    }
   },
 
   // 在首页拿当前盒子的统计信息
@@ -88,7 +162,6 @@ Page({
   },
 
   onShow: function() {
-
     this.setData({
       hasUserInfo: app.globalData.hasUserInfo
     });
@@ -141,6 +214,7 @@ Page({
       url: `../search/search?type=${searchType}&pack=${pack}`
     });
   },
+
   toSearchPage: function() {
     console.log(`跳转到搜索页面`);
     this.gotoSearchPage("all");

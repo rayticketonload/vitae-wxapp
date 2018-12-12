@@ -50,20 +50,77 @@
     最近编辑
   </view>
   <ul class="latestItem">
-    <li>
-      主卧室
+    <li
+      bindtap="entryNearestModify"
+      data-name="{{ nearestModify[0].name }}"
+      data-type="{{ nearestModify[0].type }}"
+      data-id="{{ nearestModify[0].id }}"
+      data-img="{{ nearestModify[0].img }}"
+      data-ppid="{{ nearestModify[0].ppid }}"
+      data-ppname="{{ nearestModify[0].ppname }}"
+      class="one"
+    >
+      {{ nearestModify[0].name }}
     </li>
-    <li>
-      厨房
+    <li
+      bindtap="entryNearestModify"
+      data-name="{{ nearestModify[1].name }}"
+      data-type="{{ nearestModify[1].type }}"
+      data-id="{{ nearestModify[1].id }}"
+      data-img="{{ nearestModify[1].img }}"
+      data-ppid="{{ nearestModify[1].ppid }}"
+      data-ppname="{{ nearestModify[1].ppname }}"
+      class="two"
+    >
+      {{ nearestModify[1].name }}
     </li>
-    <li>
-      衣帽间
+    <li
+      bindtap="entryNearestModify"
+      data-name="{{ nearestModify[2].name }}"
+      data-type="{{ nearestModify[2].type }}"
+      data-id="{{ nearestModify[2].id }}"
+      data-img="{{ nearestModify[2].img }}"
+      data-ppid="{{ nearestModify[2].ppid }}"
+      data-ppname="{{ nearestModify[2].ppname }}"
+      class="three"
+    >
+      {{ nearestModify[2].name }}
     </li>
-    <li>
-      客卧衣柜
+    <li
+      bindtap="entryNearestModify"
+      data-name="{{ nearestModify[3].name }}"
+      data-type="{{ nearestModify[3].type }}"
+      data-id="{{ nearestModify[3].id }}"
+      data-img="{{ nearestModify[3].img }}"
+      data-ppid="{{ nearestModify[3].ppid }}"
+      data-ppname="{{ nearestModify[3].ppname }}"
+      class="four"
+    >
+      {{ nearestModify[3].name }}
     </li>
-    <li>
-      电视柜
+    <li
+      bindtap="entryNearestModify"
+      data-name="{{ nearestModify[4].name }}"
+      data-type="{{ nearestModify[4].type }}"
+      data-id="{{ nearestModify[4].id }}"
+      data-img="{{ nearestModify[4].img }}"
+      data-ppid="{{ nearestModify[4].ppid }}"
+      data-ppname="{{ nearestModify[4].ppname }}"
+      class="five"
+    >
+      {{ nearestModify[4].name }}
+    </li>
+    <li
+      bindtap="entryNearestModify"
+      data-name="{{ nearestModify[5].name }}"
+      data-type="{{ nearestModify[5].type }}"
+      data-id="{{ nearestModify[5].id }}"
+      data-img="{{ nearestModify[5].img }}"
+      data-ppid="{{ nearestModify[5].ppid }}"
+      data-ppname="{{ nearestModify[5].ppname }}"
+      class="six"
+    >
+      {{ nearestModify[5].name }}
     </li>
   </ul>
   <!-- <view class="funsPanel">
