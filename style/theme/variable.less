@@ -5,18 +5,18 @@
 // -------- 全局参数命名规范：“属性名称 - 作用域”，如：@fontColor-default 尽量吧！！！语死早
 
 // 通用色调
-@domColor1: rgba(68, 146, 212, 1);
-@domColor2: rgba(93, 211, 150, 1);
-@domColor3: rgba(241, 141, 120, 1);
-@domColor4: rgba(224, 145, 237, 1);
-@domColor5: rgba(251, 106, 1, 1);
-@domColor6: rgba(38, 47, 59, 1);
-@domColor7: rgba(255, 255, 255, 1);
+@domColor1: #2d8db5;
+@domColor2: #5dd396;
+@domColor3: #f18d78;
+@domColor4: #e091ed;
+@domColor5: #fb6a01;
+@domColor6: #262f3b;
+@domColor7: #ffffff;
 
 // app 主色调
-@color-thirdly: rgb(191, 225, 239);
-@color-secondary: rgb(255, 232, 219);
-@color-primary: rgb(38, 47, 59);
+@color-thirdly: #bfe1ef;
+@color-secondary: #ffe8db;
+@color-primary: #262f3b;
 
 // 基础字体尺寸
 @fontSize-base: 28rpx;
@@ -72,7 +72,7 @@
 //
 @zIndex-userInfoWrap: 1;
 @zIndex-userInfo: 2;
-@zIndex-indexSearcherWrap: @zIndex-userInfo;
+@zIndex-indexSearcherWrap: 2;
 @zIndex-currentLocation-list: 2;
 @zIndex-typeBox-list: 1;
 @zIndex-selectMenuMask-addPack: 1;
@@ -110,11 +110,11 @@
 //
 // color
 @color-primary-button: @color-primary;
-@fontColor-primary-button: rgba(255, 255, 255, 1);
-@color-primary-button: @color-primary;
-@fontColor-secondary-button: rgba(255, 255, 255, 1);
-@color-thirdly-button: @color-thirdly;
-@fontColor-thirdly-button: rgba(255, 255, 255, 1);
+@fontColor-primary-button: #fff;
+@color-secondary-button: @domColor3;
+@fontColor-secondary-button: #fff;
+@color-thirdly-button: @domColor1;
+@fontColor-thirdly-button: #fff;
 // size
 @borderRadius-button: @borderRadius-public;
 @height-button: @height-defaultFormControl;
@@ -128,7 +128,7 @@
 @bgColor1-userInfoWrap: @color-secondary;
 @bgColor2-userInfoWrap: @color-primary;
 @fontColor-userInfoWrap: @fontColor-light;
-@bgColor-indexSearcher: lighten(@bgColor-indexSearcherWrap,15);
+@bgColor-indexSearcher: rgba(255, 255, 255, .75);
 @bgColor-indexSearcherWrap: @bgColor1-userInfoWrap;
 @bgColor-indexPanel: @bgColor-base;
 @bgColor-funIcon:  @bgColor-thirdly;

@@ -15,6 +15,7 @@
   overflow: visible;
   .transition(all, 0.3s, ease, 0);
   .link-mobile(transparent);
+  border: none;
 
   // 按钮样式工具
   .buttonStyle(@color, @fontColor) {
@@ -32,7 +33,7 @@
   }
 
   &.secondary {
-    .buttonStyle(@color-primary-button, @fontColor-secondary-button);
+    .buttonStyle(@color-secondary-button, @fontColor-secondary-button);
   }
 
   &.thirdly {

@@ -5,19 +5,28 @@
       <image src="{{ indexSearchIcon }}"></image>
       在<span class="textFix">{{ currentLocationName }}</span>里翻箱倒柜
     </view>
-    <!-- <view class="subBtnWrap">
+    <view class="subBtnWrap">
       <span class="subBtn help" bindtap="openHelp">
         <image src="{{ help }}"></image>
       </span>
-    </view> -->
-    <view class="subBtnWrap">
       <span class="subBtn addLocation" bindtap="toLocationList">
         <image src="{{ addLocation }}"></image>
       </span>
     </view>
   </view>
+  <view class="currentLocationEntry" bindtap="intoThisLocation">
+    <div class="{{ cleiClass }}">
+      <image src="{{ whatsIn }}"></image>
+    </div>
+    <div class="clen">
+      {{ currentLocationName }}
+    </div>
+    <div class="cled">
+      <span>收纳点: {{ packTotal }}</span>
+      <span>物品: {{ goodTotal }}</span>
+    </div>
+  </view>
   <view class="theWave"></view>
-  <!-- <div class="indexSearcherWrapBrick"></div> -->
   <!-- <view class="userInfoWrap">
     <view class="userInfo">
       <view class="{{ avatarBoxClass }}">
@@ -36,16 +45,6 @@
       </view>
     </view>
   </view> -->
-  <view class="locationEntry">
-    <span class="toCurrentLocation" bindtap="intoThisLocation">
-      <image src="{{ toCurrentLocation }}"></image>
-    </span>
-    <text class="currentLocationName">{{ currentLocationName }}</text>
-    <text class="locationContent">收纳点: {{ packTotal }}, 物品: {{ goodTotal }}</text>
-    <span class="locationEntryIcon">
-      <image src="{{ whatsIn }}"></image>
-    </span>
-  </view>
   <view class="sectionName">
     最近编辑
   </view>
@@ -123,20 +122,6 @@
       {{ nearestModify[5].name }}
     </li>
   </ul>
-  <!-- <view class="funsPanel">
-    <view class="funs">
-      <span class="funIcon meat">
-        <image src="{{ meat }}"></image>
-      </span>
-      <text class="funTitle">咱能吃什么呢</text>
-    </view>
-    <view class="funs">
-      <span class="funIcon msg">
-        <image src="{{ msg }}"></image>
-      </span>
-      <text class="funTitle">嘿!你的消息</text>
-    </view>
-  </view> -->
   <view class="sectionName">
     嘿！你的消息
     <span class="all">全部</span>

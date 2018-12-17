@@ -9,17 +9,16 @@ const request = require("../../utils/request");
 
 Page({
   data: {
-    // 用户头像，用户昵称和头像 class
-    avatarBoxClass: [`avatarBox`, `avatarBoxAnim`],
+    cleiClass: [`clei`, `anim`],
     avatarUrl: app.globalData.userInfo.avatarUrl,
     nickName: app.globalData.userInfo.nickName,
     // 图标
-    help: base64.helpIconColorfff,
-    addLocation: base64.addLocationIconColorffaa7a,
+    help: base64.helpIconColorffaa7a,
+    addLocation: base64.homeIconColorful3,
     setting: base64.settingIconColorfff,
     locationEdit: base64.editIconColorfff,
     indexSearchIcon: base64.searchIconColorffaa7a,
-    whatsIn: base64.homeIconColorful,
+    whatsIn: base64.homeIconColorful2,
     beChef: base64.chefIconColorb41616,
     meat: base64.meatIconColorful,
     mission: base64.missionIconColorb41616,
@@ -175,7 +174,7 @@ Page({
 
     // 展示这个页面的时候，加载用户头像的动画 class
     this.setData({
-      avatarBoxClass: [`avatarBox`, `avatarBoxAnim`]
+      cleiClass: [`clei`, `anim`]
     });
 
     // 拿首页要显示的用户当前房屋的信息
@@ -191,7 +190,7 @@ Page({
   onHide: function() {
     // 离开这个页面的时候，重置掉用户头像的动画 class
     this.setData({
-      avatarBoxClass: [`avatarBox`]
+      cleiClass: [`clei`]
     });
   },
 

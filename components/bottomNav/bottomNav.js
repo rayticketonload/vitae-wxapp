@@ -47,6 +47,7 @@ Component({
     addItemIcon: base64.heartIconColorfff,
     addBoxIcon: base64.boxIconColorfff,
     toIndex: base64.homeIconColorfff,
+    toMsg: base64.bellIcon2Colorfff,
   },
 
   /**

@@ -19,7 +19,7 @@
     line-height: @height-bottomNav;
     text-align: center;
     padding: 0 @gapSize-public;
-    background-color: @bgColor-bottomNavBtn;
+    background-color: @color-primary;
     opacity: 0.9;
     .transition(all,.3s,ease,0);
 
@@ -60,6 +60,33 @@
       text-align: center;
       margin-right: @gapSize-public / 2;
       padding: 0;
+
+      > image {
+        .square(@height-bottomNav * 0.6);
+        margin: -8rpx 0 0 0;
+      }
+    }
+
+    &.toMsg {
+      .rounded(@borderRadius-public);
+      .square(@height-bottomNav);
+      text-align: center;
+      margin-left: @gapSize-public / 2;
+      padding: 0;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        top: -10rpx;
+        right: -10rpx;
+        .square(30rpx);
+        background-color: @domColor5;
+        .rounded(50%);
+      }
+
+      &.haveMsg:after {
+        content: '';
+      }
 
       > image {
         .square(@height-bottomNav * 0.6);

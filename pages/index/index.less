@@ -148,11 +148,15 @@
 
 // 首页搜索部件
 .indexSearcherWrap {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: @zIndex-indexSearcherWrap;
+  width: 100%;
   display: block;
   box-sizing: border-box;
   padding: @gapSize-public;
-  background-color: @bgColor-indexSearcherWrap;
+  background-color: @color-secondary;
   .clearfix();
 
   .indexSearcherInput {
@@ -161,7 +165,7 @@
     box-sizing: border-box;
     font-size: @fontSize-sub;
     color: @fontColor-tips;
-    .size(86%, @height-input-indexSearcher);
+    .size(534rpx, @height-input-indexSearcher);
     line-height: @height-input-indexSearcher;
     .rounded(@height-input-indexSearcher);
     padding: 0 90rpx;
@@ -181,13 +185,13 @@
       display: inline-block;
       vertical-align: top;
       .text-hide();
-      max-width: 50%;
+      max-width: 40%;
     }
   }
 
   .subBtnWrap {
     float: right;
-    width: 14%;
+    width: @height-input-indexSearcher * 2.4;
     text-align: right;
     line-height: 0;
   }
@@ -201,6 +205,10 @@
     .square(@height-input-indexSearcher);
     .rounded(50%);
     background-color: @bgColor-indexSearcher;
+
+    &:last-child {
+      margin-left: @height-input-indexSearcher * .2;
+    }
 
     > image {
       position: absolute;
@@ -218,22 +226,17 @@
         .square(70%);
       }
 
-      &:before,
       &:after {
         content: '';
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
-        background-color: #ffaa7a;
-      }
-
-      &:before {
-        .size(1px, 14rpx);
-      }
-
-      &:after {
-        .size(14rpx, 1px);
+        background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTQ0NjkzNzk0MjY3IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE2OTczIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTk1OS41NiA1MzAuNTZhNzQuNSA3NC41IDAgMCAxLTc0LjI4IDc0LjI4SDEzOC43M2E3NC41IDc0LjUgMCAwIDEtNzQuMjgtNzQuMjh2LTM3LjEyYTc0LjUgNzQuNSAwIDAgMSA3NC4yOC03NC4yOGg3NDYuNTRhNzQuNSA3NC41IDAgMCAxIDc0LjI4IDc0LjI4djM3LjEyeiBtLTQyOS00NjYuMTJhNzQuNSA3NC41IDAgMCAxIDc0LjI4IDc0LjI4djc0Ni41NWE3NC41IDc0LjUgMCAwIDEtNzQuMjggNzQuMjhoLTM3LjEyYTc0LjUgNzQuNSAwIDAgMS03NC4yOC03NC4yOFYxMzguNzNhNzQuNSA3NC41IDAgMCAxIDc0LjI4LTc0LjI4eiIgcC1pZD0iMTY5NzQiIGZpbGw9IiNmZmZmZmYiPjwvcGF0aD48L3N2Zz4=');
+        background-size: 32% 32%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        .square(100%);
       }
     }
 
@@ -242,6 +245,114 @@
 
       > image {
         transform: translate(-40%,-45%);
+      }
+    }
+  }
+}
+
+// new home entry
+.currentLocationEntry {
+  background-color: @color-secondary;
+  padding: 200rpx 0 50rpx;
+  text-align: center;
+  font-size: 0;
+  line-height: 0;
+
+  .clei {
+    @size-clei: 260rpx;
+    position: relative;
+    display: block;
+    .square(@size-clei);
+    .rounded(@size-clei);
+    margin: 0 auto;
+    text-align: center;
+    line-height: @size-clei;
+
+    &.anim {
+      .animation-s(cleiShadow,.2s,linear,.8s);
+      @keyframes cleiShadow {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
+        50% {
+          box-shadow: 0 0 0 39rpx rgba(255, 255, 255, .5);
+        }
+        100% {
+          box-shadow: 0 0 0 26rpx rgba(255, 255, 255, .7);
+        }
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        .square(@size-clei);
+        .rounded(@size-clei);
+        .animation-s(cleiShadowBefore,.4s,ease,.8s);
+        @keyframes cleiShadowBefore {
+          0% {
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+          }
+          50% {
+            box-shadow: 0 0 0 70rpx rgba(255, 255, 255, .5);
+          }
+          100% {
+            box-shadow: 0 0 0 50rpx rgba(255, 255, 255, .5);
+          }
+        }
+      }
+    }
+
+
+    > image {
+      .square(floor(@size-clei * 0.6));
+      margin-top: -10rpx;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  .clen {
+    display: inline-block;
+    max-width: 50%;
+    font-size: @fontSize-header;
+    line-height: @fontSize-header;
+    color: @fontColor-default;
+    margin: 100rpx auto 0;
+    .text-hide();
+  }
+
+  .cled {
+    display: block;
+    margin-top: 30rpx;
+    font-size: 0;
+    line-height: 0;
+
+    > span {
+      position: relative;
+      font-size: @fontSize-sub;
+      line-height: @fontSize-sub;
+      color: @fontColor-tips;
+
+      &:first-child {
+        padding-right: 30rpx;
+      }
+
+      &:last-child {
+        padding-left: 30rpx;
+      }
+
+      &:first-child:after {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(0, -50%);
+        content: '';
+        height: @fontSize-sub * .8;
+        width: 1px;
+        background-color: @fontColor-tips;
       }
     }
   }
@@ -281,140 +392,6 @@
     opacity: .5;
   }
 }
-
-.indexSearcherWrapBrick {
-  display: block;
-  height: @gapSize-public * 2 + @height-input-indexSearcher;
-  background-color: @bgColor1-userInfoWrap;
-}
-
-.locationEntry {
-  position: relative;
-  display: block;
-  border-bottom: 1px solid @borderColor-base;
-  margin: 0 @gapSize-public * 4;
-  padding: @gapSize-public * 2 @size-funIcon + @gapSize-public;
-
-  .currentLocationName {
-    padding-top: @gapSize-public;
-    display: block;
-    font-size: @fontSize-header;
-    line-height: 1;
-    color: @fontColor-default;
-    .text-hide();
-  }
-
-  .toCurrentLocation {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translate(0, -50%);
-    .square(@fontSize-header * 1.48);
-    .rounded(50%);
-    border: 1px solid @borderColor-base;
-
-    > image {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      .square(80%);
-    }
-  }
-
-  .locationContent {
-    display: block;
-    margin-top: @gapSize-public;
-    color: @fontColor-tips;
-    font-size: @fontSize-sub;
-    line-height: 1;
-  }
-
-  .locationEntryIcon {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translate(0, -50%);
-    .square(@size-funIcon);
-
-    > image {
-      width: 100%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-}
-
-// .funsPanel {
-//   display: flex;
-//   justify-content: center;
-//   padding-top: @gapSize-public * 2;
-
-//   .funs {
-//     width: 50%;
-
-//     .funIcon {
-//       position: relative;
-//       display: block;
-//       margin: 0 auto;
-//       .rounded(50%);
-//       .square(@size-funIcon);
-//       // background-color: @bgColor-funIcon;
-//       border: 1px solid @borderColor-base;
-
-//       > image {
-//         position: absolute;
-//         top: 50%;
-//         left: 50%;
-//         transform: translate(-50%,-50%);
-//       }
-
-//       &.meat > image {
-//         width: 100%;
-//       }
-
-//       &.whatsIn > image {
-//         width: 70%;
-//       }
-
-//       &.msg > image {
-//         width: 70%;
-//       }
-//     }
-
-//     .funTitle {
-//       display: block;
-//       text-align: center;
-//       color: @fontColor-tips;
-//       font-size: @fontSize-sub;
-//       padding-top: @gapSize-public;
-//     }
-//   }
-// }
-
-// .sectionName {
-//   display: block;
-//   border: 1px solid @borderColor-base;
-//   border-left: none;
-//   border-top: none;
-//   .size(auto,80rpx);
-//   .rounded(50%);
-//   margin: @gapSize-public * 2 @gapSize-public * 4 0 @gapSize-public * 4;
-//   position: relative;
-
-//   > image {
-//     position: absolute;
-//     bottom: -40rpx;
-//     left: 50%;
-//     .square(80rpx);
-//     .rounded(50%);
-//     background-color: rgba(255, 255, 255, 1);
-//     box-shadow: 0 0 0 20rpx rgba(255,255,255,1);
-//     transform: translate(-50%,0) rotate(180deg);
-//   }
-// }
 
 .msgInIndex {
   display: block;
@@ -600,6 +577,7 @@
 .latestItem {
   margin: 0 @gapSize-public * 4;
   padding: 0;
+  margin-left: @gapSize-public * 3;
   list-style: none;
   display: block;
 
@@ -612,7 +590,7 @@
     line-height: 68rpx;
     padding: 0 40rpx;
     margin-top: @gapSize-public;
-    margin-right: @gapSize-public;
+    margin-left: @gapSize-public;
     .rounded(68rpx);
 
     .liStyleMix(@color) {
