@@ -11,29 +11,23 @@ const base64 = require('../../base64/base64');
 
 
 Page({
-
   data: {
-    resultUnit: { // 内容列表的数据集
-      pack: { // 盒子列表的数据集
-        ruPackImage: base64.boxIconColor666,
-      }
-    },
-    currentLocation: ``, // 当前所在的盒子
-    items: [
-      {
-        name: "收纳点",
-        value: "package"
-      },
-      {
-        name: "物品",
-        value: "good"
-      }
-    ],
-    checked: "package",
-    inputVal: "",
-    list: [], //要显示的list
+    // 搜用户当前的房屋
+    currentLocationID: null,
+    // 搜索框相关
+    searchValue: null,
+    searchIcon: base64.searchIconColorffaa7a,
+    // 搜索结果
     packList: [],
-    goodList: []
+    goodList: [],
+    // 搜索结果 tab
+    packTabName: '收纳点',
+    goodTabName: '物品',
+    packListChecked: false,
+    goodListChecked: false,
+    checked: null,
+    // fileServer
+    serverName: `${constants.NP}${constants.APIDOMAIN}`
   },
 
   onReady: function() {
@@ -45,78 +39,101 @@ Page({
     this.setData({
       checked: e.detail.value
     });
-    this.showList();
-  },
-
-  // 获取用户房屋地点列表
-  search: function(form = { key: "" }) {
-    const url = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}search`;
-    request.post(url, form, this.searchSuccess, this.searchFail);
-  },
-
-  //搜索返回成功
-  searchSuccess: function(res) {
-    this.setData({
-      packList: res.data.packList,
-      goodList: res.data.goodList
-    });
-    this.showList();
-  },
-
-  //搜索返回失败
-  searchFail: function(res) {},
-  //显示列表
-  showList: function() {
-    var list = [];
-    switch (this.data.checked) {
-      case "all":
-        list = this.data.packList.concat(this.data.goodList).sort(
-          (a, b) => moment(a.date) - moment(b.date) //按时间由早到晚排序
-        );
+    switch (e.detail.value) {
+      case this.data.packTabName:
+        this.setData({
+          packListChecked: true,
+          goodListChecked: false,
+        });
         break;
-      case "good":
-        list = this.data.goodList;
+      case this.data.goodTabName:
+        this.setData({
+          packListChecked: false,
+          goodListChecked: true,
+        });
         break;
-      case "package":
-        list = this.data.packList;
-        break;
+        default:
     }
+  },
+
+  // 搜索 key 输入
+  searchValueKeyIn: function(e) {
     this.setData({
-      list: list
+      searchValue: e.detail.value,
     });
   },
-  //提交
-  formSubmit: function(e) {
-    this.search(e.detail.value);
-  },
-  //清除
-  clearInput: function() {
+
+  // 搜索 key 重置
+  searchValueReset: function() {
     this.setData({
-      inputVal: ""
+      searchValue: null
     });
   },
-  //输入事件
-  inputTyping: function(e) {
-    this.setData({
-      inputVal: e.detail.value
-    });
+
+  searchSubmit: function(e) {
+    let me = this;
+    console.log(this.data.currentLocationID);
+    // 提交搜索 key
+    const KEY = e.detail.value;
+    request.post(
+      `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}search`,
+      {
+        key: KEY,
+        id: me.data.currentLocationID,
+      },
+      // 搜索成功
+      function (res) {
+        switch (res.code) {
+          case 100:
+            wx.showToast({
+              title: `${res.msg}`,
+              icon: 'none',
+              duration: 2000
+            });
+            break;
+          case 200:
+            wx.showToast({
+              title: `搜索完成`,
+              duration: 1000
+            });
+            me.setData({
+              packList: res.data.packList,
+              goodList: res.data.goodList,
+            });
+            break;
+        }
+      },
+      // 搜索失败
+      function (err) {
+        console.log('搜索失败', err);
+        wx.showModal({
+          title: `搜索失败`,
+          content: `爸爸快检查网络是否正常`,
+          confirmText: `好的`,
+          showCancel: false
+        });
+      }
+    )
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options.type);
     this.setData({
-      checked: options.type || "all",
-      currentLocation: options.pack
+      checked: this.data.packTabName,
+      packListChecked: true,
     });
-    this.search();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {},
+  onShow: function() {
+    this.setData({
+      currentLocationID: app.globalData.currentLocationID,
+    });
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

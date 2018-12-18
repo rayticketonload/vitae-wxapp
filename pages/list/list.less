@@ -42,6 +42,7 @@ page {
 
 .currentLocationBrick {
   height: @height-currentLocation;
+  background-color: @color-secondary;
 }
 
 .currentLocation {
@@ -53,7 +54,7 @@ page {
   width: 100%;
   padding: 0 @gapSize-public * 2 + 190rpx;
   background-color: @bgColor-currentLocation;
-  color: @fontColor-currentLocation;
+  color: @domColor3;
   text-align: center;
 
   .currentLocationName {
@@ -66,14 +67,14 @@ page {
 
   .prevPackBtn {
     position: absolute;
-    top: @gapSize-public;
+    top: 50%;
     left: @gapSize-public;
     font-size: @fontSize-sub;
-    color: @fontColor-currentLocation;
     line-height: @height-currentLocation / 2;
-    .size(190rpx,@height-currentLocation / 2);
+    .size(200rpx,@height-currentLocation / 2);
     .rounded(@height-currentLocation / 2);
-    border: 1px solid @fontColor-currentLocation;
+    border: 1px solid @domColor3;
+    margin-top: -(@height-currentLocation / 4);
 
     &:before {
       content: '上一层收纳点';
@@ -83,48 +84,42 @@ page {
 
 .resultType {
   display: flex;
-  width: 100%;
+  // width: 100%;
+  margin: @gapSize-public @gapSize-public 0;
   justify-content: center;
-  background-color: @bgColor-resultType;
 
   .typeBox {
     width: 50%;
     position: relative;
     z-index: @zIndex-typeBox-list;
-    border-bottom: 1px solid @borderColor-base;
+    // border-bottom: 1px solid @borderColor-base;
 
     > label {
       display: block;
       height: @height-typeBox;
       line-height: @height-typeBox;
       font-size: @fontSize-typeBox;
-      color: lighten(@fontColor-typeBox,40);
+      color: @fontColor-tips;
+      background-color: @bgColor-resultType;
+
+      &.first {
+        .border-radius(@borderRadius-public, 0, 0, @borderRadius-public);
+      }
+
+      &.second {
+        .border-radius(0, @borderRadius-public, @borderRadius-public, 0);
+      }
 
       .displayNone {
         display: none;
       }
     }
 
-    &:before {
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      .size(100%, 4rpx);
-      background-color: @color-secondary;
-    }
-
-    .count {
-      color: @fontColor-tips;
-    }
-
     &.current {
 
       > label {
-        color: @fontColor-typeBox;
-      }
-
-      &:before {
-        content: '';
+        color: @fontColor-light;
+        background-color: @domColor3;
       }
     }
   }

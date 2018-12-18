@@ -81,11 +81,11 @@ Page({
               break;
           }
         },
-        // 添加收纳点失败
+        // 修改物品失败
         function (err) {
-          console.log('添加收纳点失败', err);
+          console.log('修改物品失败', err);
           wx.showModal({
-            title: `添加收纳点失败`,
+            title: `修改物品失败`,
             content: `爸爸快检查网络是否正常`,
             confirmText: `好的`,
             showCancel: false

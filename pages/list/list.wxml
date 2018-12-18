@@ -6,14 +6,14 @@
   </view>
   <radio-group class="radio-group resultType" bindchange="radioChange">
     <view class="typeBox {{ checked == 'package' ? 'current' : '' }}">
-      <label class="radio">
+      <label class="radio first">
         <radio value="package" checked="{{ checked == 'package' }}" class="displayNone"/>
         收纳点
         <!-- (<span class="count">{{ packListTotal }}</span>) -->
       </label>
     </view>
     <view class="typeBox {{ checked == 'good' ? 'current' : '' }}">
-      <label class="radio">
+      <label class="radio second">
         <radio value="good" checked="{{ checked == 'good' }}" class="displayNone"/>
         物品
         <!-- (<span class="count">{{ goodListTotal }}</span>) -->

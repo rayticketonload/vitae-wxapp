@@ -1,6 +1,5 @@
 {
-  "navigationBarTitleText": "房里有什么呢",
-  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "翻箱倒柜",
   "usingComponents": {
     "standardLayout": "/components/standardLayout/standardLayout"
   }

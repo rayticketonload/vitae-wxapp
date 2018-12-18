@@ -1,35 +1,75 @@
 <standardLayout id="standardLayout">
-  <view class="currentLocation">
-    当前位置：{{ currentLocation }}
-  </view>
-  <!-- <view class="defaultFormWrap">
-    <form bindsubmit="formSubmit" bindreset="formReset">
-      <view class="formControlWrap">
-        <input value="{{inputVal}}" name="key" placeholder="输入关键字" class="formControl" bindinput="inputTyping" />
-        <view class="clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-          <icon type="clear" size="14"></icon>
-        </view>
-        <button formType="submit" class="button thirdly">搜索</button>
-      </view>
-    </form>
-  </view> -->
-  <radio-group class="radio-group resultType" bindchange="radioChange">
-    <view class="typeBox {{ checked == item.value ? 'current' : '' }}" wx:for="{{ items }}">
-      <label class="radio">
-        <radio value="{{ item.value }}" checked="{{ checked == item.value }}" class="displayNone"/>
-        {{ item.name }}
+  <form>
+    <view class="searcherWrap">
+      <image src="{{ searchIcon }}"></image>
+      <input
+        name="searcherInput"
+        class="searchInput"
+        type='text'
+        confirm-type="search"
+        placeholder="来，告诉我你想翻出来什么"
+        placeholder-class="searchInputPlaceholder"
+        value="{{ searchValue }}"
+        maxlength="-1"
+        focus="true"
+        bindinput="searchValueKeyIn"
+        bindconfirm='searchSubmit'
+      />
+      <span class="formValueClear" wx:if="{{ searchValue.length > 0 }}" bindtap="searchValueReset"></span>
+    </view>
+  </form>
+  <radio-group class="radio-group resultTab" bindchange="radioChange">
+    <view class="type {{ checked == packTabName ? 'current' : '' }}">
+      <label>
+        <radio value="{{ packTabName }}" checked="{{ checked == packTabName }}" class="displayNone"/>
+        {{ packTabName }}
+        <span class="total" wx:if="{{ packList.length > 0 }}">( {{ packList.length }} )</span>
+      </label>
+    </view>
+    <view class="type {{ checked == goodTabName ? 'current' : '' }}">
+      <label>
+        <radio value="{{ goodTabName }}" checked="{{ checked == goodTabName }}" class="displayNone"/>
+        {{ goodTabName }}
+        <span class="total" wx:if="{{ goodList.length > 0 }}">( {{ goodList.length }} )</span>
       </label>
     </view>
   </radio-group>
-  <view class="result">
-    <view wx:for="{{ list }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
-      <image src="" class="ruPackImg"></image>
-      <p class="ruPackName">{{ itemObj.name }}</p>
-      <view class="ruPackDetail">
-        <p class="ruCreateTime">收纳点: 5 个</p>
-        <p class="ruCreateTime">物品:  14 个</p>
+  <view class="searchResult">
+    <div class="pack {{ packListChecked ? 'current' : '' }}">
+      <view class="unit forPack"
+           wx:for="{{ packList }}"
+           wx:key="{{ index }}"
+      >
+        <view class="packImageBox">
+          <image wx:if="{{ item.image_path == null || item.image_path == '' }}" src="" class="displayNone"  mode="center"></image>
+          <image src="{{ serverName }}{{ item.image_path }}" class="imageView" mode="aspectFill"></image>
+        </view>
+        <view class="name">
+          {{ item.name }}
+        </view>
+        <view class="location">
+
+        </view>
+        <view class="ctrl">
+          <span
+            class="modify"
+          >
+            <image src="{{ modifyIcon }}"></image>
+          </span>
+          <span
+            class="entry"
+          >
+            <image src="{{ entryIcon }}"></image>
+          </span>
+        </view>
       </view>
-    </view>
+      <div class="noData {{ packList.length <= 0 ? 'block' : '' }}">无收纳点</div>
+    </div>
+    <div class="good {{ goodListChecked ? 'current' : '' }}">
+      <div class="resultUnit good" wx:for="goodList" wx:key="{{ item.index }}" wx:for-item="item">
+      </div>
+      <div class="noData {{ goodList.length <= 0 ? 'block' : '' }}">无物品</div>
+    </div>
   </view>
 </standardLayout>
 

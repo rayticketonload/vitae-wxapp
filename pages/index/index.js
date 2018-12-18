@@ -208,15 +208,15 @@ Page({
   },
 
   // 跳转到搜索页面
-  gotoSearchPage: function(searchType = all, pack = this.data.currentLocationName) {
+  gotoSearchPage: function() {
     wx.navigateTo({
-      url: `../search/search?type=${searchType}&pack=${pack}`
+      url: `../search/search`
     });
   },
 
   toSearchPage: function() {
     console.log(`跳转到搜索页面`);
-    this.gotoSearchPage("all");
+    this.gotoSearchPage();
   },
 
   // 跳转到收纳点内容列表
