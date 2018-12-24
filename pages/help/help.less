@@ -1,5 +1,6 @@
-// out: ./editItem.wxss, compress: true, sourceMap: false
+// out: ./help.wxss, compress: true, sourceMap: false
 // vscode 插件 easy wxless 将单个 less 文件编译成wxss文件的设置语句（设置语句一定放在文件最开头一行）
+
 // 引入样式变量
 @import '../../style/theme.less';
 // 引入minxin
@@ -8,18 +9,22 @@
 @import '../../style/components/form.less';
 @import '../../style/components/button.less';
 
-.picker {
-    line-height: 3;
-}
+.helpWrap {
 
-.exDateTips {
-  display: block;
-  font-size: @fontSize-default;
-  color: @fontColor-tips;
-  padding-top: @gapSize-public;
-  margin: 0 @gapSize-public * 2;
+  > image {
+    width: 30%;
+    margin: 0 auto;
+    display: block;
+  }
 
-  > span {
-    color: @domColor3;
+  .content {
+    display: block;
+    text-align: center;
+    font-size: @fontSize-large;
+    color: @fontColor-default;
+  }
+
+  .simLink {
+    color: @domColor1;
   }
 }

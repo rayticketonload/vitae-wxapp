@@ -19,6 +19,25 @@
         <span class="formValueClear" wx:if="{{ itemNameValue.length > 0 }}" bindtap="itemNameValueReset"></span>
       </view>
     </view>
+    <view class="formControlWrap">
+      <label class="formControlLabel">
+        {{ itemQuantityLabel }}
+      </label>
+      <view class="formControlBox">
+        <input
+          type = "number"
+          name = "{{ itemQuantity }}"
+          placeholder = "{{ itemQuantityPlaceholder }}"
+          placeholder-class = "defaultPlaceHolderColor"
+          value = "{{ itemQuantityValue }}"
+          class = "formControl"
+          maxlength = "-1"
+          auto-focus = true
+          bindinput = "itemQuantityValueKeyIn"
+        />
+        <span class="formValueClear" wx:if="{{ itemQuantityValue.length > 0 }}" bindtap="itemQuantityValueReset"></span>
+      </view>
+    </view>
     <view class="formControlWrap options" bindtap="selectMenuSwitch">
       <label class="formControlLabel">
         {{ parentPackLabel }}
@@ -36,13 +55,15 @@
         />
       </view>
     </view>
-    <view class="formControlWrap fn-mb-60">
+    <view class="formControlWrap">
       <pickerDAT bindcallback="dateChange">
-        <view class="picker formControl">
+        <view class="picker">
           保质期: {{ date }}
         </view>
+        <span class="formValueClear" wx:if="{{ date.length > 0 }}" bindtap="exDateReset"></span>
       </pickerDAT>
     </view>
+    <div class="exDateTips">我会提前 <span>16</span> 天通知你，它保质期快到了!</div>
     <view class="formButtonWrap">
       <button formType="submit" class="button thirdly">保存</button>
     </view>

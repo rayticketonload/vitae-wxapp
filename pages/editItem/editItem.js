@@ -19,6 +19,11 @@ Page({
     itemNameLabel: `物品名称`,
     itemNamePlaceholder: `例如鸡蛋，唇膏，变形记刚...`,
     itemNameValue: ``,
+    // 物品数量输入框初始数据
+    itemQuantity: `itemQuantity`,
+    itemQuantityLabel: `物品数量`,
+    itemQuantityPlaceholder: `请输入数字`,
+    itemQuantityValue: null,
     // 物品存放位置输入框初始数据
     parentPackName: `parentPackName`,
     parentPackLabel: `存放位置`,
@@ -27,16 +32,17 @@ Page({
     // selectMenu 开关
     selectMenu: false,
     selectMenuList: [],
-    date: "",
-    path:[],
+    date: ``,
+    path: [],
     // fileServer（serverName的值在 onload 的时候再附上去，不然在图片路径 load 出来之前，会报 404）
     serverName: ``
   },
 
   formSubmit: function(e) {
+    let me = this;
     // 提交错误描述
-    if (!this.validator.checkForm(e)) {
-      const error = this.validator.errorList[0];
+    if (!me.validator.checkForm(e)) {
+      const error = me.validator.errorList[0];
       wx.showToast({
         title: `${error.msg}`,
         icon: `none`,
@@ -45,13 +51,15 @@ Page({
       return false;
     } else {
       const thisItemName = e.detail.value.itemName;
+      const thisItemQuantity = e.detail.value.itemQuantity;
       request.post(
-        `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}addGood`,
+        `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}updataGoodInfoById`,
         {
           name: thisItemName,
-          parentId: this.data.parentPackID,
-          expireDate: this.data.date,
-          pic: this.data.path,
+          parentId: me.data.parentPackID,
+          expireDate: me.data.date,
+          pic: me.data.path,
+          quantity: thisItemQuantity,
         },
         // 添加收纳点成功
         function (res) {
@@ -69,9 +77,9 @@ Page({
                 duration: 1000
               });
               const setTimeoutFun = () => {
-                console.log(`跳转到 ${thisItemName} 的内容列表`);
+                console.log(`跳转到 ${me.data.parentPackName} 的内容列表`);
                 wx.reLaunch({
-                  url: `../list/list?packName=${thisItemName}&packId=${res.data.id}`
+                  url: `../list/list?packName=${me.data.parentPackName}&packId=${me.data.parentPackID}&checked=good`
                 });
               };
               setTimeout(
@@ -102,10 +110,31 @@ Page({
     });
   },
 
+  // 物品数量正在输入
+  itemQuantityValueKeyIn: function(e) {
+    this.setData({
+      itemQuantityValue: e.detail.value,
+    });
+  },
+
   // 物品名称重置
   itemNameValueReset: function() {
     this.setData({
       itemNameValue: ``
+    });
+  },
+
+  // 物品数量重置
+  itemQuantityValueReset: function() {
+    this.setData({
+      itemQuantityValue: ``
+    });
+  },
+
+  // 保质日期重置
+  exDateReset: function() {
+    this.setData({
+      date: ``
     });
   },
 
@@ -145,23 +174,35 @@ Page({
     const vr = {
       itemName: {
         required: true,
+      },
+      itemQuantity: {
+        required: true,
       }
     };
     // 验证返回信息
     const vm = {
       itemName: {
         required: `爸爸，要填名称的`
+      },
+      itemQuantity: {
+        required: `爸爸，数量填个 0 也可以`
       }
     };
     me.validator = app.validator (vr, vm);
     me.setData({
       itemId: options.itemId,
       itemNameValue: options.itemName,
+      itemQuantityValue: options.quantity,
       path: options.itemImg,
       parentPackID: options.parentPackId,
       parentPackValue: options.parentPackName,
       serverName: `${constants.NP}${constants.APIDOMAIN}`
     });
+    if (options.expire && options.expire != 'null') {
+      me.setData({
+        date: options.expire,
+      });
+    }
     // 获取当前位置下的所有收纳点信息，赋值到存放位置选择的菜单
     request.get(
       `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPackListByDefaultPack`,

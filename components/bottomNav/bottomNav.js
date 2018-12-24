@@ -64,14 +64,14 @@ Component({
     },
 
     // 跳转到添加物品表单页面
-    _navToAddItem(e) {
+    _navToAddItem() {
       wx.navigateTo({
         url: `../addItem/addItem?parentPackID=${app.globalData.parentPackID}&parentPackName=${app.globalData.parentPackName}`
       });
     },
 
     // 跳转到添加收纳盒表单页面
-    _navToAddBox(e) {
+    _navToAddBox() {
       wx.navigateTo({
         url: `../addBox/addBox?parentPackID=${app.globalData.parentPackID}&parentPackName=${app.globalData.parentPackName}`
       });

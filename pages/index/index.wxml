@@ -50,76 +50,94 @@
   </view>
   <ul class="latestItem">
     <li
-      bindtap="entryNearestModify"
-      data-name="{{ nearestModify[0].name }}"
-      data-type="{{ nearestModify[0].type }}"
-      data-id="{{ nearestModify[0].id }}"
-      data-img="{{ nearestModify[0].img }}"
-      data-ppid="{{ nearestModify[0].ppid }}"
-      data-ppname="{{ nearestModify[0].ppname }}"
+      bindtap="entrynewModify"
+      data-name="{{ newModify[0].name }}"
+      data-type="{{ newModify[0].type }}"
+      data-id="{{ newModify[0].id }}"
+      data-img="{{ newModify[0].image_path }}"
+      data-pic="{{ newModify[0].pic_address }}"
+      data-ppid="{{ newModify[0].parent_id }}"
+      data-ppname="{{ newModify[0].ppname }}"
+      data-expire="{{ newModify[0].expire_date }}"
+      data-quantity="{{ newModify[0].quantity }}"
       class="one"
     >
-      {{ nearestModify[0].name }}
+      {{ newModify[0].name }}
     </li>
     <li
-      bindtap="entryNearestModify"
-      data-name="{{ nearestModify[1].name }}"
-      data-type="{{ nearestModify[1].type }}"
-      data-id="{{ nearestModify[1].id }}"
-      data-img="{{ nearestModify[1].img }}"
-      data-ppid="{{ nearestModify[1].ppid }}"
-      data-ppname="{{ nearestModify[1].ppname }}"
+      bindtap="entrynewModify"
+      data-name="{{ newModify[1].name }}"
+      data-type="{{ newModify[1].type }}"
+      data-id="{{ newModify[1].id }}"
+      data-img="{{ newModify[1].image_path }}"
+      data-pic="{{ newModify[1].pic_address }}"
+      data-ppid="{{ newModify[1].parent_id }}"
+      data-ppname="{{ newModify[1].ppname }}"
+      data-expire="{{ newModify[1].expire_date }}"
+      data-quantity="{{ newModify[1].quantity }}"
       class="two"
     >
-      {{ nearestModify[1].name }}
+      {{ newModify[1].name }}
     </li>
     <li
-      bindtap="entryNearestModify"
-      data-name="{{ nearestModify[2].name }}"
-      data-type="{{ nearestModify[2].type }}"
-      data-id="{{ nearestModify[2].id }}"
-      data-img="{{ nearestModify[2].img }}"
-      data-ppid="{{ nearestModify[2].ppid }}"
-      data-ppname="{{ nearestModify[2].ppname }}"
+      bindtap="entrynewModify"
+      data-name="{{ newModify[2].name }}"
+      data-type="{{ newModify[2].type }}"
+      data-id="{{ newModify[2].id }}"
+      data-img="{{ newModify[2].image_path }}"
+      data-pic="{{ newModify[2].pic_address }}"
+      data-ppid="{{ newModify[2].parent_id }}"
+      data-ppname="{{ newModify[2].ppname }}"
+      data-expire="{{ newModify[2].expire_date }}"
+      data-quantity="{{ newModify[2].quantity }}"
       class="three"
     >
-      {{ nearestModify[2].name }}
+      {{ newModify[2].name }}
     </li>
     <li
-      bindtap="entryNearestModify"
-      data-name="{{ nearestModify[3].name }}"
-      data-type="{{ nearestModify[3].type }}"
-      data-id="{{ nearestModify[3].id }}"
-      data-img="{{ nearestModify[3].img }}"
-      data-ppid="{{ nearestModify[3].ppid }}"
-      data-ppname="{{ nearestModify[3].ppname }}"
+      bindtap="entrynewModify"
+      data-name="{{ newModify[3].name }}"
+      data-type="{{ newModify[3].type }}"
+      data-id="{{ newModify[3].id }}"
+      data-img="{{ newModify[3].image_path }}"
+      data-pic="{{ newModify[3].pic_address }}"
+      data-ppid="{{ newModify[3].parent_id }}"
+      data-ppname="{{ newModify[3].ppname }}"
+      data-expire="{{ newModify[3].expire_date }}"
+      data-quantity="{{ newModify[3].quantity }}"
       class="four"
     >
-      {{ nearestModify[3].name }}
+      {{ newModify[3].name }}
     </li>
     <li
-      bindtap="entryNearestModify"
-      data-name="{{ nearestModify[4].name }}"
-      data-type="{{ nearestModify[4].type }}"
-      data-id="{{ nearestModify[4].id }}"
-      data-img="{{ nearestModify[4].img }}"
-      data-ppid="{{ nearestModify[4].ppid }}"
-      data-ppname="{{ nearestModify[4].ppname }}"
+      bindtap="entrynewModify"
+      data-name="{{ newModify[4].name }}"
+      data-type="{{ newModify[4].type }}"
+      data-id="{{ newModify[4].id }}"
+      data-img="{{ newModify[4].image_path }}"
+      data-pic="{{ newModify[4].pic_address }}"
+      data-ppid="{{ newModify[4].parent_id }}"
+      data-ppname="{{ newModify[4].ppname }}"
+      data-expire="{{ newModify[4].expire_date }}"
+      data-quantity="{{ newModify[4].quantity }}"
       class="five"
     >
-      {{ nearestModify[4].name }}
+      {{ newModify[4].name }}
     </li>
     <li
-      bindtap="entryNearestModify"
-      data-name="{{ nearestModify[5].name }}"
-      data-type="{{ nearestModify[5].type }}"
-      data-id="{{ nearestModify[5].id }}"
-      data-img="{{ nearestModify[5].img }}"
-      data-ppid="{{ nearestModify[5].ppid }}"
-      data-ppname="{{ nearestModify[5].ppname }}"
+      bindtap="entrynewModify"
+      data-name="{{ newModify[5].name }}"
+      data-type="{{ newModify[5].type }}"
+      data-id="{{ newModify[5].id }}"
+      data-img="{{ newModify[5].image_path }}"
+      data-pic="{{ newModify[5].pic_address }}"
+      data-ppid="{{ newModify[5].parent_id }}"
+      data-ppname="{{ newModify[5].ppname }}"
+      data-expire="{{ newModify[5].expire_date }}"
+      data-quantity="{{ newModify[5].quantity }}"
       class="six"
     >
-      {{ nearestModify[5].name }}
+      {{ newModify[5].name }}
     </li>
   </ul>
   <view class="sectionName">

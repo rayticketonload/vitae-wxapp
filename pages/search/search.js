@@ -12,6 +12,10 @@ const base64 = require('../../base64/base64');
 
 Page({
   data: {
+    // 图标
+    entryIcon: base64.angleRight,
+    modifyIcon: base64.editIconColor666,
+    delIcon: base64.delIconColorful,
     // 搜用户当前的房屋
     currentLocationID: null,
     // 搜索框相关

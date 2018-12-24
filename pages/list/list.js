@@ -8,10 +8,11 @@ const constants = require("../../constants/constants");
 const request = require("../../utils/request");
 // 引入 base64 资源
 const base64 = require('../../base64/base64');
-
+// 引入 moment 时间戳编译
+const moment = require("../../utils/moment");
+moment.locale('zh-cn');
 
 Page({
-
   data: {
     // 图标
     ruPackNameGoInIcon: base64.angleRight,
@@ -37,7 +38,7 @@ Page({
     goodListTotal: 0,
     goodListHaveData: true,
     // fileServer
-    serverName: `${constants.NP}${constants.APIDOMAIN}`
+    serverName: `${constants.NP}${constants.APIDOMAIN}`,
   },
 
   // tab 改变
@@ -53,6 +54,11 @@ Page({
       currentPackName: options.packName,
       currentPackId: options.packId
     });
+    if (options.checked) {
+      this.setData({
+        checked: options.checked,
+      });
+    }
     this.getList(
       this.data.currentPackId
     );
@@ -76,13 +82,42 @@ Page({
         // 更改 globalData.parentPackID 和 name 为当前已经请求成功的收纳点ID和名称
         app.globalData.parentPackID = thePackId;
         app.globalData.parentPackName = res.data.currentPack.name;
+        // 重组收纳点列表数据
+        const pl = res.data.packList.map((itemObj) => {
+          return {
+            create_timestamp: moment(parseInt(itemObj.create_timestamp)).subtract(10, 'days').calendar(),
+            date: itemObj.date,
+            goodTotal: itemObj.goodTotal,
+            id: itemObj.id,
+            image_path: itemObj.image_path,
+            name: itemObj.name,
+            packTotal: itemObj.packTotal,
+            parent_id: itemObj.parent_id,
+            type: itemObj.type,
+            update_timestamp: itemObj.update_timestamp,
+          }
+        });
+        // 重组物品列表数据
+        const gl = res.data.goodList.map((itemObj) => {
+          return {
+            create_timestamp: moment(parseInt(itemObj.create_timestamp)).subtract(10, 'days').calendar(),
+            date: itemObj.date,
+            expire_date: itemObj.expire_date ? itemObj.expire_date : '--',
+            id: itemObj.id,
+            name: itemObj.name,
+            parent_id: itemObj.parent_id,
+            pic_address: itemObj.pic_address,
+            type: itemObj.type,
+            update_timestamp: itemObj.update_timestamp,
+          }
+        })
         // 在设置自身的 data
         me.setData({
           currentPackId: thePackId,
           currentPackName: res.data.currentPack.name,
           exPackId: res.data.currentPack.parent_id,
-          packList: res.data.packList,
-          goodList: res.data.goodList,
+          packList: pl.reverse(),
+          goodList: gl.reverse(),
           packListTotal: res.data.packList.length,
           goodListTotal: res.data.goodList.length,
         });
@@ -173,7 +208,7 @@ Page({
   // 修改物品
   itemEdit: function(e) {
     wx.navigateTo({
-      url: `../editItem/editItem?itemId=${e.currentTarget.dataset.id}&itemName=${e.currentTarget.dataset.name}&parentPackId=${this.data.currentPackId}&parentPackName=${this.data.currentPackName}&itemImg=${e.currentTarget.dataset.img}`
+      url: `../editItem/editItem?itemId=${e.currentTarget.dataset.id}&itemName=${e.currentTarget.dataset.name}&parentPackId=${this.data.currentPackId}&parentPackName=${this.data.currentPackName}&itemImg=${e.currentTarget.dataset.img}&quantity=${e.currentTarget.dataset.quantity}`
     });
   },
 

@@ -11,7 +11,8 @@
     "pages/addLocation/addLocation",
     "pages/editLocation/editLocation",
     "pages/search/search",
-    "pages/list/list"
+    "pages/list/list",
+    "pages/help/help"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffe8db",

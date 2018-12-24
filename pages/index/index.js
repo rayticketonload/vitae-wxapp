@@ -36,7 +36,7 @@ Page({
     // 用户是否授权公开信息
     hasUserInfo: app.globalData.hasUserInfo,
     // 最近编辑
-    nearestModify: [
+    newModify: [
       {
         name: '主卧室',
         type: 'pack',
@@ -94,22 +94,25 @@ Page({
   },
 
   // 进入最近编辑
-  entryNearestModify: function(e) {
+  entrynewModify: function(e) {
     const name = e.currentTarget.dataset.name;
     const type = e.currentTarget.dataset.type;
     const id = e.currentTarget.dataset.id;
     const img = e.currentTarget.dataset.img;
+    const pic = e.currentTarget.dataset.img;
     const ppid = e.currentTarget.dataset.ppid;
     const ppname = e.currentTarget.dataset.ppname;
+    const expire = e.currentTarget.dataset.expire;
+    const quantity = e.currentTarget.dataset.quantity;
     switch (type) {
-      case 'pack':
+      case 'package':
         wx.navigateTo({
           url: `../editBox/editBox?packId=${id}&packName=${name}&parentPackId=${ppid}&parentPackName=${ppname}&packImg=${img}`
         });
         break;
       case 'good':
         wx.navigateTo({
-          url: `../editItem/editItem?itemId=${id}&itemName=${name}&parentPackId=${ppid}&parentPackName=${ppname}&itemImg=${img}`
+          url: `../editItem/editItem?itemId=${id}&itemName=${name}&parentPackId=${ppid}&parentPackName=${ppname}&itemImg=${pic}&quantity=${quantity}&expire=${expire}`
         });
         break;
       default:;
@@ -141,6 +144,28 @@ Page({
       },
       fail: ``,
       complete: ``
+    };
+    request.get(param);
+  },
+
+  // 获取最近编辑
+  getNew: function(e) {
+    let me = this;
+    const param = {
+      url: `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getNewest`,
+      success: function(data) {
+        me.setData({
+          newModify: data.data.list,
+        });
+      },
+      fail: function () {
+        wx.showModal({
+          title: `获取最近编辑失败`,
+          content: `爸爸快检查网络是否正常`,
+          confirmText: `好的`,
+          showCancel: false
+        });
+      },
     };
     request.get(param);
   },
@@ -180,9 +205,11 @@ Page({
     // 拿首页要显示的用户当前房屋的信息
     if (app.globalData.session_key) {
       this.getIndexInfo();
+      this.getNew();
     } else {
       app.sessionkeyReadyCallback = res => {
         this.getIndexInfo();
+        this.getNew();
       };
     }
   },
@@ -204,7 +231,9 @@ Page({
 
   // 打开帮助
   openHelp: function() {
-    console.log("打开帮助");
+    wx.navigateTo({
+      url: `../help/help`
+    });
   },
 
   // 跳转到搜索页面
