@@ -33,7 +33,7 @@ Page({
     goodListChecked: false,
     checked: null,
     // fileServer
-    serverName: `${constants.NP}${constants.APIDOMAIN}`
+    serverName: `${constants.NP}${constants.APIDOMAIN}${constants.IMGPATH}`
   },
 
   onReady: function() {

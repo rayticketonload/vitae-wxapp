@@ -12,8 +12,10 @@
 .searcherWrap {
   position: relative;
   box-sizing: border-box;
-  border-bottom: 1px solid @borderColor-base;
   padding: 0 @gapSize-public * 5;
+  margin: @gapSize-public * 2;
+  .rounded(@size-searchInput);
+  background-color: @bgColor-secondary;
 
   .formValueClear {
     right: @gapSize-public;
