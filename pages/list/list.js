@@ -38,7 +38,7 @@ Page({
     goodListTotal: 0,
     goodListHaveData: true,
     // fileServer
-    serverName: `${constants.NP}${constants.APIDOMAIN}`,
+    serverName: `${constants.NP}${constants.APIDOMAIN}${constants.IMGPATH}`,
   },
 
   // tab 改变
@@ -85,7 +85,7 @@ Page({
         // 重组收纳点列表数据
         const pl = res.data.packList.map((itemObj) => {
           return {
-            create_timestamp: moment(parseInt(itemObj.create_timestamp)).subtract(10, 'days').calendar(),
+            create_timestamp: moment(parseInt(itemObj.create_timestamp)).format('L'),
             date: itemObj.date,
             goodTotal: itemObj.goodTotal,
             id: itemObj.id,
@@ -100,7 +100,7 @@ Page({
         // 重组物品列表数据
         const gl = res.data.goodList.map((itemObj) => {
           return {
-            create_timestamp: moment(parseInt(itemObj.create_timestamp)).subtract(10, 'days').calendar(),
+            create_timestamp: moment(parseInt(itemObj.create_timestamp)).format('L'),
             date: itemObj.date,
             expire_date: itemObj.expire_date ? itemObj.expire_date : '--',
             id: itemObj.id,
@@ -158,7 +158,7 @@ Page({
   // 修改收纳点
   packEdit: function(e) {
     wx.navigateTo({
-      url: `../editBox/editBox?packId=${e.currentTarget.dataset.id}&packName=${e.currentTarget.dataset.name}&parentPackId=${this.data.currentPackId}&parentPackName=${this.data.currentPackName}&packImg=${e.currentTarget.dataset.img}`
+      url: `../editBox/editBox?packId=${e.currentTarget.dataset.id}`
     });
   },
 

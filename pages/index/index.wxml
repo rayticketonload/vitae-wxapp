@@ -50,91 +50,55 @@
   </view>
   <ul class="latestItem">
     <li
+      wx:if="{{ newModify.length >= 1 }}"
       bindtap="entrynewModify"
-      data-name="{{ newModify[0].name }}"
       data-type="{{ newModify[0].type }}"
       data-id="{{ newModify[0].id }}"
-      data-img="{{ newModify[0].image_path }}"
-      data-pic="{{ newModify[0].pic_address }}"
-      data-ppid="{{ newModify[0].parent_id }}"
-      data-ppname="{{ newModify[0].ppname }}"
-      data-expire="{{ newModify[0].expire_date }}"
-      data-quantity="{{ newModify[0].quantity }}"
       class="one"
     >
       {{ newModify[0].name }}
     </li>
     <li
+      wx:if="{{ newModify.length >= 2 }}"
       bindtap="entrynewModify"
-      data-name="{{ newModify[1].name }}"
       data-type="{{ newModify[1].type }}"
       data-id="{{ newModify[1].id }}"
-      data-img="{{ newModify[1].image_path }}"
-      data-pic="{{ newModify[1].pic_address }}"
-      data-ppid="{{ newModify[1].parent_id }}"
-      data-ppname="{{ newModify[1].ppname }}"
-      data-expire="{{ newModify[1].expire_date }}"
-      data-quantity="{{ newModify[1].quantity }}"
       class="two"
     >
       {{ newModify[1].name }}
     </li>
     <li
+      wx:if="{{ newModify.length >= 3 }}"
       bindtap="entrynewModify"
-      data-name="{{ newModify[2].name }}"
       data-type="{{ newModify[2].type }}"
       data-id="{{ newModify[2].id }}"
-      data-img="{{ newModify[2].image_path }}"
-      data-pic="{{ newModify[2].pic_address }}"
-      data-ppid="{{ newModify[2].parent_id }}"
-      data-ppname="{{ newModify[2].ppname }}"
-      data-expire="{{ newModify[2].expire_date }}"
-      data-quantity="{{ newModify[2].quantity }}"
       class="three"
     >
       {{ newModify[2].name }}
     </li>
     <li
+      wx:if="{{ newModify.length >= 4 }}"
       bindtap="entrynewModify"
-      data-name="{{ newModify[3].name }}"
       data-type="{{ newModify[3].type }}"
       data-id="{{ newModify[3].id }}"
-      data-img="{{ newModify[3].image_path }}"
-      data-pic="{{ newModify[3].pic_address }}"
-      data-ppid="{{ newModify[3].parent_id }}"
-      data-ppname="{{ newModify[3].ppname }}"
-      data-expire="{{ newModify[3].expire_date }}"
-      data-quantity="{{ newModify[3].quantity }}"
       class="four"
     >
       {{ newModify[3].name }}
     </li>
     <li
+      wx:if="{{ newModify.length >= 5 }}"
       bindtap="entrynewModify"
-      data-name="{{ newModify[4].name }}"
       data-type="{{ newModify[4].type }}"
       data-id="{{ newModify[4].id }}"
-      data-img="{{ newModify[4].image_path }}"
-      data-pic="{{ newModify[4].pic_address }}"
-      data-ppid="{{ newModify[4].parent_id }}"
-      data-ppname="{{ newModify[4].ppname }}"
-      data-expire="{{ newModify[4].expire_date }}"
-      data-quantity="{{ newModify[4].quantity }}"
       class="five"
     >
       {{ newModify[4].name }}
     </li>
     <li
+      wx:if="{{ newModify.length >= 6 }}"
       bindtap="entrynewModify"
-      data-name="{{ newModify[5].name }}"
       data-type="{{ newModify[5].type }}"
       data-id="{{ newModify[5].id }}"
-      data-img="{{ newModify[5].image_path }}"
-      data-pic="{{ newModify[5].pic_address }}"
-      data-ppid="{{ newModify[5].parent_id }}"
-      data-ppname="{{ newModify[5].ppname }}"
-      data-expire="{{ newModify[5].expire_date }}"
-      data-quantity="{{ newModify[5].quantity }}"
       class="six"
     >
       {{ newModify[5].name }}

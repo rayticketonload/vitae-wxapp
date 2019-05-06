@@ -4,10 +4,12 @@ const NP = `https://`;
 const APIDOMAIN = `www.wellwell.wang/`;
 // const NP = `http://`;
 // const APIDOMAIN = `192.168.55.138:8000/`;
-const APIPATH = `api/`
+const APIPATH = `mini/api/`
+const IMGPATH = `mini/`
 
 module.exports = {
-  NP: NP,
-  APIDOMAIN: APIDOMAIN,
-  APIPATH: APIPATH
+  NP,
+  APIDOMAIN,
+  APIPATH,
+  IMGPATH,
 };

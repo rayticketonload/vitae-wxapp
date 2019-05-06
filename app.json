@@ -25,5 +25,6 @@
     "backgroundColorBottom": "#ffffff",
     "enablePullDownRefresh": false,
     "onReachBottomDistance": 50
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

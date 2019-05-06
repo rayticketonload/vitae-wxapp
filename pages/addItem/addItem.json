@@ -2,6 +2,6 @@
   "navigationBarTitleText": "添加物品",
   "usingComponents": {
     "uploader": "/components/uploader/uploader",
-    "pickerDAT": "/components/pickerDAT/pickerDAT"
+    "pickDate": "/components/pickDate/pickDate"
   }
 }

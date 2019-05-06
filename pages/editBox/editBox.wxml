@@ -1,34 +1,37 @@
 <view class="defaultFormWrap">
   <form bindsubmit="formSubmit" bindreset="formReset">
+
     <uploader initial-path="{{ serverName }}{{ packImage }}"  bindcallback="uploaderChange" id="uploader" />
+
     <view class="formControlWrap">
       <label class="formControlLabel">
-        {{ packLabel }}
+        收纳点名称
       </label>
       <view class="formControlBox">
         <input
-          name = "{{ packName }}"
-          placeholder = "{{ packPlaceholder }}"
+          name = "packName"
+          placeholder = "例如冰箱，衣柜，阁楼..."
           placeholder-class = "defaultPlaceHolderColor"
-          value = "{{ packValue }}"
+          value = "{{ packName }}"
           class = "formControl"
           maxlength = "-1"
           auto-focus = true
-          bindinput = "packValueKeyIn"
+          bindinput = "packNameKeyIn"
         />
-        <span class="formValueClear" wx:if="{{ packValue.length > 0 }}" bindtap="packValueReset"></span>
+        <span class="formValueClear" wx:if="{{ packName.length > 0 }}" bindtap="packNameReset"></span>
       </view>
     </view>
+
     <view class="formControlWrap options" bindtap="selectMenuSwitch">
       <label class="formControlLabel">
-        {{ parentPackLabel }}
+        存放位置
       </label>
       <view class="formControlBox">
         <input
-          name = "{{ parentPackName }}"
-          placeholder = "{{ parentPackPlaceholder }}"
+          name = "parentPackName"
+          placeholder = "你想把 TA 放在？"
           placeholder-class = "defaultPlaceHolderColor"
-          value = "{{ parentPackValue }}"
+          value = "{{ parentPackName }}"
           class = "formControl"
           maxlength = "-1"
           auto-focus = true
@@ -36,6 +39,7 @@
         />
       </view>
     </view>
+
     <view class="formButtonWrap">
       <button formType="submit" class="button thirdly">保存</button>
     </view>

@@ -14,7 +14,10 @@
   padding-top: 50%;
   background-color: @bgColor-uploader;
   overflow: hidden;
-  .rounded(@borderRadius-public * 2);
+  // .rounded(@borderRadius-public * 2);
+  // box-shadow: 0 0 35rpx 0 rgba(0,0,0,0.15);
+  .publicRounded();
+  .publicOuterShadowStyle();
 
   // .uploader_hd {
   //   //头部
@@ -45,14 +48,15 @@
 
   .uploader_input-box {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    bottom: @gapSize-public;
+    left: @gapSize-public;
+    right: @gapSize-public;
+    .rounded(80rpx);
     text-align: center;
     font-size: @fontSize-large;
     color: @fontColor-light;
-    height: 100rpx;
-    line-height: 100rpx;
+    height: 80rpx;
+    line-height: 80rpx;
     background-color: rgba(0, 0, 0, .5);
 
     > image {

@@ -17,7 +17,7 @@ Page({
     // 物品名称输入框初始数据
     itemName: `itemName`,
     itemNameLabel: `物品名称`,
-    itemNamePlaceholder: `例如鸡蛋，唇膏，变形记刚...`,
+    itemNamePlaceholder: `例如鸡蛋，唇膏，变形金刚...`,
     itemNameValue: ``,
     // 物品数量输入框初始数据
     itemQuantity: `itemQuantity`,
@@ -152,9 +152,15 @@ Page({
     })
   },
 
-  dateChange: function(e) {
+  getDate: function(e) {
     this.setData({
-      date: e.detail.date
+      date: e.detail.value
+    });
+  },
+
+  delDate: function(e) {
+    this.setData({
+      date: e.detail.value
     });
   },
 

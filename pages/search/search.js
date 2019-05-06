@@ -13,9 +13,11 @@ const base64 = require('../../base64/base64');
 Page({
   data: {
     // 图标
-    entryIcon: base64.angleRight,
-    modifyIcon: base64.editIconColor666,
-    delIcon: base64.delIconColorful,
+    ruPackNameGoInIcon: base64.angleRight,
+    ruPackDetailEditIcon: base64.editIconColor666,
+    ruPackDetailDelIcon: base64.delIconColorful,
+    noPack: base64.boxIconColor666,
+    noGood: base64.heartIconColor666,
     // 搜用户当前的房屋
     currentLocationID: null,
     // 搜索框相关
@@ -100,9 +102,36 @@ Page({
               title: `搜索完成`,
               duration: 1000
             });
+            const pl = res.data.packList.map((itemObj) => {
+              return {
+                create_timestamp: moment(parseInt(itemObj.create_timestamp)).format('L'),
+                date: itemObj.date,
+                id: itemObj.id,
+                image_path: itemObj.image_path,
+                name: itemObj.name,
+                parent_id: itemObj.parent_id,
+                parent_name: itemObj.parent_name,
+                type: itemObj.type,
+                update_timestamp: moment(parseInt(itemObj.update_timestamp)).format('L'),
+              }
+            });
+            const gl = res.data.goodList.map((itemObj) => {
+              return {
+                create_timestamp: moment(parseInt(itemObj.create_timestamp)).format('L'),
+                date: itemObj.date,
+                expire_date: itemObj.expire_date ? itemObj.expire_date : '--',
+                id: itemObj.id,
+                name: itemObj.name,
+                parent_id: itemObj.parent_id,
+                parent_name: itemObj.parent_name,
+                pic_address: itemObj.pic_address,
+                type: itemObj.type,
+                update_timestamp: moment(parseInt(itemObj.update_timestamp)).format('L'),
+              }
+            });
             me.setData({
-              packList: res.data.packList,
-              goodList: res.data.goodList,
+              packList: pl,
+              goodList: gl,
             });
             break;
         }

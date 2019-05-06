@@ -9,27 +9,18 @@ Page({
 
   // 页面的初始数据
   data: {
-    // 要修改的收纳盒的父级收纳盒ID
+    // 父级收纳点信息
     parentPackID: null,
-    // 要修改的收纳盒ID
+    parentPackName: ``,
+    // 当前收纳点信息
     packId: null,
-    // 收纳点图片值
-    packImage: '',
-    // 收纳点名称输入框初始数据
-    packName: `packName`,
-    packLabel: `收纳点名称`,
-    packPlaceholder: `例如冰箱，衣柜，阁楼...`,
-    packValue: ``,
-    // 收纳点存放位置输入框初始数据
-    parentPackName: `parentPackName`,
-    parentPackLabel: `存放位置`,
-    parentPackPlaceholder: `你想把 TA 放在？`,
-    parentPackValue: ``,
+    packName: ``,
+    packImage: null,
     // selectMenu 开关
     selectMenu: false,
     selectMenuList: [],
     // fileServer（serverName的值在 onload 的时候再附上去，不然在图片路径 load 出来之前，会报 404）
-    serverName: ``
+    serverName: ``,
   },
 
   // 通过上传组件回调拿到上传的那张照片，确认保存的时候提交给服务器
@@ -37,20 +28,19 @@ Page({
     this.setData({
       packImage: e.detail.data[0],
     })
-    console.log(this.data.packImage);
   },
 
   // 收纳点名称正在输入
-  packValueKeyIn: function(e) {
+  packNameKeyIn: function(e) {
     this.setData({
-      packValue: e.detail.value
+      packName: e.detail.value
     });
   },
 
   // 收纳点名称重置
-  packValueReset: function() {
+  packNameReset: function() {
     this.setData({
-      packValue: ``
+      packName: ``
     });
   },
 
@@ -116,6 +106,68 @@ Page({
     }
   },
 
+  // 获取所有收纳点信息，赋值到存放位置选择的菜单
+  getPackListByDefaultPack: function() {
+    let me = this;
+    request.get(
+      `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPackListByDefaultPack`,
+      // 获取所有收纳点信息成功
+      function(res) {
+        console.log(`获取当前位置下的所有收纳点信息成功`, res);
+        me.setData({
+          selectMenuList: res.data
+        });
+        me.getPackInfoById();
+      },
+      // 获取当所有收纳点信息失败
+      function(err) {
+        console.log(`获取当前位置下的所有收纳点信息失败`, err);
+        wx.showModal({
+          title: `获取收纳点列表失败`,
+          content: `爸爸快检查网络是否正常`,
+          confirmText: `好的`,
+          showCancel: false
+        });
+      }
+    );
+  },
+
+  // 获取当前收纳点信息
+  getPackInfoById: function() {
+    let me = this;
+    request.post(
+      `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPackInfoById`,
+      {
+        id: this.data.packId,
+      },
+      // 获取收纳点信息成功
+      function (res) {
+        me.setData({
+          packName: res.data.name,
+          packImage: res.data.image_path,
+          parentPackID: res.data.parent_id,
+        });
+        me.data.selectMenuList.map(item => {
+          if (item.id == me.data.parentPackID) {
+            me.setData({
+              parentPackName: item.name,
+            });
+          }
+        });
+      },
+      // 获取收纳点信息失败
+      function (err) {
+        console.log('获取收纳点信息失败', err);
+        wx.showModal({
+          title: `获取收纳点信息失败`,
+          content: `爸爸快检查网络是否正常`,
+          confirmText: `好的`,
+          showCancel: false
+        });
+      }
+    )
+  },
+
   // 生命周期函数--监听页面加载
   onLoad: function (options) {
     let me = this;
@@ -133,35 +185,14 @@ Page({
       }
     };
     me.validator = app.validator (vr, vm);
+
+    // 从 url 拿到列表带过来的收纳点 id
     me.setData({
       packId: options.packId,
-      packValue: options.packName,
-      packImage: options.packImg,
-      parentPackID: options.parentPackId,
-      parentPackValue: options.parentPackName,
-      serverName: `${constants.NP}${constants.APIDOMAIN}`
+      serverName: `${constants.NP}${constants.APIDOMAIN}${constants.IMGPATH}`
     });
-    // 获取当前位置下的所有收纳点信息，赋值到存放位置选择的菜单
-    request.get(
-      `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPackListByDefaultPack`,
-      // 获取当前位置下的所有收纳点信息成功
-      function(res) {
-        console.log(`获取当前位置下的所有收纳点信息成功`, res);
-        me.setData({
-          selectMenuList: res.data
-        })
-      },
-      // 获取当前位置下的所有收纳点信息失败
-      function(err) {
-        console.log(`获取当前位置下的所有收纳点信息失败`, err);
-        wx.showModal({
-          title: `获取收纳点列表失败`,
-          content: `爸爸快检查网络是否正常`,
-          confirmText: `好的`,
-          showCancel: false
-        });
-      }
-    );
+
+    me.getPackListByDefaultPack();
   },
 
   // 打开选择菜单
@@ -176,19 +207,16 @@ Page({
     this.setData({
       selectMenu: false,
       parentPackID: e.currentTarget.dataset.id,
-      parentPackValue: e.currentTarget.dataset.name,
+      parentPackName: e.currentTarget.dataset.name,
     })
   },
 
   // 生命周期函数--监听页面初次渲染完成
   onReady: function () {
-
   },
 
   // 生命周期函数--监听页面显示
-  onShow: function () {
-
-  },
+  onShow: function () {},
 
   // 生命周期函数--监听页面隐藏
   onHide: function () {

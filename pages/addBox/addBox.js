@@ -12,20 +12,12 @@ Page({
 
   // 页面的初始数据
   data: {
-    // 父级收纳盒ID
+    // 父级收纳点
     parentPackID: null,
-    // 收纳点图片值
+    parentPackName: ``,
+    // 收纳点
+    packName: ``,
     packImage: '',
-    // 收纳点名称输入框初始数据
-    packName: `packName`,
-    packLabel: `收纳点名称`,
-    packPlaceholder: `例如冰箱，衣柜，阁楼...`,
-    packValue: ``,
-    // 收纳点存放位置输入框初始数据
-    parentPackName: `parentPackName`,
-    parentPackLabel: `存放位置`,
-    parentPackPlaceholder: `你想把 TA 放在？`,
-    parentPackValue: ``,
     // selectMenu 开关
     selectMenu: false,
     selectMenuList: []
@@ -39,16 +31,16 @@ Page({
   },
 
   // 收纳点名称正在输入
-  packValueKeyIn: function(e) {
+  packNameKeyIn: function(e) {
     this.setData({
-      packValue: e.detail.value
+      packName: e.detail.value
     });
   },
 
   // 收纳点名称重置
-  packValueReset: function() {
+  packNameReset: function() {
     this.setData({
-      packValue: ``
+      packName: ``
     });
   },
 
@@ -129,7 +121,7 @@ Page({
     this.setData({
       selectMenu: false,
       parentPackID: e.currentTarget.dataset.id,
-      parentPackValue: e.currentTarget.dataset.name,
+      parentPackName: e.currentTarget.dataset.name,
     })
   },
 
@@ -152,21 +144,21 @@ Page({
     me.validator = app.validator (vr, vm);
     me.setData({
       parentPackID: options.parentPackID,
-      parentPackValue: options.parentPackName
+      parentPackName: options.parentPackName
     });
-    // 获取当前位置下的所有收纳点信息，赋值到存放位置选择的菜单
+    // 获取所有收纳点信息，赋值到存放位置选择的菜单
     request.get(
       `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPackListByDefaultPack`,
-      // 获取当前位置下的所有收纳点信息成功
+      // 获取所有收纳点信息成功
       function(res) {
-        console.log(`获取当前位置下的所有收纳点信息成功`, res);
+        console.log(`获取所有收纳点信息成功`, res);
         me.setData({
           selectMenuList: res.data
         })
       },
       // 获取当前位置下的所有收纳点信息失败
       function(err) {
-        console.log(`获取当前位置下的所有收纳点信息失败`, err);
+        console.log(`获取所有收纳点信息失败`, err);
         wx.showModal({
           title: `获取收纳点列表失败`,
           content: `爸爸快检查网络是否正常`,

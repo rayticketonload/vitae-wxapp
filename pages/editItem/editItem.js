@@ -10,32 +10,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // 父级收纳盒ID
+    // 父级收纳盒
     parentPackID: null,
-    // 要修改的物品ID
+    parentPackName: ``,
+    // 物品
     itemId: null,
-    // 物品名称输入框初始数据
-    itemName: `itemName`,
-    itemNameLabel: `物品名称`,
-    itemNamePlaceholder: `例如鸡蛋，唇膏，变形记刚...`,
-    itemNameValue: ``,
-    // 物品数量输入框初始数据
-    itemQuantity: `itemQuantity`,
-    itemQuantityLabel: `物品数量`,
-    itemQuantityPlaceholder: `请输入数字`,
-    itemQuantityValue: null,
-    // 物品存放位置输入框初始数据
-    parentPackName: `parentPackName`,
-    parentPackLabel: `存放位置`,
-    parentPackPlaceholder: `你想把 TA 放在？`,
-    parentPackValue: ``,
+    itemImg: '',
+    itemName: ``,
+    itemQuantity: 1,
+    itemExpireDate: ``,
     // selectMenu 开关
     selectMenu: false,
     selectMenuList: [],
-    date: ``,
-    path: [],
+
     // fileServer（serverName的值在 onload 的时候再附上去，不然在图片路径 load 出来之前，会报 404）
     serverName: ``
+  },
+
+  getDate: function(e) {
+    this.setData({
+      itemExpireDate: e.detail.value
+    });
+  },
+
+  delDate: function(e) {
+    this.setData({
+      itemExpireDate: e.detail.value
+    });
   },
 
   formSubmit: function(e) {
@@ -57,8 +58,8 @@ Page({
         {
           name: thisItemName,
           parentId: me.data.parentPackID,
-          expireDate: me.data.date,
-          pic: me.data.path,
+          expireDate: me.data.itemExpireDate,
+          pic: me.data.itemImg,
           quantity: thisItemQuantity,
         },
         // 添加收纳点成功
@@ -104,37 +105,37 @@ Page({
   },
 
   // 物品名称正在输入
-  itemNameValueKeyIn: function(e) {
+  itemNameKeyIn: function(e) {
     this.setData({
-      itemNameValue: e.detail.value,
+      itemName: e.detail.value,
     });
   },
 
   // 物品数量正在输入
-  itemQuantityValueKeyIn: function(e) {
+  itemQuantityKeyIn: function(e) {
     this.setData({
-      itemQuantityValue: e.detail.value,
+      itemQuantity: e.detail.value,
     });
   },
 
   // 物品名称重置
-  itemNameValueReset: function() {
+  itemNameReset: function() {
     this.setData({
-      itemNameValue: ``
+      itemName: ``
     });
   },
 
   // 物品数量重置
-  itemQuantityValueReset: function() {
+  itemQuantityReset: function() {
     this.setData({
-      itemQuantityValue: ``
+      itemQuantity: ``
     });
   },
 
   // 保质日期重置
   exDateReset: function() {
     this.setData({
-      date: ``
+      itemExpireDate: ``
     });
   },
 
@@ -150,20 +151,75 @@ Page({
     this.setData({
       selectMenu: false,
       parentPackID: e.currentTarget.dataset.id,
-      parentPackValue: e.currentTarget.dataset.name,
+      parentPackName: e.currentTarget.dataset.name,
     })
-  },
-
-  dateChange: function(e) {
-    this.setData({
-      date: e.detail.date
-    });
   },
 
   uploaderChange: function(e) {
     this.setData({
-      path: e.detail.data[0],
+      itemImg: e.detail.data[0],
     });
+  },
+
+  // 获取所有收纳点信息，赋值到存放位置选择的菜单
+  getPackListByDefaultPack: function() {
+    let me = this;
+    request.get(
+      `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPackListByDefaultPack`,
+      // 获取所有收纳点信息成功
+      function(res) {
+        me.setData({
+          selectMenuList: res.data
+        })
+        me.getGoodInfoById();
+      },
+      // 获取所有收纳点信息失败
+      function(err) {
+        wx.showModal({
+          title: `获取收纳点列表失败`,
+          content: `爸爸快检查网络是否正常`,
+          confirmText: `好的`,
+          showCancel: false
+        });
+      }
+    );
+  },
+
+  // 获取当前物品信息
+  getGoodInfoById: function() {
+    let me = this;
+    request.post(
+      `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getGoodInfoById`,
+      {
+        id: this.data.itemId,
+      },
+      // 获取物品信息成功
+      function (res) {
+        me.setData({
+          itemImg: res.data.pic_address,
+          itemName: res.data.name,
+          itemQuantity: res.data.quantity || 1,
+          itemExpireDate: res.data.expire_date || '',
+          parentPackID: res.data.parent_id,
+        });
+        me.data.selectMenuList.map(item => {
+          if (item.id == me.data.parentPackID) {
+            me.setData({
+              parentPackName: item.name,
+            });
+          }
+        });
+      },
+      // 获取收纳点信息失败
+      function (err) {
+        wx.showModal({
+          title: `获取物品信息失败`,
+          content: `爸爸快检查网络是否正常`,
+          confirmText: `好的`,
+          showCancel: false
+        });
+      }
+    )
   },
 
   // 生命周期函数--监听页面加载
@@ -189,41 +245,14 @@ Page({
       }
     };
     me.validator = app.validator (vr, vm);
+
+    // 从 url 拿到列表带过来的物品 id
     me.setData({
       itemId: options.itemId,
-      itemNameValue: options.itemName,
-      itemQuantityValue: options.quantity,
-      path: options.itemImg,
-      parentPackID: options.parentPackId,
-      parentPackValue: options.parentPackName,
-      serverName: `${constants.NP}${constants.APIDOMAIN}`
+      serverName: `${constants.NP}${constants.APIDOMAIN}${constants.IMGPATH}`,
     });
-    if (options.expire && options.expire != 'null') {
-      me.setData({
-        date: options.expire,
-      });
-    }
-    // 获取当前位置下的所有收纳点信息，赋值到存放位置选择的菜单
-    request.get(
-      `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPackListByDefaultPack`,
-      // 获取当前位置下的所有收纳点信息成功
-      function(res) {
-        console.log(`获取当前位置下的所有收纳点信息成功`, res);
-        me.setData({
-          selectMenuList: res.data
-        })
-      },
-      // 获取当前位置下的所有收纳点信息失败
-      function(err) {
-        console.log(`获取当前位置下的所有收纳点信息失败`, err);
-        wx.showModal({
-          title: `获取收纳点列表失败`,
-          content: `爸爸快检查网络是否正常`,
-          confirmText: `好的`,
-          showCancel: false
-        });
-      }
-    );
+
+    me.getPackListByDefaultPack();
   },
 
   // 生命周期函数--监听页面初次渲染完成

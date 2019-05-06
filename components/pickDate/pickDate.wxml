@@ -1,0 +1,14 @@
+<view>
+  <picker
+    mode="date"
+    value="{{value}}"
+    start="{{startYear}}"
+    end="{{endYear}}"
+    bindchange="changeDate"
+    bindcancel="rejectDate"
+  >
+    <view class="valueDisplay">
+      <slot />
+    </view>
+  </picker>
+</view>

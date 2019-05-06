@@ -1,13 +1,13 @@
 var dateTime = require("./dateTime.js");
 Component({
   externalClasses: ["picker-class"],
- 
+
   /**
    * 组件的属性列表
    */
   properties: {
 
-    
+
   },
 
   /**
@@ -56,6 +56,7 @@ Component({
       var dateTime = this.data.dateTime,
       dateTimeArray = this.data.dateTimeArray;
       var date = `${dateTimeArray[0][dateTime[0]]}-${dateTimeArray[1][dateTime[1]]}-${dateTimeArray[2][dateTime[2]]} ${dateTimeArray[3][dateTime[3]]}:${dateTimeArray[4][dateTime[4]]}:${dateTimeArray[5][dateTime[5]]}`;
+      //var date = `${dateTimeArray[0][dateTime[0]]}-${dateTimeArray[1][dateTime[1]]}-${dateTimeArray[2][dateTime[2]]}`;
       this.triggerEvent('callback', {date:date});
     }
   }

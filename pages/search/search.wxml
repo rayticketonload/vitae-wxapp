@@ -36,39 +36,53 @@
   </radio-group>
   <view class="searchResult">
     <div class="pack {{ packListChecked ? 'current' : '' }}">
-      <view class="unit forPack"
-           wx:for="{{ packList }}"
-           wx:key="{{ index }}"
-      >
-        <view class="packImageBox">
-          <image wx:if="{{ item.image_path == null || item.image_path == '' }}" src="" class="displayNone"  mode="center"></image>
-          <image src="{{ serverName }}{{ item.image_path }}" class="imageView" mode="aspectFill"></image>
+      <view wx:for="{{ packList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
+          <view class="ruPackImgBox" bindtap="next" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'>
+            <image wx:if="{{ itemObj.image_path == null || itemObj.image_path == '' }}" src="" class="displayNone"  mode="center"></image>
+            <image wx:else src="{{ serverName }}{{ itemObj.image_path }}" class="ruPackImg" mode="aspectFill"></image>
+          </view>
+          <p class="ruPackName" bindtap="next" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'>
+            <image src="{{ ruPackNameGoInIcon }}" class="ruPackNameIcon"></image>
+            {{ itemObj.name }}
+          </p>
+          <view class="ruPackDetail">
+            <p class="ruPackInfo">位于 <span class="parentName">{{ itemObj.parent_name }}</span></p>
+            <p class="ruPackInfo">{{ itemObj.update_timestamp }} 更新</p>
+            <p class="ruPackInfo">{{ itemObj.create_timestamp }} 创建</p>
+            <view class="ruPackDetailIcon">
+              <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-name='{{ itemObj.name }}' data-id='{{ itemObj.id }}' data-img='{{ itemObj.image_path }}' bindtap="packEdit"></image>
+              <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon" data-id='{{ itemObj.id }}' bindtap="packDel"></image>
+            </view>
+          </view>
         </view>
-        <view class="name">
-          {{ item.name }}
-        </view>
-        <view class="location">
-
-        </view>
-        <view class="ctrl">
-          <span
-            class="modify"
-          >
-            <image src="{{ modifyIcon }}"></image>
-          </span>
-          <span
-            class="entry"
-          >
-            <image src="{{ entryIcon }}"></image>
-          </span>
-        </view>
-      </view>
-      <div class="noData {{ packList.length <= 0 ? 'block' : '' }}">无收纳点</div>
+      <div class="noData {{ packList.length <= 0 ? 'block' : '' }}">
+        <image src="{{ noPack }}"></image>
+        <span class="notice">抱歉，收纳点里搜不到你要的东西</span>
+      </div>
     </div>
     <div class="good {{ goodListChecked ? 'current' : '' }}">
-      <div class="resultUnit good" wx:for="goodList" wx:key="{{ item.index }}" wx:for-item="item">
+      <view wx:for="{{ goodList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
+        <view class="ruGoodImgBox" bindtap="next" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'>
+          <image wx:if="{{ itemObj.pic_address == null || itemObj.pic_address == '' }}" src="" class="displayNone"  mode="center"></image>
+          <image wx:else src="{{ serverName }}{{ itemObj.pic_address }}" class="ruPackImg" mode="aspectFill"></image>
+        </view>
+        <p class="ruPackName">
+          {{ itemObj.name }}
+        </p>
+        <view class="ruPackDetail">
+          <p class="ruPackInfo">保质期:  {{ itemObj.expire_date }}</p>
+          <p class="ruPackInfo">数量: 1</p>
+          <p class="ruPackInfo">{{ itemObj.create_timestamp }} 创建</p>
+          <view class="ruPackDetailIcon">
+            <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-name='{{ itemObj.name }}' data-id='{{ itemObj.id }}' data-img='{{ itemObj.pic_address }}' data-quantity='{{ itemObj.quantity }}' bindtap="itemEdit"></image>
+            <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon" data-id='{{ itemObj.id }}' bindtap="itemDel"></image>
+          </view>
+        </view>
+      </view>
+      <div class="noData {{ goodList.length <= 0 ? 'block' : '' }}">
+        <image src="{{ noGood }}" style="width: 25%;"></image>
+        <span class="notice">抱歉，物品里搜不到你要的东西</span>
       </div>
-      <div class="noData {{ goodList.length <= 0 ? 'block' : '' }}">无物品</div>
     </div>
   </view>
 </standardLayout>

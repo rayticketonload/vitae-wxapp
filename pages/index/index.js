@@ -95,24 +95,17 @@ Page({
 
   // 进入最近编辑
   entrynewModify: function(e) {
-    const name = e.currentTarget.dataset.name;
     const type = e.currentTarget.dataset.type;
     const id = e.currentTarget.dataset.id;
-    const img = e.currentTarget.dataset.img;
-    const pic = e.currentTarget.dataset.img;
-    const ppid = e.currentTarget.dataset.ppid;
-    const ppname = e.currentTarget.dataset.ppname;
-    const expire = e.currentTarget.dataset.expire;
-    const quantity = e.currentTarget.dataset.quantity;
     switch (type) {
       case 'package':
         wx.navigateTo({
-          url: `../editBox/editBox?packId=${id}&packName=${name}&parentPackId=${ppid}&parentPackName=${ppname}&packImg=${img}`
+          url: `../editBox/editBox?packId=${id}`
         });
         break;
       case 'good':
         wx.navigateTo({
-          url: `../editItem/editItem?itemId=${id}&itemName=${name}&parentPackId=${ppid}&parentPackName=${ppname}&itemImg=${pic}&quantity=${quantity}&expire=${expire}`
+          url: `../editItem/editItem?itemId=${id}`
         });
         break;
       default:;

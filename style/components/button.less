@@ -3,7 +3,8 @@
 .button {
   box-sizing: border-box;
   display: block;
-  .rounded(@borderRadius-public);
+  // .rounded(@borderRadius-public);
+  .rounded(@height-button);
   padding: 0 @height-button/4;
   margin: 0;
   outline: none;
@@ -16,6 +17,12 @@
   .transition(all, 0.3s, ease, 0);
   .link-mobile(transparent);
   border: none;
+
+  // 这个是为了去掉微信自带的按钮样式
+  &:after {
+    border: none;
+    border-radius: 0;
+  }
 
   // 按钮样式工具
   .buttonStyle(@color, @fontColor) {
@@ -37,7 +44,10 @@
   }
 
   &.thirdly {
-    .buttonStyle(@color-thirdly-button, @fontColor-thirdly-button);
+    // .buttonStyle(@color-thirdly-button, @fontColor-thirdly-button);
+    background: linear-gradient(to right,rgb(247, 88, 122),rgb(255, 214, 153));
+    box-shadow: 0 0 35rpx 0 rgba(0,0,0,0.15);
+    color: #fff;
   }
 }
 

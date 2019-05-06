@@ -1,53 +1,53 @@
 <view class="defaultFormWrap">
   <form bindsubmit="formSubmit" bindreset="formReset">
-    <uploader initial-path="{{ serverName }}{{ path }}" bindcallback="uploaderChange" id="uploader" />
+    <uploader initial-path="{{ serverName }}{{ itemImg }}" bindcallback="uploaderChange" id="uploader" />
     <view class="formControlWrap">
       <label class="formControlLabel">
-        {{ itemNameLabel }}
+        物品名称
       </label>
       <view class="formControlBox">
         <input
-          name = "{{ itemName }}"
-          placeholder = "{{ itemNamePlaceholder }}"
+          name = "itemName"
+          placeholder = "例如鸡蛋，唇膏，变形金刚..."
           placeholder-class = "defaultPlaceHolderColor"
-          value = "{{ itemNameValue }}"
+          value = "{{ itemName }}"
           class = "formControl"
           maxlength = "-1"
           auto-focus = true
-          bindinput = "itemNameValueKeyIn"
+          bindinput = "itemNameKeyIn"
         />
-        <span class="formValueClear" wx:if="{{ itemNameValue.length > 0 }}" bindtap="itemNameValueReset"></span>
+        <span class="formValueClear" wx:if="{{ itemName.length > 0 }}" bindtap="itemNameReset"></span>
       </view>
     </view>
     <view class="formControlWrap">
       <label class="formControlLabel">
-        {{ itemQuantityLabel }}
+        物品数量
       </label>
       <view class="formControlBox">
         <input
           type = "number"
-          name = "{{ itemQuantity }}"
-          placeholder = "{{ itemQuantityPlaceholder }}"
+          name = "itemQuantity"
+          placeholder = "请输入整数"
           placeholder-class = "defaultPlaceHolderColor"
-          value = "{{ itemQuantityValue }}"
+          value = "{{ itemQuantity }}"
           class = "formControl"
           maxlength = "-1"
           auto-focus = true
-          bindinput = "itemQuantityValueKeyIn"
+          bindinput = "itemQuantityKeyIn"
         />
-        <span class="formValueClear" wx:if="{{ itemQuantityValue.length > 0 }}" bindtap="itemQuantityValueReset"></span>
+        <span class="formValueClear" wx:if="{{ itemQuantity }}" bindtap="itemQuantityReset"></span>
       </view>
     </view>
     <view class="formControlWrap options" bindtap="selectMenuSwitch">
       <label class="formControlLabel">
-        {{ parentPackLabel }}
+        存放位置
       </label>
       <view class="formControlBox">
         <input
-          name = "{{ parentPackName }}"
-          placeholder = "{{ parentPackPlaceholder }}"
+          name = "parentPackName"
+          placeholder = "你想把 TA 放在？"
           placeholder-class = "defaultPlaceHolderColor"
-          value = "{{ parentPackValue }}"
+          value = "{{ parentPackName }}"
           class = "formControl"
           maxlength = "-1"
           auto-focus = true
@@ -56,14 +56,17 @@
       </view>
     </view>
     <view class="formControlWrap">
-      <pickerDAT bindcallback="dateChange">
-        <view class="picker">
-          保质期: {{ date }}
-        </view>
-        <span class="formValueClear" wx:if="{{ date.length > 0 }}" bindtap="exDateReset"></span>
-      </pickerDAT>
+      <label class="formControlLabel">
+        保质期(选填)
+      </label>
+      <pickDate
+        bindthrowValue="getDate"
+        binddelValue="delDate"
+      >
+        {{ itemExpireDate }}
+      </pickDate>
     </view>
-    <div class="exDateTips">我会提前 <span>16</span> 天通知你，它保质期快到了!</div>
+    <div class="exDateTips">我会提前 <span>30</span> 天通知你，它保质期快到了!</div>
     <view class="formButtonWrap">
       <button formType="submit" class="button thirdly">保存</button>
     </view>

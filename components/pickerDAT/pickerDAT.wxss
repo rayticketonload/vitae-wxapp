@@ -1,12 +1,1 @@
-.picker {
-    line-height: 3;
-    box-sizing: border-box;
-    display: block;
-    border-radius: 15rpx;
-    font-size: 36rpx;
-    color: #333;
-    border: 1px solid #ddd;
-    background-color: rgba(0, 0, 0, 0);
-    height: 110rpx;
-    padding: 0 27.5rpx;
-}
+@charset 'UTF-8';.picker{position:relative;font-size:33rpx;line-height:110rpx;color:#333;height:110rpx;padding-right:120rpx;padding-left:40rpx;border-radius:110rpx;border:1px solid #ddd}
