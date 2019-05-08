@@ -45,9 +45,10 @@ Page({
   },
 
   formSubmit: function(e) {
-    // 提交错误描述
-    if (!this.validator.checkForm(e)) {
-      const error = this.validator.errorList[0];
+    let me = this;
+    // 表单验证错误描述
+    if (!me.validator.checkForm(e)) {
+      const error = me.validator.errorList[0];
       wx.showToast({
         title: `${error.msg}`,
         icon: `none`,
@@ -55,13 +56,12 @@ Page({
       });
       return false;
     } else {
-      const thisPackName = e.detail.value.packName;
       request.post(
         `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}addPack`,
         {
-          name: thisPackName,
-          parentId: this.data.parentPackID,
-          imagePath: this.data.packImage,
+          name: e.detail.value.packName,
+          parentId: me.data.parentPackID,
+          imagePath: me.data.packImage,
         },
         // 添加收纳点成功
         function (res) {
@@ -79,9 +79,8 @@ Page({
                 duration: 1000
               });
               const setTimeoutFun = () => {
-                console.log(`跳转到 ${thisPackName} 的内容列表`);
                 wx.reLaunch({
-                  url: `../list/list?packName=${thisPackName}&packId=${res.data.id}`
+                  url: `../list/list?packName=${me.data.parentPackName}&packId=${me.data.parentPackID}`
                 });
               };
               setTimeout(
@@ -141,11 +140,13 @@ Page({
         required: `爸爸，要填名称的`
       }
     };
-    me.validator = app.validator (vr, vm);
+    me.validator = app.validator(vr, vm);
+
     me.setData({
       parentPackID: options.parentPackID,
       parentPackName: options.parentPackName
     });
+
     // 获取所有收纳点信息，赋值到存放位置选择的菜单
     request.get(
       `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPackListByDefaultPack`,

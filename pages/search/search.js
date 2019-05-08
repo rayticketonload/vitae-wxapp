@@ -249,24 +249,44 @@ Page({
   searchFromKeyIn: function(e) {
     let me = this;
     const KEY = e.detail.value;
-    if (!KEY) {
+
+    // 表单验证错误描述
+    if (!me.validator.checkForm(e)) {
+      const error = me.validator.errorList[0];
       wx.showToast({
-        title: `你什么都没填吧`,
-        icon: 'none',
-        duration: 2000
+        title: `不为空，也不能有空格`,
+        icon: `none`,
+        duration: 3000
       });
-      return;
+      return false;
+    } else {
+      me.modifyHistory(KEY);
+      // 提交搜索 key
+      me.searchSubmit(KEY);
     }
-    me.modifyHistory(KEY);
-    // 提交搜索 key
-    me.searchSubmit(KEY);
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.setData({
+    let me = this;
+    // 初始化表单验证
+    // 验证规则
+    const vr = {
+      searcherInput: {
+        required: true,
+      }
+    };
+    // 验证返回信息
+    const vm = {
+      searcherInput: {
+        required: `不能有空格`
+      }
+    };
+    me.validator = app.validator(vr, vm);
+
+    me.setData({
       checked: this.data.packTabName,
       packListChecked: true,
     });

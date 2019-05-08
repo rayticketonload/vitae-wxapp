@@ -48,16 +48,14 @@ Page({
       });
       return false;
     } else {
-      const thisItemName = e.detail.value.itemName;
-      const thisItemQuantity = e.detail.value.itemQuantity;
       request.post(
         `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}addGood`,
         {
-          name: thisItemName,
+          name: e.detail.value.itemName,
           parentId: me.data.parentPackID,
           expireDate: me.data.date,
           pic: me.data.path,
-          quantity: thisItemQuantity,
+          quantity: e.detail.value.itemQuantity,
         },
         // 添加收纳点成功
         function (res) {
@@ -75,7 +73,6 @@ Page({
                 duration: 1000
               });
               const setTimeoutFun = () => {
-                console.log(`跳转到 ${me.data.parentPackName} 的内容列表`);
                 wx.reLaunch({
                   url: `../list/list?packName=${me.data.parentPackName}&packId=${me.data.parentPackID}&checked=good`
                 });

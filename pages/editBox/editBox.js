@@ -45,9 +45,10 @@ Page({
   },
 
   formSubmit: function(e) {
-    // 提交错误描述
-    if (!this.validator.checkForm(e)) {
-      const error = this.validator.errorList[0];
+    let me = this;
+    // 表单验证错误
+    if (!me.validator.checkForm(e)) {
+      const error = me.validator.errorList[0];
       wx.showToast({
         title: `${error.msg}`,
         icon: `none`,
@@ -55,14 +56,13 @@ Page({
       });
       return false;
     } else {
-      const thisPackName = e.detail.value.packName;
       request.post(
         `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}updataPackInfoById`,
         {
           id: this.data.packId,
-          name: thisPackName,
-          imagePath: this.data.packImage,
-          parentId: this.data.parentPackID
+          name: e.detail.value.packName,
+          imagePath: me.data.packImage,
+          parentId: me.data.parentPackID,
         },
         // 访问修改收纳点成功
         function (res) {
@@ -80,9 +80,8 @@ Page({
                 duration: 1000
               });
               const setTimeoutFun = () => {
-                console.log(`跳转到 ${thisPackName} 的内容列表`);
                 wx.reLaunch({
-                  url: `../list/list?packName=${thisPackName}&packId=${res.data.id}`
+                  url: `../list/list?packName=${me.data.parentPackName}&packId=${me.data.parentPackID}`
                 });
               }
               setTimeout(
