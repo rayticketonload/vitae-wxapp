@@ -35,15 +35,15 @@
     <view class="type {{ checked == packTabName ? 'current' : '' }}">
       <label>
         <radio value="{{ packTabName }}" checked="{{ checked == packTabName }}" class="displayNone"/>
-        {{ packTabName }}
-        <span class="total" wx:if="{{ packList.length > 0 }}">( {{ packList.length }} )</span>
+        <span class="typeLabel">{{ packTabName }}</span>
+        <span class="total">{{ packList.length }}</span>
       </label>
     </view>
     <view class="type {{ checked == goodTabName ? 'current' : '' }}">
       <label>
         <radio value="{{ goodTabName }}" checked="{{ checked == goodTabName }}" class="displayNone"/>
-        {{ goodTabName }}
-        <span class="total" wx:if="{{ goodList.length > 0 }}">( {{ goodList.length }} )</span>
+        <span class="typeLabel">{{ goodTabName }}</span>
+        <span class="total">{{ goodList.length }}</span>
       </label>
     </view>
   </radio-group>
@@ -70,7 +70,7 @@
         </view>
       <div class="noData {{ packList.length <= 0 ? 'block' : '' }}">
         <image src="{{ noPack }}"></image>
-        <span class="notice">抱歉，收纳点里搜不到你要的东西</span>
+        <span class="notice">抱歉，收纳点里翻不到你要的东西</span>
       </div>
     </div>
     <div class="good {{ goodListChecked ? 'current' : '' }}">
@@ -94,7 +94,7 @@
       </view>
       <div class="noData {{ goodList.length <= 0 ? 'block' : '' }}">
         <image src="{{ noGood }}" style="width: 25%;"></image>
-        <span class="notice">抱歉，物品里搜不到你要的东西</span>
+        <span class="notice">抱歉，物品里翻不到你要的东西</span>
       </div>
     </div>
   </view>

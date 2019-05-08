@@ -38,20 +38,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": -1,
 			"list": [
-				{
-					"id": 0,
-					"name": "list",
-					"pathName": "pages/index/index",
-					"query": "packName=屋企屋企屋企屋企屋企&packId=10"
-				},
-				{
-					"id": 1,
-					"name": "1",
-					"pathName": "pages/search/search",
-					"query": ""
-				},
 				{
 					"id": -1,
 					"name": "添加物品页面",

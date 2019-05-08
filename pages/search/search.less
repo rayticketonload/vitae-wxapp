@@ -114,17 +114,34 @@
 
 .resultTab {
   display: flex;
-  margin: 20rpx @gapSize-public 0 @gapSize-public;
+  margin: 20rpx @gapSize-public * 2;
   text-align: center;
+  border-bottom: 1px solid @borderColor-base;
 
   .type {
     width: 50%;
     height: 80rpx;
+    font-size: 0;
     line-height: 80rpx;
-    font-size: @fontSize-large;
     color: @fontColor-tips;
 
+    .typeLabel {
+      display: inline-block;
+      vertical-align: middle;
+      height: 80rpx;
+      line-height: 80rpx;
+      font-size: @fontSize-large;
+    }
+
     .total {
+      margin-left: @gapSize-public / 2;
+      display: inline-block;
+      vertical-align: middle;
+      font-size: @fontSize-sub * 0.8;
+      line-height: @height-typeBox / 2.2;
+      background-color: @bgColor-secondary;
+      padding: 0 @gapSize-public * 1.2;
+      .rounded(@borderRadius-public);
       color: @fontColor-tips !important;
     }
 

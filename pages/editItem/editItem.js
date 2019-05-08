@@ -56,6 +56,7 @@ Page({
       request.post(
         `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}updataGoodInfoById`,
         {
+          id: me.data.itemId,
           name: thisItemName,
           parentId: me.data.parentPackID,
           expireDate: me.data.itemExpireDate,

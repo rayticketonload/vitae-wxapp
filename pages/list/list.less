@@ -97,17 +97,36 @@ page {
     > label {
       display: block;
       height: @height-typeBox;
+      font-size: 0;
       line-height: @height-typeBox;
-      font-size: @fontSize-typeBox;
       color: @fontColor-tips;
       background-color: @bgColor-resultType;
 
+      .label {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: @fontSize-typeBox;
+        line-height: @height-typeBox;
+      }
+
+      .count {
+        margin-left: @gapSize-public / 2;
+        display: inline-block;
+        vertical-align: middle;
+        color: @fontColor-tips;
+        font-size: @fontSize-sub * 0.8;
+        line-height: @height-typeBox / 2.2;
+        background-color: @bgColor-secondary;
+        padding: 0 @gapSize-public * 1.2;
+        .rounded(@height-typeBox / 2.2);
+      }
+
       &.first {
-        .border-radius(@borderRadius-public, 0, 0, @borderRadius-public);
+        .border-radius(@height-typeBox, 0, 0, @height-typeBox);
       }
 
       &.second {
-        .border-radius(0, @borderRadius-public, @borderRadius-public, 0);
+        .border-radius(0, @height-typeBox, @height-typeBox, 0);
       }
 
       .displayNone {
@@ -120,6 +139,11 @@ page {
       > label {
         color: @fontColor-light;
         background-color: @domColor3;
+
+        .count {
+          color: @domColor3;
+          background-color: lighten(@domColor3, 20);
+        }
       }
     }
   }
