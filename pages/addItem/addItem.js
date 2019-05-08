@@ -86,7 +86,6 @@ Page({
         },
         // 添加物品失败
         function (err) {
-          console.log('添加物品失败', err);
           wx.showModal({
             title: `添加物品失败`,
             content: `爸爸快检查网络是否正常`,
@@ -199,14 +198,12 @@ Page({
       `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPackListByDefaultPack`,
       // 获取当前位置下的所有收纳点信息成功
       function(res) {
-        console.log(`获取当前位置下的所有收纳点信息成功`, res);
         me.setData({
           selectMenuList: res.data
         })
       },
       // 获取当前位置下的所有收纳点信息失败
       function(err) {
-        console.log(`获取当前位置下的所有收纳点信息失败`, err);
         wx.showModal({
           title: `获取收纳点列表失败`,
           content: `爸爸快检查网络是否正常`,

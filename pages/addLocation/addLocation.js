@@ -38,7 +38,6 @@ Page({
     // 自定义表单校验规则
     // 地点名称不能有空格
     this.validator.addMethod('locationNameNoBlank', (value, param) => {
-      console.log(`value`, value);
       return this.validator.optional(value) || customValidatorRule.noBlank.test(value);
     }, '名称前后不能有空格');
   },
@@ -89,7 +88,6 @@ Page({
               });
               break;
             case 200:
-              console.log("添加房屋地点成功", res);
               // 然后将新地点改为当前使用地点
               const modifyDefaultPackAPI = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}modifyDefaultPack`;
               const newLocationId = res.data.id;
@@ -106,7 +104,6 @@ Page({
                     title: `添加成功`,
                     duration: 1000
                   });
-                  console.log('成功改变当前使用地点');
                   const setTimeoutFun = () => {
                     wx.navigateBack({
                       delta: 2
@@ -119,7 +116,6 @@ Page({
                 },
                 // 改变当前使用地点失败
                 function (err) {
-                  console.log('改变当前使用地点失败', err);
                   wx.showModal({
                     title: `改变当前使用地点失败`,
                     content: `爸爸快检查网络是否正常`,
@@ -133,7 +129,6 @@ Page({
         },
         // 添加地点失败
         function (err) {
-          console.log("添加地点失败", err);
           wx.showModal({
             title: `添加地点失败`,
             content: `爸爸快检查网络是否正常`,

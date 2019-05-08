@@ -78,7 +78,6 @@ Page({
       { "id": thePackId },
       // getList 成功
       function(res) {
-        console.log(`获取收纳点内容列表成功`, res);
         // 更改 globalData.parentPackID 和 name 为当前已经请求成功的收纳点ID和名称
         app.globalData.parentPackID = thePackId;
         app.globalData.parentPackName = res.data.currentPack.name;
@@ -130,7 +129,6 @@ Page({
       },
       // getList 失败
       function(err) {
-        console.log(`获取收纳点内容失败`, err);
         wx.showModal({
           title: `获取收纳点内容失败`,
           content: `爸爸快检查网络是否正常`,
@@ -179,7 +177,6 @@ Page({
             { "id": e.currentTarget.dataset.id },
             // 请求删除收纳点成功
             function(res) {
-              console.log(`删除收纳点成功`, res);
               wx.showToast({
                 title: `删除成功`,
                 duration: 2000
@@ -191,7 +188,6 @@ Page({
             },
             // 删除收纳点失败
             function(err) {
-              console.log(`删除收纳点失败`, err);
               wx.showModal({
                 title: `删除失败`,
                 content: `爸爸快检查网络是否正常`,
@@ -229,7 +225,6 @@ Page({
             { "id": e.currentTarget.dataset.id },
             // 请求删除收纳点成功
             function(res) {
-              console.log(`删除物品成功`, res);
               wx.showToast({
                 title: `删除成功`,
                 duration: 2000
@@ -241,7 +236,6 @@ Page({
             },
             // 删除收纳点失败
             function(err) {
-              console.log(`删除物品失败`, err);
               wx.showModal({
                 title: `删除失败`,
                 content: `爸爸快检查网络是否正常`,

@@ -36,7 +36,6 @@ Page({
 
   // 获取用户房屋地点列表成功
   getListSuccess: function (res) {
-    console.log(`获取房屋地点列表成功`, res);
     let packTotal = res.data.length;
     let list = res.data.map(function (item, idx) {
       return item;
@@ -49,7 +48,6 @@ Page({
 
   // 获取用户房屋地点列表失败
   getListFail: function (err) {
-    console.log(`获取房屋地点列表失败`, err);
     wx.showModal({
       title: `获取地点列表失败`,
       content: `爸爸快检查网络是否正常`,
@@ -161,7 +159,6 @@ Page({
               data,
               // 请求删除房屋成功
               function(res) {
-                console.log(`删除房屋地点成功`, res);
                 wx.showToast({
                   title: `删除成功`,
                   duration: 2000
@@ -171,7 +168,6 @@ Page({
                   getDefaultPackListAPI,
                   // 成功获取到删除成功后的房屋列表
                   function(res) {
-                    console.log(`成功获取删除完成后的房屋地点列表`, res);
                     let packTotalNow = res.data.length;
                     let listNow = res.data.map(function (item, idx) {
                       return item;
@@ -192,12 +188,9 @@ Page({
                         modifyDefaultPackAPI,
                         { id: newCurrentLocationID },
                         // 改变当前使用地点成功
-                        function (success) {
-                          console.log('成功改变当前使用地点');
-                        },
+                        function (success) {},
                         // 改变当前使用地点失败
                         function (err) {
-                          console.log('改变当前使用地点失败', err);
                           if (me.backupList) {
                             me.setData({
                               list: me.backupList
@@ -210,7 +203,6 @@ Page({
                   },
                   // 获取删除完成后的房屋地点失败
                   function(err) {
-                    console.log(`获取删除完成后的房屋地点失败`, err);
                     wx.showModal({
                       title: `再次获取地点列表失败`,
                       content: `爸爸快检查网络是否正常`,
@@ -222,7 +214,6 @@ Page({
               },
               // 删除房屋失败
               function(err) {
-                console.log(`删除房屋地点失败`, err);
                 wx.showModal({
                   title: `删除失败`,
                   content: `爸爸快检查网络是否正常`,

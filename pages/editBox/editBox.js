@@ -93,7 +93,6 @@ Page({
         },
         // 访问修改收纳点失败
         function (err) {
-          console.log('修改收纳点失败', err);
           wx.showModal({
             title: `修改收纳点失败`,
             content: `爸爸快检查网络是否正常`,
@@ -112,7 +111,6 @@ Page({
       `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPackListByDefaultPack`,
       // 获取所有收纳点信息成功
       function(res) {
-        console.log(`获取当前位置下的所有收纳点信息成功`, res);
         me.setData({
           selectMenuList: res.data
         });
@@ -120,7 +118,6 @@ Page({
       },
       // 获取当所有收纳点信息失败
       function(err) {
-        console.log(`获取当前位置下的所有收纳点信息失败`, err);
         wx.showModal({
           title: `获取收纳点列表失败`,
           content: `爸爸快检查网络是否正常`,
@@ -156,7 +153,6 @@ Page({
       },
       // 获取收纳点信息失败
       function (err) {
-        console.log('获取收纳点信息失败', err);
         wx.showModal({
           title: `获取收纳点信息失败`,
           content: `爸爸快检查网络是否正常`,

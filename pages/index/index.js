@@ -192,7 +192,6 @@ Page({
 
   // 跳转到收纳点内容列表
   intoThisLocation: function() {
-    console.log(`跳转到 ${this.data.currentLocationName} 的内容列表`);
     wx.redirectTo({
       url: `../list/list?packName=${this.data.currentLocationName}&packId=${this.data.currentLocationID}`
     });

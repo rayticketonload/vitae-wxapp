@@ -22,8 +22,6 @@ Page({
 
   // 生命周期函数--监听页面加载
   onLoad: function (options) {
-    console.log(`options.locationId`,options.locationId);
-    console.log(`options.locationName`,options.locationName);
     // 从 URL 拿传过来的房屋地点ID和名称
     this.setData({
       locationId: options.locationId,
@@ -86,7 +84,6 @@ Page({
         name: e.detail.value.locationName,
         parentId: me.data.parentId
       };
-      console.log(`data`,data);
       request.post(
         url,
         data,
@@ -101,7 +98,6 @@ Page({
               });
               break;
             case 200:
-              console.log("修改地点名称成功", res);
               // 然后将新地点改为当前使用地点
               const modifyDefaultPackAPI = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}modifyDefaultPack`;
               const newLocationId = me.data.locationId;
@@ -118,7 +114,6 @@ Page({
                     title: `修改成功`,
                     duration: 1000
                   });
-                  console.log('成功改变当前使用地点');
                   const setTimeoutFun = () => {
                     wx.navigateBack({
                       delta: 2
@@ -131,7 +126,6 @@ Page({
                 },
                 // 改变当前使用地点失败
                 function (err) {
-                  console.log('改变当前使用地点失败', err);
                   wx.showModal({
                     title: `改变当前使用地点失败`,
                     content: `爸爸快检查网络是否正常`,
@@ -145,7 +139,6 @@ Page({
         },
         // 修改地点名称失败
         function (err) {
-          console.log("修改地点名称失败", err);
           wx.showModal({
             title: `修改地点名称失败`,
             content: `爸爸快检查网络是否正常`,

@@ -90,7 +90,6 @@ Page({
         },
         // 修改物品失败
         function (err) {
-          console.log('修改物品失败', err);
           wx.showModal({
             title: `修改物品失败`,
             content: `爸爸快检查网络是否正常`,
