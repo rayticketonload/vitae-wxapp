@@ -249,12 +249,11 @@ Page({
   searchFromKeyIn: function(e) {
     let me = this;
     const KEY = e.detail.value;
-
     // 表单验证错误描述
     if (!me.validator.checkForm(e)) {
       const error = me.validator.errorList[0];
       wx.showToast({
-        title: `不为空，也不能有空格`,
+        title: `${error.msg}`,
         icon: `none`,
         duration: 3000
       });
@@ -281,7 +280,7 @@ Page({
     // 验证返回信息
     const vm = {
       searcherInput: {
-        required: `不能有空格`
+        required: `不为空，也不能有空格`
       }
     };
     me.validator = app.validator(vr, vm);
