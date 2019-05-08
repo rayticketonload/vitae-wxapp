@@ -179,7 +179,7 @@ Page({
             function(res) {
               wx.showToast({
                 title: `删除成功`,
-                duration: 2000
+                duration: 3000,
               });
               // 重新获取一次收纳点内容列表
               me.getList(
@@ -227,7 +227,7 @@ Page({
             function(res) {
               wx.showToast({
                 title: `删除成功`,
-                duration: 2000
+                duration: 3000,
               });
               // 重新获取一次收纳点内容列表
               me.getList(

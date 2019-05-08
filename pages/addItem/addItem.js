@@ -44,7 +44,7 @@ Page({
       wx.showToast({
         title: `${error.msg}`,
         icon: `none`,
-        duration: 3000
+        duration: 3000,
       });
       return false;
     } else {
@@ -64,7 +64,7 @@ Page({
               wx.showToast({
                 title: `${res.msg}`,
                 icon: 'none',
-                duration: 2000
+                duration: 3000,
               });
               break;
             case 200:

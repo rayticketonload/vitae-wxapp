@@ -47,7 +47,7 @@ Page({
       wx.showToast({
         title: `${error.msg}`,
         icon: `none`,
-        duration: 3000
+        duration: 3000,
       });
       return false;
     } else {
@@ -68,7 +68,7 @@ Page({
               wx.showToast({
                 title: `${res.msg}`,
                 icon: 'none',
-                duration: 2000
+                duration: 3000,
               });
               break;
             case 200:
@@ -235,10 +235,10 @@ Page({
     // 验证返回信息
     const vm = {
       itemName: {
-        required: `爸爸，要填名称的`
+        required: `爸爸，要填名称的`,
       },
       itemQuantity: {
-        required: `爸爸，数量填个 0 也可以`
+        required: `爸爸，数量填个 0 也可以`,
       }
     };
     me.validator = app.validator (vr, vm);

@@ -143,7 +143,7 @@ Page({
       wx.showToast({
         title: `最后一个地点不能删除`,
         icon: `none`,
-        duration: 3000
+        duration: 3000,
       });
     } else {
       wx.showModal({
@@ -161,7 +161,7 @@ Page({
               function(res) {
                 wx.showToast({
                   title: `删除成功`,
-                  duration: 2000
+                  duration: 3000,
                 });
                 // 再获取一次房屋列表，刷新列表数目
                 request.get(
