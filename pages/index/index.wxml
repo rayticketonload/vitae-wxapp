@@ -22,8 +22,8 @@
       {{ currentLocationName }}
     </div>
     <div class="cled">
-      <span>收纳点: {{ packTotal }}</span>
-      <span>物品: {{ goodTotal }}</span>
+      <span>收纳点 {{ packTotal }}</span>
+      <span>物品 {{ goodTotal }}</span>
     </div>
   </view>
   <view class="theWave"></view>

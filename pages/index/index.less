@@ -333,28 +333,37 @@
 
     > span {
       position: relative;
+      display: inline-block;
+      vertical-align: middle;
       font-size: @fontSize-sub;
-      line-height: @fontSize-sub;
+      line-height: @fontSize-sub * 1.8;
       color: @fontColor-tips;
+      background-color: rgba(255,255,255,0.5);
+      padding: 0 @gapSize-public * 2;
+      .rounded(@fontSize-sub * 1.8);
+      min-width: 100rpx;
 
       &:first-child {
-        padding-right: 30rpx;
+        // padding-right: 30rpx;
+        .border-radius(@fontSize-sub * 1.8, 0, 0, @fontSize-sub * 1.8);
+        margin-right: 1px;
       }
 
       &:last-child {
-        padding-left: 30rpx;
+        // padding-left: 30rpx;
+        .border-radius(0, @fontSize-sub * 1.8, @fontSize-sub * 1.8, 0);
       }
 
-      &:first-child:after {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translate(0, -50%);
-        content: '';
-        height: @fontSize-sub * .8;
-        width: 1px;
-        background-color: @fontColor-tips;
-      }
+      // &:first-child:after {
+      //   position: absolute;
+      //   top: 50%;
+      //   right: 0;
+      //   transform: translate(0, -50%);
+      //   content: '';
+      //   height: @fontSize-sub * .8;
+      //   width: 1px;
+      //   background-color: @fontColor-tips;
+      // }
     }
   }
 }
