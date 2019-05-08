@@ -18,6 +18,9 @@ Page({
     ruPackDetailDelIcon: base64.delIconColorful,
     noPack: base64.boxIconColor666,
     noGood: base64.heartIconColor666,
+    // 搜索历史
+    needHistory: true,
+    historyList: [],
     // 搜用户当前的房屋
     currentLocationID: null,
     // 搜索框相关
@@ -62,11 +65,21 @@ Page({
     }
   },
 
+  // 搜索框输入的值为空时就显示历史搜索记录
+  needHistoryFun: function() {
+    if (this.data.searchValue == '' || !this.data.searchValue) {
+      this.setData({
+        needHistory: true,
+      });
+    };
+  },
+
   // 搜索 key 输入
   searchValueKeyIn: function(e) {
     this.setData({
       searchValue: e.detail.value,
     });
+    this.needHistoryFun();
   },
 
   // 搜索 key 重置
@@ -74,17 +87,97 @@ Page({
     this.setData({
       searchValue: null
     });
+    this.needHistoryFun();
   },
 
-  searchSubmit: function(e) {
+  // 获取搜索历史
+  getHistory: function() {
     let me = this;
-    console.log(this.data.currentLocationID);
-    // 提交搜索 key
-    const KEY = e.detail.value;
+    wx.getStorage({
+      key: constants.SEARCH_HISTORY_KEY,
+      success(res) {
+        me.setData({
+          historyList: res.data,
+        });
+      },
+      fail(e) {
+        wx.setStorage({
+          key: constants.SEARCH_HISTORY_KEY,
+          data: [],
+        })
+      },
+    })
+  },
+
+  // 添加搜索历史
+  addHistory: function(searchHistory, key) {
+    searchHistory.unshift(key);
+    wx.setStorage({
+      key: constants.SEARCH_HISTORY_KEY,
+      data: searchHistory,
+    });
+    this.setData({
+      historyList: searchHistory,
+    });
+  },
+
+  // 清空搜索历史
+  removeHistory: function() {
+    wx.setStorage({
+      key: constants.SEARCH_HISTORY_KEY,
+      data: [],
+    });
+    this.setData({
+      historyList: [],
+    });
+  },
+
+  // 修改搜索历史
+  modifyHistory: function(key) {
+    try {
+      const searchHistory = wx.getStorageSync(constants.SEARCH_HISTORY_KEY);
+
+      // 看新的搜索字段和历史里面的有没有重复
+      let ok;
+      for (let i = 0; i < searchHistory.length; i++) {
+        if (key == searchHistory[i]) {
+          ok = false;
+          return;
+        } else {
+          ok = true;
+        }
+      };
+
+      if (searchHistory.length == 0) {
+        this.addHistory(searchHistory, key);
+      }
+      else if (searchHistory.length == 10 && ok) {
+        searchHistory.pop();
+        this.addHistory(searchHistory, key);
+      }
+      else if (ok) {
+        this.addHistory(searchHistory, key);
+      }
+    } catch (e) {}
+  },
+
+  // 从搜索历史里面搜索
+  searchFromHistory: function(e) {
+    let me = this;
+    const KEY = e.currentTarget.dataset.key;
+    me.setData({
+      searchValue: KEY,
+    });
+    me.searchSubmit(KEY);
+  },
+
+  // 提交参数去搜索
+  searchSubmit: function(key) {
+    let me = this;
     request.post(
       `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}search`,
       {
-        key: KEY,
+        key: key,
         id: me.data.currentLocationID,
       },
       // 搜索成功
@@ -101,6 +194,9 @@ Page({
             wx.showToast({
               title: `搜索完成`,
               duration: 1000
+            });
+            me.setData({
+              needHistory: false,
             });
             const pl = res.data.packList.map((itemObj) => {
               return {
@@ -149,6 +245,23 @@ Page({
     )
   },
 
+  // 从输入框输入搜索字段
+  searchFromKeyIn: function(e) {
+    let me = this;
+    const KEY = e.detail.value;
+    if (!KEY) {
+      wx.showToast({
+        title: `你什么都没填吧`,
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+    me.modifyHistory(KEY);
+    // 提交搜索 key
+    me.searchSubmit(KEY);
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -163,6 +276,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    this.getHistory();
     this.setData({
       currentLocationID: app.globalData.currentLocationID,
     });

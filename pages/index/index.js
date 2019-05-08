@@ -36,56 +36,7 @@ Page({
     // 用户是否授权公开信息
     hasUserInfo: app.globalData.hasUserInfo,
     // 最近编辑
-    newModify: [
-      {
-        name: '主卧室',
-        type: 'pack',
-        id: '12',
-        img: '/user/photo/g3LL4nBS9Yu5X3IyNqiKTtXOXGOy0uzw.jpeg',
-        ppid: '10',
-        ppname: '屋企屋企屋企屋企屋企',
-      },
-      {
-        name: '厨房',
-        type: 'pack',
-        id: '11',
-        img: '/user/photo/ZKN2zjA5yxXznC3qwO0OJkcHOvBDyv3q.jpeg',
-        ppid: '10',
-        ppname: '屋企屋企屋企屋企屋企',
-      },
-      {
-        name: '小猪佩奇玩具',
-        type: 'good',
-        id: '4',
-        img: [],
-        ppid: '12',
-        ppname: '主卧室',
-      },
-      {
-        name: '打蛋器',
-        type: 'good',
-        id: '5',
-        img: '/user/photo/kTarQMuPZDl0VkEXKAY8gAfRIXU24Dia.jpeg',
-        ppid: '11',
-        ppname: '厨房',
-      },
-      {
-        name: '橱柜上层第一格',
-        type: 'pack',
-        id: '15',
-        img: '/user/photo/TDPY9Vc5iRejEBed1BdYMylAQ9dtEdnA.jpeg',
-        ppid: '11',
-        ppname: '厨房',
-      },
-      {
-        name: 'xBox',
-        type: 'good',
-        id: '6',
-        img: '/user/photo/pJAtSPPmZuF9oXvI6x2sT6dPaYuJ6ecC.jpeg',
-        ppid: '10',
-        ppname: '屋企屋企屋企屋企屋企',
-      }
-    ],
+    newModify: [],
   },
 
   onReady: function() {
@@ -216,7 +167,6 @@ Page({
 
   // 跳转到更改默认房屋地点
   toLocationList: function() {
-    console.log(`跳转到房屋地点列表`);
     wx.navigateTo({
       url: `../changeLocation/changeLocation`
     });
@@ -237,7 +187,6 @@ Page({
   },
 
   toSearchPage: function() {
-    console.log(`跳转到搜索页面`);
     this.gotoSearchPage();
   },
 

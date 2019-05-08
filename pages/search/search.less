@@ -9,6 +9,38 @@
 @import '../../style/components/form.less';
 @import '../../style/components/button.less';
 
+.searchHistory {
+  margin: 0 @gapSize-public * 2 @gapSize-public * 2;
+  font-size: @fontSize-default;
+  line-height: @fontSize-default;
+  color: @fontColor-default;
+
+  .historyTitle {
+    .clearfix();
+
+    > span {
+      float: right;
+      color: @fontColor-tips;
+    }
+  }
+
+  .historyOptions {}
+
+  .historyOption {
+    display: inline-block;
+    padding: 0 @gapSize-public * 1.4;
+    background-color: @bgColor-secondary;
+    height: 60rpx;
+    line-height: 60rpx;
+    .rounded(60rpx;);
+    margin-right: @gapSize-public;
+    margin-top: @gapSize-public;
+    color: @fontColor-tips;
+    min-width: 50rpx;
+    text-align: center;
+  }
+}
+
 .searcherWrap {
   position: relative;
   box-sizing: border-box;

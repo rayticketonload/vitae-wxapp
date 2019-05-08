@@ -13,12 +13,25 @@
         maxlength="-1"
         focus="true"
         bindinput="searchValueKeyIn"
-        bindconfirm='searchSubmit'
+        bindconfirm='searchFromKeyIn'
       />
       <span class="formValueClear" wx:if="{{ searchValue.length > 0 }}" bindtap="searchValueReset"></span>
     </view>
   </form>
-  <radio-group class="radio-group resultTab" bindchange="radioChange">
+  <view class="searchHistory" wx:if="{{ needHistory }}">
+    <view class="historyTitle">
+      历史搜索
+      <span wx:if="{{ historyList.length > 0 }}" bindtap="removeHistory">
+        清空
+      </span>
+    </view>
+    <view class="historyOptions" wx:if="{{ historyList.length > 0 }}">
+      <span class="historyOption" wx:for="{{ historyList }}" wx:for-item="item" wx:key="{{ index }}" bindtap="searchFromHistory" data-key='{{ item }}'>
+        {{ item }}
+      </span>
+    </view>
+  </view>
+  <radio-group class="radio-group resultTab" bindchange="radioChange" wx:if="{{ !needHistory }}">
     <view class="type {{ checked == packTabName ? 'current' : '' }}">
       <label>
         <radio value="{{ packTabName }}" checked="{{ checked == packTabName }}" class="displayNone"/>
@@ -34,7 +47,7 @@
       </label>
     </view>
   </radio-group>
-  <view class="searchResult">
+  <view class="searchResult" wx:if="{{ !needHistory }}">
     <div class="pack {{ packListChecked ? 'current' : '' }}">
       <view wx:for="{{ packList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
           <view class="ruPackImgBox" bindtap="next" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'>
