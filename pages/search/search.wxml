@@ -18,6 +18,7 @@
       <span class="formValueClear" wx:if="{{ searchValue.length > 0 }}" bindtap="searchValueReset"></span>
     </view>
   </form>
+
   <view class="searchHistory" wx:if="{{ needHistory }}">
     <view class="historyTitle">
       历史搜索
@@ -31,6 +32,7 @@
       </span>
     </view>
   </view>
+
   <radio-group class="radio-group resultTab" bindchange="radioChange" wx:if="{{ !needHistory }}">
     <view class="type {{ checked == packTabName ? 'current' : '' }}">
       <label>
@@ -47,14 +49,15 @@
       </label>
     </view>
   </radio-group>
+
   <view class="searchResult" wx:if="{{ !needHistory }}">
     <div class="pack {{ packListChecked ? 'current' : '' }}">
       <view wx:for="{{ packList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
-          <view class="ruPackImgBox" bindtap="next" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'>
+          <view class="ruPackImgBox">
             <image wx:if="{{ itemObj.image_path == null || itemObj.image_path == '' }}" src="" class="displayNone"  mode="center"></image>
             <image wx:else src="{{ serverName }}{{ itemObj.image_path }}" class="ruPackImg" mode="aspectFill"></image>
           </view>
-          <p class="ruPackName" bindtap="next" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'>
+          <p class="ruPackName" bindtap="inToThisPack" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'>
             <image src="{{ ruPackNameGoInIcon }}" class="ruPackNameIcon"></image>
             {{ itemObj.name }}
           </p>
@@ -63,8 +66,8 @@
             <p class="ruPackInfo">{{ itemObj.update_timestamp }} 更新</p>
             <p class="ruPackInfo">{{ itemObj.create_timestamp }} 创建</p>
             <view class="ruPackDetailIcon">
-              <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-name='{{ itemObj.name }}' data-id='{{ itemObj.id }}' data-img='{{ itemObj.image_path }}' bindtap="packEdit"></image>
-              <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon" data-id='{{ itemObj.id }}' bindtap="packDel"></image>
+              <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-id='{{ itemObj.id }}' bindtap="packEdit"></image>
+              <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon" data-id='{{ itemObj.id }}' data-idx='{{ index }}' bindtap="packDel"></image>
             </view>
           </view>
         </view>
@@ -74,8 +77,8 @@
       </div>
     </div>
     <div class="good {{ goodListChecked ? 'current' : '' }}">
-      <view wx:for="{{ goodList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
-        <view class="ruGoodImgBox" bindtap="next" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'>
+      <view wx:for="{{ goodList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forItem">
+        <view class="ruGoodImgBox">
           <image wx:if="{{ itemObj.pic_address == null || itemObj.pic_address == '' }}" src="" class="displayNone"  mode="center"></image>
           <image wx:else src="{{ serverName }}{{ itemObj.pic_address }}" class="ruPackImg" mode="aspectFill"></image>
         </view>
@@ -83,12 +86,12 @@
           {{ itemObj.name }}
         </p>
         <view class="ruPackDetail">
-          <p class="ruPackInfo">保质期:  {{ itemObj.expire_date }}</p>
+          <p class="ruPackInfo">保质期: {{ itemObj.expire_date }}</p>
           <p class="ruPackInfo">数量: 1</p>
           <p class="ruPackInfo">{{ itemObj.create_timestamp }} 创建</p>
           <view class="ruPackDetailIcon">
-            <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-name='{{ itemObj.name }}' data-id='{{ itemObj.id }}' data-img='{{ itemObj.pic_address }}' data-quantity='{{ itemObj.quantity }}' bindtap="itemEdit"></image>
-            <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon" data-id='{{ itemObj.id }}' bindtap="itemDel"></image>
+            <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-id='{{ itemObj.id }}' bindtap="itemEdit"></image>
+            <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon" data-id='{{ itemObj.id }}' data-idx='{{ index }}' bindtap="itemDel"></image>
           </view>
         </view>
       </view>

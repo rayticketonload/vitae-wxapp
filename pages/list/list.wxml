@@ -23,7 +23,7 @@
   <view class="result {{ checked == packListChecked ? 'current' : '' }}">
     <view class="resultlist {{ packListHaveData ? '' : 'block' }}">
         <view wx:for="{{ packList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
-          <view class="ruPackImgBox" bindtap="next" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'>
+          <view class="ruPackImgBox">
             <image wx:if="{{ itemObj.image_path == null || itemObj.image_path == '' }}" src="" class="displayNone"  mode="center"></image>
             <image wx:else src="{{ serverName }}{{ itemObj.image_path }}" class="ruPackImg" mode="aspectFill"></image>
           </view>
@@ -33,10 +33,10 @@
           </p>
           <view class="ruPackDetail">
             <p class="ruPackInfo">收纳点: {{ itemObj.packTotal }}</p>
-            <p class="ruPackInfo">物品:  {{ itemObj.goodTotal }}</p>
+            <p class="ruPackInfo">物品: {{ itemObj.goodTotal }}</p>
             <p class="ruPackInfo">{{ itemObj.create_timestamp }} 创建</p>
             <view class="ruPackDetailIcon">
-              <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-name='{{ itemObj.name }}' data-id='{{ itemObj.id }}' data-img='{{ itemObj.image_path }}' bindtap="packEdit"></image>
+              <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-id='{{ itemObj.id }}' bindtap="packEdit"></image>
               <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon" data-id='{{ itemObj.id }}' bindtap="packDel"></image>
             </view>
           </view>
@@ -49,7 +49,7 @@
   <view class="result {{ checked == goodListChecked ? 'current' : '' }}">
     <view class="resultlist {{ goodListHaveData ? '' : 'block' }}">
       <view wx:for="{{ goodList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
-        <view class="ruGoodImgBox" bindtap="next" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'>
+        <view class="ruGoodImgBox">
           <image wx:if="{{ itemObj.pic_address == null || itemObj.pic_address == '' }}" src="" class="displayNone"  mode="center"></image>
           <image wx:else src="{{ serverName }}{{ itemObj.pic_address }}" class="ruPackImg" mode="aspectFill"></image>
         </view>
@@ -57,11 +57,11 @@
           {{ itemObj.name }}
         </p>
         <view class="ruPackDetail">
-          <p class="ruPackInfo">保质期:  {{ itemObj.expire_date }}</p>
+          <p class="ruPackInfo">保质期: {{ itemObj.expire_date }}</p>
           <p class="ruPackInfo">数量: 1</p>
           <p class="ruPackInfo">{{ itemObj.create_timestamp }} 创建</p>
           <view class="ruPackDetailIcon">
-            <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-name='{{ itemObj.name }}' data-id='{{ itemObj.id }}' data-img='{{ itemObj.pic_address }}' data-quantity='{{ itemObj.quantity }}' bindtap="itemEdit"></image>
+            <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-id='{{ itemObj.id }}' bindtap="itemEdit"></image>
             <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon" data-id='{{ itemObj.id }}' bindtap="itemDel"></image>
           </view>
         </view>

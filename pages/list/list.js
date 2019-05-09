@@ -76,7 +76,7 @@ Page({
     request.post(
       `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPAGListById`,
       { "id": thePackId },
-      // getList 成功
+      // 成功
       function(res) {
         // 更改 globalData.parentPackID 和 name 为当前已经请求成功的收纳点ID和名称
         app.globalData.parentPackID = thePackId;
@@ -127,7 +127,7 @@ Page({
           goodListHaveData: me.data.goodList.length != 0 ? false : true ,
         });
       },
-      // getList 失败
+      // 失败
       function(err) {
         wx.showModal({
           title: `获取收纳点内容失败`,
@@ -204,7 +204,7 @@ Page({
   // 修改物品
   itemEdit: function(e) {
     wx.navigateTo({
-      url: `../editItem/editItem?itemId=${e.currentTarget.dataset.id}&itemName=${e.currentTarget.dataset.name}&parentPackId=${this.data.currentPackId}&parentPackName=${this.data.currentPackName}&itemImg=${e.currentTarget.dataset.img}&quantity=${e.currentTarget.dataset.quantity}`
+      url: `../editItem/editItem?itemId=${e.currentTarget.dataset.id}`
     });
   },
 

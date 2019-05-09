@@ -44,6 +44,12 @@ Page({
     this.standardLayout = this.selectComponent("#standardLayout");
   },
 
+  // 去掉左右空格
+  trim: function(string) {
+    return string.replace(/(^\s*)|(\s*$)/g, "");
+  },
+
+  // tab点击事件
   radioChange: function(e) {
     this.setData({
       checked: e.detail.value
@@ -67,7 +73,7 @@ Page({
 
   // 搜索框输入的值为空时就显示历史搜索记录
   needHistoryFun: function() {
-    if (this.data.searchValue == '' || !this.data.searchValue) {
+    if (this.data.searchValue == '' || !this.data.searchValue || this.data.searchValue == ' ') {
       this.setData({
         needHistory: true,
       });
@@ -247,7 +253,7 @@ Page({
   // 从输入框输入搜索字段
   searchFromKeyIn: function(e) {
     let me = this;
-    const KEY = e.detail.value;
+    const KEY = me.trim(e.detail.value);
 
     if (!KEY) {
       wx.showToast({
@@ -258,18 +264,136 @@ Page({
       return;
     }
 
-    if (KEY == ' ') {
-      wx.showToast({
-        title: `别以为填个空格能过`,
-        icon: `none`,
-        duration: 3000,
-      });
-      return;
-    }
-
     me.modifyHistory(KEY);
     // 提交搜索 key
     me.searchSubmit(KEY);
+  },
+
+  // 进入收纳点
+  inToThisPack: function(e) {
+    wx.reLaunch({
+      url: `../list/list?packName=${e.currentTarget.dataset.name}&packId=${e.currentTarget.dataset.id}`
+    });
+  },
+
+  // 修改收纳点
+  packEdit: function(e) {
+    wx.navigateTo({
+      url: `../editBox/editBox?packId=${e.currentTarget.dataset.id}`
+    });
+  },
+
+  // 删除收纳点
+  packDel: function(e) {
+    let me = this;
+    // 弹窗确认删除
+    wx.showModal({
+      title: `删除此收纳点`,
+      content: '属下物品和收纳点将一并删除',
+      confirmText: '确认删除',
+      confirmColor: '#f17c6b',
+      success: function (res) {
+        if (res.confirm) {
+          // 请求删除
+          request.post(
+            `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}deletePackById`,
+            { "id": e.currentTarget.dataset.id },
+            // 请求成功
+            function(res) {
+              switch (res.code) {
+                case 100:
+                  wx.showToast({
+                    title: `${res.msg}`,
+                    icon: 'none',
+                    duration: 3000,
+                  });
+                  break;
+                case 200:
+                  wx.showToast({
+                    title: `删除成功`,
+                    duration: 1000
+                  });
+                  me.data.packList.splice(e.currentTarget.dataset.idx, 1);
+                  me.setData({
+                    packList: me.data.packList,
+                  });
+                  break;
+                  default:
+              }
+            },
+            // 请求失败
+            function(err) {
+              wx.showModal({
+                title: `删除失败`,
+                content: `爸爸快检查网络是否正常`,
+                confirmText: `好的`,
+                showCancel: false
+              });
+            }
+          );
+        }
+      }
+    });
+  },
+
+  // 修改物品
+  itemEdit: function(e) {
+    wx.navigateTo({
+      url: `../editItem/editItem?itemId=${e.currentTarget.dataset.id}`
+    });
+  },
+
+  // 删除物品
+  itemDel: function(e) {
+    let me = this;
+    // 弹窗确认删除
+    wx.showModal({
+      title: `删除此物品`,
+      content: '物品删除后将不可恢复',
+      confirmText: '确认删除',
+      confirmColor: '#f17c6b',
+      success: function (res) {
+        if (res.confirm) {
+          // 请求删除
+          request.post(
+            `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}deleteItemById`,
+            { "id": e.currentTarget.dataset.id },
+            // 请求成功
+            function(res) {
+              switch (res.code) {
+                case 100:
+                  wx.showToast({
+                    title: `${res.msg}`,
+                    icon: 'none',
+                    duration: 3000,
+                  });
+                  break;
+                case 200:
+                  wx.showToast({
+                    title: `删除成功`,
+                    duration: 1000
+                  });
+                  me.data.goodList.splice(e.currentTarget.dataset.idx, 1);
+                  me.setData({
+                    goodList: me.data.goodList,
+                  });
+                  break;
+                  default:
+              }
+            },
+            // 请求失败
+            function(err) {
+              wx.showModal({
+                title: `删除失败`,
+                content: `爸爸快检查网络是否正常`,
+                confirmText: `好的`,
+                showCancel: false
+              });
+            }
+          );
+        }
+      }
+    });
   },
 
   /**
