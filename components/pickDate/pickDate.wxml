@@ -1,9 +1,9 @@
 <view>
   <picker
     mode="date"
-    value="{{value}}"
-    start="{{startYear}}"
-    end="{{endYear}}"
+    value="{{ value }}"
+    start="{{ start }}"
+    end="{{ end }}"
     bindchange="changeDate"
     bindcancel="rejectDate"
   >

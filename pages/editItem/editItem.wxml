@@ -1,6 +1,7 @@
 <view class="defaultFormWrap">
   <form bindsubmit="formSubmit" bindreset="formReset">
     <uploader initial-path="{{ serverName }}{{ itemImg }}" bindcallback="uploaderChange" id="uploader" />
+
     <view class="formControlWrap">
       <label class="formControlLabel">
         物品名称
@@ -19,6 +20,7 @@
         <span class="formValueClear" wx:if="{{ itemName.length > 0 }}" bindtap="itemNameReset"></span>
       </view>
     </view>
+
     <view class="formControlWrap">
       <label class="formControlLabel">
         物品数量
@@ -38,6 +40,7 @@
         <span class="formValueClear" wx:if="{{ itemQuantity }}" bindtap="itemQuantityReset"></span>
       </view>
     </view>
+
     <view class="formControlWrap options" bindtap="selectMenuSwitch">
       <label class="formControlLabel">
         存放位置
@@ -55,6 +58,7 @@
         />
       </view>
     </view>
+
     <view class="formControlWrap">
       <label class="formControlLabel">
         保质期(选填)
@@ -66,7 +70,27 @@
         {{ itemExpireDate }}
       </pickDate>
     </view>
-    <div class="exDateTips">我会提前 <span>30</span> 天通知你，它保质期快到了!</div>
+
+    <view class="formControlWrap" wx:if="{{ itemExpireDate }}">
+      <label class="formControlLabel">
+        保质期
+        <span class="warningText">
+          到期提醒
+        </span>
+        （选填）
+      </label>
+     <!-- <div class="exDateTips">默认提前 <span>30</span> 天站内信通知</div> -->
+      <pickDate
+        bindthrowValue="getRemindDate"
+        binddelValue="delRemindDate"
+        start="{{ remindDateStart }}"
+        end="{{ remindDateEnd }}"
+      >
+        {{ remindDate }}
+      </pickDate>
+    </view>
+
+    <!-- <div class="exDateTips">我会提前 <span>30</span> 天通知你，它保质期快到了!</div> -->
     <view class="formButtonWrap">
       <button formType="submit" class="button thirdly">保存</button>
     </view>

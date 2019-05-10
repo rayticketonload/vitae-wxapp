@@ -6,15 +6,24 @@ Component({
   /**
    * 组件的属性列表
    */
-  properties: {},
+  properties: {
+    start: {
+      type: String,
+      value: date.getFullYear() - 20,
+    },
+    end: {
+      type: String,
+      value: date.getFullYear() + 50,
+    },
+  },
 
   /**
    * 组件的初始数据
    */
   data: {
     value: null,
-    startYear: date.getFullYear() - 50,
-    endYear: date.getFullYear() + 50,
+    // startYear: date.getFullYear() - 50,
+    // endYear: date.getFullYear() + 50,
   },
 
   /**

@@ -4,6 +4,11 @@ const app = getApp();
 const constants = require('../../constants/constants');
 // 引入封装好的请求方法
 const request = require('../../utils/request');
+// 引入 moment 时间戳编译
+const moment = require("../../utils/moment");
+
+const timestamp = Date.parse(new Date());
+const localDate = new Date(timestamp);
 
 Page({
   /**
@@ -19,24 +24,14 @@ Page({
     itemName: ``,
     itemQuantity: 1,
     itemExpireDate: ``,
+    remindDate: ``,
+    remindDateStart: ``,
+    remindDateEnd: ``,
     // selectMenu 开关
     selectMenu: false,
     selectMenuList: [],
-
     // fileServer（serverName的值在 onload 的时候再附上去，不然在图片路径 load 出来之前，会报 404）
     serverName: ``
-  },
-
-  getDate: function(e) {
-    this.setData({
-      itemExpireDate: e.detail.value
-    });
-  },
-
-  delDate: function(e) {
-    this.setData({
-      itemExpireDate: e.detail.value
-    });
   },
 
   formSubmit: function(e) {
@@ -58,6 +53,7 @@ Page({
           name: e.detail.value.itemName,
           parentId: me.data.parentPackID,
           expireDate: me.data.itemExpireDate,
+          remindDate: me.data.remindDate,
           pic: me.data.itemImg,
           quantity: e.detail.value.itemQuantity,
         },
@@ -129,10 +125,35 @@ Page({
     });
   },
 
-  // 保质日期重置
-  exDateReset: function() {
+
+  // 设置保质日期
+  getDate: function(e) {
     this.setData({
-      itemExpireDate: ``
+      itemExpireDate: e.detail.value,
+      remindDateStart: moment(parseInt(localDate.getTime())).format('L'),
+      remindDateEnd: e.detail.value,
+    });
+  },
+
+  // 设置到期提醒日期
+  getRemindDate: function(e) {
+    this.setData({
+      remindDate: e.detail.value,
+    });
+  },
+
+  // 删除保质日期
+  delDate: function(e) {
+    this.setData({
+      itemExpireDate: e.detail.value,
+      remindDate: e.detail.value,
+    });
+  },
+
+  // 删除到期提醒日期
+  delRemindDate: function(e) {
+    this.setData({
+      remindDate: e.detail.value,
     });
   },
 
@@ -197,8 +218,20 @@ Page({
           itemName: res.data.name,
           itemQuantity: res.data.quantity || 1,
           itemExpireDate: res.data.expire_date || '',
+          remindDate: res.data.remindDate || '',
           parentPackID: res.data.parent_id,
         });
+
+        if (me.data.itemExpireDate && me.data.itemExpireDate != '') {
+          me.setData({
+            remindDateStart: moment(parseInt(localDate.getTime())).format('L'),
+            remindDateEnd: me.data.itemExpireDate,
+          });
+          console.log(me.data.remindDateStart);
+          console.log(me.data.remindDateEnd);
+        }
+
+
         me.data.selectMenuList.map(item => {
           if (item.id == me.data.parentPackID) {
             me.setData({

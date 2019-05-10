@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "你的消息",
+  "usingComponents": {
+    "standardLayout": "/components/standardLayout/standardLayout"
+  }
+}

@@ -75,6 +75,13 @@ Component({
       wx.navigateTo({
         url: `../addBox/addBox?parentPackID=${app.globalData.parentPackID}&parentPackName=${app.globalData.parentPackName}`
       });
+    },
+
+    // 跳转到消息页面
+    _toMsg() {
+      wx.navigateTo({
+        url: `../msg/msg`
+      });
     }
   }
 })

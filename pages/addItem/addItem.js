@@ -6,34 +6,31 @@ const constants = require('../../constants/constants');
 const request = require('../../utils/request');
 // 引入 base64 资源
 const base64 = require('../../base64/base64');
+// 引入 moment 时间戳编译
+const moment = require("../../utils/moment");
+
+const timestamp = Date.parse(new Date());
+const localDate = new Date(timestamp);
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    // 父级收纳盒ID
+    // 父级收纳盒
+    parentPack: ``,
     parentPackID: null,
-    // 物品名称输入框初始数据
-    itemName: `itemName`,
-    itemNameLabel: `物品名称`,
-    itemNamePlaceholder: `例如鸡蛋，唇膏，变形金刚...`,
-    itemNameValue: ``,
-    // 物品数量输入框初始数据
-    itemQuantity: `itemQuantity`,
-    itemQuantityLabel: `物品数量`,
-    itemQuantityPlaceholder: `请输入数字`,
-    itemQuantityValue: 1,
-    // 物品存放位置输入框初始数据
-    parentPackName: `parentPackName`,
-    parentPackLabel: `存放位置`,
-    parentPackPlaceholder: `你想把 TA 放在？`,
-    parentPackValue: ``,
+    // 物品
+    path:[],
+    itemName: null,
+    itemQuantity: 1,
+    date: ``,
+    remindDate: ``,
+    remindDateStart: ``,
+    remindDateEnd: ``,
     // selectMenu 开关
     selectMenu: false,
     selectMenuList: [],
-    date: ``,
-    path:[],
   },
 
   formSubmit: function(e) {
@@ -54,6 +51,7 @@ Page({
           name: e.detail.value.itemName,
           parentId: me.data.parentPackID,
           expireDate: me.data.date,
+          remindDate: me.data.remindDate,
           pic: me.data.path,
           quantity: e.detail.value.itemQuantity,
         },
@@ -74,7 +72,7 @@ Page({
               });
               const setTimeoutFun = () => {
                 wx.reLaunch({
-                  url: `../list/list?packName=${me.data.parentPackName}&packId=${me.data.parentPackID}&checked=good`
+                  url: `../list/list?packName=${me.data.parentPack}&packId=${me.data.parentPackID}&checked=good`
                 });
               };
               setTimeout(
@@ -98,37 +96,30 @@ Page({
   },
 
   // 物品名称正在输入
-  itemNameValueKeyIn: function(e) {
+  itemNameKeyIn: function(e) {
     this.setData({
-      itemNameValue: e.detail.value,
+      itemName: e.detail.value,
     });
   },
 
   // 物品数量正在输入
-  itemQuantityValueKeyIn: function(e = 1) {
+  itemQuantityKeyIn: function(e = 1) {
     this.setData({
-      itemQuantityValue: e.detail.value,
+      itemQuantity: e.detail.value,
     });
   },
 
   // 物品名称重置
-  itemNameValueReset: function() {
+  itemNameReset: function() {
     this.setData({
-      itemNameValue: ``
+      itemName: ``
     });
   },
 
   // 物品数量重置
-  itemQuantityValueReset: function() {
+  itemQuantityReset: function() {
     this.setData({
-      itemQuantityValue: ``
-    });
-  },
-
-  // 保质日期重置
-  exDateReset: function() {
-    this.setData({
-      date: ``
+      itemQuantity: ``
     });
   },
 
@@ -144,19 +135,38 @@ Page({
     this.setData({
       selectMenu: false,
       parentPackID: e.currentTarget.dataset.id,
-      parentPackValue: e.currentTarget.dataset.name,
+      parentPack: e.currentTarget.dataset.name,
     })
   },
 
+  // 设置保质日期
   getDate: function(e) {
     this.setData({
-      date: e.detail.value
+      date: e.detail.value,
+      remindDateStart: moment(parseInt(localDate.getTime())).format('L'),
+      remindDateEnd: e.detail.value,
     });
   },
 
+  // 设置到期提醒日期
+  getRemindDate: function(e) {
+    this.setData({
+      remindDate: e.detail.value,
+    });
+  },
+
+  // 删除保质日期
   delDate: function(e) {
     this.setData({
-      date: e.detail.value
+      date: e.detail.value,
+      remindDate: e.detail.value,
+    });
+  },
+
+  // 删除到期提醒日期
+  delRemindDate: function(e) {
+    this.setData({
+      remindDate: e.detail.value,
     });
   },
 
@@ -191,7 +201,7 @@ Page({
     me.validator = app.validator(vr, vm);
     me.setData({
       parentPackID: options.parentPackID,
-      parentPackValue: options.parentPackName
+      parentPack: options.parentPackName
     });
     // 获取当前位置下的所有收纳点信息，赋值到存放位置选择的菜单
     request.get(

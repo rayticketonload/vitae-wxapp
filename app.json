@@ -12,7 +12,8 @@
     "pages/editLocation/editLocation",
     "pages/search/search",
     "pages/list/list",
-    "pages/help/help"
+    "pages/help/help",
+    "pages/msg/msg"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffe8db",
