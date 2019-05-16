@@ -1,0 +1,51 @@
+<wxs module="fun_1">
+  var quantityCount = function(quantity, index) {
+    var result = false;
+    if (quantity == null) {
+      var result = true;
+    } else if (quantity == 0) {
+      var result = false;
+    } else if (quantity == 1 && index == 0) {
+      var result = true;
+    } else if (index < quantity) {
+       var result = true;
+    }
+    return result;
+  };
+  module.exports.quantityCount = quantityCount;
+</wxs>
+
+<ul class="msgList {{ extraClass }}" wx:if="{{ msgList.length > 0 }}" >
+  <li wx:for="{{ msgList }}" wx:key="{{ index }}" wx:if="{{ fun_1.quantityCount(quantity, index) }}">
+    <view class="itemSection">
+      <view class="msgMainWord" data-id='{{ item.itemId }}' data-createtime='{{ item.item_create_date }}' bindtap="msgToItem">
+        {{ item.itemName }}
+      </view>
+      <view class="msgItemWarning">将在 {{ item.expire_date }} 到保质期限</view>
+      <span class="msgIcon"></span>
+    </view>
+    <view class="cookBookSection" wx:if="{{ item.cook_book }}">
+      <view class="cookBookSub">
+        推荐人气菜式
+      </view>
+      <view class="msgMainWord">
+        {{ item.cook_book }}
+      </view>
+      <span class="msgIcon"></span>
+    </view>
+    <view class="msgCreateDate">
+      {{ item.msg_create_time }}
+    </view>
+    <view class="msgDel">
+      <image src="{{ msgDel }}" bindtap="msgDel"></image>
+    </view>
+  </li>
+</ul>
+<view wx:else class="noMsg">
+  <view class="noMsgImgBox">
+    <image src="{{ msgLogo }}"></image>
+  </view>
+  <view class="noMsgRemind">
+    暂时没有新信息
+  </view>
+</view>

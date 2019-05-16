@@ -1,9 +1,4 @@
 <standardLayout id="standardLayout">
-  <!-- <view class="currentLocationBrick"></view>
-  <view class="currentLocation">
-    <view class="prevPackBtn" bindtap="prev" wx:if="{{ exPackId != null }}"></view>
-    <span class="currentLocationName">{{ currentPackName }}</span>
-  </view> -->
-  123
+  <msgList id="msgList" msgList="{{ msgList }}"/>
 </standardLayout>
 

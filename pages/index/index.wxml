@@ -105,57 +105,8 @@
     </li>
   </ul>
   <view class="sectionName">
-    嘿！你的消息
-    <span class="all">全部</span>
+    嘿！你的消息<span class="tipsText">(最近三条)</span>
+    <span class="all" bindtap="_toMsgList" wx:if="{{ msgList.length > 0 }}">全部</span>
   </view>
-  <ul class="msgInIndex">
-    <li class="alert">
-      <span class="msgTitle">
-        <b>雪花霜降肥牛肉</b> 即将过保质期
-      </span>
-      <span class="msgContent">
-        保质期限到 2018/07/12
-      </span>
-      <span class="msgIcon"></span>
-      <span class="msgDel">
-        <image src="{{ msgDel }}" bindtap="msgDel"></image>
-      </span>
-    </li>
-    <li class="alert">
-      <span class="msgTitle">
-        <b>花生油</b> 即将过保质期
-      </span>
-      <span class="msgContent">
-        保质期限到 2018/07/12
-      </span>
-      <span class="msgIcon"></span>
-      <span class="msgDel">
-        <image src="{{ msgDel }}" bindtap="msgDel"></image>
-      </span>
-    </li>
-    <li class="info">
-      <span class="msgTitle">
-        推荐快手菜 <b>油炸豆腐</b>
-      </span>
-      <span class="msgContent">
-        根据你的 <b>花生油</b>，帮你找个菜谱
-      </span>
-      <span class="msgIcon"></span>
-      <span class="msgDel">
-        <image src="{{ msgDel }}" bindtap="msgDel"></image>
-      </span>
-    </li>
-    <li class="info">
-      <span class="msgTitle">
-        推荐快手菜 <b>金针菇肥牛火锅</b>
-      </span>
-      <span class="msgContent">
-        根据你的 <b>雪花霜降肥牛肉</b>，帮你找个菜谱
-      </span>
-      <span class="msgIcon"></span>
-      <span class="msgDel">
-        <image src="{{ msgDel }}" bindtap="msgDel"></image>
-      </span>
-    </li>
-  </ul>
+  <msgList id="msgList" msgList="{{ msgList }}" extraClass="msgListInIndex" quantity="{{ 3 }}" />
 </standardLayout>

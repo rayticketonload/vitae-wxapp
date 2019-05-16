@@ -227,8 +227,8 @@ Page({
             remindDateStart: moment(parseInt(localDate.getTime())).format('L'),
             remindDateEnd: me.data.itemExpireDate,
           });
-          console.log(me.data.remindDateStart);
-          console.log(me.data.remindDateEnd);
+          // console.log(me.data.remindDateStart);
+          // console.log(me.data.remindDateEnd);
         }
 
 
