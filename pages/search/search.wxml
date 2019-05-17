@@ -96,7 +96,7 @@
         </view>
       </view>
       <div class="noData {{ goodList.length <= 0 ? 'block' : '' }}">
-        <image src="{{ noGood }}" style="width: 25%;"></image>
+        <image src="{{ noGood }}"></image>
         <span class="notice">抱歉，物品里翻不到你要的东西</span>
       </div>
     </div>

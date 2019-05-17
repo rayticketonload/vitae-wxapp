@@ -27,6 +27,7 @@
     </div>
   </view>
   <view class="theWave"></view>
+
   <!-- <view class="userInfoWrap">
     <view class="userInfo">
       <view class="{{ avatarBoxClass }}">
@@ -45,10 +46,12 @@
       </view>
     </view>
   </view> -->
+
+  <!-- 最近编辑 -->
   <view class="sectionName">
     最近编辑
   </view>
-  <ul class="latestItem">
+  <ul class="latestItem" wx:if="{{ newModify && newModify.length > 0 }}">
     <li
       wx:if="{{ newModify.length >= 1 }}"
       bindtap="entrynewModify"
@@ -104,9 +107,22 @@
       {{ newModify[5].name }}
     </li>
   </ul>
-  <view class="sectionName">
+  <view wx:else class="latestItemNoData">
+    <view class="newModifyNoDataImgBox">
+      <image src="{{ newModifyNoDataIcon }}"></image>
+    </view>
+    <view class="fn-mb-10">
+      没数据...现在开始
+    </view>
+    <view>
+      <span class="simLink" bindtap="_newModifyToAddItem">收纳一样物品？</span>或者 <span class="simLink" bindtap="_newModifyToAddBox">放置一个收纳点？</span>
+    </view>
+  </view>
+
+  <!-- 嘿！你的消息 -->
+  <!-- <view class="sectionName">
     嘿！你的消息<span class="tipsText">(最近三条)</span>
     <span class="all" bindtap="_toMsgList" wx:if="{{ msgList.length > 0 }}">全部</span>
-  </view>
-  <msgList id="msgList" msgList="{{ msgList }}" extraClass="msgListInIndex" quantity="{{ 3 }}" />
+  </view> -->
+  <!-- <msgList id="msgList" msgList="{{ msgList }}" extraClass="msgListInIndex" quantity="{{ 3 }}" /> -->
 </standardLayout>

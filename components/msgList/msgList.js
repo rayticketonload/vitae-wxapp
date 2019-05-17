@@ -39,7 +39,7 @@ Component({
    * 可用于模版渲染
    */
   data: {
-    msgLogo: base64.msgIconColorful,
+    noDataMsg: base64.nodataMsg,
     msgDel: base64.del2IconColor666,
   },
 
@@ -59,8 +59,6 @@ Component({
         // 获取物品信息成功
         function (res) {
           // 这段逻辑是用来判断从信息跳转过来的时候，用物品ID和物品创建时间来判断物品是否还存在
-          console.log('e', e.currentTarget.dataset.createtime);
-          console.log('res', res.data.date);
           if (e.currentTarget.dataset.createtime == res.data.date && e.currentTarget.dataset.id == res.data.id) {
             wx.navigateTo({
               url: `../editItem/editItem?itemId=${e.currentTarget.dataset.id}`

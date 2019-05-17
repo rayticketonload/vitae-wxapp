@@ -43,7 +43,7 @@
 </ul>
 <view wx:else class="noMsg">
   <view class="noMsgImgBox">
-    <image src="{{ msgLogo }}"></image>
+    <image src="{{ noDataMsg }}"></image>
   </view>
   <view class="noMsgRemind">
     暂时没有新信息

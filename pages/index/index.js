@@ -13,6 +13,7 @@ Page({
     avatarUrl: app.globalData.userInfo.avatarUrl,
     nickName: app.globalData.userInfo.nickName,
     // 图标
+    newModifyNoDataIcon: base64.noDataCryFace1_black,
     msgLogo: base64.msgIconColorful,
     help: base64.helpIconColorffaa7a,
     addLocation: base64.homeIconColorful3,
@@ -258,4 +259,18 @@ Page({
       url: `../list/list?packName=${this.data.currentLocationName}&packId=${this.data.currentLocationID}`
     });
   },
+
+  // 跳转到添加物品表单页面
+  _newModifyToAddItem() {
+    wx.navigateTo({
+      url: `../addItem/addItem?parentPackID=${app.globalData.parentPackID}&parentPackName=${app.globalData.parentPackName}`
+    });
+  },
+
+  // 跳转到添加收纳盒表单页面
+  _newModifyToAddBox() {
+    wx.navigateTo({
+      url: `../addBox/addBox?parentPackID=${app.globalData.parentPackID}&parentPackName=${app.globalData.parentPackName}`
+    });
+  }
 });

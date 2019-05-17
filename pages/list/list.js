@@ -19,6 +19,8 @@ Page({
     ruPackDetailEditIcon: base64.editIconColor666,
     ruPackDetailDelIcon: base64.delIconColorful,
     noDataIcon: base64.searchIconColor666,
+    noDataPackIcon: base64.noDataPack,
+    noDataItemIcon: base64.noDataItem,
     // 当前 tab 选中哪个
     checked: "package",
     // tab content 的标签

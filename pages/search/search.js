@@ -16,8 +16,8 @@ Page({
     ruPackNameGoInIcon: base64.angleRight,
     ruPackDetailEditIcon: base64.editIconColor666,
     ruPackDetailDelIcon: base64.delIconColorful,
-    noPack: base64.boxIconColor666,
-    noGood: base64.heartIconColor666,
+    noPack: base64.noDataPack,
+    noGood: base64.noDataItem,
     // 搜索历史
     needHistory: true,
     historyList: [],
