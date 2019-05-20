@@ -1,4 +1,2 @@
-<standardLayout id="standardLayout">
-  <msgList id="msgList" msgList="{{ msgList }}"/>
-</standardLayout>
+<msgList id="msgList" msgList="{{ msgList }}"/>
 

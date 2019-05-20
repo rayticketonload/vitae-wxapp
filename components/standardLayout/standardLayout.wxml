@@ -1,5 +1,5 @@
 <!--index.wxml-->
 <view class="container">
   <slot></slot>
-  <bottomNav id="bottomNav"/>
+  <bottomNav id="bottomNav" haveNew="{{ haveNewMsg }}"/>
 </view>

@@ -37,8 +37,8 @@ function login() {
           // 所以此处加入 callback 以防止这种情况
           if (app.sessionkeyReadyCallback) {
             app.sessionkeyReadyCallback(res);
-          }
-
+            app.sessionkeyReadyCallbackInStandardLayout(res);
+          };
         },
         // 访问第三方登录接口不成功
         fail: res => {
@@ -48,20 +48,16 @@ function login() {
             content: '爸爸，不如检查下你的网络？',
             showCancel: false,
             confirmText: '好的',
-            success: function(res) {
-              if (res.confirm) {
-                // wx.navigateBack({
-                //   delta: 0
-                // })
-              }
-            }
+            // success: function(res) {
+            //   if (res.confirm) {
+            //     // wx.navigateBack({
+            //     //   delta: 0
+            //     // })
+            //   }
+            // }
           });
           wx.hideLoading();
         },
-        // 访问第三方登录接口完成
-        complete: res => {
-          console.log(`访问第三方登录接口完成`);
-        }
       })
     },
     // 访问微信的 login 接口不成功
@@ -72,19 +68,15 @@ function login() {
         content: '爸爸，不如检查下你的网络？',
         showCancel: false,
         confirmText: '好的',
-        success: function(res) {
-          if (res.confirm) {
-            // wx.navigateBack({
-            //   delta: 0
-            // })
-          }
-        }
+        // success: function(res) {
+        //   if (res.confirm) {
+        //     // wx.navigateBack({
+        //     //   delta: 0
+        //     // })
+        //   }
+        // }
       })
     },
-    // 访问微信的 login 接口完成
-    complete: res => {
-      console.log(`访问 wx.login 接口完成`);
-    }
   })
 }
 

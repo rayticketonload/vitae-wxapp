@@ -9,7 +9,7 @@
 		"nodeModules": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.91",
+	"libVersion": "2.7.0",
 	"appid": "wx7743f7e48f68278c",
 	"projectname": "vitae",
 	"isGameTourist": false,

@@ -211,14 +211,16 @@ Page({
 
     // 拿首页要显示的用户当前房屋的信息
     if (app.globalData.session_key) {
+      console.log("index.js 1");
       this.getIndexInfo();
       this.getNew();
     } else {
       app.sessionkeyReadyCallback = res => {
+        console.log("index.js 2");
         this.getIndexInfo();
         this.getNew();
       };
-    }
+    };
   },
 
   onHide: function() {

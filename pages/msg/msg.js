@@ -64,13 +64,41 @@ Page({
     ],
   },
 
+  // 获取信息列表并刷新 sessionStorage 里面存储的信息数统计，为的是判断用户有没有新信息
+  msgs: function() {
+    let me = this;
+      request.post(
+        `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPAGListById`,
+        {
+          id: 1,
+        },
+        // 请求成功
+        function (res) {
+          wx.setStorage({
+            key: constants.MSG_QTY_HISTORY_KEY,
+            data: res.data.packList.length,
+          });
+        },
+        // 请求失败
+        function (err) {
+          wx.showModal({
+            title: `获取信息失败`,
+            content: `爸爸快检查网络是否正常`,
+            confirmText: `好的`,
+            showCancel: false
+          });
+        }
+      )
+  },
+
   // 生命周期函数--监听页面加载
-  onLoad: function(options) {},
+  onLoad: function(options) {
+    this.msgs();
+  },
 
   // 生命周期函数--监听页面初次渲染完成
   onReady: function() {
     // 获得组件
-    this.standardLayout = this.selectComponent("#standardLayout");
     this.msgList = this.selectComponent("#msgList");
   },
 });

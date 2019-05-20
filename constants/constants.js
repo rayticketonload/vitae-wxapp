@@ -8,6 +8,7 @@ const APIPATH = `mini/api/`;
 const IMGPATH = `mini/`;
 // localStorage 存放搜索历史的 key
 const SEARCH_HISTORY_KEY = `searchHistory`;
+const MSG_QTY_HISTORY_KEY = `msgQtyHistory`;
 
 module.exports = {
   NP,
@@ -15,4 +16,5 @@ module.exports = {
   APIPATH,
   IMGPATH,
   SEARCH_HISTORY_KEY,
+  MSG_QTY_HISTORY_KEY,
 };
