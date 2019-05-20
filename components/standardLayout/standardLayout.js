@@ -33,8 +33,8 @@ Component({
           me.setData({
             serverMsgQty: res.data.packList.length,
           });
-          console.log('serverMsgQty', me.data.serverMsgQty);
-          console.log('localMsgQty', me.data.localMsgQty);
+          // console.log('serverMsgQty', me.data.serverMsgQty);
+          // console.log('localMsgQty', me.data.localMsgQty);
           if (me.data.serverMsgQty > me.data.localMsgQty) {
             me.setData({
               haveNewMsg: true,
