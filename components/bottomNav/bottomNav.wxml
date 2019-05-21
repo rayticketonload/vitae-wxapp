@@ -11,6 +11,7 @@
     <span>加收纳点</span>
   </span>
   <span class="navBtn toMsg {{ haveNew ? 'haveNewMsg' : '' }}" bindtap="_toMsg">
+    <span class="msgDot"></span>
     <image src="{{ toMsg }}"></image>
   </span>
 </view>
