@@ -14,16 +14,16 @@
       </span>
     </view>
   </view>
-  <view class="currentLocationEntry" bindtap="intoThisLocation">
-    <div class="{{ cleiClass }}">
+  <view class="currentLocationEntry">
+    <div class="{{ cleiClass }}" bindtap="intoThisLocation">
       <image src="{{ whatsIn }}"></image>
     </div>
-    <div class="clen">
+    <div class="clen" bindtap="toLocationList">
       {{ currentLocationName }}
     </div>
     <div class="cled">
-      <span>收纳点 {{ packTotal }}</span>
-      <span>物品 {{ goodTotal }}</span>
+      <span>全部收纳点 {{ packTotal }}</span>
+      <span>全部物品 {{ goodTotal }}</span>
     </div>
   </view>
   <view class="theWave"></view>
