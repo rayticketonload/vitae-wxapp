@@ -59,7 +59,7 @@ Component({
         sizeType: ["compressed"], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ["album", "camera"], // 可以指定来源是相册还是相机，默认二者都有
         success: function(res) {
-          var path = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}upload/photo`;
+          var path = constants.API.upload;
           console.log(res.tempFilePaths);
           //上传去服务器
           request.uploadFile(path, res.tempFilePaths[0], that.uploadSuccess.bind(that), that.uploadFail.bind(that));

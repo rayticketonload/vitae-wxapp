@@ -76,7 +76,7 @@ Page({
   getList: function(thePackId) {
     let me = this;
     request.post(
-      `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPAGListById`,
+      constants.API.getPAGListById,
       { "id": thePackId },
       // 成功
       function(res) {
@@ -158,7 +158,7 @@ Page({
   // 修改收纳点
   packEdit: function(e) {
     wx.navigateTo({
-      url: `../editBox/editBox?packId=${e.currentTarget.dataset.id}`
+      url: constants.ROUTE.editBox(e.currentTarget.dataset.id),
     });
   },
 
@@ -175,7 +175,7 @@ Page({
         if (res.confirm) {
           // 请求删除
           request.post(
-            `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}deletePackById`,
+            constants.API.deletePackById,
             { "id": e.currentTarget.dataset.id },
             // 请求删除收纳点成功
             function(res) {
@@ -206,7 +206,7 @@ Page({
   // 修改物品
   itemEdit: function(e) {
     wx.navigateTo({
-      url: `../editItem/editItem?itemId=${e.currentTarget.dataset.id}`
+      url: constants.ROUTE.editItem(e.currentTarget.dataset.id),
     });
   },
 
@@ -223,7 +223,7 @@ Page({
         if (res.confirm) {
           // 请求删除
           request.post(
-            `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}deleteItemById`,
+            constants.API.deleteItemById,
             { "id": e.currentTarget.dataset.id },
             // 请求删除收纳点成功
             function(res) {

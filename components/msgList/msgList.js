@@ -52,7 +52,7 @@ Component({
     msgToItem: function(e) {
       let me = this;
       request.post(
-        `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getGoodInfoById`,
+        constants.API.getGoodInfoById,
         {
           id: e.currentTarget.dataset.id,
         },
@@ -61,7 +61,7 @@ Component({
           // 这段逻辑是用来判断从信息跳转过来的时候，用物品ID和物品创建时间来判断物品是否还存在
           if (e.currentTarget.dataset.createtime == res.data.date && e.currentTarget.dataset.id == res.data.id) {
             wx.navigateTo({
-              url: `../editItem/editItem?itemId=${e.currentTarget.dataset.id}`
+              url: constants.ROUTE.editItem(e.currentTarget.dataset.id),
             });
           } else {
             wx.showToast({

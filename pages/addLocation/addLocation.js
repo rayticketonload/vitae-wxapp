@@ -68,35 +68,31 @@ Page({
       });
       return false;
     } else {
-      const url = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}addPack`;
-      let data = {
-        parentId: null,
-        name: e.detail.value.locationName
-      };
       request.post(
-        url,
-        data,
+        constants.API.addPack,
+        {
+          parentId: null,
+          name: e.detail.value.locationName
+        },
         // 添加地点成功
         function (res) {
           switch (res.code) {
-            case 100:
-              let msg = res.msg == '已有相同的包名' ? '已有相同名字地点' : res.msg;
+            case 102:
               wx.showToast({
-                title: `${msg}`,
+                title: `已经有相同的地点名称`,
                 icon: 'none',
                 duration: 3000,
               });
               break;
             case 200:
               // 然后将新地点改为当前使用地点
-              const modifyDefaultPackAPI = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}modifyDefaultPack`;
               const newLocationId = res.data.id;
               // 同时改变 globalData 里面 currentLocationID
               app.globalData.currentLocationID = newLocationId;
               app.globalData.parentPackID = newLocationId;
               // 请求改变当前使用地点
               request.post(
-                modifyDefaultPackAPI,
+                constants.API.modifyDefaultPack,
                 { id: newLocationId },
                 // 改变当前使用地点成功
                 function (success) {

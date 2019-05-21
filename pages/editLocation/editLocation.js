@@ -78,15 +78,13 @@ Page({
       });
       return false;
     } else {
-      const url = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}updataPackInfoById`;
-      let data = {
-        id: me.data.locationId,
-        name: e.detail.value.locationName,
-        parentId: me.data.parentId
-      };
       request.post(
-        url,
-        data,
+        constants.API.updataPackInfoById,
+        {
+          id: me.data.locationId,
+          name: e.detail.value.locationName,
+          parentId: me.data.parentId
+        },
         // 修改地点名称成功
         function (res) {
           switch (res.code) {
@@ -99,14 +97,13 @@ Page({
               break;
             case 200:
               // 然后将新地点改为当前使用地点
-              const modifyDefaultPackAPI = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}modifyDefaultPack`;
               const newLocationId = me.data.locationId;
               // 同时改变 globalData 里面 currentLocationID
               app.globalData.currentLocationID = newLocationId;
               app.globalData.parentPackID = newLocationId;
               // 请求改变当前使用地点
               request.post(
-                modifyDefaultPackAPI,
+                constants.API.modifyDefaultPack,
                 { id: newLocationId },
                 // 改变当前使用地点成功
                 function (success) {

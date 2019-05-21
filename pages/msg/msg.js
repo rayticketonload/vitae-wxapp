@@ -67,7 +67,7 @@ Page({
   // 获取信息列表并刷新 sessionStorage 里面存储的信息数统计，为的是判断用户有没有新信息
   msgs: function() {
     request.post(
-      `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPAGListById`,
+      constants.API.getPAGListById,
       {
         id: 1,
       },

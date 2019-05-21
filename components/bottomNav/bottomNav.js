@@ -47,28 +47,28 @@ Component({
     // 回到首页
     _toIndex(e) {
       wx.reLaunch({
-        url: `../index/index`
+        url: constants.ROUTE.index,
       });
     },
 
     // 跳转到添加物品表单页面
     _navToAddItem() {
       wx.navigateTo({
-        url: `../addItem/addItem?parentPackID=${app.globalData.parentPackID}&parentPackName=${app.globalData.parentPackName}`
+        url: constants.ROUTE.addItem(app.globalData.parentPackID, app.globalData.parentPackName),
       });
     },
 
     // 跳转到添加收纳盒表单页面
     _navToAddBox() {
       wx.navigateTo({
-        url: `../addBox/addBox?parentPackID=${app.globalData.parentPackID}&parentPackName=${app.globalData.parentPackName}`
+        url: constants.ROUTE.addBox(app.globalData.parentPackID, app.globalData.parentPackName),
       });
     },
 
     // 跳转到消息页面
     _toMsg() {
       wx.navigateTo({
-        url: `../msg/msg`
+        url: constants.ROUTE.msg,
       });
     },
   },

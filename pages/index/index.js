@@ -103,7 +103,7 @@ Page({
 
   _toMsgList: function() {
     wx.navigateTo({
-      url: `../msg/msg`
+      url: constants.ROUTE.msg,
     });
   },
 
@@ -114,12 +114,12 @@ Page({
     switch (type) {
       case 'package':
         wx.navigateTo({
-          url: `../editBox/editBox?packId=${id}`
+          url: constants.ROUTE.editBox(id),
         });
         break;
       case 'good':
         wx.navigateTo({
-          url: `../editItem/editItem?itemId=${id}`
+          url: constants.ROUTE.editItem(id),
         });
         break;
       default:;
@@ -130,7 +130,7 @@ Page({
   getIndexInfo: function(e) {
     let me = this;
     const param = {
-      url: `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getUserInfo`,
+      url: constants.API.getUserInfo,
       success: function(data) {
         // 将拿回来的 default_pack_name 赋值为全局的 currentLocationName
         app.globalData.currentLocationName = data.data.default_pack_name;
@@ -159,7 +159,7 @@ Page({
   getNew: function(e) {
     let me = this;
     const param = {
-      url: `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getNewest`,
+      url: constants.API.getNewest,
       success: function(data) {
         me.setData({
           newModify: data.data.list,
@@ -231,21 +231,21 @@ Page({
   // 跳转到更改默认房屋地点
   toLocationList: function() {
     wx.navigateTo({
-      url: `../changeLocation/changeLocation`
+      url: constants.ROUTE.changeLocation,
     });
   },
 
   // 打开帮助
   openHelp: function() {
     wx.navigateTo({
-      url: `../help/help`
+      url: constants.ROUTE.help,
     });
   },
 
   // 跳转到搜索页面
   gotoSearchPage: function() {
     wx.navigateTo({
-      url: `../search/search`
+      url: constants.ROUTE.search,
     });
   },
 
@@ -256,21 +256,21 @@ Page({
   // 跳转到收纳点内容列表
   intoThisLocation: function() {
     wx.redirectTo({
-      url: `../list/list?packName=${this.data.currentLocationName}&packId=${this.data.currentLocationID}`
+      url: constants.ROUTE.list(this.data.currentLocationID, this.data.currentLocationName),
     });
   },
 
   // 跳转到添加物品表单页面
   _newModifyToAddItem() {
     wx.navigateTo({
-      url: `../addItem/addItem?parentPackID=${app.globalData.parentPackID}&parentPackName=${app.globalData.parentPackName}`
+      url: constants.ROUTE.addItem(app.globalData.parentPackID, app.globalData.parentPackName),
     });
   },
 
   // 跳转到添加收纳盒表单页面
   _newModifyToAddBox() {
     wx.navigateTo({
-      url: `../addBox/addBox?parentPackID=${app.globalData.parentPackID}&parentPackName=${app.globalData.parentPackName}`
+      url: constants.ROUTE.addBox(app.globalData.parentPackID, app.globalData.parentPackName),
     });
   }
 });

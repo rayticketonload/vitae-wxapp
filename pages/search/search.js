@@ -181,7 +181,7 @@ Page({
   searchSubmit: function(key) {
     let me = this;
     request.post(
-      `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}search`,
+      constants.API.search,
       {
         key: key,
         id: me.data.currentLocationID,
@@ -272,14 +272,14 @@ Page({
   // 进入收纳点
   inToThisPack: function(e) {
     wx.reLaunch({
-      url: `../list/list?packName=${e.currentTarget.dataset.name}&packId=${e.currentTarget.dataset.id}`
+      url: constants.ROUTE.list(e.currentTarget.dataset.id, e.currentTarget.dataset.name),
     });
   },
 
   // 修改收纳点
   packEdit: function(e) {
     wx.navigateTo({
-      url: `../editBox/editBox?packId=${e.currentTarget.dataset.id}`
+      url: constants.ROUTE.editBox(e.currentTarget.dataset.id),
     });
   },
 
@@ -296,7 +296,7 @@ Page({
         if (res.confirm) {
           // 请求删除
           request.post(
-            `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}deletePackById`,
+            constants.API.deletePackById,
             { "id": e.currentTarget.dataset.id },
             // 请求成功
             function(res) {
@@ -339,7 +339,7 @@ Page({
   // 修改物品
   itemEdit: function(e) {
     wx.navigateTo({
-      url: `../editItem/editItem?itemId=${e.currentTarget.dataset.id}`
+      url: constants.ROUTE.editItem(e.currentTarget.dataset.id),
     });
   },
 
@@ -356,7 +356,7 @@ Page({
         if (res.confirm) {
           // 请求删除
           request.post(
-            `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}deleteItemById`,
+            constants.API.deleteItemById,
             { "id": e.currentTarget.dataset.id },
             // 请求成功
             function(res) {

@@ -18,17 +18,12 @@ Page({
     thePack: 0, // 删除地点情景的开关
     locationItemTotalIcon: base64.heartIconColor666,
     locationPackTotalIcon: base64.boxIconColor666,
-    urlQuery: {
-      locationId: `locationId`,
-      locationIdName: `locationName`,
-    },
   },
 
   // 获取用户房屋地点列表
   getLocationList: function () {
-    const url = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getDefaultPackList`;
     request.get(
-      url,
+      constants.API.getDefaultPackList,
       this.getListSuccess,
       this.getListFail
     );
@@ -59,7 +54,7 @@ Page({
   // 改变当前房屋地点
   locationSelect: function (e) {
     let data = { id: e.currentTarget.dataset.id };
-    const url = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}modifyDefaultPack`;
+    const url = constants.API.modifyDefaultPack;
     request.post(url, data, this.modifySuccess, this.modifyFail);
     this.backupList = this.data.list.concat(); //备份
     // let list = this.data.list.map(function (item, idx) {
@@ -93,14 +88,14 @@ Page({
   // 跳转创建房屋地点
   locationAdd: function () {
     wx.navigateTo({
-      url: `../addLocation/addLocation`
+      url: constants.ROUTE.addLocation,
     });
   },
 
   // 跳转修改房屋地点
   locationEdit: function (e) {
     wx.navigateTo({
-      url: `../editLocation/editLocation?${this.data.urlQuery.locationId}=${e.currentTarget.dataset.id}&&${this.data.urlQuery.locationIdName}=${e.currentTarget.dataset.name}`
+      url: constants.ROUTE.editLocation(e.currentTarget.dataset.id, e.currentTarget.dataset.name),
     });
   },
 
@@ -109,9 +104,9 @@ Page({
     let me = this;
 
     // 需要动到3个接口
-    const getDefaultPackListAPI = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getDefaultPackList`;
-    const deletePackByIdAPI = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}deletePackById`;
-    const modifyDefaultPackAPI = `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}modifyDefaultPack`;
+    const getDefaultPackListAPI = constants.API.getDefaultPackList;
+    const deletePackByIdAPI = constants.API.deletePackById;
+    const modifyDefaultPackAPI = constants.API.modifyDefaultPack;
 
     // 拿到触发事件的地点ID，赋值到请求的参数
     let packId = e.currentTarget.dataset.id;

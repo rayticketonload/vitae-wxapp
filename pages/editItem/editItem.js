@@ -47,7 +47,7 @@ Page({
       return false;
     } else {
       request.post(
-        `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}updataGoodInfoById`,
+        constants.API.updataGoodInfoById,
         {
           id: me.data.itemId,
           name: e.detail.value.itemName,
@@ -74,7 +74,7 @@ Page({
               });
               const setTimeoutFun = () => {
                 wx.reLaunch({
-                  url: `../list/list?packName=${me.data.parentPackName}&packId=${me.data.parentPackID}&checked=good`
+                  url: constants.ROUTE.list(me.data.parentPackID, me.data.parentPackName, "good"),
                 });
               };
               setTimeout(
@@ -183,7 +183,7 @@ Page({
   getPackListByDefaultPack: function() {
     let me = this;
     request.get(
-      `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPackListByDefaultPack`,
+      constants.API.getPackListByDefaultPack,
       // 获取所有收纳点信息成功
       function(res) {
         me.setData({
@@ -207,7 +207,7 @@ Page({
   getGoodInfoById: function() {
     let me = this;
     request.post(
-      `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getGoodInfoById`,
+      constants.API.getGoodInfoById,
       {
         id: this.data.itemId,
       },

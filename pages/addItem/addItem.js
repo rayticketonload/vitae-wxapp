@@ -46,7 +46,7 @@ Page({
       return false;
     } else {
       request.post(
-        `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}addGood`,
+        constants.API.addGood,
         {
           name: e.detail.value.itemName,
           parentId: me.data.parentPackID,
@@ -72,7 +72,7 @@ Page({
               });
               const setTimeoutFun = () => {
                 wx.reLaunch({
-                  url: `../list/list?packName=${me.data.parentPack}&packId=${me.data.parentPackID}&checked=good`
+                  url: constants.ROUTE.list(me.data.parentPackID, me.data.parentPack, "good"),
                 });
               };
               setTimeout(
@@ -205,7 +205,7 @@ Page({
     });
     // 获取当前位置下的所有收纳点信息，赋值到存放位置选择的菜单
     request.get(
-      `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPackListByDefaultPack`,
+      constants.API.getPackListByDefaultPack,
       // 获取当前位置下的所有收纳点信息成功
       function(res) {
         me.setData({

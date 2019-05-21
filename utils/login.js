@@ -20,7 +20,7 @@ function login() {
       // 开始访问第三方服务器的登录接口
       wx.request({
         method: 'POST',
-        url: `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getToken`,
+        url: constants.API.getToken,
         data: {
           code: res.code
         },

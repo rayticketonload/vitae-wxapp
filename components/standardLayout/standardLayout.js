@@ -24,7 +24,7 @@ Component({
     getServerMsgQty: function() {
       let me = this;
       request.post(
-        `${constants.NP}${constants.APIDOMAIN}${constants.APIPATH}getPAGListById`,
+        constants.API.getPAGListById,
         {
           id: 1,
         },
