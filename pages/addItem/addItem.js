@@ -8,6 +8,8 @@ const request = require('../../utils/request');
 const base64 = require('../../base64/base64');
 // 引入 moment 时间戳编译
 const moment = require("../../utils/moment");
+// 引入 util 资源
+const util = require('../../utils/util');
 
 const timestamp = Date.parse(new Date());
 const localDate = new Date(timestamp);
@@ -35,6 +37,10 @@ Page({
 
   formSubmit: function(e) {
     let me = this;
+
+    e.detail.value.itemName = util.trim(e.detail.value.itemName);
+    e.detail.value.itemQuantity = util.trim(e.detail.value.itemQuantity);
+
     // 提交错误描述
     if (!me.validator.checkForm(e)) {
       const error = me.validator.errorList[0];

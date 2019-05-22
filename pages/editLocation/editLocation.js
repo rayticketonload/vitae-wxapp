@@ -4,6 +4,8 @@ const app = getApp();
 const constants = require('../../constants/constants');
 // 引入封装好的请求方法
 const request = require('../../utils/request');
+// 引入 util 资源
+const util = require('../../utils/util');
 // 引入表单验证规则
 import customValidatorRule from '../../utils/validatorsRules';
 
@@ -68,6 +70,9 @@ Page({
   // 表单提交
   formSubmit: function(e) {
     let me = this;
+
+    e.detail.value.locationName = util.trim(e.detail.value.locationName);
+
     // 提交错误描述
     if (!me.validator.checkForm(e)) {
       const error = me.validator.errorList[0];
@@ -88,9 +93,9 @@ Page({
         // 修改地点名称成功
         function (res) {
           switch (res.code) {
-            case 100:
+            case 102:
               wx.showToast({
-                title: `${res.msg}`,
+                title: `已经有相同的地点名称`,
                 icon: 'none',
                 duration: 3000,
               });

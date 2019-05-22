@@ -8,6 +8,8 @@ const request = require("../../utils/request");
 const moment = require("../../utils/moment");
 // 引入 base64 资源
 const base64 = require('../../base64/base64');
+// 引入 util 资源
+const util = require('../../utils/util');
 
 
 Page({
@@ -42,11 +44,6 @@ Page({
   onReady: function() {
     // 获得 standardLayout 组件
     this.standardLayout = this.selectComponent("#standardLayout");
-  },
-
-  // 去掉左右空格
-  trim: function(string) {
-    return string.replace(/(^\s*)|(\s*$)/g, "");
   },
 
   // tab点击事件
@@ -253,7 +250,7 @@ Page({
   // 从输入框输入搜索字段
   searchFromKeyIn: function(e) {
     let me = this;
-    const KEY = me.trim(e.detail.value);
+    const KEY = util.trim(e.detail.value);
 
     if (!KEY) {
       wx.showToast({

@@ -4,6 +4,8 @@ const app = getApp();
 const constants = require('../../constants/constants');
 // 引入封装好的请求方法
 const request = require('../../utils/request');
+// 引入 util 资源
+const util = require('../../utils/util');
 
 Page({
 
@@ -46,6 +48,9 @@ Page({
 
   formSubmit: function(e) {
     let me = this;
+
+    e.detail.value.packName = util.trim(e.detail.value.packName);
+
     // 表单验证错误
     if (!me.validator.checkForm(e)) {
       const error = me.validator.errorList[0];
