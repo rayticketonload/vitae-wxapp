@@ -89,7 +89,7 @@ Component({
       // 弹窗确认删除
       wx.showModal({
         title: `删除此信息`,
-        // content: '信息删除后将无法恢复',
+        content: '删除后将无法恢复',
         confirmText: '确认删除',
         confirmColor: '#f17c6b',
         success: function (res) {
@@ -110,7 +110,7 @@ Component({
                   'delMsg',
                   {
                     value: true,
-                  }
+                  },
                 );
               },
               // 请求失败
