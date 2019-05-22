@@ -29,6 +29,8 @@ const API = {
   getGoodInfoById: `${NP}${APIDOMAIN}${APIPATH}getGoodInfoById`,
   updataGoodInfoById: `${NP}${APIDOMAIN}${APIPATH}updataGoodInfoById`,
   deleteItemById: `${NP}${APIDOMAIN}${APIPATH}deleteItemById`,
+  // 站内信
+  deleteMsgById: `${NP}${APIDOMAIN}${APIPATH}deleteMsgById`,
   // 用户信息
   getUserInfo: `${NP}${APIDOMAIN}${APIPATH}getUserInfo`,
   // 最近编辑

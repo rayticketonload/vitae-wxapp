@@ -25,9 +25,11 @@ App({
     // console.log(`toDoList: %c清一下没用的图标`,`color: #4492d4;`);
     // console.log(`toDoList: %c删除地点，如果删除的是默认地点，就帮用户重新选一个默认地点（数组第一个）`,`color: #4492d4;`);
     // console.log(`toDo: %c所有 request 都要有 loading, 和独立提示成功时候的 we.showToast 反馈，失败时候的 wx.showModal 反馈`,`color: #4492d4;`);
-    console.log(`toDo: %csession_key 过期需要帮用户重新登录`,`color: #4492d4;`);
+    // console.log(`toDo: %csession_key 过期需要帮用户重新登录`,`color: #4492d4;`);
     // console.log(`toDoList: %c房屋地点列表 title 要改`,`color: #4492d4;`);
     // console.log(`toDoList: %c添加地点成功之后要跳转到新地点里面`,`color: #4492d4;`);
+    console.log(`%c暂无`,`color: red;`);
+    console.log(``);
 
 
     console.log(`%cAPI待修改:`,`color: red;`);
@@ -41,7 +43,6 @@ App({
     console.log(`toDo: %c需要一个‘你的消息’接口，返回信息的创建日期，即将过期物品的名称、id，保质日期，物品创建时间，菜式名称，菜式URL`,`color: #4492d4;`);
     console.log(`toDo: %c需要一个删除消息的接口`,`color: #4492d4;`);
     console.log(`toDo: mini/api/getNewest : %c返回最近编辑的 6 个数据，不是 5 个`,`color: #4492d4;`);
-    console.log(``);
     console.log(``);
 
 

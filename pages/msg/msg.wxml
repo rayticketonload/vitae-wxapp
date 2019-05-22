@@ -1,2 +1,2 @@
-<msgList id="msgList" msgList="{{ msgList }}"/>
+<msgList id="msgList" msgList="{{ msgList }}" binddelMsg="deleteMsg"/>
 

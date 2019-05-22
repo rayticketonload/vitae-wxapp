@@ -82,5 +82,50 @@ Component({
         }
       )
     },
+
+    // 删除信息
+    msgDel: function(e) {
+      let me = this;
+      // 弹窗确认删除
+      wx.showModal({
+        title: `删除此信息`,
+        // content: '信息删除后将无法恢复',
+        confirmText: '确认删除',
+        confirmColor: '#f17c6b',
+        success: function (res) {
+          if (res.confirm) {
+            // 请求删除
+            request.post(
+              constants.API.deleteMsgById,
+              {
+                id: e.currentTarget.dataset.msgid,
+              },
+              // 请求成功
+              function(res) {
+                wx.showToast({
+                  title: `删除成功`,
+                  duration: 2000,
+                });
+                me.triggerEvent(
+                  'delMsg',
+                  {
+                    value: true,
+                  }
+                );
+              },
+              // 请求失败
+              function(err) {
+                wx.showModal({
+                  title: `删除失败`,
+                  content: `爸爸快检查网络是否正常`,
+                  confirmText: `好的`,
+                  showCancel: false
+                });
+              }
+            );
+          }
+        }
+      });
+    },
   }
 })

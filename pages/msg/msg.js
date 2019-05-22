@@ -90,6 +90,13 @@ Page({
     )
   },
 
+  // 删除信息
+  deleteMsg: function(e) {
+    if (e.detail.value) {
+      this.msgs();
+    };
+  },
+
   // 生命周期函数--监听页面加载
   onLoad: function(options) {
     this.msgs();

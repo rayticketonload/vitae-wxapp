@@ -36,8 +36,8 @@
     <view class="msgCreateDate">
       {{ item.msg_create_time }}
     </view>
-    <view class="msgDel">
-      <image src="{{ msgDel }}" bindtap="msgDel"></image>
+    <view class="msgDel" bindtap="msgDel" data-msgid='{{ item.msgId }}'>
+      <image src="{{ msgDel }}"></image>
     </view>
   </li>
 </ul>
