@@ -74,7 +74,7 @@
       </div>
     </view>
 
-    <view class="formControlWrap" wx:if="{{ date }}">
+    <view class="formControlWrap" wx:if="{{ date && !expireDateHaveProblem }}">
       <label class="formControlLabel">
         保质期 <span class="warningText">到期提醒</span>（选填）
       </label>
