@@ -4,8 +4,6 @@ const app = getApp();
 const constants = require('../../constants/constants');
 // 引入封装好的请求方法
 const request = require('../../utils/request');
-// 引入 base64 资源
-const base64 = require('../../base64/base64');
 // 引入 moment 时间戳编译
 const moment = require("../../utils/moment");
 // 引入 util 资源
@@ -30,6 +28,8 @@ Page({
     remindDate: ``,
     remindDateStart: ``,
     remindDateEnd: ``,
+    expireDateHaveProblem: false,
+    needToBeRemindDateIsHistory: false,
     // selectMenu 开关
     selectMenu: false,
     selectMenuList: [],
@@ -129,6 +129,30 @@ Page({
     });
   },
 
+  // 保质日期倒推30天时间为提醒过期日期
+  setRemindDate: function(dd,dadd = -30) {
+    let result = new Date(dd);
+    result = result.valueOf();
+    result = result + dadd * 24 * 60 * 60 * 1000;
+    result = new Date(result);
+    return moment(Date.parse(result)).format('L')
+  },
+
+  // 判断填写的保质日期是不是已成历史
+  isHistoryDate: function(needVaildDate) {
+    let result;
+    const today = new Date(localDate.getTime());
+    const theNeedVaildDate = new Date(needVaildDate);
+    if (theNeedVaildDate > today) {
+      // 保质期不是已成历史或者今天的话就返回false
+      result = false;
+    } else {
+      // 否则都为true
+      result = true;
+    }
+    return result;
+  },
+
   // 打开选择菜单
   selectMenuSwitch: function() {
     this.setData({
@@ -148,10 +172,35 @@ Page({
   // 设置保质日期
   getDate: function(e) {
     this.setData({
-      date: e.detail.value,
-      remindDateStart: moment(parseInt(localDate.getTime())).format('L'),
-      remindDateEnd: e.detail.value,
-    });
+      expireDateHaveProblem: this.isHistoryDate(e.detail.value),
+    })
+
+    if (this.data.expireDateHaveProblem) { // 填写的保质日期已经成历史或者就是今天过期，那就不用填写过期提醒日期
+      this.setData({
+        date: e.detail.value,
+      });
+    }
+    else { // 填写的保质日期在将来，那就可以填写过期日期
+      const needToBeRemindDate = this.setRemindDate(e.detail.value);
+
+      if (this.isHistoryDate(needToBeRemindDate)) { // 如果倒推30天时间之后的日期已经是历史时间，那就将提醒时间预设为明天
+        this.setData({
+          itemExpireDate: e.detail.value,
+          remindDateStart: moment(parseInt(localDate.getTime())).format('L'),
+          remindDateEnd: e.detail.value,
+          remindDate: this.setRemindDate(moment(parseInt(localDate.getTime())).format('L'), 1),
+          needToBeRemindDateIsHistory: true,
+        });
+      } else {
+        this.setData({
+          itemExpireDate: e.detail.value,
+          remindDateStart: moment(parseInt(localDate.getTime())).format('L'),
+          remindDateEnd: e.detail.value,
+          remindDate: needToBeRemindDate,
+          needToBeRemindDateIsHistory: false,
+        });
+      }
+    }
   },
 
   // 设置到期提醒日期

@@ -61,7 +61,7 @@
 
     <view class="formControlWrap">
       <label class="formControlLabel">
-        保质期(选填)
+        <span>保质期</span>（选填）
       </label>
       <pickDate
         bindthrowValue="getDate"
@@ -69,17 +69,16 @@
       >
         {{ itemExpireDate }}
       </pickDate>
+      <div class="exTips warningText" wx:if="{{ expireDateHaveProblem }}">
+        保质期到了吧...坏的东西要扔掉
+      </div>
     </view>
 
-    <view class="formControlWrap" wx:if="{{ itemExpireDate }}">
+
+    <view class="formControlWrap" wx:if="{{ itemExpireDate && !expireDateHaveProblem }}">
       <label class="formControlLabel">
-        保质期
-        <span class="warningText">
-          到期提醒
-        </span>
-        （选填）
+        保质期 <span class="warningText">到期提醒</span>（选填）
       </label>
-     <!-- <div class="exDateTips">默认提前 <span>30</span> 天站内信通知</div> -->
       <pickDate
         bindthrowValue="getRemindDate"
         binddelValue="delRemindDate"
@@ -88,12 +87,18 @@
       >
         {{ remindDate }}
       </pickDate>
+      <div class="exDateTips warningText" wx:if="{{ needToBeRemindDateIsHistory }}">好像快到期了...</div>
+      <div class="exDateTips" wx:else>预设提前 <span>30</span> 天站内信形式提醒啊</div>
     </view>
 
-    <!-- <div class="exDateTips">我会提前 <span>30</span> 天通知你，它保质期快到了!</div> -->
-    <view class="formButtonWrap">
+    <view class="formButtonWrap fullWidthBtn" wx:if="{{ expireDateHaveProblem }}">
+      <button formType="submit" class="button thirdly" >好吧，你不扔我也没办法</button>
+    </view>
+
+    <view class="formButtonWrap" wx:else>
       <button formType="submit" class="button thirdly">保存</button>
     </view>
+
   </form>
 </view>
 <view class="selectMenuMask {{ selectMenu ? 'block' : '' }}"></view>
