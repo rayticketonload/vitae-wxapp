@@ -28,7 +28,8 @@ App({
     // console.log(`toDo: %csession_key 过期需要帮用户重新登录`,`color: #4492d4;`);
     // console.log(`toDoList: %c房屋地点列表 title 要改`,`color: #4492d4;`);
     // console.log(`toDoList: %c添加地点成功之后要跳转到新地点里面`,`color: #4492d4;`);
-    console.log(`%c暂无`,`color: red;`);
+    console.log(`toDoList: %c设置保质日期和提醒日期的时间差`,`color: #4492d4;`);
+    // console.log(`%c暂无`,`color: red;`);
     console.log(``);
 
 

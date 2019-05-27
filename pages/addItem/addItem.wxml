@@ -86,17 +86,17 @@
       >
         {{ remindDate }}
       </pickDate>
-      <div class="exDateTips warningText" wx:if="{{ needToBeRemindDateIsHistory }}">好像快到期了...</div>
-      <div class="exDateTips" wx:else>预设提前 <span>30</span> 天站内信形式提醒啊</div>
+      <div class="exDateTips">提前 <span>{{ rd2ed }}</span> 天站内信形式提醒</div>
     </view>
 
     <view class="formButtonWrap fullWidthBtn" wx:if="{{ expireDateHaveProblem }}">
-      <button formType="submit" class="button thirdly" >好吧，你不扔我也没办法</button>
+      <button formType="submit" class="button thirdly">好吧，你不扔我也没办法</button>
     </view>
 
     <view class="formButtonWrap" wx:else>
       <button formType="submit" class="button thirdly">保存</button>
     </view>
+
   </form>
 </view>
 <view class="selectMenuMask {{ selectMenu ? 'block' : '' }}"></view>

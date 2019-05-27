@@ -29,7 +29,7 @@ Page({
     remindDateStart: ``,
     remindDateEnd: ``,
     expireDateHaveProblem: false,
-    needToBeRemindDateIsHistory: false,
+    rd2ed: 0,
     // selectMenu 开关
     selectMenu: false,
     selectMenuList: [],
@@ -129,6 +129,22 @@ Page({
     });
   },
 
+  // 打开选择菜单
+  selectMenuSwitch: function() {
+    this.setData({
+      selectMenu: !this.data.selectMenu
+    })
+  },
+
+  // 菜单选择事件
+  selectOption: function(e) {
+    this.setData({
+      selectMenu: false,
+      parentPackID: e.currentTarget.dataset.id,
+      parentPack: e.currentTarget.dataset.name,
+    })
+  },
+
   // 保质日期倒推30天时间为提醒过期日期
   setRemindDate: function(dd,dadd = -30) {
     let result = new Date(dd);
@@ -153,51 +169,39 @@ Page({
     return result;
   },
 
-  // 打开选择菜单
-  selectMenuSwitch: function() {
-    this.setData({
-      selectMenu: !this.data.selectMenu
-    })
-  },
-
-  // 菜单选择事件
-  selectOption: function(e) {
-    this.setData({
-      selectMenu: false,
-      parentPackID: e.currentTarget.dataset.id,
-      parentPack: e.currentTarget.dataset.name,
-    })
-  },
-
   // 设置保质日期
   getDate: function(e) {
+    const preExpireDate = e.detail.value;  // 用户选择的保质日期
+    const autoSetRemindDate = this.setRemindDate(preExpireDate); // 根据用户选择的保质日期，默认倒推30天为保质期到期提醒日
+    const today = moment(parseInt(localDate.getTime())).format('L'); // 今天
+    const tomorrow = this.setRemindDate(today, 1); // 明天
+
+    // 判断用户选择的保质日期是否已成历史或刚好是今天，是的话为true，不是的话为false
     this.setData({
-      expireDateHaveProblem: this.isHistoryDate(e.detail.value),
+      expireDateHaveProblem: this.isHistoryDate(preExpireDate),
     })
 
     if (this.data.expireDateHaveProblem) { // 填写的保质日期已经成历史或者就是今天过期，那就不用填写过期提醒日期
       this.setData({
-        date: e.detail.value,
+        date: preExpireDate,
       });
     }
     else { // 填写的保质日期在将来，那就可以填写过期日期
-      const needToBeRemindDate = this.setRemindDate(e.detail.value);
-
-      if (this.isHistoryDate(needToBeRemindDate)) { // 如果倒推30天时间之后的日期已经是历史时间，那就将提醒时间预设为明天
+      if (this.isHistoryDate(autoSetRemindDate)) { // 如果倒推30天时间之后的日期已经是历史时间，那就将提醒时间预设为明天
         this.setData({
-          itemExpireDate: e.detail.value,
-          remindDateStart: moment(parseInt(localDate.getTime())).format('L'),
-          remindDateEnd: e.detail.value,
-          remindDate: this.setRemindDate(moment(parseInt(localDate.getTime())).format('L'), 1),
-          needToBeRemindDateIsHistory: true,
+          date: preExpireDate,
+          remindDateStart: today,
+          remindDateEnd: preExpireDate,
+          remindDate: tomorrow,
+          rd2ed: (new Date(preExpireDate) - new Date(tomorrow)) / (24 * 60 * 60 * 1000),
         });
       } else {
         this.setData({
-          itemExpireDate: e.detail.value,
+          date: preExpireDate,
           remindDateStart: moment(parseInt(localDate.getTime())).format('L'),
-          remindDateEnd: e.detail.value,
-          remindDate: needToBeRemindDate,
-          needToBeRemindDateIsHistory: false,
+          remindDateEnd: preExpireDate,
+          remindDate: autoSetRemindDate,
+          rd2ed: (new Date(preExpireDate) - new Date(autoSetRemindDate)) / (24 * 60 * 60 * 1000),
         });
       }
     }
@@ -207,6 +211,7 @@ Page({
   getRemindDate: function(e) {
     this.setData({
       remindDate: e.detail.value,
+      rd2ed: (new Date(this.data.date) - new Date(e.detail.value)) / (24 * 60 * 60 * 1000),
     });
   },
 
@@ -215,6 +220,7 @@ Page({
     this.setData({
       date: e.detail.value,
       remindDate: e.detail.value,
+      rd2ed: 0,
     });
   },
 
@@ -222,6 +228,7 @@ Page({
   delRemindDate: function(e) {
     this.setData({
       remindDate: e.detail.value,
+      rd2ed: 0,
     });
   },
 
