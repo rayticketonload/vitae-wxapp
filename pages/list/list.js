@@ -110,6 +110,7 @@ Page({
             pic_address: itemObj.pic_address,
             type: itemObj.type,
             update_timestamp: itemObj.update_timestamp,
+            quantity: itemObj.quantity,
           }
         })
         // 在设置自身的 data
