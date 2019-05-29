@@ -199,7 +199,7 @@ Page({
   getRemindDate: function(e) {
     this.setData({
       remindDate: e.detail.value,
-      rd2ed: (new Date(this.data.date) - new Date(e.detail.value)) / (24 * 60 * 60 * 1000),
+      rd2ed: (new Date(this.data.itemExpireDate) - new Date(e.detail.value)) / (24 * 60 * 60 * 1000),
     });
   },
 
@@ -276,18 +276,31 @@ Page({
       },
       // 获取物品信息成功
       function (res) {
-        me.setData({
-          expireDateHaveProblem: me.isHistoryDate(res.data.expire_date),
-        })
+        let preItemExpireDate, preRd2ed;
+
+        if (res.data.expire_date) {
+          me.setData({
+            expireDateHaveProblem: me.isHistoryDate(res.data.expire_date),
+          });
+          preItemExpireDate = res.data.expire_date;
+        } else {
+          preItemExpireDate = '';
+        }
+
+        if (res.data.remind_date) {
+          preRd2ed = (new Date(res.data.expire_date) - new Date(res.data.remind_date)) / (24 * 60 * 60 * 1000);
+        } else {
+          preRd2ed = 0;
+        }
 
         me.setData({
           itemImg: res.data.pic_address,
           itemName: res.data.name,
           itemQuantity: res.data.quantity,
-          itemExpireDate: res.data.expire_date,
-          remindDate: res.data.remindDate,
+          itemExpireDate: preItemExpireDate,
+          remindDate: res.data.remind_date,
           parentPackID: res.data.parent_id,
-          rd2ed: (new Date(res.data.expire_date) - new Date(res.data.remindDate)) / (24 * 60 * 60 * 1000),
+          rd2ed: preRd2ed,
         });
 
         if (me.data.itemExpireDate && me.data.itemExpireDate != '') {
@@ -295,6 +308,8 @@ Page({
             remindDateStart: moment(parseInt(localDate.getTime())).format('L'),
             remindDateEnd: me.data.itemExpireDate,
           });
+          console.log('start', me.data.remindDateStart);
+          console.log('end', me.data.remindDateEnd);
         }
 
         me.data.selectMenuList.map(item => {

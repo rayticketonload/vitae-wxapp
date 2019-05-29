@@ -86,7 +86,7 @@
       >
         {{ remindDate }}
       </pickDate>
-      <div class="exDateTips">提前 <span>{{ rd2ed }}</span> 天站内信形式提醒</div>
+      <div class="exDateTips" wx:if="{{ remindDate }}">提前 <span>{{ rd2ed }}</span> 天站内信形式提醒</div>
     </view>
 
     <view class="formButtonWrap fullWidthBtn" wx:if="{{ expireDateHaveProblem }}">

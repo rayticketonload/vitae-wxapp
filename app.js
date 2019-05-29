@@ -28,14 +28,14 @@ App({
     // console.log(`toDo: %csession_key 过期需要帮用户重新登录`,`color: #4492d4;`);
     // console.log(`toDoList: %c房屋地点列表 title 要改`,`color: #4492d4;`);
     // console.log(`toDoList: %c添加地点成功之后要跳转到新地点里面`,`color: #4492d4;`);
-    console.log(`toDoList: %c设置保质日期和提醒日期的时间差`,`color: #4492d4;`);
+    // console.log(`toDoList: %c设置保质日期和提醒日期的时间差`,`color: #4492d4;`);
     // console.log(`%c暂无`,`color: red;`);
     console.log(``);
 
 
     console.log(`%cAPI待修改:`,`color: red;`);
     console.log(`toDo: mini/api/getNewest : %c不用返回顶级节点，例如初始数据的‘家’，‘仓库’，‘公司’，只返回顶级节点下最新编辑过的物品或者收纳点，例如当前顶级节点是’家‘，就只返回’家‘下面最新编辑过的东西，和’仓库‘，或者’公司‘下面的无关`,`color: #4492d4;`);
-    console.log(`toDo: %c需要一个新接口，前端传盒子ID给服务器，服务器屏蔽所传ID的盒子及其下所有盒子，并返回剔除掉这些盒子之后的结果数组`,`color: #4492d4;`);
+    console.log(`toDo: %c需要一个新接口，前端传盒子ID给服务器，服务器屏蔽所传ID的盒子及其下所有盒子，并返回剔除掉这些盒子之后的结果数组，这个接口用来做存放位置的菜单的`,`color: #4492d4;`);
     console.log(`toDo: /mini/api/deleteItemById : %c接口报404`,`color: #4492d4;`);
     console.log(`toDo: mini/api/updataGoodInfoById : %c请求接口后，物品变成了顶级节点，物品的parentId为null`,`color: #4492d4;`);
     console.log(`toDo: mini/api/updataGoodInfoById : %ca增加‘提醒过期’的日期字段提交参数`,`color: #4492d4;`);
@@ -43,7 +43,7 @@ App({
     console.log(`toDo: mini/api/getGoodInfoById : %c需要返回’物品数量‘的字段和‘提醒过期’的日期字段`,`color: #4492d4;`);
     console.log(`toDo: %c需要一个‘你的消息’接口，返回信息的创建日期，即将过期物品的名称、id，保质日期，物品创建时间，菜式名称，菜式URL`,`color: #4492d4;`);
     console.log(`toDo: %c需要一个删除消息的接口`,`color: #4492d4;`);
-    console.log(`toDo: mini/api/getNewest : %c返回最近编辑的 6 个数据，不是 5 个`,`color: #4492d4;`);
+    // console.log(`toDo: mini/api/getNewest : %c返回最近编辑的 6 个数据，不是 5 个`,`color: #4492d4;`);
     console.log(``);
 
 
