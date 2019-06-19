@@ -110,10 +110,13 @@ Page({
   },
 
   // 获取所有收纳点信息，赋值到存放位置选择的菜单
-  getPackListByDefaultPack: function() {
+  packListForPackModifySelectMenu: function(id) {
     let me = this;
-    request.get(
-      constants.API.getPackListByDefaultPack,
+    request.post(
+      constants.API.packListForPackModifySelectMenu,
+      {
+        id: id,
+      },
       // 获取所有收纳点信息成功
       function(res) {
         me.setData({
@@ -192,7 +195,7 @@ Page({
       serverName: `${constants.NP}${constants.APIDOMAIN}${constants.IMGPATH}`
     });
 
-    me.getPackListByDefaultPack();
+    me.packListForPackModifySelectMenu(me.data.packId);
   },
 
   // 打开选择菜单

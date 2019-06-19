@@ -105,7 +105,7 @@ Page({
     const param = {
       url: constants.API.testAPI,
       data: {
-        id: '1',
+        id: '11',
       },
       success: function(data) {
         console.log('testAPI', data);
