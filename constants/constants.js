@@ -18,6 +18,8 @@ const MSG_QTY_HISTORY_KEY = `msgQtyHistory`;
 
 // api
 const API = {
+  // 测试接口
+  testAPI: `${NP}${APIDOMAIN}${APIPATH}getNewestModify`,
   // 顶级收纳点（地点）
   getPackListByDefaultPack: `${NP}${APIDOMAIN}${APIPATH}getPackListByDefaultPack`,
   modifyDefaultPack: `${NP}${APIDOMAIN}${APIPATH}modifyDefaultPack`,
@@ -39,7 +41,7 @@ const API = {
   // 用户信息
   getUserInfo: `${NP}${APIDOMAIN}${APIPATH}getUserInfo`,
   // 最近编辑
-  getNewest: `${NP}${APIDOMAIN}${APIPATH}getNewest`,
+  getNewest: `${NP}${APIDOMAIN}${APIPATH}getNewestModify`,
   // 搜索
   search: `${NP}${APIDOMAIN}${APIPATH}search`,
   // 权限

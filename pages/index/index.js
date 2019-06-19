@@ -101,6 +101,21 @@ Page({
     this.msgList = this.selectComponent("#msgList");
   },
 
+  testAPI:  function() {
+    const param = {
+      url: constants.API.testAPI,
+      data: {
+        id: '1',
+      },
+      success: function(data) {
+        console.log('testAPI', data);
+      },
+      fail: ``,
+      complete: ``
+    };
+    request.post(param);
+  },
+
   _toMsgList: function() {
     wx.navigateTo({
       url: constants.ROUTE.msg,
@@ -148,6 +163,8 @@ Page({
           parentPackName: data.data.default_pack_name,
           parentPackID: data.data.default_pack,
         });
+        me.testAPI();
+        me.getNew();
       },
       fail: ``,
       complete: ``
@@ -160,9 +177,12 @@ Page({
     let me = this;
     const param = {
       url: constants.API.getNewest,
+      data: {
+        id: me.data.currentLocationID,
+      },
       success: function(data) {
         me.setData({
-          newModify: data.data.list,
+          newModify: data.data,
         });
       },
       fail: function () {
@@ -174,7 +194,7 @@ Page({
         });
       },
     };
-    request.get(param);
+    request.post(param);
   },
 
   getUserAuth: function(e) {
@@ -212,11 +232,9 @@ Page({
     // 拿首页要显示的用户当前房屋的信息
     if (app.globalData.session_key) {
       this.getIndexInfo();
-      this.getNew();
     } else {
       app.sessionkeyReadyCallback = res => {
         this.getIndexInfo();
-        this.getNew();
       };
     };
   },
