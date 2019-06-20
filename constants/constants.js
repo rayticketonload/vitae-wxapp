@@ -18,8 +18,6 @@ const MSG_QTY_HISTORY_KEY = `msgQtyHistory`;
 
 // api
 const API = {
-  // 测试接口
-  testAPI: `${NP}${APIDOMAIN}${APIPATH}packListForPackModifySelectMenu`,
   // 顶级收纳点（地点）
   packListForPackModifySelectMenu: `${NP}${APIDOMAIN}${APIPATH}packListForPackModifySelectMenu`, // 用于”修改盒子“页面的”存放位置“选择菜单的盒子列表
   getPackListByDefaultPack: `${NP}${APIDOMAIN}${APIPATH}getPackListByDefaultPack`,
