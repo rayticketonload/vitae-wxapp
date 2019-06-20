@@ -36,7 +36,7 @@ const API = {
   addGood: `${NP}${APIDOMAIN}${APIPATH}addGood`,
   getGoodInfoById: `${NP}${APIDOMAIN}${APIPATH}getGoodInfoById`,
   updataGoodInfoById: `${NP}${APIDOMAIN}${APIPATH}updataGoodInfoById`,
-  deleteItemById: `${NP}${APIDOMAIN}${APIPATH}deleteItemById`,
+  deleteItemById: `${NP}${APIDOMAIN}${APIPATH}delSingleItemById`,
   // 站内信
   deleteMsgById: `${NP}${APIDOMAIN}${APIPATH}deleteMsgById`,
   // 用户信息

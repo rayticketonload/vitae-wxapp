@@ -225,7 +225,9 @@ Page({
           // 请求删除
           request.post(
             constants.API.deleteItemById,
-            { "id": e.currentTarget.dataset.id },
+            {
+              id: e.currentTarget.dataset.id,
+            },
             // 请求删除收纳点成功
             function(res) {
               wx.showToast({

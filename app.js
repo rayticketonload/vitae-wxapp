@@ -36,7 +36,7 @@ App({
     console.log(`%cAPI待修改:`,`color: red;`);
     // console.log(`toDo: mini/api/getNewest : %c不用返回顶级节点，例如初始数据的‘家’，‘仓库’，‘公司’，只返回顶级节点下最新编辑过的物品或者收纳点，例如当前顶级节点是’家‘，就只返回’家‘下面最新编辑过的东西，和’仓库‘，或者’公司‘下面的无关`,`color: #4492d4;`);
     // console.log(`toDo: %c需要一个新接口，前端传盒子ID给服务器，服务器屏蔽所传ID的盒子及其下所有盒子，并返回剔除掉这些盒子之后的结果数组，这个接口用来做存放位置的菜单的`,`color: #4492d4;`);
-    console.log(`toDo: /mini/api/deleteItemById : %c接口报404`,`color: #4492d4;`);
+    // console.log(`toDo: /mini/api/deleteItemById : %c接口报404`,`color: #4492d4;`);
     // console.log(`toDo: /mini/api/search : %c搜索接口只能够搜到一个顶级收纳点下的东西`,`color: #4492d4;`);
     // console.log(`toDo: mini/api/updataGoodInfoById : %c请求接口后，物品变成了顶级节点，物品的parentId为null`,`color: #4492d4;`);
     // console.log(`toDo: mini/api/updataGoodInfoById : %ca增加‘提醒过期’的日期字段提交参数`,`color: #4492d4;`);
