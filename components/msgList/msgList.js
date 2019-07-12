@@ -24,6 +24,10 @@ Component({
       type: Array,
       value: [],
     },
+    nothing: {
+      type: Boolean,
+      value: true,
+    },
     extraClass: {
       type: String,
       value: '',

@@ -10,50 +10,7 @@ const request = require("../../utils/request");
 Page({
   data: {
     msgList: [],
-    fakseList: [
-        {
-            "_id":"5d271553b079d27ce7964a83",
-            "cook_book": '123',
-            "cook_book_url":null,
-            "del":false,
-            "msg_create_time":"2019-07-11 18:54:11",
-            "item_id":"39",
-            "item_name":"测试物品信息1",
-            "item_create_date":"2019-07-11 10:36:41",
-            "item_expire_date":"2019-07-12",
-            "item_remind_date":"2019-07-11",
-            "item_current_location_name":"屋企",
-            "item_current_location_id":"1"
-        },
-        {
-            "_id":"5d271553b079d27ce7964a84",
-            "cook_book": '1234',
-            "cook_book_url":null,
-            "del":false,
-            "msg_create_time":"2019-07-11 18:54:11",
-            "item_id":"44",
-            "item_name":"测试物品信息office1",
-            "item_create_date":"2019-07-11 17:36:14",
-            "item_expire_date":"2019-07-11",
-            "item_remind_date":null,
-            "item_current_location_name":"Office",
-            "item_current_location_id":"2"
-        },
-        {
-            "_id":"5d271553b079d27ce7964a85",
-            "cook_book":null,
-            "cook_book_url":null,
-            "del":false,
-            "msg_create_time":"2019-07-11 18:54:11",
-            "item_id":"45",
-            "item_name":"测试物品信息2",
-            "item_create_date":"2019-07-11 17:48:47",
-            "item_expire_date":"2019-07-12",
-            "item_remind_date":"2019-07-11",
-            "item_current_location_name":"屋企",
-            "item_current_location_id":"1"
-        }
-    ]
+    nothing: true,
   },
 
   // 获取信息列表并刷新 sessionStorage 里面存储的信息数统计，为的是判断用户有没有新信息
@@ -63,9 +20,15 @@ Page({
       constants.API.msg,
       // 请求成功
       function (res) {
+        let n = true;
+        res.msg_list.some(item => {
+          if (!item.del) {
+            n = false;
+          }
+        });
         me.setData({
           msgList: res.msg_list,
-          // msgList: me.data.fakseList,
+          nothing: n,
         });
         wx.setStorage({
           key: constants.MSG_QTY_HISTORY_KEY,
