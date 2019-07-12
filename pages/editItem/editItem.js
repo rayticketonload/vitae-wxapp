@@ -64,6 +64,8 @@ Page({
           remindDate: me.data.remindDate,
           pic: me.data.itemImg,
           quantity: e.detail.value.itemQuantity,
+          currentLocationName: app.globalData.currentLocationName,
+          currentLocationID: app.globalData.currentLocationID,
         },
         // 添加收纳点成功
         function (res) {

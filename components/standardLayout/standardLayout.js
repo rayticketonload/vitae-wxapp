@@ -23,15 +23,12 @@ Component({
   methods: {
     getServerMsgQty: function() {
       let me = this;
-      request.post(
-        constants.API.getPAGListById,
-        {
-          id: 1,
-        },
+      request.get(
+        constants.API.msg,
         // 请求成功
         function (res) {
           me.setData({
-            serverMsgQty: res.data.packList.length,
+            serverMsgQty: res.msg_list.length,
           });
           // console.log('serverMsgQty', me.data.serverMsgQty);
           // console.log('localMsgQty', me.data.localMsgQty);

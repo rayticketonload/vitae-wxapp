@@ -9,73 +9,67 @@ const request = require("../../utils/request");
 
 Page({
   data: {
-    // msList: [],
-    msgList: [
-      {
-        item_name: '测试物品测试物品测试物品测试物品测试物品测试物品测试物',
-        item_create_date: '2019-05-14 16:09:50',
-        item_id: '1',
-        expire_date: '2019-12-18',
-        msg_id: '5',
-        msg_create_time: '2019-05-12',
-        cook_book: null,
-        cook_book_url: null,
-      },
-      {
-        item_name: '测试物品B',
-        item_create_date: '2019-05-14 16:10:26',
-        item_id: '2',
-        expire_date: '2019-10-01',
-        msg_id: '4',
-        msg_create_time: '2019-05-12',
-        cook_book: null,
-        cook_book_url: null,
-      },
-      {
-        item_name: '快过期食物A',
-        item_create_date: '2019-05-14 18:56:21',
-        item_id: '4',
-        expire_date: '2019-05-19',
-        msg_id: '3',
-        msg_create_time: '2019-05-12',
-        cook_book: '比较长的食谱名称不代表食材多',
-        cook_book_url: null,
-      },
-      {
-        item_name: '测试物品C',
-        item_create_date: '2019-05-14 16:10:48',
-        item_id: '3',
-        expire_date: '2019-05-10',
-        msg_id: '2',
-        msg_create_time: '2019-05-10',
-        cook_book: null,
-        cook_book_url: null,
-      },
-      {
-        item_name: '快过期食物B',
-        item_create_date: '2019-05-14 19:00:22',
-        item_id: '5',
-        expire_date: '2019-05-15',
-        msg_id: '1',
-        msg_create_time: '2019-05-09',
-        cook_book: '好不好吃靠照骗',
-        cook_book_url: null,
-      },
-    ],
+    msgList: [],
+    fakseList: [
+        {
+            "_id":"5d271553b079d27ce7964a83",
+            "cook_book": '123',
+            "cook_book_url":null,
+            "del":false,
+            "msg_create_time":"2019-07-11 18:54:11",
+            "item_id":"39",
+            "item_name":"测试物品信息1",
+            "item_create_date":"2019-07-11 10:36:41",
+            "item_expire_date":"2019-07-12",
+            "item_remind_date":"2019-07-11",
+            "item_current_location_name":"屋企",
+            "item_current_location_id":"1"
+        },
+        {
+            "_id":"5d271553b079d27ce7964a84",
+            "cook_book": '1234',
+            "cook_book_url":null,
+            "del":false,
+            "msg_create_time":"2019-07-11 18:54:11",
+            "item_id":"44",
+            "item_name":"测试物品信息office1",
+            "item_create_date":"2019-07-11 17:36:14",
+            "item_expire_date":"2019-07-11",
+            "item_remind_date":null,
+            "item_current_location_name":"Office",
+            "item_current_location_id":"2"
+        },
+        {
+            "_id":"5d271553b079d27ce7964a85",
+            "cook_book":null,
+            "cook_book_url":null,
+            "del":false,
+            "msg_create_time":"2019-07-11 18:54:11",
+            "item_id":"45",
+            "item_name":"测试物品信息2",
+            "item_create_date":"2019-07-11 17:48:47",
+            "item_expire_date":"2019-07-12",
+            "item_remind_date":"2019-07-11",
+            "item_current_location_name":"屋企",
+            "item_current_location_id":"1"
+        }
+    ]
   },
 
   // 获取信息列表并刷新 sessionStorage 里面存储的信息数统计，为的是判断用户有没有新信息
   msgs: function() {
-    request.post(
-      constants.API.getPAGListById,
-      {
-        id: 1,
-      },
+    let me = this;
+    request.get(
+      constants.API.msg,
       // 请求成功
       function (res) {
+        me.setData({
+          msgList: res.msg_list,
+          // msgList: me.data.fakseList,
+        });
         wx.setStorage({
           key: constants.MSG_QTY_HISTORY_KEY,
-          data: res.data.packList.length,
+          data: res.msg_list.length,
         });
       },
       // 请求失败

@@ -162,9 +162,11 @@ Page({
     // 拿首页要显示的用户当前房屋的信息
     if (app.globalData.session_key) {
       this.getIndexInfo();
+      // this.msg();
     } else {
       app.sessionkeyReadyCallback = res => {
         this.getIndexInfo();
+        // this.msg();
       };
     };
   },

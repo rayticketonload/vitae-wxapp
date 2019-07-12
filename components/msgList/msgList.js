@@ -51,24 +51,76 @@ Component({
     // 从信息进入物品编辑界面
     msgToItem: function(e) {
       let me = this;
+      const currentLocationID = e.currentTarget.dataset.cli;
+      const currentLocationName = e.currentTarget.dataset.cln;
+
       request.post(
         constants.API.getGoodInfoById,
         {
           id: e.currentTarget.dataset.id,
         },
-        // 获取物品信息成功
+        // 访问物品信息成功
         function (res) {
-          // 这段逻辑是用来判断从信息跳转过来的时候，用物品ID和物品创建时间来判断物品是否还存在
-          if (e.currentTarget.dataset.createtime == res.data.date && e.currentTarget.dataset.id == res.data.id) {
-            wx.navigateTo({
-              url: constants.ROUTE.editItem(e.currentTarget.dataset.id),
-            });
-          } else {
+          if (res.code == 100) {
             wx.showToast({
               title: `物品已经不存在`,
               icon: `none`,
               duration: 2000,
             });
+          } else {
+            // 如果物品不在当前地点
+            if (currentLocationID != app.globalData.currentLocationID) {
+              wx.showModal({
+                title: `物品不在当前地点`,
+                content: `将跳转到 ${currentLocationName}`,
+                confirmText: '跳转',
+                confirmColor: '#f17c6b',
+                success: function (res) {
+                  if (res.confirm) {
+                    console.log('ok');
+                    // 先改变当前地点ID
+                    request.post(
+                      constants.API.modifyDefaultPack,
+                      {
+                        id: currentLocationID,
+                      },
+                      // success
+                      function (res) {
+                        switch (res.code) {
+                          case 100:
+                            wx.showToast({
+                              title: `${res.msg}`,
+                              icon: 'none',
+                              duration: 3000,
+                            });
+                            break;
+                          case 200:
+                            // 改变成功后再跳转
+                            wx.navigateTo({
+                              url: constants.ROUTE.editItem(e.currentTarget.dataset.id),
+                            });
+                            break;
+                        }
+                      },
+                      // fail
+                      function (err) {
+                        wx.showModal({
+                          title: `跳转失败`,
+                          content: `爸爸快检查网络是否正常`,
+                          confirmText: `好的`,
+                          showCancel: false
+                        });
+                      }
+                    );
+                  }
+                }
+              });
+            } else {
+              // 物品在当前地点
+              wx.navigateTo({
+                url: constants.ROUTE.editItem(e.currentTarget.dataset.id),
+              });
+            }
           }
         },
         // 获取收纳点信息失败
