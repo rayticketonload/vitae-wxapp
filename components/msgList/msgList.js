@@ -77,7 +77,6 @@ Component({
                 confirmColor: '#f17c6b',
                 success: function (res) {
                   if (res.confirm) {
-                    console.log('ok');
                     // 先改变当前地点ID
                     request.post(
                       constants.API.modifyDefaultPack,
@@ -96,6 +95,8 @@ Component({
                             break;
                           case 200:
                             // 改变成功后再跳转
+                            app.globalData.currentLocationID = currentLocationID;
+                            app.globalData.currentLocationName = currentLocationName;
                             wx.navigateTo({
                               url: constants.ROUTE.editItem(e.currentTarget.dataset.id),
                             });
