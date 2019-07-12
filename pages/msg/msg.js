@@ -27,7 +27,7 @@ Page({
           }
         });
         me.setData({
-          msgList: res.msg_list,
+          msgList: res.msg_list.reverse(),
           nothing: n,
         });
         wx.setStorage({
