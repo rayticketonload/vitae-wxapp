@@ -42,8 +42,8 @@ App({
     // console.log(`toDo: mini/api/updataGoodInfoById : %ca增加‘提醒过期’的日期字段提交参数`,`color: #4492d4;`);
     // console.log(`toDo: mini/api/addGood : %ca增加‘提醒过期’的日期字段提交参数`,`color: #4492d4;`);
     // console.log(`toDo: mini/api/getGoodInfoById : %c需要返回’物品数量‘的字段和‘提醒过期’的日期字段`,`color: #4492d4;`);
-    console.log(`toDo: %c需要一个‘你的消息’接口，返回信息的创建日期，即将过期物品的名称、id，保质日期，物品创建时间，菜式名称，菜式URL`,`color: #4492d4;`);
-    console.log(`toDo: %c需要一个删除消息的接口`,`color: #4492d4;`);
+    // console.log(`toDo: %c需要一个‘你的消息’接口，返回信息的创建日期，即将过期物品的名称、id，保质日期，物品创建时间，菜式名称，菜式URL`,`color: #4492d4;`);
+    // console.log(`toDo: %c需要一个删除消息的接口`,`color: #4492d4;`);
     // console.log(`toDo: mini/api/getNewest : %c返回最近编辑的 6 个数据，不是 5 个`,`color: #4492d4;`);
     console.log(``);
 

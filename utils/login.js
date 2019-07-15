@@ -16,7 +16,7 @@ function login() {
       // 将拿到的 code 传到第三方服务器
       // 由第三方服务器将 code 发回给微信以换取拥有这个 code 的微信用户的 session_key 和 session_id
       // 再由第三方组装好一个新的第三方 session_key 传回给微信用户，作身份识别用途
-      console.log(`成功访问 wx.login 接口，拿到用户的微信账号 code: %c${res.code}`, `color: #ffb119;`);
+      // console.log(`成功访问 wx.login 接口，拿到用户的微信账号 code: %c${res.code}`, `color: #ffb119;`);
       // 开始访问第三方服务器的登录接口
       wx.request({
         method: 'POST',
@@ -26,7 +26,7 @@ function login() {
         },
         // 成功访问第三方登录接口后会拿到重新组装过的 session_key
         success: res => {
-          console.log(`成功访问第三方登录接口，返回重组完成的 session_key: %c${res.data.session_key}`, `color: #ffb119;`);
+          // console.log(`成功访问第三方登录接口，返回重组完成的 session_key: %c${res.data.session_key}`, `color: #ffb119;`);
           const app = getApp();
           // 将拿回来的 session_key 放入 globalData
           app.globalData.session_key = res.data.session_key;
