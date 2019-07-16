@@ -1,0 +1,16 @@
+{
+  "name": "Vitae",
+  "version": "0.0.1",
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "node": true
+    },
+    "rules": {
+      "no-console": "off"
+    }
+  }
+}

@@ -1,0 +1,122 @@
+<view class="defaultFormWrap">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <uploader limit="{{ 1 }}" bindcallback="uploaderChange" id="uploader" />
+
+    <view class="formControlWrap">
+      <label class="formControlLabel">
+        物品名称
+      </label>
+      <view class="formControlBox">
+        <input
+          name = "itemName"
+          placeholder = "例如鸡蛋，唇膏，变形金刚..."
+          placeholder-class = "defaultPlaceHolderColor"
+          value = "{{ itemName }}"
+          class = "formControl"
+          maxlength = "-1"
+          auto-focus = true
+          bindinput = "itemNameKeyIn"
+        />
+        <span class="formValueClear" wx:if="{{ itemName.length > 0 }}" bindtap="itemNameReset"></span>
+      </view>
+    </view>
+
+    <view class="formControlWrap">
+      <label class="formControlLabel">
+        物品数量
+      </label>
+      <view class="formControlBox">
+        <input
+          type = "number"
+          name = "itemQuantity"
+          placeholder = "请输入物品数量（整数）"
+          placeholder-class = "defaultPlaceHolderColor"
+          value = "{{ itemQuantity }}"
+          class = "formControl"
+          maxlength = "-1"
+          auto-focus = true
+          bindinput = "itemQuantityKeyIn"
+        />
+        <span class="formValueClear" wx:if="{{ itemQuantity }}" bindtap="itemQuantityReset"></span>
+      </view>
+    </view>
+
+    <view class="formControlWrap options" bindtap="selectMenuSwitch">
+      <label class="formControlLabel">
+        存放位置
+      </label>
+      <view class="formControlBox">
+        <input
+          name = "parentPackName"
+          placeholder = "你想把 TA 放在？"
+          placeholder-class = "defaultPlaceHolderColor"
+          value = "{{ parentPack }}"
+          class = "formControl"
+          maxlength = "-1"
+          auto-focus = true
+          disabled
+        />
+      </view>
+    </view>
+
+    <view class="formControlWrap">
+      <label class="formControlLabel">
+        <span>保质期</span>（选填）
+      </label>
+      <pickDate
+        bindthrowValue="getDate"
+        binddelValue="delDate"
+      >
+        {{ date }}
+      </pickDate>
+      <div class="exTips warningText" wx:if="{{ expireDateHaveProblem }}">
+        保质期到了吧...坏的东西要扔掉
+      </div>
+    </view>
+
+    <view class="formControlWrap" wx:if="{{ date && !expireDateHaveProblem }}">
+      <label class="formControlLabel">
+        保质期 <span class="warningText">到期提醒</span>（选填）
+      </label>
+      <pickDate
+        bindthrowValue="getRemindDate"
+        binddelValue="delRemindDate"
+        start="{{ remindDateStart }}"
+        end="{{ remindDateEnd }}"
+      >
+        {{ remindDate }}
+      </pickDate>
+      <div class="exDateTips" wx:if="{{ remindDate }}">提前 <span>{{ rd2ed }}</span> 天站内信形式提醒</div>
+    </view>
+
+    <view class="formButtonWrap fullWidthBtn" wx:if="{{ expireDateHaveProblem }}">
+      <button formType="submit" class="button thirdly">好吧，你不扔我也没办法</button>
+    </view>
+
+    <view class="formButtonWrap" wx:else>
+      <button formType="submit" class="button thirdly">保存</button>
+    </view>
+
+  </form>
+</view>
+<view class="selectMenuMask {{ selectMenu ? 'block' : '' }}"></view>
+<view class="selectMenu {{ selectMenu ? 'block' : '' }}">
+  <span class="selectMenuTitle">
+    选择存放的位置
+    <span class="closeSelectMenu" bindtap="selectMenuSwitch"></span>
+  </span>
+  <view class="selectMenuContent">
+    <view
+      wx:for = "{{ selectMenuList }}"
+      wx:key = "{{ item.id }}"
+      bindtap = "selectOption"
+      data-id = "{{ item.id }}"
+      data-name = "{{ item.name }}"
+      class = "selectMenuOption {{ item.id == parentPackID ? 'current' : '' }}"
+    >
+      <p class="optionName">{{ item.name }}</p>
+      <p class="optionParent" wx:if="{{ item.parent_name == null }}">这是个地点</p>
+      <p class="optionParent" wx:else>它位于 <span>{{ item.parent_name }}</span> 中</p>
+    </view>
+  </view>
+</view>

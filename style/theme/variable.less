@@ -1,0 +1,193 @@
+@charset 'UTF-8';
+
+//
+// -------- 全局样式参数 --------
+// -------- 全局参数命名规范：“属性名称 - 作用域”，如：@fontColor-default 尽量吧！！！语死早
+
+// 通用色调
+@domColor1: #2d8db5;
+@domColor2: #5dd396;
+@domColor3: #f18d78;
+@domColor4: #e091ed;
+@domColor5: #fb6a01;
+@domColor6: #262f3b;
+@domColor7: #ffffff;
+
+// app 主色调
+@color-thirdly: #bfe1ef;
+@color-secondary: #ffe8db;
+@color-primary: #262f3b;
+
+// 基础字体尺寸
+@fontSize-base: 28rpx;
+  // 正文
+  @fontSize-default: @fontSize-base;
+  @fontSize-sub: 28rpx;
+  // 标题
+  @fontSize-header: floor(@fontSize-base * 1.6);
+  // 标准字号
+  @fontSize-largest: @fontSize-header;
+  @fontSize-large: floor(@fontSize-base * 1.2);
+
+// 公共圆角尺寸
+@borderRadius-public: 15rpx;
+
+
+// 公共间隔尺寸
+@gapSize-public: 20rpx;
+
+
+// 基础字符行高
+@lineHeight-base: 1.6;
+
+
+// 基础文本色调
+@fontColor-base: rgba(102, 102, 102, 1);
+  // 提示
+  @fontColor-tips: rgba(153, 153, 153, 1);
+  // 正文
+  @fontColor-default: rgba(51, 51, 51, 1);
+  // 明色调
+  @fontColor-light: rgba(255, 255, 255, 1);
+  // 暗色调
+  @fontColor-dark: @fontColor-default;
+
+
+// 基础背景色
+@bgColor-base: rgba(255, 255, 255, 1);
+  // 主要背景色
+  @bgColor-primary: @bgColor-base;
+  // 次要背景色
+  @bgColor-secondary: #f3f3f3;
+  // 再次要一点的样色
+  @bgColor-thirdly: lighten(@color-thirdly,58);
+
+
+// 基础边框色
+@borderColor-base: rgba(221, 221, 221, 1);
+
+
+//
+// -------- 各组件Z轴层级 --------
+//
+@zIndex-userInfoWrap: 1;
+@zIndex-userInfo: 2;
+@zIndex-indexSearcherWrap: 2;
+@zIndex-currentLocation-list: 2;
+@zIndex-typeBox-list: 1;
+@zIndex-selectMenuMask-addPack: 1;
+@zIndex-selectMenu-addPack: 2;
+@zIndex-selectMenuTitle-addPack: 2;
+@zIndex-selectMenuContent-addPack: 1;
+
+
+//
+// -------- 底部导航 --------
+//
+// color
+@bgColor-bottomNavBtn: @color-thirdly;
+// size
+@height-bottomNav: 80rpx;
+
+
+//
+// -------- 通用表单样式 --------
+//
+// color
+@bgColor-defaultFormControl: rgba(255, 255, 255, 1);
+@fontColor-defaultFormControl: @fontColor-default;
+@fontColor-defaultPlaceHolder: lighten(@fontColor-tips,15);
+@bgColor-defaultFormValueClearIcon: rgb(153, 153, 153);
+// size
+@height-defaultFormControl: 110rpx;
+@fontSize-defaultFormControl: @fontSize-large;
+@fontSize-defaultFormControlLabel: @fontSize-large;
+@size-defaultFormValueClearIcon: 46rpx;
+
+
+//
+// -------- 通用按钮样式 --------
+//
+// color
+@color-primary-button: @color-primary;
+@fontColor-primary-button: #fff;
+@color-secondary-button: @domColor3;
+@fontColor-secondary-button: #fff;
+@color-thirdly-button: @domColor1;
+@fontColor-thirdly-button: #fff;
+// size
+@borderRadius-button: @borderRadius-public;
+@height-button: 90rpx;
+@fontSize-button: @fontSize-large;
+
+
+//
+// -------- 首页 --------
+//
+// color
+@bgColor1-userInfoWrap: @color-secondary;
+@bgColor2-userInfoWrap: @color-primary;
+@fontColor-userInfoWrap: @fontColor-light;
+@bgColor-indexSearcher: rgba(255, 255, 255, .75);
+@bgColor-indexSearcherWrap: @bgColor1-userInfoWrap;
+@bgColor-indexPanel: @bgColor-base;
+@bgColor-funIcon:  @bgColor-thirdly;
+@bgColor-msgInIndex: @bgColor-base;
+// size
+@size-userInfoAvatar: 120rpx;
+@height-input-indexSearcher: 70rpx;
+@size-funIcon: 120rpx;
+
+
+
+//
+// -------- 搜索页 --------
+//
+// color
+// size
+@size-searchInput: 80rpx;
+
+
+//
+// -------- 改变地址页面 --------
+//
+// color
+// size
+@size-button-location: 80rpx;
+
+
+//
+// -------- 进入地点看收纳情况的搜索页 --------
+//
+// color
+@bgColor-resultType: @bgColor-primary;
+@bgColor-currentLocation: @color-secondary;
+@bgColor-resultUnit: @bgColor-base;
+@bgColor-ruPackImg: @bgColor-secondary;
+// size
+@height-typeBox: 80rpx;
+@fontSize-typeBox: @fontSize-large;
+@fontSize-ruPackName: @fontSize-large;
+@fontSize-currentLocation: @fontSize-largest;
+@size-ruPackImg: 205rpx;
+@size-ruPackNameIcon: 50rpx;
+@size-ruPackDetailIcon: @size-ruPackNameIcon;
+@height-currentLocation: 100rpx;
+
+
+//
+// -------- 添加收纳点页面 --------
+//
+// color
+@bgColor-selectMenuMask-addPack: rgba(0, 0, 0, 0.4);
+@bgColor-selectMenu-addPack: @bgColor-primary;
+// size
+@height-selectMenuTitle-addPack: 80rpx;
+
+
+//
+// -------- 上传图片组件 --------
+//
+// color
+@bgColor-uploader: rgb(255, 255, 255);
+// size

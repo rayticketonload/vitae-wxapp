@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "这里有什么呢",
+  "usingComponents": {
+    "standardLayout": "/components/standardLayout/standardLayout"
+  }
+}

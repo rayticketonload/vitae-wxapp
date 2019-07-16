@@ -1,0 +1,1 @@
+@charset 'UTF-8';.picker{position:relative;font-size:33rpx;line-height:110rpx;color:#333;height:110rpx;padding-right:120rpx;padding-left:40rpx;border-radius:110rpx;border:1px solid #ddd}

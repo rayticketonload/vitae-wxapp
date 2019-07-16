@@ -1,0 +1,29 @@
+<view class="uploaderWrap">
+  <view class="uploader">
+    <!-- <view class="uploader_hd">
+      <view class="uploader_title">图片上传</view>
+      <view class="uploader_info">{{files.length}}/{{limit}}</view>
+    </view> -->
+    <view class="uploader_files" id="uploaderFiles">
+      <block wx:for="{{ files }}" wx:key="*this">
+        <image class="uploader_img" src="{{ item }}" mode="widthFix" bindtap="previewImage" id="{{ item }}" />
+      </block>
+      <!-- <block wx:if="{{files.length >= limit}}">
+        <span class="reUpload">
+          <image src="{{ camIconLight }}"></image>
+        </span>
+      </block> -->
+      <view class="uploader_input-box" bindtap="chooseImage">
+        <image src="{{ camIcon }} "></image>
+        上传图像
+      </view>
+
+      <!-- <block wx:if="{{files.length < limit}}">
+        <view class="uploader_input-box" bindtap="chooseImage">
+          <image src="{{ camIcon }}"></image>
+          上传图像
+        </view>
+      </block> -->
+    </view>
+  </view>
+</view>

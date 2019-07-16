@@ -1,0 +1,75 @@
+<standardLayout id="standardLayout">
+  <view class="currentLocationBrick"></view>
+  <view class="currentLocation">
+    <view class="prevPackBtn" bindtap="prev" wx:if="{{ exPackId != null }}"></view>
+    <span class="currentLocationName">{{ currentPackName }}</span>
+  </view>
+  <radio-group class="radio-group resultType" bindchange="radioChange">
+    <view class="typeBox {{ checked == 'package' ? 'current' : '' }}">
+      <label class="radio first">
+        <radio value="package" checked="{{ checked == 'package' }}" class="displayNone"/>
+        <span class="label">收纳点</span>
+        <span class="count">{{ packListTotal }}</span>
+      </label>
+    </view>
+    <view class="typeBox {{ checked == 'good' ? 'current' : '' }}">
+      <label class="radio second">
+        <radio value="good" checked="{{ checked == 'good' }}" class="displayNone"/>
+        <span class="label">物品</span>
+        <span class="count">{{ goodListTotal }}</span>
+      </label>
+    </view>
+  </radio-group>
+  <view class="result {{ checked == packListChecked ? 'current' : '' }}">
+    <view class="resultlist {{ packListHaveData ? '' : 'block' }}">
+        <view wx:for="{{ packList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
+          <view class="ruPackImgBox">
+            <image wx:if="{{ itemObj.image_path == null || itemObj.image_path == '' }}" src="" class="displayNone"  mode="center"></image>
+            <image wx:else src="{{ serverName }}{{ itemObj.image_path }}" class="ruPackImg" mode="aspectFill"></image>
+          </view>
+          <p class="ruPackName" bindtap="next" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'>
+            <image src="{{ ruPackNameGoInIcon }}" class="ruPackNameIcon"></image>
+            {{ itemObj.name }}
+          </p>
+          <view class="ruPackDetail">
+            <p class="ruPackInfo">收纳点: {{ itemObj.packTotal }}</p>
+            <p class="ruPackInfo">物品: {{ itemObj.goodTotal }}</p>
+            <p class="ruPackInfo">{{ itemObj.create_timestamp }} 创建</p>
+            <view class="ruPackDetailIcon">
+              <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-id='{{ itemObj.id }}' bindtap="packEdit"></image>
+              <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon" data-id='{{ itemObj.id }}' bindtap="packDel"></image>
+            </view>
+          </view>
+        </view>
+    </view>
+    <div class="noData {{ packListHaveData ? 'block' : '' }}">
+      <image src="{{ noDataPackIcon }}"></image>
+    </div>
+  </view>
+  <view class="result {{ checked == goodListChecked ? 'current' : '' }}">
+    <view class="resultlist {{ goodListHaveData ? '' : 'block' }}">
+      <view wx:for="{{ goodList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
+        <view class="ruGoodImgBox">
+          <image wx:if="{{ itemObj.pic_address == null || itemObj.pic_address == '' }}" src="" class="displayNone"  mode="center"></image>
+          <image wx:else src="{{ serverName }}{{ itemObj.pic_address }}" class="ruPackImg" mode="aspectFill"></image>
+        </view>
+        <p class="ruPackName">
+          {{ itemObj.name }}
+        </p>
+        <view class="ruPackDetail">
+          <p class="ruPackInfo">保质期: {{ itemObj.expire_date }}</p>
+          <p class="ruPackInfo">数量: {{ itemObj.quantity }}</p>
+          <p class="ruPackInfo">{{ itemObj.create_timestamp }} 创建</p>
+          <view class="ruPackDetailIcon">
+            <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-id='{{ itemObj.id }}' bindtap="itemEdit"></image>
+            <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon" data-id='{{ itemObj.id }}' bindtap="itemDel"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <div class="noData {{ goodListHaveData ? 'block' : '' }}">
+      <image src="{{ noDataItemIcon }}"></image>
+    </div>
+  </view>
+</standardLayout>
+

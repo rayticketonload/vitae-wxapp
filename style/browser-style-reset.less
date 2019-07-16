@@ -1,0 +1,27 @@
+﻿@charset 'UTF-8';
+
+// 一定先引入资源路径变量
+@import 'path';
+
+@import '@{reset-style}normalize';
+
+@import './mixins';
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  .font-hei();
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga","kern";
+}
+
+// 取消移动端浏览器下渲染以下元素点击区域的默认有色遮罩
+a,button,input,textarea,label {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+

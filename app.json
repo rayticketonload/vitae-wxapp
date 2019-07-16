@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/info/info",
+    "pages/logs/logs",
+    "pages/addBox/addBox",
+    "pages/editBox/editBox",
+    "pages/addItem/addItem",
+    "pages/editItem/editItem",
+    "pages/changeLocation/changeLocation",
+    "pages/addLocation/addLocation",
+    "pages/editLocation/editLocation",
+    "pages/search/search",
+    "pages/list/list",
+    "pages/help/help",
+    "pages/msg/msg"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffe8db",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "井井",
+    "navigationStyle": "default",
+    "backgroundColor": "#ffe8db",
+    "backgroundTextStyle": "light",
+    "backgroundColorTop": "#ffe8db",
+    "backgroundColorBottom": "#ffffff",
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": 50
+  },
+  "sitemapLocation": "sitemap.json"
+}

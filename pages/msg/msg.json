@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "嘿！你的消息",
+  "usingComponents": {
+    "msgList": "/components/msgList/msgList"
+  }
+}

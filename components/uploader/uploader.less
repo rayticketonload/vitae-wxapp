@@ -1,0 +1,86 @@
+// out: ./uploader.wxss, compress: true, sourceMap: false
+// vscode 插件 easy wxless 将单个 less 文件编译成wxss文件的设置语句（设置语句一定放在文件最开头一行）
+// 引入样式变量
+@import "../../style/theme.less";
+// 引入minxin
+@import "../../style/mixins.less";
+
+.uploaderWrap {
+  padding: @gapSize-public * 2 @gapSize-public * 2 0 @gapSize-public * 2;
+}
+
+.uploader {
+  position: relative;
+  padding-top: 50%;
+  background-color: @bgColor-uploader;
+  overflow: hidden;
+  // .rounded(@borderRadius-public * 2);
+  // box-shadow: 0 0 35rpx 0 rgba(0,0,0,0.15);
+  .publicRounded();
+  .publicOuterShadowStyle();
+
+  // .uploader_hd {
+  //   //头部
+  //   padding-bottom: 20rpx;
+  //   .uploader_title {
+  //     display: inline;
+  //   }
+  //   .uploader_info {
+  //     color: #b2b2b2;
+  //     float: right;
+  //   }
+  // }
+
+  .uploader_files {
+    position: absolute;
+    top: 0;
+    left: 0;
+    .square(100%);
+
+    > image {
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+  }
+
+  .uploader_input-box {
+    position: absolute;
+    bottom: @gapSize-public;
+    left: @gapSize-public;
+    right: @gapSize-public;
+    .rounded(80rpx);
+    text-align: center;
+    font-size: @fontSize-large;
+    color: @fontColor-light;
+    height: 80rpx;
+    line-height: 80rpx;
+    background-color: rgba(0, 0, 0, .5);
+
+    > image {
+      vertical-align: middle;
+      margin-top: -5rpx;
+      margin-right: @gapSize-public;
+      .square(50rpx);
+    }
+  }
+
+  .reUpload {
+    position: absolute;
+    bottom: @gapSize-public;
+    right: @gapSize-public;
+    .square(100rpx);
+    background-color: @color-primary;
+    .rounded(@borderRadius-public);
+
+    > image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      .square(60%);
+    }
+  }
+}
