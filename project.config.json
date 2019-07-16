@@ -3,14 +3,23 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
+		"enhance": false,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"nodeModules": true
+		"nodeModules": true,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.0",
-	"appid": "wx7743f7e48f68278c",
+	"libVersion": "2.6.6",
+	"appid": "wx3bd2ee7633c079f8",
 	"projectname": "vitae",
 	"isGameTourist": false,
 	"scripts": {
