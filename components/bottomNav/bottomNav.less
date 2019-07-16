@@ -1,0 +1,108 @@
+// out: ./bottomNav.wxss, compress: true, sourceMap: false
+// vscode 插件 easy wxless 将单个 less 文件编译成wxss文件的设置语句（设置语句一定放在文件最开头一行）
+
+// 引入样式变量
+@import '../../style/theme.less';
+// 引入minxin
+@import '../../style/mixins.less';
+
+.bottomNavWrap {
+  box-sizing: border-box;
+  position: fixed;
+  bottom: @gapSize-public;
+  left: @gapSize-public;
+
+  .navBtn {
+    box-sizing: border-box;
+    display: inline-block;
+    height: @height-bottomNav;
+    line-height: @height-bottomNav;
+    text-align: center;
+    padding: 0 @gapSize-public;
+    background-color: @color-primary;
+    opacity: 0.9;
+    .transition(all,.3s,ease,0);
+
+    &:active {
+      opacity: 1;
+    }
+
+    > image {
+      .square(@height-bottomNav * 0.5);
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: @gapSize-public / 2;
+    }
+
+    > span {
+      color: @fontColor-light;
+      vertical-align: middle;
+      font-size: @fontSize-sub;
+    }
+
+    &.addItem {
+      .border-radius(@borderRadius-public,0,0,@borderRadius-public);
+      border-right: 1px solid darken(@borderColor-base, 40);
+    }
+
+    &.addBox {
+      .border-radius(0,@borderRadius-public,@borderRadius-public,0);
+
+      > image {
+        .square(@height-bottomNav * 0.75);
+        margin-top: -7rpx;
+      }
+    }
+
+    &.toIndex {
+      .rounded(@borderRadius-public);
+      .square(@height-bottomNav);
+      text-align: center;
+      margin-right: @gapSize-public / 2;
+      padding: 0;
+
+      > image {
+        .square(@height-bottomNav * 0.6);
+        margin: -8rpx 0 0 0;
+      }
+    }
+
+    &.toMsg {
+      .rounded(@borderRadius-public);
+      .square(@height-bottomNav);
+      text-align: center;
+      margin-left: @gapSize-public / 2;
+      padding: 0;
+      position: relative;
+
+      .msgDot {
+        display: none;
+        position: absolute;
+        top: -10rpx;
+        right: -10rpx;
+        .square(30rpx);
+        background-color: @domColor5;
+        .rounded(50%);
+        .animation-s(dot,1.6s,ease,0,infinite);
+      }
+
+      @keyframes dot {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 195, 183, 0.7);
+        }
+        100% {
+          box-shadow: 0 0 0 50rpx rgba(255, 195, 183, 0);
+        }
+      }
+
+      &.haveNewMsg .msgDot {
+        display: block;
+      }
+
+      > image {
+        .square(@height-bottomNav * 0.6);
+        margin: -8rpx 0 0 0;
+      }
+    }
+  }
+}

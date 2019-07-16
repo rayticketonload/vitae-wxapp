@@ -1,0 +1,31 @@
+<view class="locationWrap">
+  <view class="location" wx:for="{{ list }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj">
+    <view class="locationBox1">
+      <view class="locationDetail">
+        <p class="locationName">
+          {{ itemObj.name }}
+        </p>
+        <view class="locationTotal">
+          <view class="locationItemTotal">
+            <image src="{{ locationItemTotalIcon }}"></image>
+            <span>{{ itemObj.goodTotal }}</span>
+          </view>
+          <view class="locationPackTotal">
+            <image src="{{ locationPackTotalIcon }}"></image>
+            <span>{{ itemObj.packTotal }}</span>
+          </view>
+        </view>
+      </view>
+      <view class="locationCtrl">
+        <span class="locationEdit" data-id='{{ itemObj.id }}' bindtap="locationEdit" data-name="{{ itemObj.name }}"></span>
+        <span class="locationDel" data-id='{{ itemObj.id }}' bindtap="locationDel"></span>
+        <span class="locationSelect" data-id='{{ itemObj.id }}' bindtap="locationSelect"></span>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="locationAdd">
+  <button bindtap="locationAdd" class="button thirdly">
+    添加房屋地点
+  </button>
+</view>

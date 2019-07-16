@@ -1,0 +1,128 @@
+<!--index.wxml-->
+<standardLayout id="standardLayout">
+  <view class="indexSearcherWrap">
+    <view class="indexSearcherInput" bindtap="toSearchPage">
+      <image src="{{ indexSearchIcon }}"></image>
+      在<span class="textFix">{{ currentLocationName }}</span>里翻箱倒柜
+    </view>
+    <view class="subBtnWrap">
+      <span class="subBtn help" bindtap="openHelp">
+        <image src="{{ help }}"></image>
+      </span>
+      <span class="subBtn addLocation" bindtap="toLocationList">
+        <image src="{{ addLocation }}"></image>
+      </span>
+    </view>
+  </view>
+  <view class="currentLocationEntry">
+    <div class="{{ cleiClass }}" bindtap="intoThisLocation">
+      <image src="{{ whatsIn }}"></image>
+    </div>
+    <div class="clen" bindtap="toLocationList">
+      {{ currentLocationName }}
+    </div>
+    <div class="cled">
+      <span>全部收纳点 {{ packTotal }}</span>
+      <span>全部物品 {{ goodTotal }}</span>
+    </div>
+  </view>
+  <view class="theWave"></view>
+
+  <!-- <view class="userInfoWrap">
+    <view class="userInfo">
+      <view class="{{ avatarBoxClass }}">
+        <image class="avatar" src="{{ avatarUrl }}"></image>
+      </view>
+      <text class="currentLocationName">{{ currentLocationName }}</text>
+      <button open-type="getUserInfo" wx:if="{{ hasUserInfo == 0 }}"  bindgetuserinfo="getUserAuth" class="getUserInfoBtn">点击使用微信头像</button>
+      <text class="userInfoNickname" wx:else>{{ nickName }}</text>
+      <view class="currentPackCtrl">
+        <span class="currentPackCtrlBtn msg" bindtap="toMsgBox">
+          <image src="{{ msg }}"></image>
+        </span>
+        <span class="currentPackCtrlBtn setting" bindtap="toLocationList">
+          <image src="{{ setting }}"></image>
+        </span>
+      </view>
+    </view>
+  </view> -->
+
+  <!-- 最近编辑 -->
+  <view class="sectionName">
+    最近编辑
+  </view>
+  <ul class="latestItem" wx:if="{{ newModify && newModify.length > 0 }}">
+    <li
+      wx:if="{{ newModify.length >= 1 }}"
+      bindtap="entrynewModify"
+      data-type="{{ newModify[0].type }}"
+      data-id="{{ newModify[0].id }}"
+      class="one"
+    >
+      {{ newModify[0].name }}
+    </li>
+    <li
+      wx:if="{{ newModify.length >= 2 }}"
+      bindtap="entrynewModify"
+      data-type="{{ newModify[1].type }}"
+      data-id="{{ newModify[1].id }}"
+      class="two"
+    >
+      {{ newModify[1].name }}
+    </li>
+    <li
+      wx:if="{{ newModify.length >= 3 }}"
+      bindtap="entrynewModify"
+      data-type="{{ newModify[2].type }}"
+      data-id="{{ newModify[2].id }}"
+      class="three"
+    >
+      {{ newModify[2].name }}
+    </li>
+    <li
+      wx:if="{{ newModify.length >= 4 }}"
+      bindtap="entrynewModify"
+      data-type="{{ newModify[3].type }}"
+      data-id="{{ newModify[3].id }}"
+      class="four"
+    >
+      {{ newModify[3].name }}
+    </li>
+    <li
+      wx:if="{{ newModify.length >= 5 }}"
+      bindtap="entrynewModify"
+      data-type="{{ newModify[4].type }}"
+      data-id="{{ newModify[4].id }}"
+      class="five"
+    >
+      {{ newModify[4].name }}
+    </li>
+    <li
+      wx:if="{{ newModify.length >= 6 }}"
+      bindtap="entrynewModify"
+      data-type="{{ newModify[5].type }}"
+      data-id="{{ newModify[5].id }}"
+      class="six"
+    >
+      {{ newModify[5].name }}
+    </li>
+  </ul>
+  <view wx:else class="latestItemNoData">
+    <view class="newModifyNoDataImgBox">
+      <image src="{{ newModifyNoDataIcon }}"></image>
+    </view>
+    <view class="fn-mb-10">
+      没数据...现在开始
+    </view>
+    <view>
+      <span class="simLink" bindtap="_newModifyToAddItem">收纳一样物品？</span>或者 <span class="simLink" bindtap="_newModifyToAddBox">放置一个收纳点？</span>
+    </view>
+  </view>
+
+  <!-- 嘿！你的消息 -->
+  <!-- <view class="sectionName">
+    嘿！你的消息<span class="tipsText">(最近三条)</span>
+    <span class="all" bindtap="_toMsgList" wx:if="{{ msgList.length > 0 }}">全部</span>
+  </view> -->
+  <!-- <msgList id="msgList" msgList="{{ msgList }}" extraClass="msgListInIndex" quantity="{{ 3 }}" /> -->
+</standardLayout>

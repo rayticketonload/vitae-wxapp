@@ -1,0 +1,17 @@
+<view class="bottomNavWrap">
+  <span class="navBtn toIndex" bindtap="_toIndex">
+    <image src="{{ toIndex }}"></image>
+  </span>
+  <span class="navBtn addItem" bindtap="_navToAddItem">
+    <image src="{{ addItemIcon }}"></image>
+    <span>加物品</span>
+  </span>
+  <span class="navBtn addBox" bindtap="_navToAddBox">
+    <image src="{{ addBoxIcon }}"></image>
+    <span>加收纳点</span>
+  </span>
+  <span class="navBtn toMsg {{ haveNew ? 'haveNewMsg' : '' }}" bindtap="_toMsg">
+    <span class="msgDot"></span>
+    <image src="{{ toMsg }}"></image>
+  </span>
+</view>

@@ -1,0 +1,105 @@
+<standardLayout id="standardLayout">
+  <form>
+    <view class="searcherWrap">
+      <image src="{{ searchIcon }}"></image>
+      <input
+        name="searcherInput"
+        class="searchInput"
+        type='text'
+        confirm-type="search"
+        placeholder="来，告诉我你想翻出来什么"
+        placeholder-class="searchInputPlaceholder"
+        value="{{ searchValue }}"
+        maxlength="-1"
+        focus="true"
+        bindinput="searchValueKeyIn"
+        bindconfirm='searchFromKeyIn'
+      />
+      <span class="formValueClear" wx:if="{{ searchValue.length > 0 }}" bindtap="searchValueReset"></span>
+    </view>
+  </form>
+
+  <view class="searchHistory" wx:if="{{ needHistory }}">
+    <view class="historyTitle">
+      历史搜索
+      <span wx:if="{{ historyList.length > 0 }}" bindtap="removeHistory">
+        清空
+      </span>
+    </view>
+    <view class="historyOptions" wx:if="{{ historyList.length > 0 }}">
+      <span class="historyOption" wx:for="{{ historyList }}" wx:for-item="item" wx:key="{{ index }}" bindtap="searchFromHistory" data-key='{{ item }}'>
+        {{ item }}
+      </span>
+    </view>
+  </view>
+
+  <radio-group class="radio-group resultTab" bindchange="radioChange" wx:if="{{ !needHistory }}">
+    <view class="type {{ checked == packTabName ? 'current' : '' }}">
+      <label>
+        <radio value="{{ packTabName }}" checked="{{ checked == packTabName }}" class="displayNone"/>
+        <span class="typeLabel">{{ packTabName }}</span>
+        <span class="total">{{ packList.length }}</span>
+      </label>
+    </view>
+    <view class="type {{ checked == goodTabName ? 'current' : '' }}">
+      <label>
+        <radio value="{{ goodTabName }}" checked="{{ checked == goodTabName }}" class="displayNone"/>
+        <span class="typeLabel">{{ goodTabName }}</span>
+        <span class="total">{{ goodList.length }}</span>
+      </label>
+    </view>
+  </radio-group>
+
+  <view class="searchResult" wx:if="{{ !needHistory }}">
+    <div class="pack {{ packListChecked ? 'current' : '' }}">
+      <view wx:for="{{ packList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
+          <view class="ruPackImgBox">
+            <image wx:if="{{ itemObj.image_path == null || itemObj.image_path == '' }}" src="" class="displayNone"  mode="center"></image>
+            <image wx:else src="{{ serverName }}{{ itemObj.image_path }}" class="ruPackImg" mode="aspectFill"></image>
+          </view>
+          <p class="ruPackName" bindtap="inToThisPack" data-id='{{ itemObj.id }}' data-name='{{ itemObj.name }}'>
+            <image src="{{ ruPackNameGoInIcon }}" class="ruPackNameIcon"></image>
+            {{ itemObj.name }}
+          </p>
+          <view class="ruPackDetail">
+            <p class="ruPackInfo">位于 <span class="parentName">{{ itemObj.parent_name }}</span></p>
+            <p class="ruPackInfo">{{ itemObj.update_timestamp }} 更新</p>
+            <p class="ruPackInfo">{{ itemObj.create_timestamp }} 创建</p>
+            <view class="ruPackDetailIcon">
+              <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-id='{{ itemObj.id }}' bindtap="packEdit"></image>
+              <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon" data-id='{{ itemObj.id }}' data-idx='{{ index }}' bindtap="packDel"></image>
+            </view>
+          </view>
+        </view>
+      <div class="noData {{ packList.length <= 0 ? 'block' : '' }}">
+        <image src="{{ noPack }}"></image>
+        <span class="notice">抱歉，收纳点里翻不到你要的东西</span>
+      </div>
+    </div>
+    <div class="good {{ goodListChecked ? 'current' : '' }}">
+      <view wx:for="{{ goodList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forItem">
+        <view class="ruGoodImgBox">
+          <image wx:if="{{ itemObj.pic_address == null || itemObj.pic_address == '' }}" src="" class="displayNone"  mode="center"></image>
+          <image wx:else src="{{ serverName }}{{ itemObj.pic_address }}" class="ruPackImg" mode="aspectFill"></image>
+        </view>
+        <p class="ruPackName">
+          {{ itemObj.name }}
+        </p>
+        <view class="ruPackDetail">
+          <p class="ruPackInfo">保质期: {{ itemObj.expire_date }}</p>
+          <p class="ruPackInfo">数量: 1</p>
+          <p class="ruPackInfo">{{ itemObj.create_timestamp }} 创建</p>
+          <view class="ruPackDetailIcon">
+            <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-id='{{ itemObj.id }}' bindtap="itemEdit"></image>
+            <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon" data-id='{{ itemObj.id }}' data-idx='{{ index }}' bindtap="itemDel"></image>
+          </view>
+        </view>
+      </view>
+      <div class="noData {{ goodList.length <= 0 ? 'block' : '' }}">
+        <image src="{{ noGood }}"></image>
+        <span class="notice">抱歉，物品里翻不到你要的东西</span>
+      </div>
+    </div>
+  </view>
+</standardLayout>
+

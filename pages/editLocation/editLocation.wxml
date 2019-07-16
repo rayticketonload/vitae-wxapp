@@ -1,0 +1,25 @@
+<view class="defaultFormWrap">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="formControlWrap">
+      <label class="formControlLabel">
+        {{ locationLabel }}
+      </label>
+      <view class="formControlBox">
+        <input
+          name = "{{ locationName }}"
+          placeholder = "{{ locationPlaceholder }}"
+          value = "{{ locationValue }}"
+          placeholder-class = "defaultPlaceHolderColor"
+          class = "formControl"
+          maxlength = "-1"
+          auto-focus = true
+          bindinput = "locationValueKeyIn"
+        />
+        <span class="formValueClear" wx:if="{{ locationValue.length > 0 }}" bindtap="locationValueReset"></span>
+      </view>
+    </view>
+    <view class="formButtonWrap">
+      <button formType="submit" class="button thirdly">保存</button>
+    </view>
+  </form>
+</view>

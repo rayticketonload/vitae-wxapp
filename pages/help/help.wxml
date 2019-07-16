@@ -1,0 +1,11 @@
+<view class="helpWrap">
+  <image src="{{ folder }}"></image>
+  <div class="content" style="margin-top: -10%">你可以把这个"井井"想象成</div>
+  <div class="content">简化版(简陋)的 windows 文件夹系统</div>
+  <div class="content">
+    <span class="simLink" bindtap="_navToAddItem">收纳物品(文件)？</span>或者 <span class="simLink" bindtap="_navToAddBox">放置收纳点(文件夹)？</span>
+  </div>
+  <div class="content" style="margin-top: 50rpx">如有问题或建议，欢迎加我微信交流</div>
+  <div class="content">请注明是“井井用户”</div>
+  <image src="{{ myWeChat }}" class="myWeChat"></image>
+</view>

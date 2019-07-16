@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+.button {
+  box-sizing: border-box;
+  display: block;
+  // .rounded(@borderRadius-public);
+  .rounded(@height-button);
+  padding: 0 @height-button/4;
+  margin: 0;
+  outline: none;
+  text-align: center;
+  font-size: @fontSize-button;
+  line-height: @height-button;
+  height: @height-button;
+  white-space: nowrap;
+  overflow: visible;
+  .transition(all, 0.3s, ease, 0);
+  .link-mobile(transparent);
+  border: none;
+
+  // 这个是为了去掉微信自带的按钮样式
+  &:after {
+    border: none;
+    border-radius: 0;
+  }
+
+  // 按钮样式工具
+  .buttonStyle(@color, @fontColor) {
+    background-color: @color;
+    color: @fontColor;
+
+    &:active,
+    &.current {
+      background-color: darken(@color, 12%);
+    }
+  }
+
+  &.primary {
+    .buttonStyle(@color-primary-button, @fontColor-primary-button);
+  }
+
+  &.secondary {
+    .buttonStyle(@color-secondary-button, @fontColor-secondary-button);
+  }
+
+  &.thirdly {
+    // .buttonStyle(@color-thirdly-button, @fontColor-thirdly-button);
+    background: linear-gradient(to right,rgb(247, 88, 122),rgb(255, 214, 153));
+    box-shadow: 0 0 35rpx 0 rgba(0,0,0,0.15);
+    color: #fff;
+  }
+}
+
+a.button.disabled,
+fieldset[disabled] a.button {
+  pointer-events: none;
+}

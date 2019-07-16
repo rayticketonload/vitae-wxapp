@@ -1,0 +1,68 @@
+<view class="defaultFormWrap">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+
+    <uploader initial-path="{{ serverName }}{{ packImage }}"  bindcallback="uploaderChange" id="uploader" />
+
+    <view class="formControlWrap">
+      <label class="formControlLabel">
+        收纳点名称
+      </label>
+      <view class="formControlBox">
+        <input
+          name = "packName"
+          placeholder = "例如冰箱，衣柜，阁楼..."
+          placeholder-class = "defaultPlaceHolderColor"
+          value = "{{ packName }}"
+          class = "formControl"
+          maxlength = "-1"
+          auto-focus = true
+          bindinput = "packNameKeyIn"
+        />
+        <span class="formValueClear" wx:if="{{ packName.length > 0 }}" bindtap="packNameReset"></span>
+      </view>
+    </view>
+
+    <view class="formControlWrap options" bindtap="selectMenuSwitch">
+      <label class="formControlLabel">
+        存放位置
+      </label>
+      <view class="formControlBox">
+        <input
+          name = "parentPackName"
+          placeholder = "你想把 TA 放在？"
+          placeholder-class = "defaultPlaceHolderColor"
+          value = "{{ parentPackName }}"
+          class = "formControl"
+          maxlength = "-1"
+          auto-focus = true
+          disabled
+        />
+      </view>
+    </view>
+
+    <view class="formButtonWrap">
+      <button formType="submit" class="button thirdly">保存</button>
+    </view>
+  </form>
+</view>
+<view class="selectMenuMask {{ selectMenu ? 'block' : '' }}"></view>
+<view class="selectMenu {{ selectMenu ? 'block' : '' }}">
+  <span class="selectMenuTitle">
+    选择存放的位置
+    <span class="closeSelectMenu" bindtap="selectMenuSwitch"></span>
+  </span>
+  <view class="selectMenuContent">
+    <view
+      wx:for = "{{ selectMenuList }}"
+      wx:key = "{{ item.id }}"
+      bindtap = "selectOption"
+      data-id = "{{ item.id }}"
+      data-name = "{{ item.name }}"
+      class = "selectMenuOption {{ item.id == parentPackID ? 'current' : '' }}"
+    >
+      <p class="optionName">{{ item.name }}</p>
+      <p class="optionParent" wx:if="{{ item.parent_name == null }}">这是个地点</p>
+      <p class="optionParent" wx:else>它位于 <span>{{ item.parent_name }}</span> 中</p>
+    </view>
+  </view>
+</view>

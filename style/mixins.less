@@ -1,0 +1,24 @@
+@charset 'UTF-8';
+
+// 先引入资源路径变量
+@import 'path';
+
+@import '@{theme}variable';
+@import '@{mixin}font-family';
+@import '@{mixin}gradients';
+@import '@{mixin}mixin';
+
+// 为项目定制的 UI 样式 mixin
+
+.publicOuterShadowStyle(@al: 35rpx, @a: 0.1) {
+  box-shadow: 0 0 @al 0 rgba(0,0,0,@a);
+}
+
+.publicInsetShadowStyle(@al: 35rpx, @a: 0.1) {
+  box-shadow: 0 0 @al 0 rgba(0,0,0,@a) inset;
+}
+
+.publicRounded(@rounded: @borderRadius-public) {
+  .rounded(@rounded);
+}
+
