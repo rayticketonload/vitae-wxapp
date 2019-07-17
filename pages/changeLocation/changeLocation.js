@@ -144,7 +144,7 @@ Page({
       wx.showModal({
         title: notice,
         content: '属下物品和收纳点将一并删除',
-        confirmText: '确认删除',
+        confirmText: '后会无期',
         confirmColor: '#f17c6b',
         success: function (res) {
           if (res.confirm) {

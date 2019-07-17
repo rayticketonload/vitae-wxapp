@@ -228,6 +228,23 @@ Page({
                 update_timestamp: moment(parseInt(itemObj.update_timestamp)).format('L'),
               }
             });
+
+            if (gl.length == 0 && pl.length > 0) {
+              me.setData({
+                checked: me.data.packTabName,
+                packListChecked: true,
+                goodListChecked: false,
+              });
+            }
+
+            if (pl.length == 0 && gl.length > 0) {
+              me.setData({
+                checked: me.data.goodTabName,
+                packListChecked: false,
+                goodListChecked: true,
+              });
+            }
+
             me.setData({
               packList: pl,
               goodList: gl,
@@ -287,7 +304,7 @@ Page({
     wx.showModal({
       title: `删除此收纳点`,
       content: '属下物品和收纳点将一并删除',
-      confirmText: '确认删除',
+      confirmText: '后会无期',
       confirmColor: '#f17c6b',
       success: function (res) {
         if (res.confirm) {
@@ -347,7 +364,7 @@ Page({
     wx.showModal({
       title: `删除此物品`,
       content: '物品删除后将不可恢复',
-      confirmText: '确认删除',
+      confirmText: '后会无期',
       confirmColor: '#f17c6b',
       success: function (res) {
         if (res.confirm) {

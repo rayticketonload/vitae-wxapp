@@ -66,10 +66,22 @@ Component({
         // 访问物品信息成功
         function (res) {
           if (res.code == 100) {
-            wx.showToast({
-              title: `物品已经不存在`,
-              icon: `none`,
-              duration: 2000,
+            // wx.showToast({
+            //   title: `物品已经不存在`,
+            //   icon: `none`,
+            //   duration: 2000,
+            // });
+            wx.showModal({
+              title: `这东西没了，你之前把它删了吧？`,
+              content: `那这条信息也没用了`,
+              confirmText: '删了吧',
+              confirmColor: '#f17c6b',
+              success: function (res) {
+                if (res.confirm) {
+                  // 先改变当前地点ID
+                  me.msgDel(e);
+                }
+              }
             });
           } else {
             // 如果物品不在当前地点
@@ -145,9 +157,9 @@ Component({
       let me = this;
       // 弹窗确认删除
       wx.showModal({
-        title: `删除此信息`,
-        content: '删除后将无法恢复',
-        confirmText: '确认删除',
+        title: `删除这条信息`,
+        content: '删了只是你看不见而已',
+        confirmText: '别墨迹',
         confirmColor: '#f17c6b',
         success: function (res) {
           if (res.confirm) {
