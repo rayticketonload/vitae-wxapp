@@ -170,7 +170,7 @@ Page({
     wx.showModal({
       title: `删除此收纳点`,
       content: '属下物品和收纳点将一并删除',
-      confirmText: '确认删除',
+      confirmText: '后会无期',
       confirmColor: '#f17c6b',
       success: function (res) {
         if (res.confirm) {
@@ -218,7 +218,7 @@ Page({
     wx.showModal({
       title: `删除此物品`,
       content: '物品删除后将不可恢复',
-      confirmText: '确认删除',
+      confirmText: '后会无期',
       confirmColor: '#f17c6b',
       success: function (res) {
         if (res.confirm) {
