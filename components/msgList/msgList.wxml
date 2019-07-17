@@ -23,6 +23,7 @@
             data-cli='{{ item.item_current_location_id }}'
             data-cln='{{ item.item_current_location_name }}'
             data-createtime='{{ item.item_create_date }}'
+            data-msgid='{{ item._id }}'
             bindtap="msgToItem">
         {{ item.item_name }}
       </view>
