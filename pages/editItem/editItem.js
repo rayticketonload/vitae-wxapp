@@ -278,7 +278,7 @@ Page({
       },
       // 获取物品信息成功
       function (res) {
-        let preItemExpireDate, preRd2ed;
+        let preItemExpireDate, preItemRemindDate, preRd2ed;
 
         if (res.data.expire_date) {
           me.setData({
@@ -291,8 +291,10 @@ Page({
 
         if (res.data.remind_date) {
           preRd2ed = (new Date(res.data.expire_date) - new Date(res.data.remind_date)) / (24 * 60 * 60 * 1000);
+          preItemRemindDate = res.data.remind_date;
         } else {
           preRd2ed = 0;
+          preItemRemindDate = '';
         }
 
         me.setData({
@@ -300,10 +302,13 @@ Page({
           itemName: res.data.name,
           itemQuantity: res.data.quantity,
           itemExpireDate: preItemExpireDate,
-          remindDate: res.data.remind_date,
+          remindDate: preItemRemindDate,
           parentPackID: res.data.parent_id,
           rd2ed: preRd2ed,
         });
+
+        console.log(typeof(me.data.itemExpireDate), me.data.itemExpireDate);
+        console.log(typeof(me.data.remindDate), me.data.remindDate);
 
         if (me.data.itemExpireDate && me.data.itemExpireDate != '') {
           me.setData({
