@@ -2,14 +2,14 @@
 // URL 路径字符串最后必须要有层级的反斜杠
 
 // 本地调试
-// const NP = `http://`;
-// const APIDOMAIN = `localhost:8000/`;
-// const APIPATH = `api/`;
+ const NP = `http://`;
+ const APIDOMAIN = `localhost:8000/`;
+ const APIPATH = `api/`;
 
 // 腾讯云调试
-const NP = `https://`;
-const APIDOMAIN = `www.wellwell.wang/`;
-const APIPATH = `mini/api/`;
+//const NP = `https://`;
+//const APIDOMAIN = `www.wellwell.wang/`;
+//const APIPATH = `mini/api/`;
 const IMGPATH = `mini/`;
 
 // localStorage 存放搜索历史的 key
