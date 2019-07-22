@@ -10,6 +10,14 @@
 @import '../../style/components/button.less';
 
 .helpWrap {
+  padding: @gapSize-public * 2;
+
+  .title {
+    display: block;
+    font-size: @fontSize-large;
+    color: @fontColor-default;
+    text-align: left;
+  }
 
   > image {
     width: 30%;
@@ -26,8 +34,47 @@
 
   .content {
     display: block;
-    text-align: center;
+    text-align: justify;
     font-size: @fontSize-large;
+    line-height: 1.6;
     color: @fontColor-default;
+
+    span.highlight {
+      color: @domColor3;
+    }
+
+    .list-item {
+      display: block;
+      position: relative;
+      padding-left: 24rpx;
+
+      &:before {
+        position: absolute;
+        top: 50%;
+        margin-top:  -6rpx;
+        left: 0;
+        .square(12rpx);
+        background-color: @fontColor-tips;
+        .rounded(50%);
+        content: '';
+      }
+    }
+
+    .list-item + .list-item {
+      margin-top: @gapSize-public;
+    }
+
+    .qute {
+      display: block;
+      padding: @gapSize-public * 2;
+    }
+  }
+
+  .title + .content {
+    margin-top: @gapSize-public;
+  }
+
+  .content + .title {
+    padding-top: @gapSize-public * 2;
   }
 }
