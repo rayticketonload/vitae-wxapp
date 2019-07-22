@@ -1,11 +1,33 @@
 <view class="helpWrap">
-  <image src="{{ folder }}"></image>
-  <div class="content" style="margin-top: -10%">你可以把这个"井井"想象成</div>
+  <div class="title">
+  一、 "井井"是干什么的
+  </div>
+  <div class="content">
+    <div>我帮你记录房子里有哪些存储空间(收纳点)，都放了些什么东西(物品)，然后提醒一下你保质期。</div>
+    <blockquote class="qute">就像你的<span class="highlight">冰箱(收纳点)</span>里面放了你今天刚买的<span class="highlight">鸡蛋(物品)</span>，然后你在这个小工具里面记下这些鸡蛋N天后到期(设置保质日期)，我再根据你的需要(设置提醒日期)提醒你鸡蛋即将过期。</blockquote>
+    <div>是一个小记事本，你只需要在我这里搜索你的物品放在那，<span class="highlight">不用真的去翻箱倒柜，省下了很多时间。</span></div>
+  </div>
+
+  <div class="title">
+  二、 "井井"会持续更新
+  </div>
+  <div class="content">
+    <div class="list-item">会增加物品和收纳点的类别，更方便管理;</div>
+    <div class="list-item">如果物品的类别是食材，并设置了过期提醒日期，我们会在提醒日推送你相关菜式，不用烦吃什么啦;</div>
+    <div class="list-item">提醒消息通过公众号推送，这样用户就不用每天打开小程序去看下有没有提醒消息了，而这个新功能，用户只需要关注公众号就能获得;</div>
+    <div class="list-item">会推出灰常棒的激励计划，让持续关注和使用“井井”的用户得到支持和肯定;</div>
+  </div>
+
+  <div class="title">
+  三、 如有问题或建议，欢迎加我微信交流，请注明是“井井用户”
+  </div>
+  <image src="{{ myWeChat }}" class="myWeChat"></image>
+
+  <!-- <image src="{{ folder }}"></image>
+  <div class="content">你可以把这个"井井"想象成</div>
   <div class="content">简化版(简陋)的 windows 文件夹系统</div>
   <div class="content">
     <span class="simLink" bindtap="_navToAddItem">收纳物品(文件)？</span>或者 <span class="simLink" bindtap="_navToAddBox">放置收纳点(文件夹)？</span>
-  </div>
-  <div class="content" style="margin-top: 50rpx">如有问题或建议，欢迎加我微信交流</div>
-  <div class="content">请注明是“井井用户”</div>
-  <image src="{{ myWeChat }}" class="myWeChat"></image>
+  </div> -->
+
 </view>
