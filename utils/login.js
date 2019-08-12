@@ -9,8 +9,15 @@ function login() {
     success: res => {
       // 开始执行登录的时候出现菊花转,直到登陆成功后关闭菊花转
       wx.showLoading({
-        title: `努力登录中...`,
+        title: `暂时登陆不了...`,
         mask: true,
+      });
+      wx.showModal({
+        title: `服务器更换中`,
+        content: `可能需要1-2天，很抱歉`,
+        confirmText: '确定',
+        success: function (res) {
+        }
       });
       // 访问微信的 login 接口成功后会拿到户的微信账户 code (有效期五分钟)
       // 将拿到的 code 传到第三方服务器
