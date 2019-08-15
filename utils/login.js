@@ -9,16 +9,16 @@ function login() {
     success: res => {
       // 开始执行登录的时候出现菊花转,直到登陆成功后关闭菊花转
       wx.showLoading({
-        title: `暂时登陆不了...`,
+        title: `登录中...`,
         mask: true,
       });
-      wx.showModal({
-        title: `服务器更换中`,
-        content: `可能需要1-2天，很抱歉`,
-        confirmText: '确定',
-        success: function (res) {
-        }
-      });
+      // wx.showModal({
+      //   title: `服务器更换中`,
+      //   content: `可能需要1-2天，很抱歉`,
+      //   confirmText: '确定',
+      //   success: function (res) {
+      //   }
+      // });
       // 访问微信的 login 接口成功后会拿到户的微信账户 code (有效期五分钟)
       // 将拿到的 code 传到第三方服务器
       // 由第三方服务器将 code 发回给微信以换取拥有这个 code 的微信用户的 session_key 和 session_id
