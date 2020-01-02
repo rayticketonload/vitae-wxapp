@@ -12,13 +12,13 @@ function login() {
         title: `登录中...`,
         mask: true,
       });
-      wx.showModal({
-        title: `已有措施预防数据再次丢失`,
-        content: `丢失数据已不可挽回，很抱歉`,
-        confirmText: '确定',
-        success: function (res) {
-        }
-      });
+      // wx.showModal({
+      //   title: `已有措施预防数据再次丢失`,
+      //   content: `丢失数据已不可挽回，很抱歉`,
+      //   confirmText: '确定',
+      //   success: function (res) {
+      //   }
+      // });
       // 访问微信的 login 接口成功后会拿到户的微信账户 code (有效期五分钟)
       // 将拿到的 code 传到第三方服务器
       // 由第三方服务器将 code 发回给微信以换取拥有这个 code 的微信用户的 session_key 和 session_id

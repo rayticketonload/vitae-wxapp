@@ -12,7 +12,7 @@
 				 placeholder-class="defaultPlaceHolderColor"
 				 class="formControl"
 				 maxlength="-1"
-				 auto-focus=true
+				 auto-focus="true"
 				 bindinput="locationValueKeyIn"
 				/>
 				<span

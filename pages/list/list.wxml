@@ -22,7 +22,7 @@
   </radio-group>
   <view class="result {{ checked == packListChecked ? 'current' : '' }}">
     <view class="resultlist {{ packListHaveData ? '' : 'block' }}">
-        <view wx:for="{{ packList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
+        <view wx:for="{{ packList }}" wx:key="*this" wx:for-item="itemObj" class="resultUnit forPack">
           <view class="ruPackImgBox">
             <image wx:if="{{ itemObj.image_path == null || itemObj.image_path == '' }}" src="" class="displayNone"  mode="center"></image>
             <image wx:else src="{{ serverName }}{{ itemObj.image_path }}" class="ruPackImg" mode="aspectFill"></image>
@@ -48,7 +48,7 @@
   </view>
   <view class="result {{ checked == goodListChecked ? 'current' : '' }}">
     <view class="resultlist {{ goodListHaveData ? '' : 'block' }}">
-      <view wx:for="{{ goodList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
+      <view wx:for="{{ goodList }}" wx:key="*this" wx:for-item="itemObj" class="resultUnit forPack">
         <view class="ruGoodImgBox">
           <image wx:if="{{ itemObj.pic_address == null || itemObj.pic_address == '' }}" src="" class="displayNone"  mode="center"></image>
           <image wx:else src="{{ serverName }}{{ itemObj.pic_address }}" class="ruPackImg" mode="aspectFill"></image>
