@@ -16,7 +16,7 @@
 </wxs>
 
 <ul class="msgList {{ extraClass }}" wx:if="{{ msgList.length > 0 && !nothing }}" >
-  <li wx:for="{{ msgList }}" wx:key="{{ index }}" wx:if="{{ fun_1.quantityCount(quantity, index) && !item.del }}">
+  <li wx:for="{{ msgList }}" wx:key="*this" wx:if="{{ fun_1.quantityCount(quantity, index) && !item.del }}">
     <view class="itemSection">
       <view class="msgMainWord"
             data-id='{{ item.item_id }}'

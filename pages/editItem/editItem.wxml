@@ -108,7 +108,7 @@
   <view class="selectMenuContent">
     <view
       wx:for = "{{ selectMenuList }}"
-      wx:key = "{{ item.id }}"
+      wx:key = "id"
       bindtap = "selectOption"
       data-id = "{{ item.id }}"
       data-name = "{{ item.name }}"

@@ -27,7 +27,7 @@
       </span>
     </view>
     <view class="historyOptions" wx:if="{{ historyList.length > 0 }}">
-      <span class="historyOption" wx:for="{{ historyList }}" wx:for-item="item" wx:key="{{ index }}" bindtap="searchFromHistory" data-key='{{ item }}'>
+      <span class="historyOption" wx:for="{{ historyList }}" wx:for-item="item" wx:key="*this" bindtap="searchFromHistory" data-key='{{ item }}'>
         {{ item }}
       </span>
     </view>
@@ -52,7 +52,7 @@
 
   <view class="searchResult" wx:if="{{ !needHistory }}">
     <div class="pack {{ packListChecked ? 'current' : '' }}">
-      <view wx:for="{{ packList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forPack">
+      <view wx:for="{{ packList }}" wx:key="*this" wx:for-item="itemObj" class="resultUnit forPack">
           <view class="ruPackImgBox">
             <image wx:if="{{ itemObj.image_path == null || itemObj.image_path == '' }}" src="" class="displayNone"  mode="center"></image>
             <image wx:else src="{{ serverName }}{{ itemObj.image_path }}" class="ruPackImg" mode="aspectFill"></image>
@@ -77,7 +77,7 @@
       </div>
     </div>
     <div class="good {{ goodListChecked ? 'current' : '' }}">
-      <view wx:for="{{ goodList }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj" class="resultUnit forItem">
+      <view wx:for="{{ goodList }}" wx:key="*this" wx:for-item="itemObj" class="resultUnit forItem">
         <view class="ruGoodImgBox">
           <image wx:if="{{ itemObj.pic_address == null || itemObj.pic_address == '' }}" src="" class="displayNone"  mode="center"></image>
           <image wx:else src="{{ serverName }}{{ itemObj.pic_address }}" class="ruPackImg" mode="aspectFill"></image>

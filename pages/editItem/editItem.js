@@ -307,16 +307,16 @@ Page({
           rd2ed: preRd2ed,
         });
 
-        console.log(typeof(me.data.itemExpireDate), me.data.itemExpireDate);
-        console.log(typeof(me.data.remindDate), me.data.remindDate);
+        // console.log(typeof(me.data.itemExpireDate), me.data.itemExpireDate);
+        // console.log(typeof(me.data.remindDate), me.data.remindDate);
 
         if (me.data.itemExpireDate && me.data.itemExpireDate != '') {
           me.setData({
             remindDateStart: moment(parseInt(localDate.getTime())).format('L'),
             remindDateEnd: me.data.itemExpireDate,
           });
-          console.log('start', me.data.remindDateStart);
-          console.log('end', me.data.remindDateEnd);
+          // console.log('start', me.data.remindDateStart);
+          // console.log('end', me.data.remindDateEnd);
         }
 
         me.data.selectMenuList.map(item => {

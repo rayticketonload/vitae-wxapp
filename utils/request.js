@@ -25,19 +25,25 @@ function post(url, data, successCallback, failCallback, completeCallback) {
     },
     success: res => {
       successCallback && successCallback.call(null, res.data);
+      wx.hideLoading();
     },
     fail: err => {
       failCallback && failCallback.call(err);
+      wx.hideLoading();
     },
     complete: data => {
-      wx.hideLoading();
       completeCallback && completeCallback.call(data);
+      wx.hideLoading();
     }
   });
 }
 
 // get
 function get(url, successCallback, failCallback, completeCallback) {
+  wx.showLoading({
+    title: `网络通讯中...`,
+    mask: true
+  });
   if (typeof url === "object") {
     // 兼容 json 格式的参数
     // console.log(url);
@@ -56,15 +62,17 @@ function get(url, successCallback, failCallback, completeCallback) {
     success: res => {
       // console.log(`get success`, res.data);
       successCallback && successCallback.call(null, res.data);
+      wx.hideLoading();
     },
     fail: err => {
       // console.log("get fail");
       failCallback && failCallback.call(err);
+      wx.hideLoading();
     },
     complete: data => {
-      wx.hideLoading();
       // console.log("get complete", data);
       completeCallback && completeCallback.call(data);
+      wx.hideLoading();
     }
   });
 }
@@ -92,13 +100,15 @@ function uploadFile(url, filePath, successCallback, failCallback, completeCallba
     },
     success: res => {
       successCallback && successCallback.call(null, JSON.parse(res.data));
+      wx.hideLoading();
     },
     fail: err => {
       failCallback && failCallback.call(err);
+      wx.hideLoading();
     },
     complete: data => {
-      wx.hideLoading();
       completeCallback && completeCallback.call(data);
+      wx.hideLoading();
     }
   });
 }
