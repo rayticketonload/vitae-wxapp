@@ -86,9 +86,9 @@
           {{ itemObj.name }}
         </p>
         <view class="ruPackDetail">
+          <p class="ruPackInfo">位于 <span class="parentName">{{ itemObj.parent_name }}</span></p>
           <p class="ruPackInfo">保质期: {{ itemObj.expire_date }}</p>
           <p class="ruPackInfo">数量: 1</p>
-          <p class="ruPackInfo">{{ itemObj.create_timestamp }} 创建</p>
           <view class="ruPackDetailIcon">
             <image src="{{ ruPackDetailEditIcon }}" class="ruPackDetailEditIcon" data-id='{{ itemObj.id }}' bindtap="itemEdit"></image>
             <image src="{{ ruPackDetailDelIcon }}" class="ruPackDetailDelIcon" data-id='{{ itemObj.id }}' data-idx='{{ index }}' bindtap="itemDel"></image>
