@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "这里有什么呢",
   "navigationBarBackgroundColor": "#f3f3f3",
+  "backgroundColorTop": "#f3f3f3",
+  "backgroundColorBottom": "#f3f3f3",
   "usingComponents": {
     "standardLayout": "/components/standardLayout/standardLayout"
   }
