@@ -1,5 +1,5 @@
 <view class="locationWrap">
-  <view class="location" wx:for="{{ list }}" wx:key="{{ itemObj.id }}" wx:for-item="itemObj">
+  <view class="location" wx:for="{{ list }}" wx:key="id" wx:for-item="itemObj">
     <view class="locationBox1">
       <view class="locationDetail">
         <p class="locationName">

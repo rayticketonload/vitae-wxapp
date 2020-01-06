@@ -165,21 +165,21 @@
   // border-top: 1px solid @borderColor-base;
   .rounded(@borderRadius-public);
   border: 1px solid transparent;
-  padding: @gapSize-public;
+  padding: 0 @gapSize-public;
   margin: 0 @gapSize-public @gapSize-public;
   background-color: @bgColor-resultUnit;
 
   &.forItem,
   &.forPack {
-    min-height: @size-ruPackImg + @gapSize-public * 4;
-    padding-left: @size-ruPackImg + @gapSize-public * 3;
+    min-height: @size-ruPackImg + @gapSize-public;
+    padding-left: @size-ruPackImg + @gapSize-public * 2;
   }
 
   .ruPackImgBox,
   .ruGoodImgBox {
     box-sizing: border-box;
     position: absolute;
-    top: @gapSize-public;
+    top: 0;
     left: @gapSize-public;
     .rounded(@borderRadius-public);
     .square(@size-ruPackImg);
@@ -252,9 +252,9 @@
   .ruPackInfo {
     display: block;
     color: @fontColor-tips;
-    font-size: @fontSize-sub;
+    font-size: @fontSize-sub * .8;
     line-height: @fontSize-sub;
-    padding-top: @gapSize-public;
+    padding-top: @gapSize-public / 2;
     .text-hide();
 
     .parentName {

@@ -15,6 +15,7 @@ moment.locale('zh-cn');
 Page({
   data: {
     // 图标
+    //indexSearchIcon: base64.searchIconColorffaa7a,
     ruPackNameGoInIcon: base64.angleRight,
     ruPackDetailEditIcon: base64.editIconColor666,
     ruPackDetailDelIcon: base64.delIconColorful,
@@ -41,6 +42,17 @@ Page({
     goodListHaveData: true,
     // fileServer
     serverName: `${constants.NP}${constants.APIDOMAIN}${constants.IMGPATH}`,
+  },
+
+  // 跳转到搜索页面
+  gotoSearchPage: function() {
+    wx.navigateTo({
+      url: constants.ROUTE.search,
+    });
+  },
+
+  toSearchPage: function() {
+    this.gotoSearchPage();
   },
 
   // tab 改变

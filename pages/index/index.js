@@ -15,11 +15,8 @@ Page({
     // 图标
     newModifyNoDataIcon: base64.noDataCryFace1_black,
     msgLogo: base64.msgIconColorful,
-    help: base64.helpIconColorffaa7a,
-    addLocation: base64.homeIconColorful3,
     setting: base64.settingIconColorfff,
     locationEdit: base64.editIconColorfff,
-    indexSearchIcon: base64.searchIconColorffaa7a,
     whatsIn: base64.homeIconColorful2,
     beChef: base64.chefIconColorb41616,
     meat: base64.meatIconColorful,
@@ -176,31 +173,6 @@ Page({
     this.setData({
       cleiClass: [`clei`]
     });
-  },
-
-  // 跳转到更改默认房屋地点
-  toLocationList: function() {
-    wx.navigateTo({
-      url: constants.ROUTE.changeLocation,
-    });
-  },
-
-  // 打开帮助
-  openHelp: function() {
-    wx.navigateTo({
-      url: constants.ROUTE.help,
-    });
-  },
-
-  // 跳转到搜索页面
-  gotoSearchPage: function() {
-    wx.navigateTo({
-      url: constants.ROUTE.search,
-    });
-  },
-
-  toSearchPage: function() {
-    this.gotoSearchPage();
   },
 
   // 跳转到收纳点内容列表

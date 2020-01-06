@@ -1,0 +1,115 @@
+// out: ./searcher.wxss, compress: true, sourceMap: false
+// vscode 插件 easy wxless 将单个 less 文件编译成wxss文件的设置语句（设置语句一定放在文件最开头一行）
+
+// 引入样式变量
+@import '../../style/theme.less';
+// 引入minxin
+@import '../../style/mixins.less';
+
+.indexSearcherWrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: @zIndex-indexSearcherWrap;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  padding: @gapSize-public;
+  background-color: @color-secondary;
+  .clearfix();
+
+  &.relative {
+    position: relative;
+  }
+
+  .indexSearcherInput {
+    float: left;
+    position: relative;
+    box-sizing: border-box;
+    font-size: @fontSize-sub;
+    color: @fontColor-tips;
+    .size(534rpx, @height-input-indexSearcher);
+    line-height: @height-input-indexSearcher;
+    .rounded(@height-input-indexSearcher);
+    padding: 0 90rpx;
+    background-color: @bgColor-indexSearcher;
+    .text-hide();
+
+    > image {
+      position: absolute;
+      top: 50%;
+      left: 15rpx;
+      margin-top: -(@height-input-indexSearcher * 0.7)/2;
+      .square(@height-input-indexSearcher * 0.7);
+    }
+
+    .textFix {
+      padding-left: 10rpx;
+      padding-right: 10rpx;
+      display: inline-block;
+      vertical-align: top;
+      .text-hide();
+      max-width: 40%;
+    }
+  }
+
+  .subBtnWrap {
+    float: right;
+    width: @height-input-indexSearcher * 2.4;
+    text-align: right;
+    line-height: 0;
+  }
+
+  .subBtn {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    .square(@height-input-indexSearcher);
+    .rounded(50%);
+    background-color: @bgColor-indexSearcher;
+
+    &:last-child {
+      margin-left: @height-input-indexSearcher * .2;
+    }
+
+    > image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      .square(60%);
+      opacity: 0.85;
+      transform: translate(-50%,-50%);
+    }
+
+    &.addLocation {
+
+      > image {
+        top: 47%;
+        .square(70%);
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTQ0NjkzNzk0MjY3IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE2OTczIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTk1OS41NiA1MzAuNTZhNzQuNSA3NC41IDAgMCAxLTc0LjI4IDc0LjI4SDEzOC43M2E3NC41IDc0LjUgMCAwIDEtNzQuMjgtNzQuMjh2LTM3LjEyYTc0LjUgNzQuNSAwIDAgMSA3NC4yOC03NC4yOGg3NDYuNTRhNzQuNSA3NC41IDAgMCAxIDc0LjI4IDc0LjI4djM3LjEyeiBtLTQyOS00NjYuMTJhNzQuNSA3NC41IDAgMCAxIDc0LjI4IDc0LjI4djc0Ni41NWE3NC41IDc0LjUgMCAwIDEtNzQuMjggNzQuMjhoLTM3LjEyYTc0LjUgNzQuNSAwIDAgMS03NC4yOC03NC4yOFYxMzguNzNhNzQuNSA3NC41IDAgMCAxIDc0LjI4LTc0LjI4eiIgcC1pZD0iMTY5NzQiIGZpbGw9IiNmZmZmZmYiPjwvcGF0aD48L3N2Zz4=');
+        background-size: 32% 32%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        .square(100%);
+      }
+    }
+
+    &.locationList {
+      margin-left: 10rpx;
+
+      > image {
+        transform: translate(-40%,-45%);
+      }
+    }
+  }
+}

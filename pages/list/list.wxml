@@ -3,6 +3,7 @@
   <view class="currentLocation">
     <view class="prevPackBtn" bindtap="prev" wx:if="{{ exPackId != null }}"></view>
     <span class="currentLocationName">{{ currentPackName }}</span>
+    <view class="searcherBtn" bindtap="toSearchPage"></view>
   </view>
   <radio-group class="radio-group resultType" bindchange="radioChange">
     <view class="typeBox {{ checked == 'package' ? 'current' : '' }}">

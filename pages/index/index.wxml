@@ -1,19 +1,6 @@
 <!--index.wxml-->
 <standardLayout id="standardLayout">
-  <view class="indexSearcherWrap">
-    <view class="indexSearcherInput" bindtap="toSearchPage">
-      <image src="{{ indexSearchIcon }}"></image>
-      在<span class="textFix">{{ currentLocationName }}</span>里翻箱倒柜
-    </view>
-    <view class="subBtnWrap">
-      <span class="subBtn help" bindtap="openHelp">
-        <image src="{{ help }}"></image>
-      </span>
-      <span class="subBtn addLocation" bindtap="toLocationList">
-        <image src="{{ addLocation }}"></image>
-      </span>
-    </view>
-  </view>
+  <searcher currentLocationName="{{ currentLocationName }}"/>
   <view class="currentLocationEntry">
     <div class="{{ cleiClass }}" bindtap="intoThisLocation">
       <image src="{{ whatsIn }}"></image>
@@ -27,7 +14,6 @@
     </div>
   </view>
   <view class="theWave"></view>
-
   <!-- <view class="userInfoWrap">
     <view class="userInfo">
       <view class="{{ avatarBoxClass }}">

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "standardLayout": "/components/standardLayout/standardLayout",
-    "msgList": "/components/msgList/msgList"
+    "msgList": "/components/msgList/msgList",
+    "searcher": "/components/searcher/searcher"
   }
 }
